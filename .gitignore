@@ -1,0 +1,18 @@
+.DS_Store
+.vercel
+node_modules/
+*.log
+__pycache__/
+
+# Secrets (NEVER commit: this repo is public)
+.secrets/
+*.key
+.env
+.env.local
+
+# Level-2 detail: exposed ports and CVE counts are shared only with the organization concerned
+scan/out/*PRIVATE*
+
+# Research scratch
+pop/r1.txt
+pop/r2.txt

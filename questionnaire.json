@@ -1,0 +1,245 @@
+{
+ "title": "The Interior Inspection",
+ "subtitle": "The Level 2 instrument. What the cooperative inspection asks, and what a pass looks like. An organization opens the door; the inspection is to the same code, evidence in hand.",
+ "version": "v0.2 draft (AI-risk actors edition)",
+ "note": "Every item asks for evidence, not assurances. Each is recorded as pass, below code, or advisable against the named criterion, exactly as on the curb. No composite score, and no certification of the organization.",
+ "sections": [
+  {
+   "id": "A",
+   "name": "Email trust",
+   "items": [
+    {
+     "id": "A6",
+     "tier": "std",
+     "q": "What email security gateway filters inbound mail, and does it flag external senders and impersonation of your own people?",
+     "ev": "Gateway product; external-sender banner and anti-impersonation configuration.",
+     "pass": "A gateway with anti-phishing and impersonation protection is in force."
+    },
+    {
+     "id": "A8",
+     "tier": "std",
+     "q": "How often are staff trained against phishing and social engineering, and do you run simulations?",
+     "ev": "Training cadence; results of the last phishing simulation.",
+     "pass": "Recurring training, at least annual, with periodic phishing simulations."
+    }
+   ]
+  },
+  {
+   "id": "D",
+   "name": "Access & credentials",
+   "items": [
+    {
+     "id": "D1",
+     "tier": "floor",
+     "q": "Where is multi-factor authentication enforced, and where is it not? Cover email, remote access, privileged accounts, and any client-facing portal.",
+     "ev": "MFA policy; identity-provider enforcement report; the list of exceptions and service accounts.",
+     "pass": "MFA enforced on email, all remote access, and every administrative account; exceptions inventoried and time-bound."
+    },
+    {
+     "id": "D2",
+     "tier": "std",
+     "q": "How is administrative access granted, inventoried, and kept separate from daily-use accounts?",
+     "ev": "PAM tool or process; the admin-account inventory; whether access is standing or just-in-time.",
+     "pass": "Administrative access is least-privilege, inventoried, and separated from daily-use accounts."
+    },
+    {
+     "id": "D3",
+     "tier": "std",
+     "q": "Do you monitor for your domain's credentials appearing in breach or infostealer dumps, and how do you respond?",
+     "ev": "Credential-monitoring service; a recent forced-reset example.",
+     "pass": "Corporate credentials are monitored against breach corpora and resets are forced on exposure."
+    },
+    {
+     "id": "D4",
+     "tier": "std",
+     "q": "How long between a departure and full access revocation, and how is it verified?",
+     "ev": "Offboarding checklist; a recent offboarding record with timestamps.",
+     "pass": "Access revoked within one business day of departure, verified against an inventory."
+    },
+    {
+     "id": "D5",
+     "tier": "std",
+     "q": "Is access to core systems consolidated behind single sign-on?",
+     "ev": "Identity provider; applications behind SSO versus those still on standalone credentials.",
+     "pass": "Core systems authenticate through a central SSO with enforced policy."
+    }
+   ]
+  },
+  {
+   "id": "E",
+   "name": "Resilience",
+   "items": [
+    {
+     "id": "E1",
+     "tier": "floor",
+     "q": "How are backups isolated from the production network, and when did you last restore from them?",
+     "ev": "Backup architecture (immutable or offline); date and result of the last restoration test.",
+     "pass": "At least one copy is immutable or offline, and a restoration has been tested within twelve months."
+    },
+    {
+     "id": "E2",
+     "tier": "floor",
+     "q": "What endpoint detection and response runs on endpoints and servers, and who watches its alerts?",
+     "ev": "EDR product; coverage percentage; whether monitoring is in-house or a managed (MDR) service.",
+     "pass": "EDR across endpoints and servers, with alerts monitored around the clock by staff or an MDR provider."
+    },
+    {
+     "id": "E3",
+     "tier": "std",
+     "q": "When was your incident-response plan last exercised, and who outside IT took part?",
+     "ev": "The IR plan; date and participants of the last tabletop.",
+     "pass": "A documented plan exercised within twelve months, involving business and legal, not only IT."
+    }
+   ]
+  },
+  {
+   "id": "K",
+   "name": "Pre-release access",
+   "items": [
+    {
+     "id": "K1",
+     "tier": "floor",
+     "q": "When a lab gives you pre-release access, which accounts hold it, what MFA protects them, and are they separate from everyday email and chat accounts? Is every use logged?",
+     "ev": "Account inventory for the most recent engagement, MFA method (FIDO2 or equivalent), a log excerpt.",
+     "pass": "Dedicated accounts, phishing-resistant MFA, logged use."
+    },
+    {
+     "id": "K2",
+     "tier": "std",
+     "q": "At the end of your last engagement, how were keys, weights and artifacts revoked or destroyed, and how did the lab know?",
+     "ev": "The close-out record sent to the lab.",
+     "pass": "Revocation or destruction confirmed to the lab in writing."
+    },
+    {
+     "id": "K3",
+     "tier": "std",
+     "q": "Where do evaluation transcripts and results live during and after an engagement? Do any pass through third-party AI tools, personal drives or shared chat?",
+     "ev": "Data-flow description for one engagement.",
+     "pass": "Only in the lab's agreed environment or the organization's controlled storage."
+    },
+    {
+     "id": "K4",
+     "tier": "std",
+     "q": "Who is accountable for each lab relationship's access, and who would a lab call at 2 a.m. to revoke it?",
+     "ev": "Named owner per lab.",
+     "pass": "A named owner and an out-of-hours route exist."
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "name": "Governance & record",
+   "items": [
+    {
+     "id": "F4",
+     "tier": "std",
+     "q": "What current third-party attestation do you hold, and may we see the report and its scope?",
+     "ev": "SOC 2 Type II report, or ISO 27001 certificate with its Statement of Applicability.",
+     "pass": "A current SOC 2 Type II or ISO 27001 covering the services the counterparty uses."
+    },
+    {
+     "id": "F6",
+     "tier": "std",
+     "q": "Do you carry cyber insurance, and does it cover social engineering and funds-transfer fraud?",
+     "ev": "Declarations page; the social-engineering and funds-transfer-fraud endorsement or exclusion.",
+     "pass": "A current policy whose social-engineering and funds-transfer-fraud cover is endorsed, not excluded."
+    }
+   ]
+  },
+  {
+   "id": "H",
+   "name": "Data handling",
+   "items": [
+    {
+     "id": "H1",
+     "tier": "std",
+     "q": "Is sensitive and pre-release material encrypted at rest, and who controls the keys?",
+     "ev": "Encryption standard; key-management approach.",
+     "pass": "Family data encrypted at rest with managed keys."
+    },
+    {
+     "id": "H2",
+     "tier": "std",
+     "q": "Where does sensitive and pre-release material physically reside, including backups and sub-processors?",
+     "ev": "Data-residency statement; regions for primary, backup, and sub-processor storage.",
+     "pass": "The firm can state, per data type, where it resides."
+    },
+    {
+     "id": "H3",
+     "tier": "std",
+     "q": "Which third parties can access sensitive and pre-release material, and how are we told when that list changes?",
+     "ev": "Current sub-processor list; the change-notification commitment.",
+     "pass": "A maintained sub-processor list is disclosed, with advance notice of additions."
+    },
+    {
+     "id": "H4",
+     "tier": "std",
+     "q": "Do any AI or LLM tools process sensitive or pre-release material, and under what data terms?",
+     "ev": "AI-use policy; whether prompts or documents train third-party models or are retained.",
+     "pass": "A stated policy under which family documents are not sent to tools that train on or retain them without consent."
+    },
+    {
+     "id": "H5",
+     "tier": "std",
+     "q": "How long is sensitive and pre-release material retained after the engagement ends, and how is it destroyed?",
+     "ev": "Retention schedule; secure-deletion method and any certificate.",
+     "pass": "Data retained no longer than agreed and securely deleted on request or termination."
+    }
+   ]
+  },
+  {
+   "id": "I",
+   "name": "Supply chain & continuity",
+   "items": [
+    {
+     "id": "I1",
+     "tier": "std",
+     "q": "How do you assess the security of your own vendors and sub-processors?",
+     "ev": "Vendor-risk process; a recent sample assessment.",
+     "pass": "A documented third-party risk process applied before onboarding a vendor and periodically after."
+    },
+    {
+     "id": "I2",
+     "tier": "std",
+     "q": "When was your last independent penetration test, and were the findings remediated?",
+     "ev": "Executive summary of the last test; remediation status of high findings.",
+     "pass": "An independent test within twelve months, with high findings remediated."
+    },
+    {
+     "id": "I3",
+     "tier": "std",
+     "q": "What is centrally logged, how long is it kept, and who reviews it?",
+     "ev": "Logging scope; retention period; SIEM or monitoring service.",
+     "pass": "Security-relevant events centrally logged, retained, and monitored for intrusion."
+    },
+    {
+     "id": "I4",
+     "tier": "std",
+     "q": "Are staff with access to sensitive or pre-release material, or pre-release models background-checked?",
+     "ev": "Screening policy; scope for roles with physical or data access.",
+     "pass": "Pre-employment screening for any role touching sensitive or pre-release material or premises."
+    }
+   ]
+  },
+  {
+   "id": "J",
+   "name": "Contract",
+   "items": [
+    {
+     "id": "J1",
+     "tier": "std",
+     "q": "Within what time will you notify the counterparty of a confirmed breach affecting its data?",
+     "ev": "The contract clause carrying the notification window.",
+     "pass": "A contractual commitment to notify within a defined, short window."
+    },
+    {
+     "id": "J2",
+     "tier": "std",
+     "q": "Does our engagement preserve the right to audit or re-assess your controls?",
+     "ev": "The contract clause granting audit or re-assessment rights.",
+     "pass": "A right-to-audit or annual re-assessment clause is in the agreement."
+    }
+   ]
+  }
+ ]
+}

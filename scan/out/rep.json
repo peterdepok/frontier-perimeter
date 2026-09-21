@@ -1,0 +1,327 @@
+{
+"01.ai": {
+"d": "01.ai",
+"rep": "clean",
+"ip": "47.86.20.240"
+},
+"10alabs.com": {
+"d": "10alabs.com",
+"rep": "clean",
+"ip": "172.66.154.92"
+},
+"aisafety.info": {
+"d": "aisafety.info",
+"rep": "clean",
+"ip": "104.21.72.209"
+},
+"aisi.go.jp": {
+"d": "aisi.go.jp",
+"rep": "clean",
+"ip": "99.84.118.50"
+},
+"aisi.gov.uk": {
+"d": "aisi.gov.uk",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"aisi.re.kr": {
+"d": "aisi.re.kr",
+"rep": "clean",
+"ip": "129.254.9.74"
+},
+"amazon.com": {
+"d": "amazon.com",
+"rep": "clean",
+"ip": "98.87.170.71"
+},
+"anthropic.com": {
+"d": "anthropic.com",
+"rep": "clean",
+"ip": "160.79.104.10"
+},
+"apolloresearch.ai": {
+"d": "apolloresearch.ai",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"bitsight.com": {
+"d": "bitsight.com",
+"rep": "clean",
+"ip": "104.18.13.204"
+},
+"blackkite.com": {
+"d": "blackkite.com",
+"rep": "clean",
+"ip": "104.18.26.100"
+},
+"cesia.org": {
+"d": "cesia.org",
+"rep": "clean",
+"ip": "172.67.180.98"
+},
+"cognition.ai": {
+"d": "cognition.ai",
+"rep": "clean",
+"ip": "76.76.21.21"
+},
+"cohere.com": {
+"d": "cohere.com",
+"rep": "clean",
+"ip": "76.76.21.21"
+},
+"controlai.org": {
+"d": "controlai.org",
+"rep": "clean",
+"ip": "31.43.161.6"
+},
+"cser.ac.uk": {
+"d": "cser.ac.uk",
+"rep": "clean",
+"ip": "46.235.224.172"
+},
+"ec.europa.eu": {
+"d": "ec.europa.eu",
+"rep": "clean",
+"ip": "147.67.34.30"
+},
+"encodeai.org": {
+"d": "encodeai.org",
+"rep": "clean",
+"ip": "141.193.213.10"
+},
+"entreprises.gouv.fr": {
+"d": "entreprises.gouv.fr",
+"rep": "clean",
+"ip": "45.223.153.83"
+},
+"epoch.ai": {
+"d": "epoch.ai",
+"rep": "clean",
+"ip": "104.21.75.167"
+},
+"existentialriskobservatory.org": {
+"d": "existentialriskobservatory.org",
+"rep": "clean",
+"ip": "185.104.29.100"
+},
+"faculty.ai": {
+"d": "faculty.ai",
+"rep": "clean",
+"ip": "76.76.21.21"
+},
+"far.ai": {
+"d": "far.ai",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"futureoflife.org": {
+"d": "futureoflife.org",
+"rep": "clean",
+"ip": "104.26.9.4"
+},
+"g42.ai": {
+"d": "g42.ai",
+"rep": "clean",
+"ip": "20.233.232.77"
+},
+"google.com": {
+"d": "google.com",
+"rep": "clean",
+"ip": "172.217.214.102"
+},
+"grayswan.ai": {
+"d": "grayswan.ai",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"haizelabs.com": {
+"d": "haizelabs.com",
+"rep": "clean",
+"ip": "172.67.72.232"
+},
+"huggingface.co": {
+"d": "huggingface.co",
+"rep": "clean",
+"ip": "99.84.105.128"
+},
+"ibm.com": {
+"d": "ibm.com",
+"rep": "clean",
+"ip": "184.30.98.134"
+},
+"industry.gov.au": {
+"d": "industry.gov.au",
+"rep": "clean",
+"ip": "192.199.32.3"
+},
+"inflection.ai": {
+"d": "inflection.ai",
+"rep": "clean",
+"ip": "31.43.161.6"
+},
+"intelligence.org": {
+"d": "intelligence.org",
+"rep": "clean",
+"ip": "141.193.213.10"
+},
+"irregular.com": {
+"d": "irregular.com",
+"rep": "clean",
+"ip": "31.43.161.6"
+},
+"ised-isde.canada.ca": {
+"d": "ised-isde.canada.ca",
+"rep": "clean",
+"ip": "205.194.37.193"
+},
+"longtermresilience.org": {
+"d": "longtermresilience.org",
+"rep": "clean",
+"ip": "35.214.93.19"
+},
+"magic.dev": {
+"d": "magic.dev",
+"rep": "clean",
+"ip": "76.76.21.21"
+},
+"meta.com": {
+"d": "meta.com",
+"rep": "clean",
+"ip": "57.144.204.141"
+},
+"metr.org": {
+"d": "metr.org",
+"rep": "clean",
+"ip": "104.198.14.52"
+},
+"microsoft.com": {
+"d": "microsoft.com",
+"rep": "clean",
+"ip": "150.171.110.210"
+},
+"minimax.io": {
+"d": "minimax.io",
+"rep": "clean",
+"ip": "47.89.128.168"
+},
+"mistral.ai": {
+"d": "mistral.ai",
+"rep": "clean",
+"ip": "172.66.2.203"
+},
+"navercorp.com": {
+"d": "navercorp.com",
+"rep": "clean",
+"ip": "110.93.151.164"
+},
+"nist.gov": {
+"d": "nist.gov",
+"rep": "clean",
+"ip": "172.65.90.25"
+},
+"nvidia.com": {
+"d": "nvidia.com",
+"rep": "clean",
+"ip": "34.194.97.138"
+},
+"openai.com": {
+"d": "openai.com",
+"rep": "clean",
+"ip": "172.64.154.211"
+},
+"palisaderesearch.org": {
+"d": "palisaderesearch.org",
+"rep": "clean",
+"ip": "172.67.69.90"
+},
+"pauseai-us.org": {
+"d": "pauseai-us.org",
+"rep": "clean",
+"ip": "162.159.134.42"
+},
+"pauseai.info": {
+"d": "pauseai.info",
+"rep": "clean",
+"ip": "75.2.60.5"
+},
+"perplexity.ai": {
+"d": "perplexity.ai",
+"rep": "clean",
+"ip": "104.18.26.48"
+},
+"redwoodresearch.org": {
+"d": "redwoodresearch.org",
+"rep": "clean",
+"ip": "76.76.21.21"
+},
+"safe.ai": {
+"d": "safe.ai",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"safer-ai.org": {
+"d": "safer-ai.org",
+"rep": "clean",
+"ip": "95.179.213.82"
+},
+"samsung.com": {
+"d": "samsung.com",
+"rep": "clean",
+"ip": "211.45.27.231"
+},
+"scale.com": {
+"d": "scale.com",
+"rep": "clean",
+"ip": "76.76.21.241"
+},
+"securebio.org": {
+"d": "securebio.org",
+"rep": "clean",
+"ip": "104.21.2.95"
+},
+"securityscorecard.com": {
+"d": "securityscorecard.com",
+"rep": "clean",
+"ip": "104.16.227.80"
+},
+"sgaisi.sg": {
+"d": "sgaisi.sg",
+"rep": "clean",
+"ip": "103.7.9.47"
+},
+"signaturescience.com": {
+"d": "signaturescience.com",
+"rep": "clean",
+"ip": "192.149.55.36"
+},
+"themidasproject.com": {
+"d": "themidasproject.com",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"tii.ae": {
+"d": "tii.ae",
+"rep": "clean",
+"ip": "20.216.50.240"
+},
+"trajectorylabs.com": {
+"d": "trajectorylabs.com",
+"rep": "clean",
+"ip": "104.18.12.25"
+},
+"virtueai.com": {
+"d": "virtueai.com",
+"rep": "clean",
+"ip": "198.202.211.1"
+},
+"x.ai": {
+"d": "x.ai",
+"rep": "clean",
+"ip": "104.18.19.80"
+},
+"z.ai": {
+"d": "z.ai",
+"rep": "clean",
+"ip": "8.216.131.83"
+}
+}

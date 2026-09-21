@@ -1,0 +1,267 @@
+{
+"_meta": {
+"source": "Shodan InternetDB",
+"read": "2026-09-21",
+"rule": "cdn = CDN/WAF edge; edge = shared managed web edge answering only web ports; origin = address also answering remote-admin, file-transfer or database services"
+},
+"01.ai": {
+"ip": "47.86.20.240",
+"k": "edge"
+},
+"10alabs.com": {
+"ip": "172.66.154.92",
+"k": "cdn"
+},
+"aisafety.info": {
+"ip": "104.21.72.209",
+"k": "cdn"
+},
+"aisi.go.jp": {
+"ip": "99.84.118.50",
+"k": "cdn"
+},
+"aisi.gov.uk": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"aisi.re.kr": {
+"ip": "129.254.9.74",
+"k": "na"
+},
+"amazon.com": {
+"ip": "98.87.170.71",
+"k": "edge"
+},
+"anthropic.com": {
+"ip": "160.79.104.10",
+"k": "cdn"
+},
+"apolloresearch.ai": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"bitsight.com": {
+"ip": "104.18.13.204",
+"k": "cdn"
+},
+"blackkite.com": {
+"ip": "104.18.26.100",
+"k": "cdn"
+},
+"cesia.org": {
+"ip": "172.67.180.98",
+"k": "cdn"
+},
+"cognition.ai": {
+"ip": "76.76.21.21",
+"k": "edge"
+},
+"cohere.com": {
+"ip": "76.76.21.21",
+"k": "edge"
+},
+"controlai.org": {
+"ip": "31.43.161.6",
+"k": "edge"
+},
+"cser.ac.uk": {
+"ip": "46.235.224.172",
+"k": "origin"
+},
+"ec.europa.eu": {
+"ip": "147.67.34.30",
+"k": "edge"
+},
+"encodeai.org": {
+"ip": "141.193.213.10",
+"k": "cdn"
+},
+"entreprises.gouv.fr": {
+"ip": "45.223.153.83",
+"k": "cdn"
+},
+"epoch.ai": {
+"ip": "104.21.75.167",
+"k": "cdn"
+},
+"existentialriskobservatory.org": {
+"ip": "185.104.29.100",
+"k": "origin"
+},
+"faculty.ai": {
+"ip": "76.76.21.21",
+"k": "edge"
+},
+"far.ai": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"futureoflife.org": {
+"ip": "104.26.9.4",
+"k": "cdn"
+},
+"g42.ai": {
+"ip": "20.233.232.77",
+"k": "edge"
+},
+"google.com": {
+"ip": "172.217.214.102",
+"k": "edge"
+},
+"grayswan.ai": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"haizelabs.com": {
+"ip": "172.67.72.232",
+"k": "cdn"
+},
+"huggingface.co": {
+"ip": "99.84.105.128",
+"k": "cdn"
+},
+"ibm.com": {
+"ip": "184.30.98.134",
+"k": "cdn"
+},
+"industry.gov.au": {
+"ip": "192.199.32.3",
+"k": "edge"
+},
+"inflection.ai": {
+"ip": "31.43.161.6",
+"k": "edge"
+},
+"intelligence.org": {
+"ip": "141.193.213.10",
+"k": "cdn"
+},
+"irregular.com": {
+"ip": "31.43.161.6",
+"k": "edge"
+},
+"ised-isde.canada.ca": {
+"ip": "205.194.37.193",
+"k": "na"
+},
+"longtermresilience.org": {
+"ip": "35.214.93.19",
+"k": "edge"
+},
+"magic.dev": {
+"ip": "76.76.21.21",
+"k": "edge"
+},
+"meta.com": {
+"ip": "57.144.204.141",
+"k": "edge"
+},
+"metr.org": {
+"ip": "104.198.14.52",
+"k": "edge"
+},
+"microsoft.com": {
+"ip": "150.171.110.210",
+"k": "cdn"
+},
+"mistral.ai": {
+"ip": "172.66.2.203",
+"k": "cdn"
+},
+"navercorp.com": {
+"ip": "110.93.151.164",
+"k": "edge"
+},
+"nist.gov": {
+"ip": "172.65.90.25",
+"k": "cdn"
+},
+"nvidia.com": {
+"ip": "34.194.97.138",
+"k": "edge"
+},
+"openai.com": {
+"ip": "172.64.154.211",
+"k": "cdn"
+},
+"palisaderesearch.org": {
+"ip": "172.67.69.90",
+"k": "cdn"
+},
+"pauseai-us.org": {
+"ip": "162.159.134.42",
+"k": "cdn"
+},
+"pauseai.info": {
+"ip": "75.2.60.5",
+"k": "edge"
+},
+"perplexity.ai": {
+"ip": "104.18.26.48",
+"k": "cdn"
+},
+"redwoodresearch.org": {
+"ip": "76.76.21.21",
+"k": "edge"
+},
+"safe.ai": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"safer-ai.org": {
+"ip": "95.179.213.82",
+"k": "edge"
+},
+"samsung.com": {
+"ip": "211.45.27.231",
+"k": "edge"
+},
+"scale.com": {
+"ip": "76.76.21.241",
+"k": "edge"
+},
+"securebio.org": {
+"ip": "104.21.2.95",
+"k": "cdn"
+},
+"securityscorecard.com": {
+"ip": "104.16.227.80",
+"k": "cdn"
+},
+"sgaisi.sg": {
+"ip": "103.7.9.47",
+"k": "origin"
+},
+"signaturescience.com": {
+"ip": "192.149.55.36",
+"k": "origin"
+},
+"themidasproject.com": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"tii.ae": {
+"ip": "20.216.50.240",
+"k": "edge"
+},
+"trajectorylabs.com": {
+"ip": "104.18.12.25",
+"k": "cdn"
+},
+"virtueai.com": {
+"ip": "198.202.211.1",
+"k": "cdn"
+},
+"x.ai": {
+"ip": "104.18.19.80",
+"k": "cdn"
+},
+"z.ai": {
+"ip": "8.216.131.83",
+"k": "edge"
+},
+"minimax.io": {
+"ip": "47.253.56.56",
+"k": "na"
+}
+}

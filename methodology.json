@@ -1,0 +1,210 @@
+{
+ "title": "Methodology & Measurement",
+ "version": "v0.3 (AI-risk actors edition)",
+ "subtitle": "How every reading on this map is taken, where its source of truth sits, and what it cannot see. The map makes an argument, so the method behind it is documented in full: anyone should be able to rerun it and get the same record.",
+ "principles": [
+  {
+   "h": "Curb, not interior",
+   "p": "Level 1 is taken from the public record. DNS is read the way any mail server reads it. Each public website is visited once, the way a browser visits it, to read one response header and one public file (/.well-known/security.txt). No login is attempted, no port is probed, no vulnerability is exercised, and no traffic is sent to any look-alike domain. Level 2 is the cooperative inspection, where the organization opens the door and shows evidence."
+  },
+  {
+   "h": "A record, not a grade",
+   "p": "Each control is recorded as pass, below code, advisable, or not observable against a single named requirement. There is no composite score and no ranking. No organization is called good or bad; a specific, checkable fact is placed on the record, dated and sourced."
+  },
+  {
+   "h": "A matter of record, not a finding",
+   "p": "An appearance on a screening list or a ransomware leak site is reported as a matter of public record: dated, linked to its source, and read in context. A leak-site listing is an attacker's claim. An export-control listing is not a sanction. Neither is a finding of wrongdoing by anyone."
+  },
+  {
+   "h": "Absence is not a negative",
+   "p": "Where a signal cannot be resolved (a DKIM key on an uncommon selector, a DNS answer too large for the resolver path, a website that refused the read, name servers that answered inconsistently) it is recorded as not observable, never as a failure. The instrument states what it could see, not what it assumes."
+  },
+  {
+   "h": "Fair to the small",
+   "p": "Every observable Floor control costs close to nothing: an enforcing DMARC record is one line of DNS, and a security.txt is one text file. The Floor is the same for a trillion-dollar lab and a ten-person nonprofit, because the model access a lab hands to either is the same. Where an organization lives on a parent's domain (a ministry, a university), the record names the parent and says so."
+  }
+ ],
+ "population": {
+  "rule": "An organization is on this map because it put its own name to a written commitment or warning about AI risk or security, or because a frontier lab's own published document records entrusting it with model access. The author did not choose who matters. Every profile links the document that put the organization here and quotes it.",
+  "rings": [
+   [
+    "Entrusted",
+    "Named in a frontier lab's own system card as an external evaluator or red team (Anthropic, OpenAI and Google DeepMind system cards, 2024 to 2026)."
+   ],
+   [
+    "The labs",
+    "Signatories of the Frontier AI Safety Commitments (AI Seoul Summit, May 2024, with later additions): the pledge includes investing in cybersecurity and insider-threat safeguards for unreleased model weights."
+   ],
+   [
+    "Warning the public",
+    "Organizations that published, under their own name, a warning of catastrophic or extinction-level AI risk, or a rating of the labs' safety practices."
+   ],
+   [
+    "Institutes",
+    "Members of the international network of government AI safety institutes, beyond the two already listed as evaluators."
+   ],
+   [
+    "Signed the defense letter",
+    "AI developers and security-ratings firms among the 666 signatories of the Collective Cyber Defense letter (27 August 2026), whose first ask of every organization is to fix its highest-risk weaknesses."
+   ]
+  ],
+  "verification": "Every inclusion document was fetched and the quoted sentence read back from it. Where the text available showed only a heading or a co-authored paper, the organization was held back rather than included on a weak reading; the held list and the reason for each is published below."
+ },
+ "coverage": "65 organizations across five rings. Every one carries the Level 1 read: DNS from public resolvers; one HTTP read of each public website, paced, one visit per site; passive exposure data from Shodan InternetDB; the FireHOL level1 blocklist; the US Consolidated Screening List; and ransomware.live's public victim search. Every one also carries a linked inclusion source. The curb read is necessary, not sufficient: it says nothing about the controls that protect model weights from a state-level attacker, which sit behind Level 2 and beyond it.",
+ "signals": [
+  {
+   "id": "A1",
+   "name": "DMARC policy",
+   "cat": "Email",
+   "level": 1,
+   "source": "RFC 7489 (DMARC)",
+   "ref": "https://www.rfc-editor.org/rfc/rfc7489",
+   "what": "Whether the domain tells receiving mail servers to reject or quarantine mail forged in its exact name.",
+   "measure": "The _dmarc TXT record is read and its p= policy parsed (none, quarantine, reject), with pct= where present. A domain that publishes no mail servers and no DMARC record is recorded separately as sending no mail.",
+   "limit": "Enforcement at pct below 100 is partial and shown as such. A policy of none with reporting (rua=) is recorded as monitoring: a common step before enforcement, still below the Floor. DMARC does nothing against a look-alike domain."
+  },
+  {
+   "id": "A2",
+   "name": "SPF",
+   "cat": "Email",
+   "level": 1,
+   "source": "RFC 7208 (SPF)",
+   "ref": "https://www.rfc-editor.org/rfc/rfc7208",
+   "what": "Whether unauthorised senders of the domain's mail are rejected.",
+   "measure": "The domain's TXT records are read for v=spf1 and the terminal mechanism classified: -all, ~all, ?all/+all.",
+   "limit": "Many large domains publish TXT sets too large for the UDP path this scan could use; those are recorded as not observable. The scheduled scan, which can fall back to TCP, fills them."
+  },
+  {
+   "id": "A3",
+   "name": "DKIM",
+   "cat": "Email",
+   "level": 1,
+   "source": "RFC 6376 (DKIM)",
+   "ref": "https://www.rfc-editor.org/rfc/rfc6376",
+   "what": "Whether the domain publishes a key to sign its outbound mail.",
+   "measure": "Twenty-five common selectors are queried at selector._domainkey, following CNAMEs.",
+   "limit": "An uncommon selector is not detected, so absence is recorded as not observable, never as an absence of DKIM."
+  },
+  {
+   "id": "A4",
+   "name": "MTA-STS / TLS-RPT",
+   "cat": "Email",
+   "level": 1,
+   "source": "RFC 8461, RFC 8460",
+   "ref": "https://www.rfc-editor.org/rfc/rfc8461",
+   "what": "Whether inbound mail is protected against silent downgrade, with failures reported.",
+   "measure": "The _mta-sts and _smtp._tls TXT records are read for v=STSv1 and v=TLSRPTv1.",
+   "limit": "The policy file itself is not fetched; DNS presence is what is recorded."
+  },
+  {
+   "id": "A5",
+   "name": "Look-alike domains",
+   "cat": "Email",
+   "level": 1,
+   "source": "Public DNS",
+   "ref": "",
+   "what": "Whether a mail-capable homoglyph or one-keystroke typo of the domain is registered.",
+   "measure": "Homoglyph and typo variants are generated and each resolved for MX only. A variant is counted defensive when its name servers or mail servers match the actor's own or sit with a brand-protection registrar. Top-level-domain swaps are dropped, and labels of four characters or fewer are skipped, because their variants are ordinary words and other businesses.",
+   "limit": "Heuristic and not exhaustive. A mail-capable typo is not asserted to be malicious; only a homoglyph with live mail is treated as below code, and typos are advisable context."
+  },
+  {
+   "id": "B2",
+   "name": "HSTS",
+   "cat": "Web",
+   "level": 1,
+   "source": "RFC 6797 (HSTS)",
+   "ref": "https://www.rfc-editor.org/rfc/rfc6797",
+   "what": "Whether the public website tells browsers never to fall back to plain HTTP.",
+   "measure": "One same-origin GET of the homepage in an ordinary browser; the Strict-Transport-Security header is read. A max-age of six months or more meets the control; a shorter one is recorded as short.",
+   "limit": "Reads the host the apex redirected to. A site behind a bot challenge that refuses the read is not observable."
+  },
+  {
+   "id": "F5",
+   "name": "security.txt",
+   "cat": "Web",
+   "level": 1,
+   "source": "RFC 9116 (security.txt)",
+   "ref": "https://www.rfc-editor.org/rfc/rfc9116",
+   "what": "Whether the organization publishes where to report a vulnerability in it.",
+   "measure": "One same-origin GET of /.well-known/security.txt; the file counts when it is served as text, carries a Contact field, and its Expires date is in the future. An expired file is recorded as expired.",
+   "limit": "An organization may run a disclosure page or bug bounty without a security.txt; that is not detected, which is why F5 sits at Standard Practice in this edition rather than on the Floor."
+  },
+  {
+   "id": "B3",
+   "name": "Origin exposure",
+   "cat": "Web",
+   "level": 1,
+   "source": "Shodan InternetDB",
+   "ref": "https://internetdb.shodan.io/",
+   "what": "Whether the website's address sits behind a CDN or managed edge, or also answers non-web services.",
+   "measure": "The resolved address is looked up in Shodan's passive index. CDN/WAF signatures or an edge answering only web ports count as shielded. An address that also answers remote-admin, file-transfer or database services is recorded as a directly reachable origin.",
+   "limit": "Which services, and any CVEs indexed against them, are held to Level 2: publishing them would hand an attacker a target list. The public record carries only the flag."
+  },
+  {
+   "id": "B4",
+   "name": "Known-exploited services",
+   "cat": "Surface",
+   "level": 1,
+   "source": "Shodan InternetDB, CISA KEV",
+   "ref": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+   "what": "Whether directly reachable services carry known-exploited vulnerabilities.",
+   "measure": "Held to Level 2 for any origin that is not shielded.",
+   "limit": "Never published at Level 1."
+  },
+  {
+   "id": "C1",
+   "name": "Exposed admin / database",
+   "cat": "Surface",
+   "level": 1,
+   "source": "Shodan InternetDB",
+   "ref": "",
+   "what": "Whether remote-admin or database ports answer on public addresses.",
+   "measure": "Held to Level 2, as B4.",
+   "limit": "Never published at Level 1."
+  },
+  {
+   "id": "C2",
+   "name": "DNS hygiene",
+   "cat": "Surface",
+   "level": 1,
+   "source": "RFC 4033 (DNSSEC), RFC 8659 (CAA)",
+   "ref": "https://www.rfc-editor.org/rfc/rfc8659",
+   "what": "Whether the zone is signed and certificate issuance is restricted.",
+   "measure": "The domain is queried for a DS record and for CAA records.",
+   "limit": "Presence is recorded, not correctness."
+  },
+  {
+   "id": "C3",
+   "name": "Network reputation",
+   "cat": "Surface",
+   "level": 1,
+   "source": "FireHOL level1",
+   "ref": "https://iplists.firehol.org/?ipset=firehol_level1",
+   "what": "Whether the web address sits on a conservative malware and attack blocklist.",
+   "measure": "The resolved address is joined against the FireHOL level1 aggregate.",
+   "limit": "Shared and CDN addresses belong to the provider, not the organization."
+  },
+  {
+   "id": "F1",
+   "name": "US Treasury sanctions",
+   "cat": "Record",
+   "level": 1,
+   "source": "US Consolidated Screening List (ITA)",
+   "ref": "https://www.trade.gov/consolidated-screening-list",
+   "what": "Whether the organization is designated on a US Treasury sanctions list.",
+   "measure": "The organization's names and known legal names are matched, exactly and after normalization, against every name and alias in the 26,146-entry list. Treasury lists count against the Floor. Commerce and State lists (Entity List, Denied Persons, ITAR debarment and others) are export-control records shown on the profile and not scored.",
+   "limit": "Exact matching misses a transliteration the list does not carry. EU, UK and UN lists are not read in this edition."
+  },
+  {
+   "id": "G1",
+   "name": "Ransomware leak site",
+   "cat": "Record",
+   "level": 1,
+   "source": "ransomware.live",
+   "ref": "https://www.ransomware.live/",
+   "what": "Whether the organization has been posted as a victim on an extortion leak site.",
+   "measure": "The actor's domain is searched on ransomware.live and each result read by hand; a listing is kept only when the victim named is the actor itself. A listing within twelve months of the scan is an item to resolve; older listings are record only.",
+   "limit": "A listing is the attacker's claim. Some groups recycle old data or post fabrications; the listing is shown with its date and group so it can be read as such."
+  }
+ ]
+}

@@ -1,0 +1,303 @@
+<title>The Interior Inspection · The Frontier Perimeter</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Nanum+Myeongjo:wght@400;700&display=swap">
+<style>
+:root,:root[data-theme="dark"]{
+  --bg-page:radial-gradient(ellipse at 40% 40%, #0b4168 0%, #072a3a 100%);
+  --bg-page-solid:#072a3a;
+  --text-primary:#ffffffe6; --text-strong:#fff; --text-secondary:#fffc; --text-body:#ffffffb3;
+  --text-muted:#fff6; --text-faint:#ffffff40; --text-faintest:#ffffff26;
+  --surface-card:#ffffff0f; --surface-hover:#ffffff1a; --surface-input:#ffffff14;
+  --border-subtle:#ffffff14; --border-default:#ffffff1a; --border-input:#ffffff26; --border-focus:#ffffff4d;
+  --gold:#867e33; --gold-border:#867e3399;
+  --map-edge:#ffffff29;
+  --status-only-text:#a5e8d4; --warn:#e0b36a; --inc:#f08a7a;
+}
+:root[data-theme="light"]{
+  --bg-page:#fafafa; --bg-page-solid:#fafafa;
+  --text-strong:#0b4168; --text-primary:#171717; --text-secondary:#171717; --text-body:#525252;
+  --text-muted:#737373; --text-faint:#a3a3a3; --text-faintest:#d4d4d4;
+  --surface-card:#fff; --surface-hover:#f5f7fa; --surface-input:#fff;
+  --border-subtle:#0b416814; --border-default:#e5e5e5; --border-input:#d4d4d4; --border-focus:#0b4168;
+  --map-edge:#0b41684d;
+  --status-only-text:#215c48; --warn:#8a5a12; --inc:#a8321e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--bg-page);color:var(--text-primary);
+  font-family:'Afacad Flux',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{padding-bottom:120px}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--border-subtle);padding:16px 0;margin-bottom:8px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-size:13px;font-weight:600;color:var(--text-strong);letter-spacing:.01em}
+.brand small{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.back{font-size:12px;color:var(--text-muted);text-decoration:none;border:1px solid var(--map-edge);border-radius:20px;padding:4px 12px}
+.intro{padding:26px 0 10px}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 8px}
+h1{font-family:'Nanum Myeongjo',Georgia,serif;font-size:30px;font-weight:700;color:var(--text-strong);margin:0 0 10px;line-height:1.15}
+.lede{font-size:14px;line-height:1.6;color:var(--text-body);max-width:80ch;margin:0 0 6px}
+.firmrow{display:flex;align-items:center;gap:10px;margin:18px 0 4px;flex-wrap:wrap}
+.firmrow label{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.firmrow input{background:var(--surface-input);border:1px solid var(--border-input);border-radius:8px;color:var(--text-primary);
+  font:inherit;font-size:14px;padding:7px 11px;min-width:260px}
+.firmrow input:focus{outline:none;border-color:var(--border-focus)}
+
+/* sticky summary */
+.summary{position:sticky;top:0;z-index:20;background:var(--bg-page-solid);border-bottom:1px solid var(--border-subtle);
+  padding:11px 0;margin:14px 0 6px}
+.summary .wrap{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+.scard{flex:1;min-width:220px;border:1px solid var(--map-edge);border-radius:10px;padding:10px 13px;background:var(--surface-card)}
+.scard.floor{border-left:3px solid var(--warn)}
+.scard.std{border-left:3px solid var(--status-only-text)}
+.scard h4{margin:0 0 3px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.scard .v{font-size:17px;font-weight:700;color:var(--text-strong);font-family:'Nanum Myeongjo',serif}
+.scard .v.ok{color:var(--status-only-text)} .scard .v.bad{color:var(--warn)}
+.scard .sub{font-size:11.5px;color:var(--text-secondary);margin-top:2px;line-height:1.4}
+
+/* progress */
+.prog{height:4px;background:var(--surface-input);border-radius:3px;overflow:hidden;margin:10px 0 0}
+.prog i{display:block;height:100%;background:var(--status-only-text);width:0;transition:width .2s}
+
+/* family + items */
+.fam{border:1px solid var(--map-edge);border-radius:12px;padding:15px 16px;margin:14px 0;background:var(--surface-card)}
+.fh{display:flex;align-items:baseline;gap:9px;margin-bottom:4px}
+.fid{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.05em}
+.fh h3{font-family:'Nanum Myeongjo',serif;font-size:17px;font-weight:700;color:var(--text-strong);margin:0}
+.item{padding:14px 0;border-top:1px solid var(--border-subtle)}
+.item:first-of-type{border-top:0}
+.itop{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.iid{font-size:11.5px;font-weight:700;color:var(--text-muted)}
+.badge{font-size:9.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap;padding:1px 7px;border-radius:20px;border:1px solid var(--map-edge)}
+.badge.floor{color:var(--warn);border-color:var(--warn)} .badge.std{color:var(--status-only-text)}
+.q{font-size:14px;line-height:1.5;color:var(--text-body);font-weight:500;margin:0 0 9px;max-width:90ch}
+.meta{display:flex;flex-direction:column;gap:4px;padding-left:11px;border-left:2px solid var(--map-edge);margin:0 0 11px}
+.mrow{display:grid;grid-template-columns:74px 1fr;gap:9px;align-items:baseline}
+.mk{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.mv{font-size:12px;line-height:1.45;color:var(--text-secondary)}
+.opts{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 8px}
+.opt{font:inherit;font-size:12.5px;cursor:pointer;border:1px solid var(--border-input);background:var(--surface-input);
+  color:var(--text-secondary);border-radius:8px;padding:6px 13px;transition:.12s}
+.opt:hover{border-color:var(--border-focus)}
+.opt.on[data-s="pass"]{background:#164c47;border-color:var(--status-only-text);color:var(--status-only-text)}
+.opt.on[data-s="below"]{background:#4a2a20;border-color:var(--inc);color:var(--inc)}
+.opt.on[data-s="adv"]{background:#4a3d1e;border-color:var(--warn);color:var(--warn)}
+.opt.on[data-s="na"]{background:var(--surface-hover);border-color:var(--border-focus);color:var(--text-muted)}
+.note{width:100%;background:var(--surface-input);border:1px solid var(--border-input);border-radius:8px;color:var(--text-primary);
+  font:inherit;font-size:12.5px;padding:7px 10px;resize:vertical;min-height:34px}
+.note::placeholder{color:var(--text-faint)}
+.note:focus{outline:none;border-color:var(--border-focus)}
+
+/* action bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--bg-page-solid);border-top:1px solid var(--border-subtle);
+  padding:11px 0}
+.bar .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar .status{font-size:12px;color:var(--text-muted);margin-right:auto}
+.btn{font:inherit;font-size:13px;cursor:pointer;border-radius:8px;padding:8px 15px;border:1px solid var(--border-input);
+  background:var(--surface-input);color:var(--text-primary)}
+.btn:hover{border-color:var(--border-focus)}
+.btn.primary{background:var(--gold);border-color:var(--gold-border);color:#fff;font-weight:600}
+.btn.ghost{background:transparent}
+.note-sm{font-size:11px;color:var(--text-faint);margin-top:14px;line-height:1.5;max-width:80ch}
+.conf{border:1px solid var(--map-edge);border-radius:10px;padding:12px 15px;margin:8px 0 0;font-size:13px;line-height:1.55;color:var(--text-body)}
+.conf.ok{border-left:3px solid var(--status-only-text);background:color-mix(in srgb,var(--status-only-text) 8%,transparent)}
+.conf.warn{border-left:3px solid var(--warn);background:color-mix(in srgb,var(--warn) 9%,transparent)}
+.conf code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:var(--surface-input);padding:1px 6px;border-radius:5px}
+.conf a{color:var(--status-only-text);word-break:break-all}
+body.ro .opts{pointer-events:none;opacity:.9} body.ro .note{pointer-events:none;opacity:.85}
+@media print{
+  .bar,.summary,.back,.opts .opt:not(.on),.firmrow input{display:none!important}
+  body{background:#fff;color:#000;padding:0}
+  .opt.on{border:1px solid #000!important;color:#000!important;background:#fff!important}
+  .fam,.item{break-inside:avoid}
+}
+</style>
+<header class="top"><div class="wrap">
+  <div class="brand">The Frontier Perimeter<small>Pete Depok &middot; Deep Hawks</small></div>
+  <a class="back" href="./index.html">&larr; Back to the map</a>
+</div></header>
+
+<div class="wrap">
+  <section class="intro">
+    <p class="kicker">Level 2 &middot; the interior inspection</p>
+    <h1 id="ttl">The Interior Inspection.</h1>
+    <p class="lede" id="lede"></p>
+    <div class="firmrow"><label for="firm">Organization</label><input id="firm" placeholder="Organization name" autocomplete="off"></div>
+  </section>
+</div>
+
+<div class="summary"><div class="wrap">
+  <div class="scard floor"><h4>The Floor</h4><div class="v" id="floorV">&mdash;</div><div class="sub" id="floorS">Answer the Floor items to see whether this organization clears the minimum.</div></div>
+  <div class="scard std"><h4>Standard Practice</h4><div class="v" id="stdV">&mdash;</div><div class="sub" id="stdS">Above the Floor.</div></div>
+</div>
+<div class="wrap"><div class="prog"><i id="prog"></i></div></div>
+</div>
+
+<div class="wrap"><div class="conf" id="conf" style="display:none"></div></div>
+
+<div class="wrap" id="form"></div>
+
+<div class="wrap"><p class="note-sm" id="disc"></p></div>
+
+<div class="bar"><div class="wrap">
+  <span class="status" id="save">Not started</span>
+  <button class="btn ghost" id="reset">Reset</button>
+  <button class="btn" id="print">Print</button>
+  <button class="btn" id="dl">Download</button>
+  <button class="btn primary" id="submit" hidden>Submit assessment</button>
+</div></div>
+
+<script>
+const QSET=__QUESTIONS__;
+const SB=null; /* this edition keeps every answer in the browser: no submission backend */
+const KEY='frp-l2-'+ (QSET.version||'v');
+const params=new URLSearchParams(location.search);
+const VIEWREF=params.get('ref');   // read-only view of a submitted assessment
+let RO=!!VIEWREF;
+const OPTS=[['pass','Pass'],['below','Below code'],['adv','Advisable'],['na','N/A']];
+const TB={floor:['The Floor','floor'],std:['Standard Practice','std']};
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+let state={firm:'',answers:{}};
+try{const raw=localStorage.getItem(KEY); if(raw)state=JSON.parse(raw);}catch(e){}
+
+const ALL=[]; QSET.sections.forEach(s=>s.items.forEach(it=>ALL.push({...it,fam:s.id})));
+const FLOOR=ALL.filter(x=>x.tier==='floor');
+const STD=ALL.filter(x=>x.tier==='std');
+
+document.getElementById('ttl').textContent=QSET.title+'.';
+document.getElementById('lede').textContent=QSET.subtitle;
+document.getElementById('disc').textContent=QSET.note+' This self-assessment stays in your browser; nothing is submitted anywhere. Download or print it to share with a lab you work with, or to hand back with your evidence attached.';
+document.getElementById('firm').value=state.firm||'';
+
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}
+  const n=Object.values(state.answers).filter(a=>a&&a.status).length;
+  document.getElementById('save').textContent=n?('Saved · '+n+' of '+ALL.length+' answered'):'Not started';}
+
+function render(){
+  const form=document.getElementById('form');
+  form.innerHTML=QSET.sections.map(sec=>{
+    const items=sec.items.map(it=>{
+      const a=state.answers[it.id]||{};
+      const opts=OPTS.map(([v,l])=>'<button class="opt'+(a.status===v?' on':'')+'" data-s="'+v+'" data-id="'+it.id+'">'+l+'</button>').join('');
+      return '<div class="item"><div class="itop"><span class="iid">'+it.id+'</span>'+
+        '<span class="badge '+TB[it.tier][1]+'">'+TB[it.tier][0]+'</span></div>'+
+        '<p class="q">'+esc(it.q)+'</p>'+
+        '<div class="meta"><div class="mrow"><span class="mk">Evidence</span><span class="mv">'+esc(it.ev)+'</span></div>'+
+        '<div class="mrow"><span class="mk">Pass</span><span class="mv">'+esc(it.pass)+'</span></div></div>'+
+        '<div class="opts">'+opts+'</div>'+
+        '<textarea class="note" data-note="'+it.id+'" placeholder="Evidence, reference, or note (optional)">'+esc(a.note||'')+'</textarea></div>';
+    }).join('');
+    return '<div class="fam"><div class="fh"><span class="fid">'+sec.id+'</span><h3>'+esc(sec.name)+'</h3></div>'+items+'</div>';
+  }).join('');
+  form.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id,s=b.dataset.s,cur=state.answers[id]||{};
+    cur.status=(cur.status===s?'':s); state.answers[id]=cur; save(); render(); summarize();
+  });
+  form.querySelectorAll('.note').forEach(t=>t.oninput=()=>{
+    const id=t.dataset.note,cur=state.answers[id]||{}; cur.note=t.value; state.answers[id]=cur; save();
+  });
+  summarize();
+}
+
+function summarize(){
+  const fPass=FLOOR.filter(x=>(state.answers[x.id]||{}).status==='pass').length;
+  const fBad=FLOOR.filter(x=>{const s=(state.answers[x.id]||{}).status;return s==='below'||s==='adv';});
+  const fAns=FLOOR.filter(x=>(state.answers[x.id]||{}).status).length;
+  const fV=document.getElementById('floorV'),fS=document.getElementById('floorS');
+  if(fAns<FLOOR.length){fV.textContent='Incomplete';fV.className='v';fS.textContent=(FLOOR.length-fAns)+' of '+FLOOR.length+' Floor items still to answer.';}
+  else if(fBad.length===0){fV.textContent='Clears the Floor';fV.className='v ok';fS.textContent='All '+FLOOR.length+' Floor controls pass.';}
+  else{fV.textContent='Below the Floor';fV.className='v bad';fS.textContent=fBad.map(x=>x.id).join(', ')+' not passing. Resolve these before holding a lab\u2019s pre-release access.';}
+
+  const sPass=STD.filter(x=>(state.answers[x.id]||{}).status==='pass').length;
+  const sAns=STD.filter(x=>(state.answers[x.id]||{}).status).length;
+  const sV=document.getElementById('stdV'),sS=document.getElementById('stdS');
+  sV.textContent=sPass+' of '+STD.length;sV.className='v';
+  sS.textContent='Standard-Practice controls met'+(sAns<STD.length?(' · '+(STD.length-sAns)+' unanswered'):'')+'.';
+
+  const done=ALL.filter(x=>(state.answers[x.id]||{}).status).length;
+  document.getElementById('prog').style.width=(100*done/ALL.length)+'%';
+}
+
+function computeResult(){
+  const fBad=FLOOR.filter(x=>{const s=(state.answers[x.id]||{}).status;return s==='below'||s==='adv';});
+  const fAns=FLOOR.every(x=>(state.answers[x.id]||{}).status);
+  return {
+    floor: !fAns?'incomplete':(fBad.length?'below':'clears'),
+    floorUnmet: fBad.map(x=>x.id),
+    stdMet: STD.filter(x=>(state.answers[x.id]||{}).status==='pass').length,
+    stdTotal: STD.length,
+    answers: ALL.map(x=>({id:x.id,control:x.q,tier:x.tier,status:(state.answers[x.id]||{}).status||'unanswered',note:(state.answers[x.id]||{}).note||''}))
+  };
+}
+function genRef(){const a=new Uint8Array(6);crypto.getRandomValues(a);return [...a].map(b=>b.toString(16).padStart(2,'0')).join('');}
+
+document.getElementById('firm').oninput=e=>{state.firm=e.target.value;save();};
+document.getElementById('reset').onclick=()=>{if(confirm('Clear all answers?')){state={firm:document.getElementById('firm').value,answers:{}};save();render();}};
+document.getElementById('print').onclick=()=>window.print();
+document.getElementById('dl').onclick=()=>{
+  const r=computeResult();
+  const out={instrument:QSET.title,version:QSET.version,firm:state.firm||'(unnamed)',
+    completed:new Date().toISOString().slice(0,10),floor:r.floor,floorUnmet:r.floorUnmet,
+    standardPracticeMet:r.stdMet,standardPracticeTotal:r.stdTotal,answers:r.answers};
+  const blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='interior-inspection-'+((state.firm||'organization').toLowerCase().replace(/[^a-z0-9]+/g,'-'))+'.json';
+  a.click();URL.revokeObjectURL(url);
+};
+
+const conf=document.getElementById('conf');
+function showConf(html,cls){conf.className='conf '+(cls||'');conf.innerHTML=html;conf.style.display='block';}
+document.getElementById('submit').onclick=async()=>{
+  if(!state.firm||!state.firm.trim()){showConf('Add the firm name before submitting.','warn');document.getElementById('firm').focus();return;}
+  const unans=ALL.filter(x=>!(state.answers[x.id]||{}).status).length;
+  if(unans && !confirm(unans+' control'+(unans===1?'':'s')+' still unanswered. Submit anyway?'))return;
+  const r=computeResult(), ref=genRef();
+  const payload={ref,firm:state.firm.trim(),version:QSET.version,floor:r.floor,floor_unmet:r.floorUnmet,std_met:r.stdMet,std_total:r.stdTotal,answers:r.answers};
+  const btn=document.getElementById('submit');btn.disabled=true;btn.textContent='Submitting…';
+  try{
+    const res=await fetch(SB.url+'/rest/v1/assessments',{method:'POST',
+      headers:{'apikey':SB.key,'Authorization':'Bearer '+SB.key,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(payload)});
+    if(res.ok){
+      const link=location.origin+location.pathname+'?ref='+ref;
+      showConf('<b>Submitted.</b> Your reference is <code>'+ref+'</code>. Keep this link to review or share the assessment:<br><a href="'+link+'">'+link+'</a>','ok');
+      btn.textContent='Submitted';
+    } else {
+      const t=await res.text();
+      showConf('Could not submit ('+res.status+'). '+(t.slice(0,140))+' Your answers are safe in this browser; you can Download instead.','warn');
+      btn.disabled=false;btn.textContent='Submit assessment';
+    }
+  }catch(e){
+    showConf('Could not reach the server. Your answers are safe in this browser; Download instead.','warn');
+    btn.disabled=false;btn.textContent='Submit assessment';
+  }
+};
+
+async function loadRef(ref){
+  try{
+    const res=await fetch(SB.url+'/rest/v1/rpc/get_assessment',{method:'POST',
+      headers:{'apikey':SB.key,'Authorization':'Bearer '+SB.key,'Content-Type':'application/json'},
+      body:JSON.stringify({p_ref:ref})});
+    const row=await res.json();
+    if(!row||row.error||(Array.isArray(row)&&!row.length)){showConf('No assessment found for reference <code>'+esc(ref)+'</code>.','warn');return;}
+    const a=Array.isArray(row)?row[0]:row;
+    state={firm:a.firm,answers:{}};
+    (a.answers||[]).forEach(x=>{if(x.status&&x.status!=='unanswered')state.answers[x.id]={status:x.status,note:x.note||''};});
+    document.getElementById('firm').value=a.firm||'';
+    showConf('<b>Submitted assessment</b> for '+esc(a.firm||'a firm')+', reference <code>'+esc(ref)+'</code>'+(a.submitted_at?(', '+a.submitted_at.slice(0,10)):'')+'. Read-only.','ok');
+    render();
+  }catch(e){showConf('Could not load that assessment.','warn');}
+}
+
+function applyReadOnly(){
+  document.body.classList.add('ro');
+  ['submit','reset','dl'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
+  document.getElementById('firm').setAttribute('readonly','');
+  document.getElementById('save').textContent='Read-only view';
+}
+
+if(VIEWREF&&SB){ applyReadOnly(); render(); loadRef(VIEWREF); }
+else { render(); save(); }
+</script>
+

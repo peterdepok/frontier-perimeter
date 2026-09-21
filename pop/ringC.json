@@ -1,0 +1,334 @@
+[
+ {
+  "name": "METR",
+  "domain": "metr.org",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "nonprofit",
+  "source": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+  "quote": "METR ... evaluated an earlier checkpoint of o1.",
+  "labs": [
+   "OpenAI",
+   "Anthropic"
+  ],
+  "note": "Also o3/o4-mini, GPT-5 (OpenAI); Mythos Preview and Mythos 5.1 (Anthropic: 'Both METR and Epoch AI tested Claude Mythos Preview prior to release').",
+  "confidence": "high"
+ },
+ {
+  "name": "Apollo Research",
+  "domain": "apolloresearch.ai",
+  "category": "Pre-deployment evaluator",
+  "hq": "GB",
+  "kind": "nonprofit",
+  "source": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+  "quote": "we contracted with Apollo Research",
+  "labs": [
+   "Anthropic",
+   "OpenAI"
+  ],
+  "note": "Claude Opus 4 early snapshot, Sonnet 4.5, Opus 4.6; OpenAI o1, o3, GPT-5, GPT-5.3-Codex, GPT-5.5, GPT-5.6, GPT-6 Astra.",
+  "confidence": "high"
+ },
+ {
+  "name": "UK AI Security Institute",
+  "domain": "aisi.gov.uk",
+  "category": "Pre-deployment evaluator",
+  "hq": "GB",
+  "kind": "government",
+  "source": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+  "quote": "shared a pre-release snapshot of Claude Opus 4.7 with the UK AI Security Institute",
+  "labs": [
+   "Anthropic",
+   "OpenAI"
+  ],
+  "note": "Government body; dedupe with government ring. Named across nearly all 2024-2026 Anthropic and OpenAI cards (o1 onward). Gemini 3.7 Flash FSF mention unclear (advisory).",
+  "confidence": "high"
+ },
+ {
+  "name": "US Center for AI Standards and Innovation (CAISI, formerly US AISI)",
+  "domain": "nist.gov",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "government",
+  "source": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+  "quote": "Early access provided to US Center for AI Standards and Innovation",
+  "labs": [
+   "OpenAI",
+   "Anthropic"
+  ],
+  "note": "Government body (NIST); dedupe. o1/o3 as US AISI; ChatGPT agent, GPT-5.3-Codex, GPT-5.5; Anthropic Opus 4.5/4.6 'ASL-4 red teaming with the CAISI'. Quote is extractor paraphrase-close; verify exact wording.",
+  "confidence": "high"
+ },
+ {
+  "name": "Irregular (formerly Pattern Labs)",
+  "domain": "irregular.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://cdn.openai.com/gpt-5-system-card.pdf",
+  "quote": "Pattern Labs, an AI Security organization that addresses and mitigates frontier cybersecurity risks",
+  "labs": [
+   "OpenAI",
+   "Anthropic"
+  ],
+  "note": "As Pattern Labs: o3/o4-mini, GPT-5. As Irregular: GPT-5.3-Codex, GPT-5.5, GPT-5.6, GPT-6 Astra ('External Evaluations for Cyber Capabilities – Irregular'); Anthropic Sonnet 4.5 cyber challenges built 'in collaboration with Irregular'. HQ San Francisco with Tel Aviv R&D.",
+  "confidence": "high"
+ },
+ {
+  "name": "SecureBio",
+  "domain": "securebio.org",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "nonprofit",
+  "source": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+  "quote": "assessed two pre-release checkpoints of GPT-5.5",
+  "labs": [
+   "OpenAI",
+   "Anthropic"
+  ],
+  "note": "Named subject is SecureBio (quote from its section). Also GPT-5, ChatGPT agent, GPT-5.6, GPT-6 Astra; Anthropic cards cite evals 'developed with SecureBio, Deloitte, and Signature Science'.",
+  "confidence": "high"
+ },
+ {
+  "name": "Gray Swan AI",
+  "domain": "grayswan.ai",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+  "quote": "Grayswan also ran an automated attacker using 150 attempts per task",
+  "labs": [
+   "OpenAI",
+   "Anthropic",
+   "Google DeepMind"
+  ],
+  "note": "o1 red-teaming org list; GPT-5 external testing partner; GPT-6 Astra IPI; Claude Opus 5 safeguards red-teaming; Gemini 3.7 Flash FSF automated red-teaming (Shade).",
+  "confidence": "high"
+ },
+ {
+  "name": "Haize Labs",
+  "domain": "haizelabs.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+  "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+  "labs": [
+   "OpenAI"
+  ],
+  "note": "o1 system card red-teaming organization list.",
+  "confidence": "high"
+ },
+ {
+  "name": "Faculty",
+  "domain": "faculty.ai",
+  "category": "Pre-deployment evaluator",
+  "hq": "GB",
+  "kind": "company",
+  "source": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+  "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+  "labs": [
+   "OpenAI"
+  ],
+  "note": "o1 system card.",
+  "confidence": "high"
+ },
+ {
+  "name": "Virtue AI",
+  "domain": "virtueai.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+  "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+  "labs": [
+   "OpenAI"
+  ],
+  "note": "o1 system card.",
+  "confidence": "high"
+ },
+ {
+  "name": "FAR.AI",
+  "domain": "far.ai",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "nonprofit",
+  "source": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+  "quote": "FAR.AI conducted 40 hours of testing over 2 weeks",
+  "labs": [
+   "OpenAI"
+  ],
+  "note": "ChatGPT agent system card (July 2025); not found in GPT-5 card.",
+  "confidence": "high"
+ },
+ {
+  "name": "Signature Science",
+  "domain": "signaturescience.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+  "quote": "Biosecurity and chemistry experts from Signature Science",
+  "labs": [
+   "OpenAI",
+   "Anthropic"
+  ],
+  "note": "o1 and ChatGPT agent expert testing; Anthropic cards (Opus 4.7, Mythos, Opus 5) cite evals developed with them.",
+  "confidence": "high"
+ },
+ {
+  "name": "Deloitte",
+  "domain": "deloitte.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "GB",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+  "quote": "developed with SecureBio, Deloitte, and Signature Science",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Anthropic bio evals 'developed with' Deloitte (Opus 4.7/4.8/5, Mythos). Wording is eval co-development, not explicit model access. Deloitte also acquired Gryphon Scientific. HQ: Deloitte Touche Tohmatsu Ltd, London.",
+  "confidence": "medium"
+ },
+ {
+  "name": "Gryphon Scientific (now part of Deloitte)",
+  "domain": "gryphonscientific.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+  "quote": "designed with Gryphon Scientific due to their expertise",
+  "labs": [
+   "OpenAI"
+  ],
+  "note": "OpenAI o1, GPT-5, ChatGPT agent, GPT-5.5/5.6: designed questions/rubrics; access to model not explicit. Likely dedupe with Deloitte.",
+  "confidence": "low"
+ },
+ {
+  "name": "Andon Labs",
+  "domain": "andonlabs.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/14e4fb01875d2a69f646fa5e574dea2b1c0ff7b5.pdf",
+  "quote": "External testing from Andon Labs",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Section heading in Opus 4.6, Opus 4.8, Mythos Preview cards. HQ uncertain (Swedish founders, SF presence).",
+  "confidence": "high"
+ },
+ {
+  "name": "Eleos AI Research",
+  "domain": "eleosai.org",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "nonprofit",
+  "source": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
+  "quote": "External assessment from Eleos AI Research",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Model welfare assessment, Mythos Preview card.",
+  "confidence": "high"
+ },
+ {
+  "name": "Epoch AI",
+  "domain": "epoch.ai",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "nonprofit",
+  "source": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
+  "quote": "Both METR and Epoch AI tested Claude Mythos Preview prior to release",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Mythos Preview card.",
+  "confidence": "high"
+ },
+ {
+  "name": "Trajectory Labs, PBC",
+  "domain": "trajectorylabs.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "CA",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+  "quote": "Trajectory Labs, PBC spent roughly 100 hours red-teaming our safeguards",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Claude Opus 5 card. Not the Toronto community group trajectorylabs.org. HQ inferred (Toronto founder), unverified.",
+  "confidence": "medium"
+ },
+ {
+  "name": "10a Labs",
+  "domain": "10alabs.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+  "quote": "10a Labs spent around 16 hours testing a variety of attack techniques",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Claude Opus 5 card. Domain inferred from Greenhouse board '10alabs'; verify.",
+  "confidence": "medium"
+ },
+ {
+  "name": "Frontier Design Group",
+  "domain": "",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&%20Claude%20Mythos%205.1%20System%20Card.pdf",
+  "quote": "a beneficial red teaming tabletop exercise with Frontier Design Group (FDG)",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Claude Fable/Mythos 5.1 card bio red-teaming. Domain not verified; co-authors with Nemesys Insights (arXiv 2512.08451).",
+  "confidence": "medium"
+ },
+ {
+  "name": "Dyno Therapeutics",
+  "domain": "dynotx.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+  "quote": "We partnered with Dyno Therapeutics",
+  "labs": [
+   "Anthropic",
+   "OpenAI"
+  ],
+  "note": "Sequence-to-function bio evals (Opus 4.7/4.8/5, Mythos); GPT-5.6 uses its AAV eval. Partnership on eval design; pre-release access not explicit.",
+  "confidence": "low"
+ },
+ {
+  "name": "Mozilla",
+  "domain": "mozilla.org",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "nonprofit",
+  "source": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+  "quote": "we collaborated with Mozilla to find and patch several security vulnerabilities",
+  "labs": [
+   "Anthropic"
+  ],
+  "note": "Firefox vuln-finding collaboration with pre-release models; arguably defensive-access partner rather than evaluator. Mozilla Foundation is nonprofit (Corporation is its subsidiary).",
+  "confidence": "low"
+ },
+ {
+  "name": "Microsoft AI Red Team",
+  "domain": "microsoft.com",
+  "category": "Pre-deployment evaluator",
+  "hq": "US",
+  "kind": "company",
+  "source": "https://cdn.openai.com/gpt-5-system-card.pdf",
+  "quote": "The Microsoft AI Red Team concluded that the gpt-5-thinking model",
+  "labs": [
+   "OpenAI"
+  ],
+  "note": "Commercial partner/investor rather than independent evaluator; include only if ring allows.",
+  "confidence": "medium"
+ }
+]

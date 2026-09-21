@@ -1,0 +1,1 @@
+{"minimax.io":{"mx":"?","why":"Its name servers answered inconsistently on 21 Sep 2026: one resolver returned mail servers (Feishu), three returned none. Whether the domain runs mail is therefore not observable, and the DMARC floor is not scored."}}

@@ -1,0 +1,5 @@
+{"_meta":{"read":"2026-09-21","source":"ransomware.live public victim search, one query per actor domain, results reviewed by hand; a listing is kept only when the victim named is the actor itself (substring matches such as carltonscale.com, symeta.com and an app hosted on play.google.com were rejected)","active_window_days":365},
+ "hits":{
+  "amazon.com":[{"g":"Babuk2","d":"2025-03-20","u":"https://www.ransomware.live/id/YW1hem9uLmNvbUBiYWJ1azI","n":"amazon.com"},{"g":"GD LockerSec","d":"2025-01-24","u":"https://www.ransomware.live/id/YXdzLmFtYXpvbi5jb21AR0RMb2NrZXJTZWM","n":"aws.amazon.com"}],
+  "google.com":[{"g":"ShinyHunters","d":"2025-10-03","u":"https://www.ransomware.live/id/R29vZ2xlIEFkc2Vuc2VAc2hpbnlodW50ZXJz","n":"Google Adsense"}],
+  "microsoft.com":[{"g":"ExfilSquad","d":"2026-07-26","u":"https://www.ransomware.live/id/TWljcm9zb2Z0QEV4ZmlsU3F1YWQ","n":"Microsoft"}]}}

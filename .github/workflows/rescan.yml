@@ -1,0 +1,60 @@
+name: Weekly curb re-read
+
+# Re-reads the public record for every organization on the map, rebuilds the site and commits
+# the result. Vercel redeploys on the push. Runs on GitHub's free minutes for public repos.
+# Hand-reviewed layers (sanctions, leak-site listings, overrides) are never overwritten here:
+# the candidate files are refreshed for review, and a person promotes them.
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # Mondays 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rescan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install dnspython==2.7.0
+      - name: Clear the automatic layers so every domain is re-read
+        run: rm -f scan/out/{scan_results,posture_results,dkim,infra_results,look,rep,http,exposure}.json
+      - name: DNS (DMARC, SPF, DKIM, MTA-STS, DNSSEC, CAA, edges, look-alikes)
+        working-directory: scan
+        run: |
+          python scan.py 0
+          python posture.py
+          python dkim.py
+          python infra.py
+          python look.py
+      - name: Reputation, exposure, HTTP read
+        working-directory: scan
+        run: |
+          python rep.py
+          python exposure.py
+          python http_read.py
+      - name: Candidate lists for human review (sanctions, leak sites)
+        working-directory: scan
+        env:
+          RANSOMWARE_LIVE_KEY: ${{ secrets.RANSOMWARE_LIVE_KEY }}
+        run: |
+          python sanctions_candidates.py || echo "sanctions candidates skipped"
+          if [ -n "$RANSOMWARE_LIVE_KEY" ]; then python leaks.py || echo "leak candidates skipped"; fi
+      - name: Merge and build
+        run: |
+          (cd scan && python merge.py)
+          python src/build.py
+      - name: Commit if the record changed
+        run: |
+          git config user.name "frontier-perimeter-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data scan/out index.html assessment.html
+          if git diff --cached --quiet; then echo "No change in the public record."; exit 0; fi
+          git commit -m "Weekly curb re-read: $(date -u +%Y-%m-%d)"
+          git push

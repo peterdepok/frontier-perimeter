@@ -1,0 +1,1517 @@
+<title>The Frontier Perimeter</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Nanum+Myeongjo:wght@400;700&display=swap">
+<style>
+:root,:root[data-theme="dark"]{
+  --bg-page:radial-gradient(ellipse at 40% 40%, #0b4168 0%, #072a3a 100%);
+  --bg-page-solid:#072a3a;
+  --text-primary:#ffffffe6; --text-strong:#fff; --text-secondary:#fffc; --text-body:#ffffffb3;
+  --text-muted:#fff6; --text-faint:#ffffff40; --text-faintest:#ffffff26; --text-tertiary:#ffffff59;
+  --surface-card:#ffffff0f; --surface-hover:#ffffff1a; --surface-input:#ffffff14; --surface-track:#ffffff1a;
+  --border-subtle:#ffffff14; --border-default:#ffffff1a; --border-input:#ffffff26; --border-strong:#fff3; --border-focus:#ffffff4d;
+  --gold:#867e33; --gold-glow:0 0 0 2px #867e3366; --gold-border:#867e3399;
+  --surface-modal:#0e3e60; --shadow-modal:0 24px 60px #0000008c;
+  --map-edge:#ffffff29; --map-halo:#0a3652;
+  --glass-bg:linear-gradient(160deg,#ffffff1c,#ffffff09); --glass-fill:#ffffff0f; --glass-fill-strong:#ffffff1f;
+  --glass-border:#ffffff24; --glass-highlight:#ffffff47; --glass-shadow:0 18px 50px #00000059; --glass-divider:#ffffff17;
+  --status-member-bg:#514822; --status-member-text:#fff0ab;
+  --status-only-bg:#164c47;  --status-only-text:#a5e8d4;
+  --status-expert-bg:#163f60; --status-expert-text:#b3ddff;
+  --status-neutral-bg:#234351; --status-neutral-text:#d0dae0;
+  --warn:#e0b36a; --assess:#5fc9be; --inc:#f08a7a; --inc-bg:#f08a7a1f;
+}
+:root[data-theme="light"]{
+  --bg-page:#fafafa; --bg-page-solid:#fafafa;
+  --text-strong:#0b4168; --text-primary:#171717; --text-secondary:#171717; --text-body:#525252;
+  --text-muted:#737373; --text-tertiary:#0b4168; --text-faint:#a3a3a3; --text-faintest:#d4d4d4;
+  --surface-card:#fff; --surface-hover:#f5f7fa; --surface-input:#fff; --surface-track:#e5e5e5;
+  --border-subtle:#0b416814; --border-default:#e5e5e5; --border-input:#d4d4d4; --border-strong:#0b4168; --border-focus:#0b4168;
+  --surface-modal:#fff; --shadow-modal:0 24px 48px #0b41682e;
+  --map-edge:#0b41684d; --map-halo:#fafafa;
+  --glass-bg:linear-gradient(160deg,#ffffffbf,#ffffff73); --glass-fill:#ffffff8c; --glass-fill-strong:#ffffffd9;
+  --glass-border:#0b41681f; --glass-highlight:#ffffffe6; --glass-shadow:0 18px 50px #0b41681f; --glass-divider:#0b416814;
+  --status-member-bg:#f3e9ba; --status-member-text:#5a4813;
+  --status-only-bg:#e2f0e9; --status-only-text:#215c48;
+  --status-expert-bg:#e5eff8; --status-expert-text:#235b85;
+  --status-neutral-bg:#eef0f2; --status-neutral-text:#52606b;
+  --warn:#8a5a12; --assess:#1c7a72; --inc:#a8321e; --inc-bg:#a8321e14;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--bg-page);color:var(--text-primary);
+ font-family:"Afacad Flux",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;
+ transition:background .4s,color .3s}
+body{min-height:100vh;font-size:15px;line-height:1.5}
+h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
+.tnum{font-variant-numeric:tabular-nums}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--text-strong);outline-offset:2px}
+
+/* ---------- shell ---------- */
+.shell{display:flex;flex-direction:column;min-height:100vh}
+.topbar{flex:0 0 auto;display:flex;align-items:center;gap:18px;min-height:64px;padding:10px 22px;
+ background:var(--bg-page-solid);border-bottom:1px solid var(--border-subtle);position:sticky;
+ top:env(safe-area-inset-top,0px);z-index:6;flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:11px;flex:0 0 auto}
+.mark{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--text-strong);opacity:.85;position:relative;flex:none}
+.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;border:1.5px solid var(--text-strong);border-right-color:transparent;transform:rotate(28deg)}
+.wordmark{display:flex;flex-direction:column;line-height:1.1}
+.wordmark .eyebrow{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
+.wordmark .name{font-size:19px;font-weight:600;letter-spacing:-.005em;color:var(--text-strong)}
+.wordmark .name em{font-style:normal;color:var(--text-faint);font-weight:400}
+.topright{margin-left:auto;display:flex;align-items:center;gap:8px}
+.iconbtn{width:38px;height:38px;border-radius:999px;border:1px solid var(--border-default);background:var(--surface-card);
+ color:var(--text-strong);font-size:15px;cursor:pointer;display:grid;place-items:center;flex:none}
+.iconbtn:hover{background:var(--surface-hover)}
+.flag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold);
+ border:1px solid var(--gold-border);border-radius:999px;padding:5px 11px;white-space:nowrap}
+
+/* ---------- sector rail ---------- */
+.railwrap{flex:0 0 auto;background:var(--bg-page-solid);border-bottom:1px solid var(--border-subtle);position:sticky;top:64px;z-index:5}
+.rail{display:flex;gap:2px;overflow-x:auto;padding:8px 22px;scrollbar-width:thin}
+.rail::-webkit-scrollbar{height:3px}
+.rail::-webkit-scrollbar-thumb{background:var(--border-input);border-radius:3px}
+.tab{flex:none;border:1px solid transparent;background:none;color:var(--text-muted);font-size:13px;
+ padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:7px;transition:background .2s,color .2s,border-color .2s}
+.tab:hover{color:var(--text-strong)}
+.tab .n{font-size:11px;color:var(--text-faint)}
+.tab.on{background:var(--surface-hover);border-color:var(--border-default);color:var(--text-strong)}
+.tab.on .n{color:var(--gold)}
+
+/* ---------- controls ---------- */
+.controls{display:flex;gap:8px;align-items:center;padding:10px 22px;flex-wrap:wrap;flex:0 0 auto}
+.pill{border:1px solid var(--border-input);background:var(--surface-input);color:var(--text-strong);
+ border-radius:999px;padding:8px 14px;font-size:13.5px;font-family:inherit}
+input.pill{min-width:0;width:230px;max-width:100%}
+input.pill::placeholder{color:var(--text-faint)}
+select.pill{cursor:pointer;color:var(--text-secondary)}
+select.pill option{background:var(--surface-modal);color:var(--text-primary)}
+button.pill{cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+button.pill:hover{background:var(--surface-hover)}
+button.pill.on{background:color-mix(in srgb,var(--gold) 20%,transparent);border-color:var(--gold-border);color:var(--text-strong)}
+.count{margin-left:auto;font-size:13px;color:var(--text-muted);white-space:nowrap}
+
+/* ---------- overview ---------- */
+/* No max-width here. The topbar, rail, controls and footer are all full-bleed
+   with a 22px gutter; capping and centring only this one made every chrome
+   element detach from the content on any screen wider than the cap. Line
+   length is held by .intro (70ch) and .foot (100ch) instead. */
+.wrap{padding-inline:22px;width:100%;box-sizing:border-box}
+.intro{padding-block:26px 4px;max-width:70ch}
+.kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.intro h1{font-family:"Nanum Myeongjo",Georgia,serif;font-weight:400;font-size:clamp(25px,3.8vw,38px);line-height:1.2;color:var(--text-strong)}
+.intro p{font-size:16.5px;line-height:1.6;color:var(--text-body);margin:12px 0 0}
+.intro p.covnote{font-size:14px;line-height:1.55;color:var(--text-muted);margin-top:16px;padding:11px 14px;border:1px solid var(--map-edge);border-left:2px solid var(--gold);border-radius:7px;background:var(--surface-card)}
+.intro p.covnote b{color:var(--text-body)}
+.prov{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--border-subtle);
+ border:1px solid var(--border-default);border-radius:14px;overflow:hidden;margin-block:22px 0}
+.prov div{background:var(--surface-card);padding:14px 15px}
+.prov .fig{font-size:24px;font-weight:600;line-height:1.05;color:var(--text-strong)}
+.prov .lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-top:5px}
+.provnote{font-size:13px;color:var(--text-muted);margin:11px 0 0;line-height:1.6;max-width:80ch}
+.sectorindex{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:10px;padding-block:24px 8px}
+.sx{background:var(--surface-card);border:1px solid var(--border-default);border-radius:14px;padding:14px 15px;
+ text-align:left;font:inherit;cursor:pointer;color:inherit;transition:background .2s,border-color .2s}
+.sx:hover{background:var(--surface-hover);border-color:var(--gold-border)}
+.sx .t{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sx .nm{font-size:14.5px;font-weight:500;color:var(--text-strong)}
+.sx .ct{font-size:14px;font-weight:600;color:var(--gold)}
+.sx .sub{font-size:11.5px;color:var(--text-faint);margin-top:4px}
+.sx .bar{display:flex;gap:2px;margin-top:10px;height:3px;border-radius:2px;overflow:hidden;opacity:.85}
+.sx .bar i{display:block;height:100%}
+
+/* ---------- sector head ---------- */
+.sectorhead{padding-block:22px 2px;max-width:74ch}
+.sectorhead h2{font-family:"Nanum Myeongjo",Georgia,serif;font-size:21px;font-weight:400;color:var(--text-strong)}
+.sectorhead p{font-size:14.5px;color:var(--text-body);margin:7px 0 0;line-height:1.55}
+
+.banner{display:none;gap:11px;background:var(--surface-card);border:1px solid var(--gold-border);border-left-width:3px;
+ border-radius:12px;padding:13px 15px;margin-block:16px 0}
+.banner.on{display:flex}
+.banner b{color:var(--gold)}
+.banner p{margin:0;font-size:13px;color:var(--text-body);line-height:1.55}
+
+/* ---------- map stage ---------- */
+.stage{position:relative;margin-block:14px 0;border:1px solid var(--border-default);border-radius:16px;
+ background:var(--surface-card);overflow:auto;max-height:76vh;overscroll-behavior:contain}
+.stage svg.map{display:block}
+.spoke{fill:none;stroke:var(--text-strong);stroke-opacity:.07;stroke-width:1px;stroke-linecap:round;transition:stroke .25s,stroke-opacity .25s,stroke-width .25s}
+.spoke.lit{stroke:var(--gold);stroke-opacity:.9;stroke-width:1.5px}
+.spoke.dim{stroke-opacity:.02}
+.inner-ring{fill:none;stroke:var(--text-strong);stroke-opacity:.1;stroke-width:1px}
+.need{cursor:pointer;transition:opacity .25s}
+.need.dim{opacity:.3}
+.need-halo{fill:var(--gold);opacity:0;transition:opacity .25s}
+.need.lit .need-halo{opacity:.18}
+.need-dot{fill:var(--gold)}
+.need-hit{fill:transparent}
+.need-label{letter-spacing:.8px;text-transform:uppercase;fill:var(--text-secondary);paint-order:stroke;
+ stroke:var(--bg-page-solid);stroke-width:5px;stroke-linejoin:round;pointer-events:none;
+ font-family:"Nanum Myeongjo",serif;font-size:12px;transition:fill .25s}
+.need.lit .need-label{fill:var(--gold)}
+.company{cursor:pointer;transition:opacity .25s}
+.company.dim{opacity:.22}
+.badge{fill:var(--surface-input);stroke:var(--border-default);stroke-width:1px;transition:stroke .25s,fill .25s}
+.company:hover .badge,.company.lit .badge,.company:focus-visible .badge{stroke:var(--gold);fill:var(--surface-hover)}
+.company.member .badge{fill:color-mix(in srgb,var(--gold) 22%,var(--surface-input));stroke:var(--gold);stroke-width:1.4px}
+.logo-backdrop{fill:#fff}
+.monogram{fill:#0b4168;font-family:"Nanum Myeongjo",serif;font-weight:700}
+.cname{fill:var(--text-strong);pointer-events:none;font-family:"Afacad Flux",sans-serif;font-weight:500}
+.company.member .cname{font-weight:600}
+.stagehint{position:sticky;bottom:0;left:0;padding:7px 14px;font-size:11.5px;color:var(--text-faint);
+ background:linear-gradient(to top,var(--bg-page-solid),transparent);pointer-events:none;display:flex;align-items:center;gap:10px}
+.motion-btn{pointer-events:auto;flex:0 0 auto;color:var(--text-muted);background:var(--surface-input);border:1px solid var(--border-default);border-radius:999px;padding:3px 10px;font:inherit;font-size:11px;cursor:pointer;transition:color .2s,border-color .2s}
+.motion-btn:hover{color:var(--text-strong);border-color:var(--border-strong)}
+.tip{position:fixed;pointer-events:none;background:var(--surface-modal);color:var(--text-strong);border:1px solid var(--border-input);
+ font-size:12.5px;padding:6px 10px;border-radius:8px;transform:translate(-50%,-150%);white-space:nowrap;opacity:0;
+ transition:opacity .12s;z-index:50;box-shadow:var(--shadow-modal)}
+.tip.on{opacity:1}
+
+/* ---------- list view ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(324px,1fr));gap:12px;padding-block:16px 4px;align-items:start}
+.cat{background:var(--surface-card);border:1px solid var(--border-default);border-radius:14px;padding:16px}
+.cat>h3{font-size:14.5px;font-weight:500;color:var(--text-strong);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.cat>h3 .c{font-size:13px;color:var(--gold);font-weight:600}
+.cat>.blurb{font-size:12.5px;color:var(--text-faint);margin:6px 0 13px;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--border-default);background:var(--surface-input);max-width:100%;height:30px;color:var(--text-strong);
+ text-align:left;cursor:pointer;border-radius:9px;align-items:center;gap:6px;padding:3px 8px 3px 4px;
+ font-family:inherit;transition:opacity .2s,border-color .2s;display:inline-flex}
+.chip:hover{border-color:var(--text-body)}
+.chip-logo{background:#fff;border-radius:3px;flex:0 0 auto;width:22px;height:22px;color:#0b4168;
+ place-items:center;font-family:"Nanum Myeongjo",serif;font-size:10px;font-weight:700;display:grid;
+ position:relative;overflow:hidden}
+.chip-logo>i{font-style:normal;grid-area:1/1}
+.chip-logo>img{grid-area:1/1;width:18px;height:18px;object-fit:contain;opacity:0}
+.chip-logo.has>img{opacity:1}
+.chip-logo.has>i{display:none}
+.chip-logo.lg{width:42px;height:42px;border-radius:6px;font-size:16px}
+.chip-logo.lg>img{width:34px;height:34px}
+.d-head{display:flex;align-items:center;gap:12px;margin:2px 0 10px}
+.d-head .d-headt{min-width:0}
+.d-head h3{margin:0}
+.chip-name{text-overflow:ellipsis;white-space:nowrap;min-width:0;max-width:180px;font-size:13px;font-weight:500;overflow:hidden}
+.chip .mk{font-size:11px;line-height:1;flex:none;color:var(--text-faint)}
+.chip .mk.d{color:var(--status-expert-text)}
+.chip .w{color:var(--warn);font-size:11px;flex:none}
+body.trust .chip{border-style:dashed;border-color:var(--gold-border)}
+body.trust .chip[data-demo="1"]{border-style:solid;border-color:var(--assess);box-shadow:0 0 0 2px color-mix(in srgb,var(--assess) 22%,transparent)}
+
+/* ---------- table ---------- */
+.tablewrap{overflow-x:auto;background:var(--surface-card);border:1px solid var(--border-default);border-radius:14px;margin-block:16px 4px}
+table.cmp{width:100%;border-collapse:collapse;font-size:13px;min-width:860px}
+table.cmp th{text-align:left;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);
+ font-weight:600;padding:12px;border-bottom:1px solid var(--border-default);position:sticky;top:0;background:var(--surface-modal);white-space:nowrap}
+table.cmp td{padding:10px 12px;border-bottom:1px solid var(--border-subtle);vertical-align:top;line-height:1.4;color:var(--text-body)}
+table.cmp tbody tr{cursor:pointer}
+table.cmp tbody tr:hover{background:var(--surface-hover)}
+table.cmp .nm{font-weight:500;white-space:nowrap;color:var(--text-strong)}
+table.cmp .sub{color:var(--text-faint);font-size:11px;display:block;font-weight:400}
+table.cmp .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+table.cmp .grp td{background:var(--surface-input);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+ font-weight:600;color:var(--text-secondary);padding:9px 12px}
+.sv{display:inline-flex;gap:3px;flex-wrap:wrap}
+.sv i{font-style:normal;font-size:9px;font-weight:600;background:var(--status-neutral-bg);color:var(--status-neutral-text);
+ border-radius:3px;padding:2px 4px;letter-spacing:.03em}
+
+/* ---------- decision frame ---------- */
+.decision{margin-block:18px 0;border:1px solid var(--border-default);border-radius:16px;background:var(--surface-card);overflow:hidden}
+.dec-h{padding:17px 18px 15px;border-bottom:1px solid var(--border-subtle)}
+.dec-h h3{font-family:"Nanum Myeongjo",Georgia,serif;font-weight:400;font-size:22px;color:var(--text-strong)}
+.dec-h p{margin:8px 0 0;font-size:13px;color:var(--text-muted);line-height:1.6;max-width:80ch}
+.dec-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-subtle)}
+.dec-col{background:var(--surface-card);padding:17px 18px}
+.dec-col>h4{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:0 0 12px}
+.dec-col.j>h4{color:var(--status-expert-text)} .dec-col.b>h4{color:var(--gold)}
+.dec-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px}
+.dec-col li .t{font-size:13px;font-weight:500;color:var(--text-strong);display:block}
+.dec-col li .d{font-size:12px;color:var(--text-body);line-height:1.5;display:block;margin-top:3px}
+.dec-col li .s{font-size:11px;color:var(--text-faint);display:block;margin-top:4px}
+.dec-nums{border-top:1px solid var(--border-subtle);padding:16px 18px}
+.dec-tabs{display:flex;gap:2px;margin-bottom:12px;flex-wrap:wrap}
+.dec-tab{font-size:12px;border:1px solid transparent;background:none;color:var(--text-muted);
+ border-radius:999px;padding:5px 12px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.dec-tab:hover{color:var(--text-strong)}
+.dec-tab.on{background:var(--surface-hover);border-color:var(--border-default);color:var(--text-strong)}
+.dec-nums table{width:100%;border-collapse:collapse;font-size:12.5px}
+.dec-nums td{padding:8px 12px 8px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;line-height:1.5;color:var(--text-body)}
+.dec-nums td.f{font-weight:500;width:36%;font-variant-numeric:tabular-nums;color:var(--text-strong)}
+.dec-nums td.s{color:var(--text-faint);font-size:11.5px;width:24%}
+@media (max-width:760px){.dec-cols{grid-template-columns:1fr}}
+
+/* ---------- bottom bar ---------- */
+.bottombar{display:flex;align-items:center;gap:16px;padding:14px 0 6px;flex-wrap:wrap}
+.legend{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:0;padding:0;list-style:none}
+.legend li{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text-body);padding:4px 5px}
+.legend b{font-weight:400}
+.seg{border-radius:999px;display:flex;align-items:center;gap:2px;padding:4px;margin-left:auto;
+ background:var(--surface-card);border:1px solid var(--border-default)}
+.seg-btn{color:var(--text-muted);cursor:pointer;background:none;border:1px solid transparent;border-radius:999px;
+ padding:6px 13px;font-size:13px;transition:background .2s,color .2s,border-color .2s}
+.seg-btn:hover{color:var(--text-strong)}
+.seg-btn.on{background:var(--surface-hover);border-color:var(--border-default);color:var(--text-strong)}
+.chip .w.inc{color:var(--inc)}
+.tag.inc{background:var(--inc-bg);color:var(--inc)}
+.d-inc{border-left:2px solid var(--inc);background:var(--inc-bg);padding:9px 12px;border-radius:0 8px 8px 0;
+ margin:12px 0;font-size:13px;line-height:1.6;color:var(--text-body)}
+.d-inc b{color:var(--inc);font-weight:600}
+.measured{border:1px solid var(--warn);border-radius:16px;padding:20px 22px;margin:20px 0 4px;background:var(--surface-card)}
+.measured h3{font-family:"Nanum Myeongjo",Georgia,serif;font-weight:400;font-size:clamp(19px,2.4vw,26px);line-height:1.25;color:var(--text-strong);margin:0}
+.measured>p{font-size:13.5px;line-height:1.65;color:var(--text-body);margin:10px 0 0;max-width:92ch}
+.mbars{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:5px 26px;margin:16px 0 0}
+.mb{display:grid;grid-template-columns:1fr 92px 42px;align-items:center;gap:10px;font-size:12px;color:var(--text-body)}
+.mt{height:5px;border-radius:3px;background:var(--surface-track);overflow:hidden}
+.mt i{display:block;height:100%;background:var(--warn)}
+.mv{text-align:right;color:var(--text-secondary);font-weight:600}
+.mkick{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--warn);font-weight:600;margin:0 0 8px}
+.measured .mh2{font-family:"Nanum Myeongjo",Georgia,serif;font-weight:400;font-size:clamp(17px,2vw,22px);
+ color:var(--text-strong);margin:26px 0 0;padding-top:20px;border-top:1px solid var(--border-subtle)}
+.mbars.conc{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.mt i.c{background:var(--status-expert-text)}
+.mb b{color:var(--text-secondary);font-weight:600}
+.mfoot{font-size:12px;color:var(--text-muted);line-height:1.6;margin:14px 0 0;max-width:92ch}
+@media (max-width:560px){.mb{grid-template-columns:1fr 60px 38px}}
+.l1{border-radius:12px;padding:13px 15px;margin:4px 0 14px;border:1px solid}
+.l1.pass{border-color:var(--status-only-text);background:color-mix(in srgb,var(--status-only-text) 8%,transparent)}
+.l1.fail{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 9%,transparent)}
+.l1-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);display:block}
+.l1-v{font-family:"Nanum Myeongjo",Georgia,serif;font-size:18px;display:block;margin:3px 0 6px}
+.l1.pass .l1-v{color:var(--status-only-text)} .l1.fail .l1-v{color:var(--warn)}
+.l1 p{font-size:12.5px;line-height:1.6;color:var(--text-body);margin:0}
+.l1-plus{margin-top:8px!important;color:var(--text-muted)!important}
+.l1-plus b{color:var(--text-secondary)}
+.ob-sub{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--text-muted);margin:18px 0 9px}
+.dims.obs li{border-left:2px solid var(--border-strong);padding-left:11px}
+.ob-v{font-size:12px;font-weight:600;white-space:normal}
+.ob-v.good{color:var(--status-only-text)} .ob-v.mid{color:var(--text-secondary)}
+.ob-v.weak{color:var(--warn)} .ob-v.unk{color:var(--text-faint);font-weight:400}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.pm-grid{grid-template-columns:1fr}}
+.pm-fam{border:1px solid var(--map-edge);border-radius:8px;padding:9px 11px;background:var(--surface-card)}
+.pm-fh{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:7px}
+.pm-c{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:3px 0;font-size:12.5px}
+.pm-n{color:var(--text-body);line-height:1.3}
+.pm-b{font-size:10.5px;font-weight:600;white-space:nowrap;padding:1px 7px;border-radius:20px;border:1px solid var(--map-edge)}
+.pm-b.good{color:var(--status-only-text)} .pm-b.weak{color:var(--warn);border-color:var(--warn)} .pm-b.mid{color:var(--text-secondary)} .pm-b.unk{color:var(--text-faint);font-weight:400}
+.pm-l2{margin-top:11px;padding-top:9px;border-top:1px dashed var(--map-edge)}
+.pm-l2h{display:block;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:6px}
+.pm-l2i{display:inline-block;font-size:11.5px;color:var(--text-secondary);background:var(--surface-card);border:1px solid var(--map-edge);border-radius:20px;padding:2px 9px;margin:0 5px 5px 0}
+.pm-tier{border:1px solid var(--map-edge);border-radius:10px;padding:11px 12px;margin-bottom:11px}
+.pm-tier.floor{border-left:3px solid var(--warn)}
+.pm-tier.std{border-left:3px solid var(--status-only-text)}
+.pm-th{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pm-tn{font-size:13.5px;font-weight:700;color:var(--text-body);letter-spacing:.01em}
+.pm-tt{font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.pm-sub{margin:5px 0 10px;font-size:12.5px;color:var(--text-secondary);line-height:1.45}
+.pm-flat{border:1px solid var(--map-edge);border-radius:8px;padding:4px 11px;background:var(--surface-card)}
+.std-wrap{max-width:960px;margin:0 auto;padding:0 4px}
+.std-h{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold);margin:34px 0 10px}
+.std-tiers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.std-tiers{grid-template-columns:1fr}}
+.std-tier{border:1px solid var(--map-edge);border-radius:12px;padding:15px 16px;background:var(--surface-card)}
+.std-tier.floor{border-left:3px solid var(--warn)}
+.std-tier.std{border-left:3px solid var(--status-only-text)}
+.std-th{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.std-tn{font-size:15px;font-weight:700;color:var(--text-strong)}
+.std-tt{font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.std-td{font-size:12.5px;line-height:1.55;color:var(--text-body);margin:0 0 9px}
+.std-note{font-size:12px;line-height:1.5;color:var(--text-secondary);margin:0}
+.std-tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.std-tl li{font-size:12.5px;color:var(--text-body);line-height:1.35}
+.std-tl li b{color:var(--text-strong);font-weight:600;margin-right:3px}
+.std-lv{font-size:9.5px;font-weight:600;color:var(--text-secondary);border:1px solid var(--map-edge);border-radius:10px;padding:0 5px;margin-left:3px;vertical-align:middle}
+.std-lvls{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.std-lvls{grid-template-columns:1fr}}
+.std-lvl{border:1px solid var(--map-edge);border-radius:10px;padding:13px 15px;background:var(--surface-card)}
+.std-lh{display:block;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:6px}
+.std-lvl p{font-size:12.5px;line-height:1.55;color:var(--text-body);margin:0}
+.std-fam{border:1px solid var(--map-edge);border-radius:12px;padding:15px 16px;margin-top:13px;background:var(--surface-card)}
+.std-fh{display:flex;align-items:baseline;gap:9px}
+.std-fid{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.05em}
+.std-fh h3{font-size:15.5px;font-weight:650;color:var(--text-strong);margin:0}
+.std-fq{font-size:12.5px;font-style:italic;color:var(--text-secondary);margin:4px 0 12px}
+.std-c{padding:9px 0;border-top:1px solid var(--border-subtle)}
+.std-cl{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.std-cid{font-size:11.5px;font-weight:700;color:var(--text-muted);min-width:20px}
+.std-cn{font-size:13.5px;font-weight:600;color:var(--text-body);flex:1;min-width:150px}
+.std-badge{font-size:9.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap;padding:1px 7px;border-radius:20px;border:1px solid var(--map-edge)}
+.std-badge.floor{color:var(--warn);border-color:var(--warn)}
+.std-badge.std{color:var(--status-only-text)}
+.std-badge.lvl{color:var(--text-faint);font-weight:500}
+.std-cd{font-size:12.5px;line-height:1.5;color:var(--text-secondary);margin-top:4px;max-width:88ch}
+.std-maps{margin-top:6px}
+.std-map{display:inline-block;font-size:10.5px;color:var(--text-faint);background:transparent;border:1px solid var(--border-subtle);border-radius:4px;padding:1px 6px;margin:0 5px 0 0}
+.q-item{padding:11px 0;border-top:1px solid var(--border-subtle)}
+.q-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.q-id{font-size:11.5px;font-weight:700;color:var(--text-muted);letter-spacing:.03em}
+.q-q{font-size:13.5px;line-height:1.5;color:var(--text-body);font-weight:550;margin:0 0 8px;max-width:90ch}
+.q-meta{display:flex;flex-direction:column;gap:5px;padding-left:11px;border-left:2px solid var(--map-edge)}
+.q-row{display:grid;grid-template-columns:74px 1fr;gap:9px;align-items:baseline}
+.q-k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.q-v{font-size:12.5px;line-height:1.5;color:var(--text-secondary)}
+.q-v.pass{color:var(--text-body)}
+.std-cta{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 6px}
+.std-cta a{font-size:13.5px;font-weight:600;color:var(--gold);text-decoration:none;border:1px solid var(--gold-border);border-radius:8px;padding:7px 14px;white-space:nowrap}
+.std-cta a:hover{background:var(--surface-hover)}
+.std-cta span{font-size:12px;color:var(--text-secondary);line-height:1.4}
+.fld{border:1px solid var(--map-edge);border-radius:12px;padding:16px 18px;background:var(--surface-card)}
+.fld-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.fld-big{font-family:"Nanum Myeongjo",Georgia,serif;font-size:clamp(34px,6vw,48px);font-weight:700;color:var(--warn);line-height:1}
+.fld-cap{flex:1;min-width:240px;font-size:12.5px;line-height:1.55;color:var(--text-body)}
+.sr-wrap{overflow-x:auto;margin-top:6px}
+.sr{width:100%;border-collapse:collapse;font-size:12px}
+.sr th{text-align:left;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--border-subtle);white-space:nowrap}
+.sr td{padding:6px 8px;border-bottom:1px solid var(--border-subtle);vertical-align:middle}
+.sr-n{color:var(--text-body);white-space:nowrap}
+.sr-num{text-align:right;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.sr th.sr-num{text-align:right}
+.sr-c{min-width:96px}
+.sr-c b{font-weight:600;color:var(--text-secondary);font-size:11.5px;font-variant-numeric:tabular-nums;margin-left:7px}
+.sr-bar{display:inline-block;width:56px;height:5px;border-radius:3px;background:var(--surface-track);overflow:hidden;vertical-align:middle}
+.sr-bar i{display:block;height:100%;background:var(--status-only-text)}
+.ovlink{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-border);cursor:pointer;font-weight:500}
+.ovlink:hover{border-bottom-color:var(--gold)}
+.mth-prins{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.mth-prins{grid-template-columns:1fr}}
+.mth-prin{border:1px solid var(--map-edge);border-left:3px solid var(--gold);border-radius:10px;padding:12px 15px;background:var(--surface-card)}
+.mth-prin h4{margin:0 0 5px;font-size:13.5px;font-weight:650;color:var(--text-strong)}
+.mth-prin p{margin:0;font-size:12.5px;line-height:1.55;color:var(--text-body)}
+.mth-grp{margin-top:8px}
+.mth-gh{font-family:"Nanum Myeongjo",Georgia,serif;font-size:16px;font-weight:700;color:var(--text-strong);margin:20px 0 8px}
+.mth-sig{border:1px solid var(--map-edge);border-radius:10px;padding:12px 15px;margin:9px 0;background:var(--surface-card)}
+.mth-sh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.mth-id{font-size:11.5px;font-weight:700;color:var(--text-muted)}
+.mth-nm{font-size:14px;font-weight:650;color:var(--text-strong)}
+.mth-src{margin-left:auto;font-size:11.5px;color:var(--status-only-text);text-decoration:none;border:1px solid var(--map-edge);border-radius:20px;padding:2px 10px;white-space:nowrap}
+a.mth-src:hover{border-color:var(--status-only-text)}
+.mth-rows{display:flex;flex-direction:column;gap:5px}
+.mth-r{display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:baseline}
+.mth-k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.mth-v{font-size:12.5px;line-height:1.5;color:var(--text-body);max-width:92ch}
+.mth-v.lim{color:var(--text-secondary)}
+.lit-c{display:block;margin:6px 0 0;padding-left:10px;border-left:2px solid var(--map-edge);font-size:13px;color:var(--text-body);line-height:1.4}
+.lit-c .lit-m{display:block;font-size:11px;color:var(--text-muted);letter-spacing:.02em}
+.lit-c .lit-r{font-size:11px;color:var(--warn)}
+.lit-note{display:block;margin-top:8px;font-size:11.5px;color:var(--text-muted);line-height:1.45}
+.xnote{margin-top:6px;padding:11px 14px;border:1px solid var(--map-edge);border-left:2px solid var(--warn);border-radius:7px;background:var(--surface-card)}
+.xnote p{margin:0;font-size:13.5px;line-height:1.55;color:var(--text-body)}
+.ob-pct{font-weight:400;color:var(--text-muted)}
+.d-status.meas{border-color:var(--status-only-text);color:var(--status-only-text)}
+.d-prov{font-size:12px;line-height:1.6;color:var(--text-muted);border-left:2px solid var(--border-strong);
+ padding:8px 12px;margin:12px 0;border-radius:0 8px 8px 0;background:var(--surface-input)}
+.d-prov b{color:var(--text-secondary);font-weight:600}
+.d-prov a{color:var(--gold)}
+.gp-cred{font-size:12.5px;color:var(--text-faint);margin-top:10px}
+.gp-first{border-color:var(--gold-border)}
+.gp-steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.gp-steps li{counter-increment:s;position:relative;padding-left:26px}
+.gp-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;
+ background:var(--gold);color:#0b2233;font-size:11px;font-weight:700;display:grid;place-items:center}
+.gp-steps li .t{display:block;font-size:13px;font-weight:600;color:var(--text-strong)}
+.gp-steps li .d{display:block;font-size:12px;line-height:1.55;color:var(--text-body);margin-top:3px}
+.gp-kick{margin-top:16px;padding-top:13px;border-top:1px solid var(--border-subtle)}
+.gp-checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.gp-checks li{display:grid;grid-template-columns:14px 1fr;column-gap:8px;align-items:baseline}
+.gp-checks li>b{font-size:9px;line-height:1.7}
+.gp-checks li .t{font-size:13px;font-weight:500;color:var(--text-strong);grid-column:2}
+.gp-checks li .d{font-size:12px;line-height:1.5;color:var(--text-body);grid-column:2;margin-top:2px}
+.gp-auto{color:var(--status-only-text)} .gp-jud{color:var(--text-faint)}
+.gp-rules{border-top:0}
+.gp-h{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:0 0 10px;color:var(--gold)}
+.gp-p{font-size:13px;line-height:1.65;color:var(--text-body);margin:0 0 9px;max-width:88ch}
+.gp-p b{color:var(--text-strong);font-weight:600}
+.gp-q{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:15px}
+.gp-q li .t{display:block;font-size:13.5px;font-weight:600;color:var(--text-strong);margin-bottom:4px}
+.gp-q li .d{display:block;font-size:12.5px;line-height:1.6;color:var(--text-body);max-width:92ch}
+.tab .n:not(.tnum){font-size:9.5px;letter-spacing:.12em;text-transform:uppercase}
+@media (max-width:760px){.dec-cols{grid-template-columns:1fr}}
+.foot{padding:10px 22px 40px;font-size:12px;color:var(--text-faint);line-height:1.7;max-width:100ch}
+.foot b{color:var(--text-muted);font-weight:400}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(3,20,32,.55);z-index:60;opacity:0;pointer-events:none;transition:opacity .18s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--surface-modal);
+ border-left:1px solid var(--border-default);z-index:70;transform:translateX(100%);transition:transform .22s ease;
+ overflow-y:auto;padding:24px 22px calc(34px + env(safe-area-inset-bottom,0px));padding-top:calc(24px + env(safe-area-inset-top,0px));
+ box-shadow:var(--shadow-modal)}
+.drawer.on{transform:none}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim,.tip{transition:none}}
+.drawer .x{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:18px;border:1px solid var(--border-default);
+ background:var(--surface-card);color:var(--text-strong);border-radius:999px;width:30px;height:30px;font-size:16px;cursor:pointer}
+.d-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.drawer h3{font-family:"Nanum Myeongjo",Georgia,serif;font-size:23px;font-weight:400;margin:8px 42px 4px 0;color:var(--text-strong)}
+.d-site{font-size:13px;color:var(--gold);word-break:break-all}
+.d-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.tag{font-size:11px;font-weight:500;border-radius:999px;padding:4px 10px;background:var(--status-neutral-bg);color:var(--status-neutral-text)}
+.tag.f{background:var(--status-expert-bg);color:var(--status-expert-text)}
+.tag.m{background:var(--status-member-bg);color:var(--status-member-text)}
+.tag.w{background:transparent;border:1px solid var(--warn);color:var(--warn)}
+.tag.x{background:var(--status-only-bg);color:var(--status-only-text)}
+.d-call{font-family:"Nanum Myeongjo",Georgia,serif;font-size:16px;line-height:1.55;color:var(--text-primary);
+ margin:18px 0 0;padding-left:14px;border-left:2px solid var(--gold)}
+.d-note{font-size:13px;color:var(--text-body);margin:13px 0 0;line-height:1.55}
+.d-sec{margin-top:24px;border-top:1px solid var(--border-subtle);padding-top:18px}
+.d-sec>h4{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);font-weight:600;
+ margin:0 0 4px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.d-status{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border-radius:999px;padding:3px 9px;border:1px solid currentColor}
+.d-status.gap{color:var(--gold)} .d-status.ok{color:var(--assess)} .d-status.na{color:var(--text-faint)}
+.dims{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.dims li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline;border-bottom:1px solid var(--border-subtle);padding-bottom:10px}
+.dims li:last-child{border-bottom:0}
+.dims .dn{font-size:13px;font-weight:500;color:var(--text-strong)}
+.dims .dd{grid-column:1;font-size:11.5px;color:var(--text-faint);line-height:1.45}
+.dims .dv{font-size:10.5px;font-weight:600;color:var(--gold);white-space:nowrap}
+.dims .dv.ok{color:var(--assess)} .dims .dv.na{color:var(--text-faint)}
+.d-fields{list-style:none;margin:12px 0 0;padding:0;font-size:13px}
+.d-fields li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--border-subtle)}
+.d-fields .k{color:var(--text-muted)}
+.d-fields .v{font-weight:500;text-align:right;color:var(--text-strong)}
+.d-fields .v.empty{color:var(--gold);font-weight:600;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:560px){.chip-name{max-width:140px}.topbar{padding:10px 16px}.rail{padding:8px 16px}.controls,.foot{padding-inline:16px}.wrap{padding-inline:16px}}
+.pm-note{display:block;font-size:.78em;opacity:.72;margin-top:2px;font-weight:400}
+.d-quote{font-style:italic}
+.d-also{margin:8px 0 0 18px;padding:0;font-size:.92em}
+.d-also li{margin:3px 0}
+</style>
+
+<div class="shell">
+<header class="topbar">
+  <div class="brand">
+    <div class="mark" aria-hidden="true"></div>
+    <div class="wordmark">
+      <span class="eyebrow">Pete Depok &middot; Deep Hawks</span>
+      <span class="name">The Frontier Perimeter</span>
+    </div>
+  </div>
+  <div class="topright">
+    <span class="flag">A record, not a grade &middot; read from the public record</span>
+    <button class="iconbtn" id="theme" title="Switch theme" aria-label="Switch theme">&#9681;</button>
+  </div>
+</header>
+
+<div class="railwrap"><div class="rail" role="tablist" aria-label="Rings" id="rail"></div></div>
+
+<div class="controls" id="controls">
+  <input type="search" id="q" class="pill" placeholder="Search organizations" data-ph="Search %N% organizations" aria-label="Search organizations">
+  <select id="focus" class="pill" aria-label="Filter by why the organization is here">
+    <option value="">Every reason for inclusion</option>
+    <option value="specialist">Documented pre-release access</option>
+    <option value="expert">Signed a written commitment</option>
+    <option value="capable">Published a warning, rating or mandate</option>
+  </select>
+  <button class="pill" id="trust" aria-pressed="false" hidden>Trust layer</button>
+  <span class="count tnum" id="count"></span>
+</div>
+
+<main class="wrap">
+  <div id="overview">
+    <section class="intro">
+      <p class="kicker">A curb inspection of the organizations in the AI-risk debate &middot; Level 1, from the public record</p>
+      <h1>A frontier lab&rsquo;s attack surface includes everyone it lets test the model.</h1>
+      <p>Before a frontier model ships, its developer hands early access to outside organizations: evaluation nonprofits, red-team firms, biosecurity specialists, government institutes. The labs name them in their own system cards. From the moment the access is granted, each of those organizations is part of the lab&rsquo;s perimeter, and nobody publishes a measure of it. This map is that measure, taken from the curb.</p>
+      <p>The proof that the soft edge is the real edge is already on the record. In July 2026 a three-person research team got into OpenAI&rsquo;s GitHub organization and employee accounts through an image-upload flaw on its community forum, a peripheral website nobody thinks of as the vault (<a class="ovlink" href="https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/" target="_blank" rel="noopener">TechCrunch, 18 September 2026</a>). Attackers do not go through the front of the building. They go through whatever is attached to it.</p>
+      <p><span class="tnum" data-n="all">65</span> organizations, each here because of a document it signed or a lab signed about it: the <b>evaluators</b> the labs entrusted with unreleased models, the <b>labs</b> that pledged at Seoul to invest in cybersecurity for exactly those models, the <b>organizations warning the public</b> about AI risk, the <b>government institutes</b> charged with measuring it, and the AI developers and security-ratings firms that signed August&rsquo;s call for every organization to &ldquo;fix the highest-risk weaknesses.&rdquo; Each is read against a published code, the <a class="ovlink" href="#" onclick="selectTab(-3);return false">Frontier Perimeter Security Standard</a>, in two tiers: <b>The Floor</b>, the minimum any of them should clear, and <b>Standard Practice</b> above it. Every control is pass, below code, advisable, or not observable. Never a score.</p>
+      <p>This is a mirror, not a verdict. The observable Floor costs close to nothing to meet, which is why it is the same for a trillion-dollar lab and a ten-person nonprofit. Nothing was supplied by any organization and nothing was tested against its systems. Any organization on the map can <a class="ovlink" href="./assessment.html">work the Level 2 self-assessment</a>, or ask for a re-measure.</p>
+      <p class="covnote"><b><span class="tnum" data-n="sourced">65</span> of <span class="tnum" data-n="all">65</span></b> organizations carry a linked inclusion source you can open and check, with the sentence that put them here quoted on their profile.</p>
+    </section>
+    <div class="prov">
+      <div><div class="fig tnum" data-n="all">65</div><div class="lab">Organizations</div></div>
+      <div><div class="fig tnum">5</div><div class="lab">Rings</div></div>
+      <div><div class="fig tnum" data-n="cats">14</div><div class="lab">Categories</div></div>
+      <div><div class="fig tnum" data-n="sourced">65</div><div class="lab">Carry a source</div></div>
+      <div><div class="fig tnum" data-n="held">10</div><div class="lab">Held back</div></div>
+      <div><div class="fig tnum">0</div><div class="lab">Assessed at Level 2</div></div>
+    </div>
+    <div class="measured" id="measured"></div>
+    <p class="provnote">No list was bought or hand-picked. Each ring comes from one public document: the Frontier AI Safety Commitments signed at the AI Seoul Summit; the external-testing sections of Anthropic, OpenAI and Google DeepMind system cards from 2024 to 2026; the organizations&rsquo; own published warnings and lab ratings; the membership of the international network of AI safety institutes; and the 666 signatories of the Collective Cyber Defense letter, from which only the AI developers and the security-ratings firms are drawn. Every inclusion sentence was read back from its source. Where the evidence was thin (a heading without a sentence, a co-authored paper, a one-person project that has stopped) the organization was held back, not included on a generous reading; the <a class="ovlink" href="#" onclick="selectTab(-4);return false">Method</a> lists every one and why.</p>
+    <div class="sectorindex" id="sectorindex"></div>
+  </div>
+
+
+  <div id="stdpane" hidden></div>
+  <div id="methpane" hidden></div>
+
+  <div id="gppane" hidden></div>
+
+  <div id="sectorpane" hidden>
+    <div class="sectorhead"><h2 id="sname"></h2><p id="sdesc"></p></div>
+    <div class="banner" id="banner"></div>
+    <div class="decision" id="decision" hidden></div>
+    <div class="stage" id="stage" hidden></div>
+    <div class="grid" id="grid" hidden></div>
+    <div class="tablewrap" id="tablewrap" hidden></div>
+    <div class="bottombar">
+      <ul class="legend">
+        <li><b style="color:var(--status-expert-text)">&#9670;</b> Pre-release access</li>
+        <li><b>&#9679;</b> Signed a commitment</li>
+        <li><b style="color:var(--text-faint)">&#9675;</b> Warning, rating or mandate</li>
+        <li><b style="color:var(--warn)">&#9888;</b> Uncertain</li>
+      </ul>
+      <div class="seg" role="group" aria-label="View mode">
+        <button class="seg-btn on" id="v-radial">Radial</button>
+        <button class="seg-btn" id="v-list">List</button>
+        <button class="seg-btn" id="v-table">Table</button>
+        <button class="seg-btn" id="v-graph">Graph</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<p class="foot">Read from the public record on <span data-n="scandate">the scan date</span>. Inclusion documents were fetched and quoted in September 2026. <b>What this is:</b> a Level 1 curb inspection of the organizations in the AI-risk debate, against a published code, with every reading dated, sourced and bounded on the Method page. <b>What it is not:</b> a security rating, a ranking, a penetration test or a finding about any organization&rsquo;s internal controls. The controls that protect model weights from a capable attacker sit behind Level 2 and beyond it; a clean curb says nothing about them, and a mark below the Floor says only what it says. Any organization can ask for a re-measure. Inclusion is neither an endorsement nor an accusation. By Pete Depok (Deep Hawks). An independent work; not a publication of any organization the author advises.</p>
+</div>
+
+<div class="tip" id="tip"></div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dname" tabindex="-1">
+  <button class="x" id="dx" aria-label="Close">&times;</button>
+  <div id="dbody"></div>
+</aside>
+
+<script>
+const S=__DATA__;
+const ECON=__ECON__;
+const CTRL=__CONTROLS__;
+const QSET=__QUESTIONS__;
+const MSET=__METHOD__;
+const FOCUS={specialist:{mk:"◆",label:"Documented pre-release access"},expert:{mk:"●",label:"Signed a written commitment"},capable:{mk:"○",label:"Published a warning, rating or mandate"}};
+const HOLD=__HOLD__;
+const NOASSESS=[];
+const SCAN=__SCAN__;
+const SCAN_DATE=SCAN.date;
+const ACTIVE_DAYS=365, SCAN_ISO=SCAN.iso;
+const DIMS=[
+ ["Pre-release access","Which accounts hold a lab\u2019s early access, what multi-factor protects them, and whether they are separate from everyday email and chat."],
+ ["Identity","Phishing-resistant MFA everywhere, single sign-on, and how fast a departing person loses access."],
+ ["Where the work lives","Where evaluation transcripts, results and weights sit during and after an engagement, and which third-party tools ever touch them."],
+ ["Detection and recovery","Endpoint detection, central logging, tested and isolated backups, and an incident plan someone has rehearsed."],
+ ["Independent assurance","Penetration tests, SOC 2 or ISO 27001, and what the organization will disclose about past incidents."],
+ ["The lab relationship","A named owner for each lab\u2019s access, and the route a lab uses at 2 a.m. to revoke it."]];
+const DEMO={name:"",site:"",type:"",call:"",note:"",vals:[],fields:[]};
+const OWN={"independent":"Independent","pe-backed":"PE backed","bank":"Bank owned","public":"Listed parent"};
+const SVL={investments:"INV",tax:"TAX",estate:"EST",accounting:"ACC",billpay:"PAY",reporting:"RPT",governance:"GOV",trustee:"TRU",philanthropy:"PHI",concierge:"CON"};
+const SVN={INV:"Investments",TAX:"Tax",EST:"Estate",ACC:"Accounting",PAY:"Bill pay",RPT:"Reporting",GOV:"Governance",TRU:"Trustee",PHI:"Philanthropy",CON:"Concierge"};
+const NS="http://www.w3.org/2000/svg";
+
+const $=id=>document.getElementById(id);
+const rail=$("rail"),grid=$("grid"),stage=$("stage"),tip=$("tip"),q=$("q"),fsel=$("focus"),
+ tbtn=$("trust"),banner=$("banner"),cnt=$("count"),sname=$("sname"),sdesc=$("sdesc"),
+ drawer=$("drawer"),scrim=$("scrim"),dbody=$("dbody"),tw=$("tablewrap"),dec=$("decision");
+let cur=-1,trust=false,view="radial",lit=null;
+const total=S.reduce((a,s)=>a+s.cats.reduce((b,c)=>b+c.p.length,0),0);
+
+/* ---------- tabs ---------- */
+function selectTab(i){
+  cur=i;lit=null;
+  [...rail.children].forEach(t=>{const on=+t.dataset.k===i;
+    t.classList.toggle("on",on);t.setAttribute("aria-selected",on?"true":"false");t.tabIndex=on?0:-1;});
+  render();window.scrollTo({top:0,behavior:"smooth"});
+}
+rail.addEventListener("keydown",e=>{
+  if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"&&e.key!=="Home"&&e.key!=="End")return;
+  const tabs=[...rail.children];const at=tabs.findIndex(t=>+t.dataset.k===cur);
+  let n=at;
+  if(e.key==="ArrowRight")n=(at+1)%tabs.length;
+  else if(e.key==="ArrowLeft")n=(at-1+tabs.length)%tabs.length;
+  else if(e.key==="Home")n=0; else if(e.key==="End")n=tabs.length-1;
+  e.preventDefault();const t=tabs[n];selectTab(+t.dataset.k);t.focus();
+});
+const ov=document.createElement("button");
+ov.className="tab on";ov.setAttribute("role","tab");ov.textContent="Overview";ov.dataset.k=-1;
+ov.onclick=()=>selectTab(-1);rail.appendChild(ov);
+S.forEach((s,i)=>{
+  const n=s.cats.reduce((b,c)=>b+c.p.length,0);
+  const b=document.createElement("button");
+  b.className="tab";b.setAttribute("role","tab");b.dataset.k=i;
+  b.innerHTML='<span>'+s.name+'</span><span class="n tnum">'+n+'</span>';
+  b.onclick=()=>selectTab(i);rail.appendChild(b);
+});
+const stdTab=document.createElement("button");
+stdTab.className="tab";stdTab.setAttribute("role","tab");stdTab.dataset.k=-3;
+stdTab.innerHTML='<span>The Standard</span><span class="n">the code</span>';
+stdTab.onclick=()=>selectTab(-3);rail.appendChild(stdTab);
+const methTab=document.createElement("button");
+methTab.className="tab";methTab.setAttribute("role","tab");methTab.dataset.k=-4;
+methTab.innerHTML='<span>Method</span><span class="n">how we read it</span>';
+methTab.onclick=()=>selectTab(-4);rail.appendChild(methTab);
+
+[...rail.children].forEach(t=>{const on=+t.dataset.k===cur;t.setAttribute("aria-selected",on?"true":"false");t.tabIndex=on?0:-1;});
+S.forEach((s,i)=>{
+  const n=s.cats.reduce((b,c)=>b+c.p.length,0),f={specialist:0,expert:0,capable:0};
+  s.cats.forEach(c=>c.p.forEach(p=>f[p.f]++));
+  const b=document.createElement("button");b.className="sx";b.type="button";
+  b.innerHTML='<div class="t"><span class="nm">'+s.name+'</span><span class="ct tnum">'+n+'</span></div>'+
+   '<div class="sub">'+s.cats.length+(s.cats.length===1?' category':' categories')+'</div><div class="bar">'+
+   '<i style="flex:'+(f.specialist||.001)+';background:var(--status-expert-text)"></i>'+
+   '<i style="flex:'+(f.expert||.001)+';background:var(--gold)"></i>'+
+   '<i style="flex:'+(f.capable||.001)+';background:var(--text-faintest)"></i></div>';
+  b.onclick=()=>selectTab(i);$("sectorindex").appendChild(b);
+});
+
+/* ---------- helpers ---------- */
+function initials(nm){
+  const w=nm.replace(/[^A-Za-z0-9 &]/g," ").split(/\s+/).filter(x=>x&&x.length>1&&!/^(and|the|of|group|llp|inc|ltd|co|company)$/i.test(x));
+  return ((w[0]||nm)[0]+((w[1]||"")[0]||"")).toUpperCase();
+}
+function noAssess(){return cur>=0&&NOASSESS.includes(S[cur].id)}
+function filtered(){
+  if(cur<0)return[];
+  const term=q.value.trim().toLowerCase(),ff=fsel.value;
+  return S[cur].cats.map((c,i)=>({n:c.n,b:c.b,oi:i,p:c.p.filter(p=>(!ff||p.f===ff)&&
+    (!term||p.n.toLowerCase().includes(term)||(p.t||"").toLowerCase().includes(term)||(p.c||"").toLowerCase().includes(term)))}))
+   .filter(c=>c.p.length);
+}
+/* Marks resolve from DuckDuckGo's icon service at view time. Every badge is built
+   lettermark-first and the image is laid over it only once it has actually loaded. */
+const ICON=w=>"https://icons.duckduckgo.com/ip3/"+String(w||"").replace(/^https?:\/\//,"").replace(/\/.*$/,"")+".ico";
+function el(n,a,parent){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(parent)parent.appendChild(e);return e}
+function showTip(ev,t){tip.textContent=t;tip.classList.add("on");tip.style.left=ev.clientX+"px";tip.style.top=ev.clientY+"px"}
+function hideTip(){tip.classList.remove("on")}
+
+/* ---------- render ---------- */
+function render(){
+  const isOv=cur===-1, isGp=cur===-2, isStd=cur===-3, isMeth=cur===-4, isPane=isOv||isGp||isStd||isMeth;
+  $("overview").hidden=!isOv;$("gppane").hidden=!isGp;$("stdpane").hidden=!isStd;$("methpane").hidden=!isMeth;
+  if(isStd&&!$("stdpane").dataset.built){$("stdpane").innerHTML=standardHtml();$("stdpane").dataset.built="1";}
+  if(isMeth&&!$("methpane").dataset.built){$("methpane").innerHTML=methodHtml();$("methpane").dataset.built="1";}
+  $("sectorpane").hidden=isPane;$("controls").style.display=isPane?"none":"";
+  if(isPane){cnt.textContent="";if(radialStop){radialStop();radialStop=null}return}
+  const s=S[cur];sname.textContent=s.name;sdesc.textContent=s.desc;
+  const cats=filtered();
+  cnt.textContent=cats.reduce((a,c)=>a+c.p.length,0)+" of "+total+" shown";
+  dec.hidden=!s.table;if(s.table&&!dec.dataset.built)buildDecision();
+  banner.classList.toggle("on",trust);
+  if(trust&&!banner.dataset.built){banner.dataset.built="1";
+    banner.innerHTML=''}
+  grid.hidden=view!=="list";tw.hidden=view!=="table";stage.hidden=(view==="list"||view==="table");
+  if(view==="list")drawList(cats);
+  else if(view==="table")drawTable(cats);
+  else if(view==="radial")drawRadial(cats);
+  else drawGraph(cats);
+}
+
+/* ---------- radial constellation ---------- */
+/* Every organization carries a set of categories (spheres). They are ordered by the
+   circular mean of the spheres they touch; the spheres hold still, the organizations move. */
+let radialStop=null;
+function drawRadial(cats){
+  if(radialStop){radialStop();radialStop=null}
+  const m=cats.length||1;
+  const vis={}; cats.forEach((c,i)=>{vis[c.oi]=i});
+
+  /* one entry per firm, carrying every visible sphere it belongs to */
+  const comps=[];
+  cats.forEach((c,ci)=>c.p.forEach(p=>{
+    const set=new Set([ci]);
+    (p.m||[]).forEach(x=>{if(vis[x]!==undefined)set.add(vis[x])});
+    comps.push({p,ci,ms:[...set].sort((a,b)=>a-b)});
+  }));
+  const n=comps.length; if(!n){stage.innerHTML='<div class="stagehint">No matches in this sector.</div>';return}
+
+  const ang=j=>-Math.PI/2+(j/m)*Math.PI*2;
+  comps.forEach(o=>{
+    let sx=0,sy=0;o.ms.forEach(j=>{sx+=Math.cos(ang(j));sy+=Math.sin(ang(j))});
+    let a=(Math.abs(sx)<1e-9&&Math.abs(sy)<1e-9)?ang(o.ci):Math.atan2(sy,sx);
+    let t=(a+Math.PI/2)%(Math.PI*2); if(t<0)t+=Math.PI*2;
+    o.t=t;
+  });
+  comps.sort((a,b)=>a.t-b.t||a.ms.length-b.ms.length||a.p.n.localeCompare(b.p.n));
+
+  const named=n<=320;
+  const fs   = n<=56 ? 12.58  : Math.max(10.2,12.58-(n-56)*0.035);
+  const half = Math.ceil(n/2), PADY = n<=56?34:30;
+  /* The rows always span the full height of the ring, so a thin sector does not
+     leave the foot of the ellipse empty. Pitch follows from the ring rather than
+     the other way round, bounded so a 30-firm sector does not sprawl. */
+  const PITCH = n<=56 ? 29.656 : Math.max(17.4,29.656-(n-56)*0.18);
+  let ry0=Math.max(300,(half-1)*PITCH/2+PADY);
+  let STEP=half>1?2*(ry0-PADY)/(half-1):0;
+  if(STEP>52){STEP=52;ry0=(half-1)*STEP/2+PADY}
+  const BH   = Math.min(20.72,STEP*0.7||20.72);
+  let W,H,cx,cy,rx,ry,R0,y0;
+
+  const lb=BH*0.857, mk=BH/20.72, LEAD=BH/2+lb*0.755, TAIL=5+BH*0.75+BH/4;
+  const lines=[]; let labW=0;
+  if(named){
+    const NMAX=28;
+    /* badge width comes from the rendered text, not a character estimate, or the
+       status mark lands on top of short names */
+    const ruler=el("svg",{width:"0",height:"0",style:"position:absolute;visibility:hidden"},stage);
+    const rt=el("text",{class:"cname","font-size":fs},ruler);
+    comps.forEach(o=>{
+      o.disp=o.p.n.length>NMAX?o.p.n.slice(0,NMAX-1).replace(/[\s,.&-]+$/,"")+"…":o.p.n;
+      rt.textContent=o.disp;
+      const tw=(rt.getComputedTextLength&&rt.getComputedTextLength())||o.disp.length*fs*0.55;
+      o.w=Math.min(360,Math.max(52,LEAD+tw+TAIL));
+    });
+    /* sphere names are long, so they wrap onto
+       two lines and the ring is pulled in until they clear the badge flanks */
+    rt.setAttribute("class","need-label");rt.removeAttribute("font-size");
+    labW=0;
+    cats.forEach((c,i)=>{
+      const parts=c.n.split(" ");let ls=[c.n];
+      if(c.n.length>22){
+        let best=0,bd=1e9;
+        for(let k=1;k<parts.length;k++){const a=parts.slice(0,k).join(" ").length,
+          d=Math.abs(a-(c.n.length-a));if(d<bd){bd=d;best=k}}
+        if(best)ls=[parts.slice(0,best).join(" "),parts.slice(best).join(" ")];
+      }
+      lines[i]=ls;
+      ls.forEach(t=>{rt.textContent=t;
+        labW=Math.max(labW,(rt.getComputedTextLength&&rt.getComputedTextLength())||t.length*7)});
+    });
+    ruler.remove();
+    /* the outer margin has to clear the widest badge, or long names run off the flanks */
+    const mgn=Math.max(n<=56?190:196,comps.reduce((a,o)=>Math.max(a,o.w),0)+18);
+    ry=ry0;
+    rx=n<=56?ry*1.283:Math.max(330,Math.min(ry*1.283,560,710-mgn));
+    R0=Math.min(ry*0.385,232);
+    const room=rx-labW-26;
+    if(room<R0){ if(room>=78) R0=room; else { R0=78; rx=R0+labW+26; } }
+    W=Math.round((rx+mgn)*2); H=Math.round((ry+PADY)*2);
+    cx=W/2; cy=H/2; y0=cy-ry+PADY;
+  }else{
+    const avail=Math.max(640,Math.min(1360,(stage.clientWidth||1000)-8));
+    rx=avail/2-60; ry=Math.min(rx*0.62,362);
+    W=Math.round(rx*2+120); H=Math.round(ry*2+80);
+    cx=W/2; cy=H/2; R0=ry*0.42;
+  }
+
+  /* Stations are the discrete seats of the static layout: seat i is on the right
+     flank at row i while i<half, and on the left flank at row n-1-i after that.
+     Travel is continuous between consecutive seats, so at the foot and the crown
+     the row holds steady while the badge mirrors to the other flank. */
+  const seatK=i=>i<half?i:n-1-i, seatS=i=>i<half?1:-1;
+  function place(o,p){
+    if(!named){
+      const a=-Math.PI/2+(p/n)*Math.PI*2;
+      o.x=cx+Math.cos(a)*rx; o.y=cy+Math.sin(a)*ry; o.side=Math.cos(a)>=0?1:-1; return;
+    }
+    const i0=Math.floor(p)%n, f=p-Math.floor(p), i1=(i0+1)%n;
+    const k=seatK(i0)+(seatK(i1)-seatK(i0))*f;
+    o.side=f<0.5?seatS(i0):seatS(i1);
+    o.y=y0+k*STEP;
+    const u=(o.y-cy)/ry;
+    o.edge=cx+o.side*rx*Math.sqrt(Math.max(0,1-u*u));
+    o.bx=o.side>0?o.edge:o.edge-o.w;
+    o.anchor=o.side>0?o.bx+BH/2:o.bx+o.w-BH/2;
+    o.x=o.anchor;
+  }
+  comps.forEach((o,i)=>place(o,i));
+
+  const svg=el("svg",{class:"map",viewBox:"0 0 "+W+" "+H,width:W,height:H,role:"img",
+    "aria-label":"Radial map of "+S[cur].name});
+  const gSpokes=el("g",{class:"spokes"},svg);
+  el("circle",{class:"inner-ring",cx,cy,r:R0},svg);
+
+  const needs=cats.map((c,i)=>{const a=ang(i);
+    return{c,x:cx+Math.cos(a)*R0,y:cy+Math.sin(a)*R0,a}});
+
+  /* spokes: one per sphere the firm touches. Quadratic Bezier, control point a
+     quarter of the way from the chord midpoint toward the centre. */
+  const dOf=(o,nd)=>{const mx=(o.x+nd.x)/2,my=(o.y+nd.y)/2;
+    return "M "+o.x+" "+o.y+" Q "+(mx+(cx-mx)*0.25)+" "+(my+(cy-my)*0.25)+" "+nd.x+" "+nd.y};
+  let edges=0;
+  comps.forEach(o=>{
+    o.spokes=[];
+    o.ms.forEach(j=>{const nd=needs[j];if(!nd)return;
+      o.spokes.push({j,nd,el:el("path",{class:"spoke",d:dOf(o,nd)},gSpokes)});edges++});
+  });
+
+  needs.forEach((nd,i)=>{
+    const g=el("g",{class:"need",role:"button",tabindex:"0","aria-label":nd.c.n},svg);
+    el("circle",{class:"need-halo",r:15,cx:nd.x,cy:nd.y},g);
+    el("circle",{class:"need-dot",r:6,cx:nd.x,cy:nd.y},g);
+    el("circle",{class:"need-hit",r:22,cx:nd.x,cy:nd.y},g);
+    const lx=nd.x+Math.cos(nd.a)*18, ly=nd.y+Math.sin(nd.a)*18, co=Math.cos(nd.a);
+    const ls=lines[i]||[nd.c.n];
+    const t=el("text",{class:"need-label","dominant-baseline":"central",x:lx,y:ly,
+      "text-anchor":co>0.25?"start":co<-0.25?"end":"middle"},g);
+    ls.forEach((ln,k)=>{const ts=el("tspan",{x:lx,dy:k===0?(ls.length>1?-7.5:0):15},t);ts.textContent=ln});
+    nd.g=g;
+    g.addEventListener("mouseenter",()=>setLit({need:i}));
+    g.addEventListener("mouseleave",()=>setLit(null));
+    g.addEventListener("click",()=>setLit(lit&&lit.need===i?null:{need:i}));
+  });
+
+  comps.forEach((o,i)=>{
+    const p=o.p;
+    const g=el("g",{class:"company",role:"link",tabindex:"0",
+      "aria-label":p.n+". "+FOCUS[p.f].label+". "+o.ms.length+(o.ms.length===1?" sphere":" spheres")},svg);
+    const mark=p.inc?["⚑","var(--inc)"]:p.u?["⚠","var(--warn)"]:p.x?["✓","var(--status-only-text)"]:null;
+    if(named){
+      o.rect=el("rect",{class:"badge",x:o.bx,y:o.y-BH/2,width:o.w,height:BH,rx:BH/4},g);
+      o.lg=el("g",{transform:"translate("+o.anchor+","+o.y+")"},g);
+      el("rect",{class:"logo-backdrop",x:-lb/2,y:-lb/2,width:lb,height:lb,rx:lb*0.125},o.lg);
+      const mo=el("text",{class:"monogram","text-anchor":"middle","dominant-baseline":"central",x:0,y:.5,"font-size":(lb*0.507).toFixed(2)},o.lg);
+      mo.textContent=initials(p.n);
+      if(p.w){const im=el("image",{href:ICON(p.w),x:-lb/2+1.5,y:-lb/2+1.5,width:lb-3,height:lb-3,
+          preserveAspectRatio:"xMidYMid meet",opacity:"0"},o.lg);
+        im.addEventListener("load",()=>{im.setAttribute("opacity","1");mo.remove()});
+        im.addEventListener("error",()=>im.remove());}
+      o.txt=el("text",{class:"cname","dominant-baseline":"central",x:o.anchor+o.side*lb*0.755,
+        y:o.y,"text-anchor":o.side>0?"start":"end","font-size":fs},g);
+      o.txt.textContent=o.disp;
+      const sx=o.side>0?o.bx+o.w-BH*0.63:o.bx+BH*0.29;
+      if(mark){o.mk=el("text",{x:sx,y:o.y,"dominant-baseline":"central","text-anchor":"middle","font-size":(10*mk).toFixed(2),fill:mark[1]},g);o.mk.textContent=mark[0]}
+      else o.mk=el("circle",{cx:sx,cy:o.y,r:(p.f==="specialist"?3.4:p.f==="expert"?2.6:2)*mk,
+        fill:p.f==="capable"?"var(--text-faintest)":"var(--status-expert-text)"},g);
+      o.mkText=!!mark;
+    }else{
+      el("rect",{class:"badge",x:o.x-10.4,y:o.y-10.4,width:20.8,height:20.8,rx:5.2},g);
+      el("rect",{class:"logo-backdrop",x:o.x-7.4,y:o.y-7.4,width:14.8,height:14.8,rx:2},g);
+      const mo=el("text",{class:"monogram","text-anchor":"middle","dominant-baseline":"central",x:o.x,y:o.y+.5,"font-size":"7.4"},g);
+      mo.textContent=initials(p.n);
+      if(p.w){const im=el("image",{href:ICON(p.w),x:o.x-6,y:o.y-6,width:12,height:12,
+          preserveAspectRatio:"xMidYMid meet",opacity:"0"},g);
+        im.addEventListener("load",()=>{im.setAttribute("opacity","1");mo.remove()});
+        im.addEventListener("error",()=>im.remove());}
+      if(mark){const w=el("text",{x:o.x+(o.side>0?13:-13),y:o.y,"dominant-baseline":"central","text-anchor":"middle","font-size":"9",fill:mark[1]},g);w.textContent=mark[0]}
+      else if(p.f!=="capable")el("circle",{cx:o.x+(o.side>0?13:-13),cy:o.y,r:p.f==="specialist"?2.8:2.1,fill:"var(--status-expert-text)"},g);
+    }
+    o.g=g;
+    const lbl=p.n+" · "+o.ms.map(j=>cats[j].n).join(" · ");
+    g.addEventListener("mouseenter",ev=>{setLit({comp:i});showTip(ev,lbl)});
+    g.addEventListener("mousemove",ev=>showTip(ev,lbl));
+    g.addEventListener("mouseleave",()=>{setLit(null);hideTip()});
+    g.addEventListener("click",()=>{hideTip();openP(p)});
+    g.addEventListener("keydown",e=>{if(e.key==="Enter")openP(p)});
+  });
+
+  function paint(){
+    comps.forEach(o=>{
+      o.rect.setAttribute("x",o.bx); o.rect.setAttribute("y",o.y-BH/2);
+      o.lg.setAttribute("transform","translate("+o.anchor+","+o.y+")");
+      o.txt.setAttribute("x",o.anchor+o.side*lb*0.755); o.txt.setAttribute("y",o.y);
+      o.txt.setAttribute("text-anchor",o.side>0?"start":"end");
+      const sx=o.side>0?o.bx+o.w-BH*0.63:o.bx+BH*0.29;
+      if(o.mkText){o.mk.setAttribute("x",sx);o.mk.setAttribute("y",o.y)}
+      else{o.mk.setAttribute("cx",sx);o.mk.setAttribute("cy",o.y)}
+      o.spokes.forEach(sp=>sp.el.setAttribute("d",dOf(o,sp.nd)));
+    });
+  }
+
+  function setLit(st){
+    lit=st;const on=!!st;
+    comps.forEach((o,i)=>{
+      const hit=!on||st.comp===i||o.ms.indexOf(st.need)>=0;
+      o.g.classList.toggle("dim",on&&!hit);o.g.classList.toggle("lit",on&&hit);
+      o.spokes.forEach(sp=>{
+        const slit=on&&(st.comp===i||st.need===sp.j);
+        sp.el.classList.toggle("lit",slit);
+        sp.el.classList.toggle("dim",on&&!slit);
+      });
+    });
+    needs.forEach((nd,i)=>{
+      const hit=!on||st.need===i||(st.comp!==undefined&&comps[st.comp].ms.indexOf(i)>=0);
+      nd.g.classList.toggle("dim",on&&!hit);nd.g.classList.toggle("lit",on&&hit);
+    });
+  }
+
+  stage.innerHTML="";stage.appendChild(svg);
+  const h=document.createElement("div");h.className="stagehint";
+  const txt=document.createElement("span");
+  txt.textContent=n+" organizations, "+edges+" connections to "+m+(m===1?" sphere. ":" spheres. ")+
+    (named?"Travelling clockwise. Hover a node to hold it still and light its connections; click one for its profile."
+         :"Too many to label at once. Hover a bead for the name, click for the profile.");
+  h.appendChild(txt);
+  stage.appendChild(h);
+  stage.scrollLeft=Math.max(0,(W-stage.clientWidth)/2);
+  stage.scrollTop=Math.max(0,(H-stage.clientHeight)/2);
+
+  /* ---- clockwise travel ---- */
+  if(!named)return;
+  const calm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let phase=0,last=0,raf=0,want=!calm;
+  const REV=90000; /* ms for one full revolution, any roster size */
+  const btn=document.createElement("button");
+  btn.className="motion-btn"; btn.type="button";
+  h.appendChild(btn);
+  const sync=()=>{btn.textContent=want?"Pause motion":"Resume motion";
+    btn.setAttribute("aria-pressed",want?"false":"true")};
+  sync();
+  btn.addEventListener("click",()=>{want=!want;sync();if(want){last=0;tick()}});
+  /* A dense ring writes thousands of attributes a frame; at large sizes
+     draws 1,054 spokes, which is past what one frame can do. Update on every
+     nth frame instead and take a proportionally bigger step: the motion looks
+     identical and the per-frame cost divides. */
+  const STRIDE = edges>1400 ? 4 : edges>600 ? 3 : edges>300 ? 2 : 1;
+  let fnum=0;
+  function tick(ts){
+    raf=0;
+    /* only a lit node holds it still: whatever is under the pointer stops, so a
+       badge never slides out from under a click, but the map keeps moving */
+    if(!want||lit||document.hidden){last=0;if(want)raf=requestAnimationFrame(tick);return}
+    if(ts){
+      if(last && (++fnum % STRIDE)===0){
+        phase=(phase+n*(ts-last)/REV)%n;
+        comps.forEach((o,i)=>place(o,(i+phase)%n)); paint(); last=ts;
+      } else if(!last) last=ts;
+    }
+    raf=requestAnimationFrame(tick);
+  }
+  tick();
+  radialStop=()=>{want=false;if(raf)cancelAnimationFrame(raf)};
+}
+
+/* ---------- graph ---------- */
+function drawGraph(cats){
+  const W=1360,H=900,cx=W/2,cy=H/2;
+  const svg=el("svg",{class:"map",viewBox:"0 0 "+W+" "+H,width:W,height:H,role:"img","aria-label":"Graph of "+S[cur].name});
+  const n=cats.length||1,HR=Math.min(330,120+n*26);
+  const hubs=cats.map((c,i)=>{const a=-Math.PI/2+(i/n)*Math.PI*2;return{c,x:cx+Math.cos(a)*HR,y:cy+Math.sin(a)*HR,a}});
+  hubs.forEach(h=>el("line",{class:"spoke",x1:cx,y1:cy,x2:h.x,y2:h.y},svg));
+  hubs.forEach(h=>{
+    const k=h.c.p.length,rad=24+Math.sqrt(k)*13;
+    h.c.p.forEach((p,i)=>{
+      const gr=2.399963*i,rr=rad*Math.sqrt((i+0.6)/k);
+      const px=h.x+Math.cos(gr+h.a)*rr,py=h.y+Math.sin(gr+h.a)*rr;
+      el("line",{class:"spoke",x1:h.x,y1:h.y,x2:px,y2:py},svg);
+      const g=el("g",{class:"company",role:"link",tabindex:"0","aria-label":p.n},svg);
+      el("circle",{cx:px,cy:py,r:4.6,fill:p.f==="capable"?"var(--text-faint)":p.f==="expert"?"var(--gold)":"var(--status-expert-text)",
+        stroke:p.u?"var(--warn)":"none","stroke-width":p.u?1.4:0},g);
+      g.addEventListener("mousemove",ev=>showTip(ev,p.n));
+      g.addEventListener("mouseleave",hideTip);
+      g.addEventListener("click",()=>{hideTip();openP(p)});
+    });
+    el("circle",{cx:h.x,cy:h.y,r:7,fill:"var(--gold)"},svg);
+    const ly=h.y+(Math.sin(h.a)>=0?rad+22:-rad-14);
+    const t=el("text",{class:"need-label",x:h.x,y:ly,"text-anchor":"middle","dominant-baseline":"central"},svg);
+    t.textContent=h.c.n.length>28?h.c.n.slice(0,27)+"…":h.c.n;
+  });
+  el("circle",{class:"inner-ring",cx,cy,r:16},svg);
+  stage.innerHTML="";stage.appendChild(svg);
+  const h=document.createElement("div");h.className="stagehint";h.textContent="Each cluster is a category. Click a point for the organization.";
+  stage.appendChild(h);
+  stage.scrollLeft=Math.max(0,(W-stage.clientWidth)/2);
+}
+
+/* ---------- list ---------- */
+function drawList(cats){
+  grid.innerHTML="";
+  cats.forEach((c,ci)=>{
+    const s=document.createElement("section");s.className="cat";
+    s.innerHTML='<h3>'+c.n+'<span class="c tnum">'+c.p.length+'</span></h3><p class="blurb">'+(c.b||"")+'</p>';
+    const chips=document.createElement("div");chips.className="chips";
+    c.p.forEach(p=>{
+      const b=document.createElement("button");b.className="chip";b.type="button";
+      b.innerHTML='<span class="chip-logo" aria-hidden="true">'+(p.w
+          ?'<img alt="" src="'+ICON(p.w)+'" onload="this.parentNode.classList.add(\'has\')" onerror="this.remove()">'
+          :'')+'<i>'+initials(p.n)+'</i></span>'+
+        '<span class="chip-name">'+p.n+'</span>'+
+        (p.inc?'<span class="w inc" title="Public incident reported">⚑</span>':'')+
+        (p.u?'<span class="w" title="Uncertain">⚠</span>':'')+
+        (p.x?'<span class="w" style="color:var(--status-only-text)" title="Found by two models">✓</span>':'')+
+        '<span class="mk '+(p.f==="specialist"?"d":"")+'" title="'+FOCUS[p.f].label+'">'+FOCUS[p.f].mk+'</span>';
+      b.onclick=()=>openP(p);chips.appendChild(b);
+    });
+    if(trust&&ci===0&&!noAssess()){
+      const b=document.createElement("button");b.className="chip";b.type="button";b.dataset.demo="1";
+      b.innerHTML='<span class="chip-logo"><i>NA</i></span><span class="chip-name">Reference profile</span><span class="mk d">◆</span>';
+      b.onclick=openDemo;chips.appendChild(b);
+    }
+    s.appendChild(chips);grid.appendChild(s);
+  });
+  if(!cats.length)grid.innerHTML='<section class="cat"><h3>No matches</h3><p class="blurb">Nothing in this sector matches the current search or filter.</p></section>';
+}
+
+/* ---------- table ---------- */
+function drawTable(cats){
+  const attr=cats.some(c=>c.p.some(p=>p.hq||p.aum||p.min));
+  const head=attr?["Organization","Headquarters","Type","","","",""]
+                 :["Organization","Type","Why here","Role"];
+  let h='<table class="cmp"><thead><tr>'+head.map(x=>'<th>'+x+'</th>').join("")+'</tr></thead><tbody>';
+  const map={};
+  cats.forEach(c=>{
+    h+='<tr class="grp"><td colspan="'+head.length+'">'+c.n+' &middot; '+c.p.length+'</td></tr>';
+    c.p.forEach((p,i)=>{
+      const k=c.n+"|"+i;map[k]=p;
+      const warn=p.u?' <span style="color:var(--warn)">⚠</span>':'';
+      h+=attr
+        ?'<tr data-k="'+encodeURIComponent(k)+'"><td class="nm">'+p.n+warn+'<span class="sub">'+p.w+'</span></td>'+
+         '<td>'+(p.hq||"—")+'</td><td>'+(OWN[p.own]||"—")+'</td><td class="num">'+(p.min||"—")+'</td>'+
+         '<td>'+(p.fee||"—")+'</td><td>'+(p.dis&&p.dis!=="unknown"?p.dis[0].toUpperCase()+p.dis.slice(1):"—")+'</td>'+
+         '<td><span class="sv">'+((p.sv||[]).map(x=>'<i title="'+(SVN[SVL[x]]||x)+'">'+(SVL[x]||x)+'</i>').join("")||"—")+'</span></td></tr>'
+        :'<tr data-k="'+encodeURIComponent(k)+'"><td class="nm">'+p.n+warn+'<span class="sub">'+p.w+'</span></td>'+
+         '<td>'+(p.t||"—")+'</td><td>'+FOCUS[p.f].mk+' '+FOCUS[p.f].label+'</td><td>'+(p.c||"—")+'</td></tr>';
+    });
+  });
+  tw.innerHTML=h+'</tbody></table>';
+  tw.querySelectorAll("tbody tr[data-k]").forEach(tr=>tr.onclick=()=>openP(map[decodeURIComponent(tr.dataset.k)]));
+}
+
+/* ---------- decision frame ---------- */
+function buildDecision(){dec.dataset.built="1";dec.innerHTML="";}
+
+/* ---------- drawer ---------- */
+/* Observed from outside, from public DNS, with nothing supplied by the organization and
+   nothing tested against their systems. Three rules the renderer enforces:
+   a lookup that failed is never shown as a negative, every line reports the
+   record rather than a grade, and an absent record is reported as absent
+   rather than as a failure. */
+const OBS=[
+ ["dmarc","Email authentication","Whether the domain publishes a DMARC policy, and whether that policy actually tells receivers to act.",{
+   reject:["Enforcing, p=reject","good"], quarantine:["Enforcing, p=quarantine","good"],
+   none:["Published but monitoring only, p=none","weak"], absent:["No DMARC record published","weak"],
+   "?":["Not measured in this pass","unk"]}],
+ ["spf","Sender policy","Whether the domain publishes SPF, and how it asks receivers to treat mail that fails it.",{
+   hardfail:["Published, hard fail (-all)","good"], softfail:["Published, soft fail (~all)","mid"],
+   neutral:["Published, neutral","weak"], other:["Published, non-standard ending","mid"],
+   absent:["No SPF record published","weak"], "?":["Not measured in this pass","unk"]}],
+ ["dnssec","DNSSEC","Whether DNS answers for the domain are cryptographically signed.",{
+   yes:["Signed","good"], no:["Not signed","mid"], "?":["Not measured in this pass","unk"]}]
+];
+/* ---- shared status logic for this edition: one place, used by the permit, the field stats and the overview ---- */
+function daysAgo(iso){return (Date.parse(SCAN_ISO)-Date.parse(iso))/864e5}
+function daysAgo(iso){return (Date.parse(SCAN_ISO)-Date.parse(iso))/864e5}
+function rwActive(sc){return (sc.rw||[]).filter(r=>daysAgo(r.d)<=ACTIVE_DAYS)}
+function st(sc){
+  const lookHomo=!!(sc.look&&sc.look.h&&sc.look.h.length);
+  const S={};
+  S.A1= sc.L1==='meet'?'pass':sc.L1==='below'?'fail':sc.L1==='nomail'?'nomail':'na';
+  S.B4= sc.exp?(sc.exp.cdn?'pass':'l2'):'na';
+  S.C1= S.B4;
+  S.F1= sc.ofac==='clear'?'pass':(sc.ofac?'fail':'na');
+  S.G1= sc.rwread?(rwActive(sc).length?'recx':'pass'):'na';
+  S.A2= sc.spf==='hardfail'?'rec':(sc.spf==='softfail'||sc.spf==='neutral'||sc.spf==='absent'||sc.spf==='other')?'recx':'na';
+  S.A3= sc.dk==='yes'?'rec':'na';
+  S.A4= sc.mtasts==='yes'?'rec':(sc.mtasts==='no'?'recx':'na');
+  S.A5= sc.look_na||sc.look_short?'na':(lookHomo?'fail':(sc.look&&sc.look.y&&sc.look.y.length?'recx':'pass'));
+  S.B2= sc.hsts==='yes'?'rec':(sc.hsts==='no'||sc.hsts==='short')?'recx':'na';
+  S.B3= sc.exp?(sc.exp.cdn?'rec':'recx'):'na';
+  S.C2= (sc.dnssec==='yes'&&sc.caa==='yes')?'rec':((sc.dnssec==='?'||sc.caa==='?')?'na':'recx');
+  S.C3= sc.rep==='clean'?'rec':(sc.rep==='listed'?'fail':'na');
+  S.F5= sc.sectxt==='yes'?'rec':(sc.sectxt==='no'||sc.sectxt==='expired')?'recx':'na';
+  return S;
+}
+function floorItems(sc){const s=st(sc);return ['A1','F1','G1'].filter(k=>s[k]==='fail'||s[k]==='recx')}
+function belowFloor(sc){return floorItems(sc).length>0}
+function recHtml(p){
+  const sc=p.sc||{}; let items='';
+  if(sc.ofac==='clear')
+    items+='<li><span class="dn">US Treasury sanctions</span><span class="ob-v good">No designation</span>'+
+      '<span class="dd">Screened on '+SCAN_DATE+' against the 26,146 entries of the US Consolidated Screening List, by exact match on the organization’s names and every listed alias. Not designated on any Treasury (OFAC) list.</span></li>';
+  (sc.rec||[]).forEach(r=>{
+    items+='<li><span class="dn">'+r.t+'</span><span class="ob-v mid">On the public record</span>'+
+      '<span class="dd">'+r.d+' <a href="'+r.u+'" target="_blank" rel="noopener noreferrer">Federal Register notice</a></span></li>';});
+  if(sc.rw&&sc.rw.length){
+    const act=rwActive(sc);
+    const rl=sc.rw.map(r=>'<a href="'+r.u+'" target="_blank" rel="noopener noreferrer">'+r.g+' · '+r.d+(r.n?' · “'+r.n+'”':'')+'</a>').join(', ');
+    items+='<li><span class="dn">Ransomware leak site</span><span class="ob-v '+(act.length?'weak':'mid')+'">'+(act.length?'Listed in the last twelve months':'Listed more than a year ago')+'</span>'+
+      '<span class="dd">Posted as a victim on an extortion leak site: '+rl+'. A listing is the attacker’s own claim, recorded by ransomware.live as a matter of public record. Some groups recycle old data or post fabrications, and the organization may dispute it. It is the question to ask: what was taken, and when.</span></li>';
+  } else if(sc.rwread){
+    items+='<li><span class="dn">Ransomware leak site</span><span class="ob-v good">Not listed</span><span class="dd">No listing naming this organization in ransomware.live’s public victim search, read on '+SCAN_DATE+'.</span></li>';
+  }
+  if(!items)return"";
+  return '<h5 class="ob-sub">On the public record</h5>'+
+    '<p class="d-note" style="margin:0 0 8px">Each item is a dated, linked matter of public record, not a judgment by anyone.</p>'+
+    '<ul class="dims obs">'+items+'</ul>';
+}
+function advHtml(a){
+  const url='https://adviserinfo.sec.gov/firm/summary/'+a.crd;
+  const active=a.scope!=='INACTIVE';
+  const reg = active
+    ? ['Registered investment adviser','mid','SEC IAPD, CRD '+a.crd+'. Registration active.']
+    : ['Registration inactive','weak','SEC IAPD, CRD '+a.crd+'. The firm holds itself out but its adviser registration is not currently active. Worth asking why.'];
+  const disc = a.disc==='Y'
+    ? ['Disclosure on file','weak','IAPD reports at least one disclosure event (regulatory, legal or financial) on this firm\u2019s record. A disclosure is not a finding of wrongdoing; read the report before drawing any conclusion.']
+    : ['No disclosure on file','good','IAPD reports no disclosure event on this firm\u2019s record as filed.'];
+  return '<ul class="dims obs">'+
+    '<li><span class="dn">SEC registration</span><span class="ob-v '+reg[1]+'">'+reg[0]+'</span><span class="dd">'+reg[2]+' <a href="'+url+'" target="_blank" rel="noopener noreferrer">IAPD report</a></span></li>'+
+    '<li><span class="dn">Disciplinary disclosure</span><span class="ob-v '+disc[1]+'">'+disc[0]+'</span><span class="dd">'+disc[2]+'</span></li>';
+}
+function standardHtml(){
+  const C=CTRL, fams=C.families;
+  let nFloor=0,nStd=0,nL1=0,nL2=0,nTot=0;
+  fams.forEach(f=>f.controls.forEach(c=>{nTot++;if(c.tier==='floor')nFloor++;else nStd++;if(c.lvl===1)nL1++;else nL2++;}));
+  const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  // the two tiers, as cards
+  const floorList=[]; fams.forEach(f=>f.controls.forEach(c=>{if(c.tier==='floor')floorList.push(c);}));
+  const tierCards=
+    '<div class="std-tiers">'+
+    '<div class="std-tier floor"><div class="std-th"><span class="std-tn">The Floor</span><span class="std-tt">'+nFloor+' controls</span></div>'+
+    '<p class="std-td">'+esc(C.tiers.floor)+'</p>'+
+    '<ul class="std-tl">'+floorList.map(c=>'<li><b>'+c.id+'</b> '+esc(c.name)+(c.lvl===2?' <span class="std-lv">L2</span>':'')+'</li>').join('')+'</ul></div>'+
+    '<div class="std-tier std"><div class="std-th"><span class="std-tn">Standard Practice</span><span class="std-tt">'+nStd+' controls</span></div>'+
+    '<p class="std-td">'+esc(C.tiers.std)+'</p>'+
+    '<p class="std-note">Everything the Floor requires, and then the hardening, reachability, access and data-handling controls an organization near unreleased models should meet. Listed in full below.</p></div></div>';
+  // the two levels
+  const levelRow=
+    '<div class="std-lvls">'+
+    '<div class="std-lvl"><span class="std-lh">Level 1 &middot; curb inspection</span><p>'+esc(C.levels['1'])+' <b>'+nL1+'</b> controls are observable this way.</p></div>'+
+    '<div class="std-lvl"><span class="std-lh">Level 2 &middot; interior inspection</span><p>'+esc(C.levels['2'])+' <b>'+nL2+'</b> controls need the door opened.</p></div></div>';
+  // the families, in full
+  const B={floor:['The Floor','floor'],std:['Standard Practice','std']};
+  const famBlocks=fams.map(f=>{
+    const rows=f.controls.map(c=>{
+      const maps=[c.cis&&c.cis!=='n/a'&&c.cis!=='GV'?'CIS '+c.cis:'',c.ins?'Ins: '+c.ins:'',c.csf?c.csf:''].filter(Boolean)
+        .map(m=>'<span class="std-map">'+esc(m)+'</span>').join('');
+      return '<div class="std-c"><div class="std-cl"><span class="std-cid">'+c.id+'</span>'+
+        '<span class="std-cn">'+esc(c.name)+'</span>'+
+        '<span class="std-badge '+B[c.tier][1]+'">'+B[c.tier][0]+'</span>'+
+        '<span class="std-badge lvl">Level '+c.lvl+'</span></div>'+
+        '<div class="std-cd">'+esc(c.std)+'</div>'+
+        (maps?'<div class="std-maps">'+maps+'</div>':'')+'</div>';
+    }).join('');
+    return '<div class="std-fam"><div class="std-fh"><span class="std-fid">'+f.id+'</span><h3>'+esc(f.name)+'</h3></div>'+
+      '<p class="std-fq">'+esc(f.q)+'</p>'+rows+'</div>';
+  }).join('');
+  return '<section class="intro">'+
+    '<p class="kicker">The code &middot; how we inspect</p>'+
+    '<h1>'+esc(C.title)+'.</h1>'+
+    '<p>'+esc(C.subtitle)+'</p>'+
+    '<p class="gp-cred">A permit records what met code at inspection. It does not certify the organization, and it is not a score. Every control is pass, below code, advisable, or not observable, against a named requirement anyone can check. '+esc(C.version)+'.</p>'+
+    '</section>'+
+    '<div class="prov">'+
+    '<div><div class="fig tnum">'+nTot+'</div><div class="lab">Controls</div></div>'+
+    '<div><div class="fig tnum">'+fams.length+'</div><div class="lab">Families</div></div>'+
+    '<div><div class="fig tnum">'+nFloor+'</div><div class="lab">On the Floor</div></div>'+
+    '<div><div class="fig tnum">'+nL1+'</div><div class="lab">Observable (L1)</div></div>'+
+    '</div>'+
+    '<div class="std-wrap">'+
+    '<h2 class="std-h">Two bars</h2>'+
+    '<p class="gp-p">An organization can be built to code and still not be what a lab should want holding its model. The Standard reads every control against two bars.</p>'+
+    tierCards+
+    '<h2 class="std-h">Two inspections</h2>'+
+    '<p class="gp-p">Observability is a separate axis from the bar. Most of the Floor is not visible from the street, which is exactly what the cooperative inspection is for. That includes the control this edition adds for the perimeter: how pre-release access is held. The map states plainly which is which.</p>'+
+    levelRow+
+    '<h2 class="std-h">The field against the Floor</h2>'+
+    '<p class="gp-p">What the curb inspection alone finds across the organizations on the map. Every figure is observable from the public record, dated to the last scan, and a matter of record, not a finding of wrongdoing. The full Floor is confirmed only at Level 2.</p>'+
+    fieldStats()+
+    '<h2 class="std-h">The code, in full</h2>'+
+    '<p class="gp-p">Every control, its named requirement, which bar it sits on, and how it maps to frameworks security teams already recognise (CIS Controls, cyber-insurance minimums, NIST CSF 2.0).</p>'+
+    famBlocks+
+    questionnaireHtml()+
+    '</div>';
+}
+function methodHtml(){
+  const M=MSET; if(!M)return"";
+  const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const cats=[['Email','Email trust'],['Web','Transport & web edge'],['Surface','Attack surface'],['Record','On the public record']];
+  const prin=(M.principles||[]).map(x=>'<div class="mth-prin"><h4>'+esc(x.h)+'</h4><p>'+esc(x.p)+'</p></div>').join('');
+  const groups=cats.map(([k,label])=>{
+    const rows=(M.signals||[]).filter(s=>s.cat===k).map(s=>
+      '<div class="mth-sig"><div class="mth-sh"><span class="mth-id">'+esc(s.id)+'</span>'+
+      '<span class="mth-nm">'+esc(s.name)+'</span>'+
+      '<span class="std-badge lvl">Level '+s.level+'</span>'+
+      (s.ref?'<a class="mth-src" href="'+esc(s.ref)+'" target="_blank" rel="noopener">'+esc(s.source)+' &nearr;</a>':'<span class="mth-src">'+esc(s.source)+'</span>')+'</div>'+
+      '<div class="mth-rows">'+
+      '<div class="mth-r"><span class="mth-k">What</span><span class="mth-v">'+esc(s.what)+'</span></div>'+
+      '<div class="mth-r"><span class="mth-k">Measured</span><span class="mth-v">'+esc(s.measure)+'</span></div>'+
+      '<div class="mth-r"><span class="mth-k">Limit</span><span class="mth-v lim">'+esc(s.limit)+'</span></div>'+
+      '</div></div>').join('');
+    if(!rows)return'';
+    return '<div class="mth-grp"><h3 class="mth-gh">'+esc(label)+'</h3>'+rows+'</div>';
+  }).join('');
+  const P=M.population||{};
+  const rings=(P.rings||[]).map(r=>'<div class="mth-r"><span class="mth-k">'+esc(r[0])+'</span><span class="mth-v">'+esc(r[1])+'</span></div>').join('');
+  const hold=(HOLD||[]).map(h=>'<div class="mth-r"><span class="mth-k">'+esc(h.n)+'</span><span class="mth-v lim">'+esc(h.why)+'</span></div>').join('');
+  return '<section class="intro">'+
+    '<p class="kicker">Reference &middot; how we read it</p>'+
+    '<h1>'+esc(M.title)+'.</h1>'+
+    '<p>'+esc(M.subtitle)+'</p>'+
+    '<p class="gp-cred">Methodology '+esc(M.version)+', as of '+SCAN_DATE+'. Cite as: Pete Depok, The Frontier Perimeter: a curb inspection of the AI-risk actors, Methodology '+esc(M.version)+'.</p>'+
+    '</section>'+
+    '<div class="std-wrap">'+
+    '<h2 class="std-h">Five principles</h2><div class="mth-prins">'+prin+'</div>'+
+    '<h2 class="std-h">Who is on the map, and why</h2><p class="gp-p">'+esc(P.rule)+'</p>'+
+    '<div class="mth-sig"><div class="mth-rows">'+rings+'</div></div>'+
+    '<p class="gp-p">'+esc(P.verification)+'</p>'+
+    '<h3 class="mth-gh">Held back from this edition</h3><div class="mth-sig"><div class="mth-rows">'+hold+'</div></div>'+
+    '<h2 class="std-h">Coverage &amp; its limits</h2><p class="gp-p">'+esc(M.coverage)+'</p>'+
+    '<h2 class="std-h">Every signal, sourced</h2>'+
+    '<p class="gp-p">For each Level 1 signal: what it is, its authoritative source of truth, exactly how this instrument reads it, and what it cannot see. Level 2 controls are listed in full on The Standard.</p>'+
+    groups+
+    '<p class="mfoot" style="margin-top:20px">The code (controls.json), the Level 2 instrument (questionnaire.json), this methodology (methodology.json) and the full record (data/providers.json) are served alongside the site and versioned with it, and the scanner that produces the record is published in the same repository.</p>'+
+    '</div>';
+}
+function fieldStats(){
+  const F=[]; S.forEach(s=>s.cats.forEach(c=>c.p.forEach(p=>{if(p.sc)F.push(p.sc);})));
+  const N=F.length;
+  const share=(k)=>{const obs=F.map(st).filter(x=>x[k]!=='na'&&x[k]!=='nomail'&&x[k]!=='l2');return [obs.filter(x=>x[k]==='pass'||x[k]==='rec').length,obs.length]};
+  const rows=[
+    ['A1','Enforcing DMARC','floor'],['F1','No US Treasury sanctions designation','floor'],['G1','No leak-site listing in the last year','floor'],
+    ['B3','Shielded web origin','std'],['A3','DKIM signing (common selectors)','std'],['A2','SPF hard-fail','std'],['A4','MTA-STS published','std'],
+    ['A5','No live homoglyph look-alike','std'],['B2','HSTS (six months or more)','std'],['F5','Valid security.txt','std'],
+    ['C2','DNS hygiene (DNSSEC + CAA)','std'],['C3','Clean network reputation','std']].map(([k,l,t])=>{const [m,d]=share(k);return [l,m,d,t]});
+  const bar=r=>{const [lab,met,den]=r; const pct=den?Math.round(100*met/den):0;
+    return '<div class="mb"><span class="ml">'+lab+' <span class="tnum" style="opacity:.6">'+met+'/'+den+'</span></span>'+
+      '<span class="mt"><i style="width:'+pct+'%;background:var(--status-only-text)"></i></span>'+
+      '<span class="mv">'+pct+'%</span></div>';};
+  const below=F.filter(belowFloor).length;
+  const clearPct=N?Math.round(100*(N-below)/N):0;
+  return '<div class="fld">'+
+    '<div class="fld-head"><span class="fld-big">'+clearPct+'%</span>'+
+    '<span class="fld-cap">of the '+N+' organizations have no item to resolve on the observable Floor: their mail domain enforces DMARC or sends no mail, they carry no Treasury designation, and they have no leak-site listing in the last year. It says nothing about the Floor controls that need Level 2: phishing-resistant MFA, isolated pre-release access, backups, endpoint detection.</span></div>'+
+    '<p class="mkick" style="margin-top:18px">Floor, the observable slice</p><div class="mbars conc">'+rows.filter(r=>r[3]==='floor').map(bar).join('')+'</div>'+
+    '<p class="mkick" style="margin-top:20px;color:var(--status-only-text)">Standard Practice, observable</p><div class="mbars conc">'+rows.filter(r=>r[3]==='std').map(bar).join('')+'</div>'+
+    fieldBySector()+
+    '<p class="mfoot">Each bar is the share meeting the control among the organizations where it could be observed; the counts show the denominator. As of '+SCAN_DATE+'.</p></div>';
+}
+function fieldBySector(){
+  const rows=S.map(s=>{
+    const F=[]; s.cats.forEach(c=>c.p.forEach(p=>{if(p.sc)F.push(p.sc);}));
+    const N=F.length; if(!N)return null;
+    const X=F.map(st);
+    const dm=X.filter(x=>x.A1==='pass').length, dmd=X.filter(x=>x.A1==='pass'||x.A1==='fail').length;
+    const sx=X.filter(x=>x.F5==='rec').length, sxd=X.filter(x=>x.F5!=='na').length;
+    return {name:s.name,N,clear:(N-F.filter(belowFloor).length)/N,dmarc:dmd?dm/dmd:null,sec:sxd?sx/sxd:null};
+  }).filter(Boolean);
+  const pc=v=>v==null?'&mdash;':Math.round(100*v)+'%';
+  const cell=v=>'<td class="sr-c"><span class="sr-bar"><i style="width:'+(v==null?0:Math.round(100*v))+'%"></i></span><b>'+pc(v)+'</b></td>';
+  const body=rows.map(r=>'<tr><td class="sr-n">'+r.name+'</td><td class="sr-num">'+r.N+'</td>'+cell(r.clear)+cell(r.dmarc)+cell(r.sec)+'</tr>').join('');
+  return '<p class="mkick" style="margin-top:22px">By ring</p>'+
+    '<div class="sr-wrap"><table class="sr"><thead><tr><th>Ring</th><th class="sr-num">Orgs</th>'+
+    '<th>Nothing to resolve on the Floor</th><th>DMARC enforcing (mail domains)</th><th>Valid security.txt</th></tr></thead><tbody>'+body+'</tbody></table></div>';
+}
+function questionnaireHtml(){
+  const Q=QSET; if(!Q||!Q.sections)return"";
+  const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const TB={floor:['The Floor','floor'],std:['Standard Practice','std']};
+  const blocks=Q.sections.map(sec=>{
+    const items=sec.items.map(it=>
+      '<div class="q-item"><div class="q-top"><span class="q-id">'+it.id+'</span>'+
+      '<span class="std-badge '+TB[it.tier][1]+'">'+TB[it.tier][0]+'</span></div>'+
+      '<p class="q-q">'+esc(it.q)+'</p>'+
+      '<div class="q-meta"><div class="q-row"><span class="q-k">Evidence</span><span class="q-v">'+esc(it.ev)+'</span></div>'+
+      '<div class="q-row"><span class="q-k">Pass</span><span class="q-v pass">'+esc(it.pass)+'</span></div></div></div>'
+    ).join('');
+    return '<div class="std-fam"><div class="std-fh"><span class="std-fid">'+sec.id+'</span><h3>'+esc(sec.name)+'</h3></div>'+items+'</div>';
+  }).join('');
+  return '<h2 class="std-h">The interior inspection &middot; Level 2</h2>'+
+    '<p class="gp-p">'+esc(Q.subtitle)+' '+esc(Q.note)+'</p>'+
+    '<p class="std-cta"><a href="./assessment.html">Open the self-assessment &rarr;</a><span>An organization can work through these itself, mark each control, and hand the result back with its evidence.</span></p>'+
+    blocks;
+}
+function permitHtml(p){
+  const sc=p.sc; if(!sc)return"";
+  const B={pass:['Pass','good'],fail:['Below code','weak'],rec:['Meets','good'],recx:['Advisable','mid'],l2:['Level 2','mid'],na:['Not observable','unk'],nomail:['No mail on domain','unk']};
+  const s=st(sc);
+  function row(id,label,v,note){return '<div class="pm-c"><span class="pm-n">'+id+' '+label+(note?'<span class="pm-note">'+note+'</span>':'')+'</span><span class="pm-b '+B[v][1]+'">'+B[v][0]+'</span></div>';}
+  const act=rwActive(sc);
+  const floorObs=[
+    ['A1','Enforcing DMARC',s.A1, s.A1==='fail'&&sc.dmarc==='none'?(sc.rua?'Published in monitoring mode (p=none) with reports collected':'Published, but p=none asks receivers to do nothing'):(s.A1==='fail'&&sc.dmarc==='absent'?'No DMARC record, though the domain receives mail':(s.A1==='pass'&&sc.pct!==undefined&&sc.pct<100?'Enforced on '+sc.pct+'% of failing mail':(s.A1==='nomail'?'Domain publishes no mail servers; a reject policy would still lock it':(sc.ovr||''))))],
+    ['B4','No known-exploited vulnerabilities',s.B4, s.B4==='l2'?'Origin directly reachable; detail held to Level 2':''],
+    ['C1','No exposed admin / database services',s.C1,''],
+    ['F1','No US Treasury sanctions designation',s.F1, (sc.rec&&sc.rec.length)?'An export-control record is shown below and is not scored':''],
+    ['G1','No leak-site listing in the last year',s.G1, act.length?act.map(r=>r.g+', '+r.d).join('; ')+'. An attacker’s claim':'']];
+  const fFail=floorItems(sc).length;
+  const floorHead = fFail===0
+    ? '<b>Nothing to resolve on the observable Floor.</b> The rest of the Floor is confirmed only at Level 2.'
+    : '<b>'+fFail+' Floor item'+(fFail===1?'':'s')+' to resolve.</b> The rest of the Floor is confirmed only at Level 2.';
+  const floorL2=['D1 Phishing-resistant MFA everywhere','K1 Isolated, logged pre-release access','E1 Tested, isolated backups','E2 Endpoint detection & response'];
+  const stdFams=[
+    ['A','Email hardening',[['A2','SPF hard-fail',s.A2],['A3','DKIM signing',s.A3],['A4','MTA-STS',s.A4],['A5','No live homoglyph look-alike',s.A5]]],
+    ['B','Web edge',[['B2','HSTS on the public website',s.B2, sc.hsts==='short'?'max-age under six months':''],['B3','Shielded origin',s.B3]]],
+    ['C','Attack surface',[['C2','DNS hygiene (DNSSEC + CAA)',s.C2],['C3','Clean network reputation',s.C3]]],
+    ['F','Reachability',[['F5','Valid security.txt',s.F5, sc.sectxt==='expired'?'Published, but expired '+(sc.sectxt_exp||''):'']]]];
+  let sMet=0,sApp=0;
+  const stdRows=stdFams.map(f=>{
+    const items=f[2].map(c=>{const v=c[2];if(v!=='na'){sApp++;if(v==='pass'||v==='rec')sMet++;}return row(c[0],c[1],v,c[3]);}).join('');
+    return '<div class="pm-fam"><div class="pm-fh">'+f[0]+' &middot; '+f[1]+'</div>'+items+'</div>';
+  }).join('');
+  const stdL2=['Access, SSO & offboarding','Pre-release access revoked at close','No pre-release material in general-purpose tools','Independent attestation & pen-testing','Logging, monitoring & incident response','Exposed-credential monitoring'];
+  const stdHead = 'Meets <b>'+sMet+' of '+sApp+'</b> observable Standard-Practice controls. The rest are confirmed only at Level 2.';
+  const parent = sc.parent?'<p class="d-note" style="margin:0 0 10px;color:var(--warn)"><b>Read on a parent domain.</b> This institute has no domain of its own, so every reading here is of '+sc.parent+', which it does not control alone.</p>':'';
+  return '<div class="d-sec permit"><h4>The permit <span class="d-status meas">Level 1 &middot; '+SCAN_DATE+'</span></h4>'+
+    '<p class="d-note" style="margin:0 0 12px">Inspected against the Frontier Perimeter Security Standard from the public record. <b>The Floor</b> is the minimum any organization near an unreleased model should clear; <b>Standard Practice</b> is what one that handles such models, or warns the public about them, should meet above it. Each control is pass, below code, advisable, or not observable. Never a score.</p>'+parent+
+    '<div class="pm-tier floor"><div class="pm-th"><span class="pm-tn">The Floor</span><span class="pm-tt">The minimum</span></div>'+
+    '<p class="pm-sub">'+floorHead+'</p>'+
+    '<div class="pm-flat">'+floorObs.map(c=>row(c[0],c[1],c[2],c[3])).join('')+'</div>'+
+    '<div class="pm-l2"><span class="pm-l2h">Rest of the Floor, Level 2</span>'+floorL2.map(c=>'<span class="pm-l2i">'+c+'</span>').join('')+'</div></div>'+
+    '<div class="pm-tier std"><div class="pm-th"><span class="pm-tn">Standard Practice</span><span class="pm-tt">Above the Floor</span></div>'+
+    '<p class="pm-sub">'+stdHead+'</p>'+
+    '<div class="pm-grid">'+stdRows+'</div>'+
+    '<div class="pm-l2"><span class="pm-l2h">Standard Practice, Level 2</span>'+stdL2.map(c=>'<span class="pm-l2i">'+c+'</span>').join('')+'</div></div></div>';
+}
+function obsHtml(p){
+  if(!p.sc)return"";
+  const sc=p.sc;
+  const rows=OBS.map(([k,label,why,map])=>{
+    const v=sc[k]; const m=map[v]||map["?"];
+    let extra="";
+    if(k==="dmarc"&&(v==="quarantine"||v==="reject")&&sc.pct!==undefined&&sc.pct<100)
+      extra=' <span class="ob-pct">applied to '+sc.pct+'% of failing mail</span>';
+    if(k==="dmarc"&&v==="none"&&sc.rua) extra=' <span class="ob-pct">reports collected</span>';
+    return '<li><span class="dn">'+label+'</span><span class="ob-v '+m[1]+'">'+m[0]+extra+'</span>'+
+           '<span class="dd">'+why+'</span></li>';
+  }).join("");
+  const web=[];
+  if(sc.hsts&&sc.hsts!=='?') web.push('<li><span class="dn">HSTS</span><span class="ob-v '+(sc.hsts==='yes'?'good':'mid')+'">'+(sc.hsts==='yes'?'Served, six months or more':sc.hsts==='short'?'Served, with a short max-age':'Not served')+'</span><span class="dd">Whether the public website tells browsers never to fall back to plain HTTP. Read from one ordinary visit to '+(sc.webhost||p.w)+'.</span></li>');
+  if(sc.sectxt&&sc.sectxt!=='?') web.push('<li><span class="dn">security.txt</span><span class="ob-v '+(sc.sectxt==='yes'?'good':'mid')+'">'+(sc.sectxt==='yes'?'Published'+(sc.sectxt_exp?', valid to '+sc.sectxt_exp:''):sc.sectxt==='expired'?'Published, expired '+(sc.sectxt_exp||''):'Not found')+'</span><span class="dd">Whether the organization publishes, at /.well-known/security.txt (RFC 9116), where to report a vulnerability in it. Its absence is not proof that no reporting channel exists.</span></li>');
+  const CCN={US:"United States",GB:"United Kingdom",CA:"Canada",FR:"France",DE:"Germany",AE:"United Arab Emirates",JP:"Japan",KR:"South Korea",SG:"Singapore",CN:"China",AU:"Australia",BE:"Belgium",NL:"Netherlands",HK:"Hong Kong",IE:"Ireland"};
+  const infra=[
+    ['host','Web edge','The operator of the address the website resolves to. A CDN or hosting platform can sit in front of the origin, so this is the visible edge.', sc.cc?(' Resolves to '+(CCN[sc.cc]||sc.cc)+'.'):''],
+    ['mail','Mail edge','Where the domain’s published MX records point.',''],
+    ['dns','DNS','Who answers DNS for the domain. Control of this is control of where the organization’s traffic goes.','']
+  ].filter(([k])=>sc[k]&&sc[k]!=='?').map(([k,label,why,extra])=>{
+    const v=sc[k]==='none'?'None published':sc[k]==='other'?'Not one of the named providers':sc[k];
+    return '<li><span class="dn">'+label+'</span><span class="ob-v '+(sc[k]==='none'||sc[k]==='other'?'unk':'mid')+'">'+v+'</span><span class="dd">'+why+extra+'</span></li>';
+  }).join("");
+  const domexp = sc.exp ? (sc.exp.cdn
+    ? '<li><span class="dn">Origin exposure</span><span class="ob-v good">'+(sc.exp.k==='edge'?'Managed edge, web ports only':'Behind a CDN/WAF')+'</span><span class="dd">The website’s address answers only as a web edge; no remote-admin, file-transfer or database service is indexed on it. Read from Shodan’s passive index on '+SCAN_DATE+'.</span></li>'
+    : '<li><span class="dn">Origin exposure</span><span class="ob-v mid">Origin directly reachable</span><span class="dd">The website’s address also answers services beyond the web: remote administration, file transfer or a database. Which ones, and any vulnerabilities indexed against them, are held to Level 2 and shared only with the organization. Read from Shodan’s passive index on '+SCAN_DATE+'.</span></li>') : '';
+  const gone = sc.gone?'<p class="d-note" style="color:var(--warn)"><b>This domain did not resolve on '+SCAN_DATE+'.</b></p>':'';
+  const MARK=[['spf','hardfail','SPF hard fail'],['dnssec','yes','DNSSEC'],['caa','yes','CAA'],['mtasts','yes','MTA-STS'],['tlsrpt','yes','TLS-RPT'],['bimi','yes','BIMI']];
+  const held=MARK.filter(([k,v])=>sc[k]===v).map(m=>m[2]);
+  let l1='';
+  if(sc.L1==='meet'||sc.L1==='below'){
+    const ok=sc.L1==='meet';
+    l1='<div class="l1 '+(ok?'pass':'fail')+'"><span class="l1-tag">Floor &middot; email authentication</span>'+
+      '<span class="l1-v">'+(ok?'Meets the Floor':'Below the Floor')+'</span>'+
+      '<p>'+(ok?'This domain publishes an enforcing DMARC policy, so a receiving mail server is asked to quarantine or reject a message forged in its exact name. It does not stop a look-alike domain or a compromised mailbox, but it closes the cheapest route to a message that reads as this organization: to a lab, a colleague, a journalist.'
+             :'This domain receives mail but does not publish an enforcing DMARC policy, so a receiving server is not asked to act on a message forged in its exact name. For an organization near unreleased models, that is the cheapest route to a convincing message in its name: to a lab asking for credentials, to a colleague, to a journalist. Closing it is one line of DNS once mail sources are aligned.')+'</p>'+
+      (held.length?'<p class="l1-plus"><b>Also publishes:</b> '+held.join(', ')+'.</p>':'')+'</div>';
+  } else if(sc.L1==='nomail'){
+    l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">No mail on this domain</span><p>The domain publishes no mail servers and no DMARC record, so the Floor control is not scored. A domain that sends no mail can still be forged; the published practice for such domains is p=reject with SPF -all, which is advisable here.</p></div>';
+  } else if(sc.ovr){
+    l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">Not observable</span><p>'+sc.ovr+'</p></div>';
+  }
+  return '<div class="d-sec"><h4>Observed from outside <span class="d-status meas">'+SCAN_DATE+'</span></h4>'+gone+l1+
+    '<p class="d-note">Read from public DNS and one ordinary visit to the public website on '+SCAN_DATE+'. Nothing was supplied by the organization and nothing was tested against its systems. These are the records as published, not a grade; an organization that has changed its configuration since can ask for a re-measure.</p>'+
+    '<ul class="dims obs">'+rows+web.join('')+'</ul>'+
+    recHtml(p)+
+    ((infra||domexp)?'<h5 class="ob-sub">Infrastructure</h5><ul class="dims obs">'+infra+domexp+'</ul>':'')+
+    lookHtml(p)+xHtml(p)+'</div>';
+}
+function xHtml(p){
+  const sc=p.sc||{};
+  if(p.f!=='specialist')return'';
+  const sig=[];
+  if(sc.L1==='below') sig.push('its mail domain can be forged in its exact name');
+  if(sc.exp&&sc.exp.o) sig.push('its web address also answers non-web services');
+  if(sc.sectxt&&sc.sectxt!=='yes'&&sc.sectxt!=='?') sig.push('it publishes no valid security.txt');
+  if(sc.look&&sc.look.h&&sc.look.h.length) sig.push('a homoglyph of its domain has live mail');
+  if(!sig.length) return '';
+  const list = sig.length===1?sig[0]:sig.length===2?sig.join(' and '):sig.slice(0,-1).join(', ')+', and '+sig.slice(-1);
+  return '<h5 class="ob-sub">Read against the argument</h5><div class="xnote"><p>A frontier lab has recorded giving this organization access to a model before release. On the public record, '+list+'. None of this says anything about how that access itself was held, which is a Level 2 question. It says the edge of the perimeter is softer here than at the lab, and that the question is worth asking.</p></div>';
+}
+function lookHtml(p){
+  const L=p.sc&&p.sc.look; if(!L)return"";
+  const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  let out='';
+  if(L.h&&L.h.length) out+='<li><span class="dn">Homoglyph domain</span><span class="ob-v weak">Live mail configured</span><span class="dd">A homoglyph of this domain, letters swapped for look-alike digits, is registered with working mail: '+L.h.map(d=>'<b>'+esc(d)+'</b>').join(', ')+'. It is not the organization’s own on any sign in DNS, and a message from it reads as the organization at a glance. Nothing was sent to it.</span></li>';
+  if(L.y&&L.y.length) out+='<li><span class="dn">Near-miss domains</span><span class="ob-v mid">'+(L.yn||L.y.length)+' with live mail</span><span class="dd">One keystroke from '+p.w+', registered with working mail, e.g. '+L.y.slice(0,4).map(esc).join(', ')+'. Not asserted as malicious: many belong to unrelated businesses. A mistyped address can land at any of them.</span></li>';
+  if(L.d) out+='<li><span class="dn">Defensive registrations</span><span class="ob-v good">'+L.d+' observed</span><span class="dd">The organization appears to hold '+L.d+' look-alike domain'+(L.d===1?'':'s')+' itself, on its own name or mail servers or a brand-protection registrar.</span></li>';
+  if(!out)return"";
+  return '<h5 class="ob-sub">Domain impersonation</h5><ul class="dims obs">'+out+'</ul>';
+}
+function dimsHtml(vals,na){
+  return '<ul class="dims">'+DIMS.map((d,i)=>
+    '<li><span class="dn">'+d[0]+'</span><span class="dv'+(na?" na":vals?" ok":"")+'">'+(na?"Out of scope":vals?"On file":"No data")+'</span>'+
+    '<span class="dd">'+(vals?vals[i]:d[1])+'</span></li>').join("")+'</ul>';
+}
+function openP(p){
+  if(!p)return;
+  const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const KIND={company:'Company',nonprofit:'Nonprofit',government:'Government body'};
+  const facts=[["Headquarters",p.hq],["Type",KIND[p.kind]||p.kind],["Full name",p.full],
+    ["Published framework",p.fw?'<a href="'+p.fw+'" target="_blank" rel="noopener noreferrer">Safety framework</a>':'']].filter(r=>r[1]);
+  const also=(p.also||[]).map(a=>'<li><a href="'+a.u+'" target="_blank" rel="noopener noreferrer">'+esc(a.doc)+'</a>'+(a.q?': “'+esc(a.q)+'”':'')+'</li>').join('');
+  dbody.innerHTML=
+   '<p class="d-eyebrow">'+S[cur].name+'</p>'+
+   '<div class="d-head"><span class="chip-logo lg" aria-hidden="true">'+(p.w
+      ?'<img alt="" src="'+ICON(p.w)+'" onload="this.parentNode.classList.add(\'has\')" onerror="this.remove()">'
+      :'')+'<i>'+initials(p.n)+'</i></span>'+
+   '<div class="d-headt"><h3 id="dname">'+p.n+'</h3><p class="d-site">'+p.w+'</p></div></div>'+
+   '<div class="d-tags">'+(p.t?'<span class="tag">'+p.t+'</span>':'')+
+     '<span class="tag f">'+FOCUS[p.f].mk+' '+FOCUS[p.f].label+'</span>'+
+     (p.u?'<span class="tag w">⚠ Flagged uncertain</span>':'')+'</div>'+
+   (p.c?'<p class="d-call">'+p.c+'</p>':'')+
+   '<div class="d-prov"><b>Why it is on this map.</b> '+esc(p.doc)+'. '+(p.q?'<span class="d-quote">“'+esc(p.q)+'”</span> ':'')+
+     '<a href="'+p.su+'" target="_blank" rel="noopener noreferrer">Source</a>'+(also?'<ul class="d-also">'+also+'</ul>':'')+'</div>'+
+   (p.o?'<p class="d-note">'+esc(p.o)+'</p>':'')+
+   (facts.length?'<div class="d-sec"><h4>Facts</h4><ul class="d-fields">'+
+     facts.map(r=>'<li><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></li>').join("")+'</ul></div>':'')+
+   permitHtml(p)+
+   obsHtml(p)+
+   '<div class="d-sec"><h4>Only the organization can tell you <span class="d-status gap">Level 2 &middot; not assessed</span></h4>'+
+     '<p class="d-note">An outside read sees the edge of an organization and nothing else. What protects a lab’s model once it is inside has to be asked. These are the questions a lab is well placed to put to anyone it entrusts, and the ones the <a href="./assessment.html">self-assessment</a> asks.</p>'+
+     dimsHtml(null,false)+'</div>';
+  show();
+}
+function openDemo(){
+  dbody.innerHTML='<p class="d-eyebrow" style="color:var(--assess)">Illustrative reference profile</p>'+
+   '<h3 id="dname">'+DEMO.name+'</h3><p class="d-site">'+DEMO.site+'</p>'+
+   '<div class="d-tags"><span class="tag">'+DEMO.type+'</span><span class="tag f">◆ '+FOCUS.specialist.label+'</span></div>'+
+   '<p class="d-call">'+DEMO.call+'</p><p class="d-note"><b>'+DEMO.note+'</b></p>'+
+   '<div class="d-sec"><h4>Profile fields <span class="d-status ok">Complete</span></h4><ul class="d-fields">'+
+     DEMO.fields.map(f=>'<li><span class="k">'+f[0]+'</span><span class="v">'+f[1]+'</span></li>').join("")+'</ul></div>'+
+   '<div class="d-sec"><h4>Assessment <span class="d-status ok">June 2026</span></h4>'+dimsHtml(DEMO.vals,false)+'</div>';
+  show();
+}
+function show(){drawer.classList.add("on");scrim.classList.add("on");drawer.focus()}
+function hide(){drawer.classList.remove("on");scrim.classList.remove("on")}
+
+/* ---------- wiring ---------- */
+$("dx").onclick=hide;scrim.onclick=hide;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){hide();hideTip()}});
+q.oninput=render;fsel.onchange=render;
+tbtn.onclick=()=>{trust=!trust;tbtn.setAttribute("aria-pressed",trust);tbtn.classList.toggle("on",trust);document.body.classList.toggle("trust",trust);render()};
+const VB=[["v-radial","radial"],["v-list","list"],["v-table","table"],["v-graph","graph"]];
+VB.forEach(([id,v])=>{$(id).onclick=()=>{view=v;VB.forEach(([x])=>$(x).classList.toggle("on",x===id));render()}});
+$("theme").onclick=()=>{
+  const r=document.documentElement;
+  const nowLight=r.getAttribute("data-theme")==="light";
+  r.setAttribute("data-theme",nowLight?"dark":"light");
+  try{localStorage.setItem("frp-theme",nowLight?"dark":"light")}catch(e){}
+};
+try{const t=localStorage.getItem("frp-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}
+window.addEventListener("resize",()=>{if(cur>=0&&(view==="radial"||view==="graph"))render()});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{if(cur>=0&&view==="radial")render()});
+document.querySelectorAll('[data-n="all"]').forEach(e=>e.textContent=total);
+document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
+{const ring=id=>{const s=S.find(x=>x.id===id);return s?s.cats.flatMap(c=>c.p).filter(p=>p.sc):[]};
+ const all=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.sc), N=all.length;
+ const pc=x=>Math.round(x*100)+"%";
+ const clear=ps=>ps.filter(p=>!belowFloor(p.sc)).length;
+ const dmOk=ps=>ps.filter(p=>st(p.sc).A1==='pass').length, dmDen=ps=>ps.filter(p=>['pass','fail'].includes(st(p.sc).A1)).length;
+ const secOk=ps=>ps.filter(p=>p.sc.sectxt==='yes').length, secDen=ps=>ps.filter(p=>p.sc.sectxt&&p.sc.sectxt!=='?').length;
+ const R=S.map(s=>{const ps=ring(s.id);return {id:s.id,n:s.name,t:ps.length,c:clear(ps),dm:dmOk(ps),dmd:dmDen(ps),sx:secOk(ps),sxd:secDen(ps)}});
+ const G=id=>R.find(r=>r.id===id)||{t:0,c:0,dm:0,dmd:1,sx:0,sxd:1};
+ const lab=G('committed'), ent=G('entrusted'), war=G('warning');
+ const rate=(x,y)=>y?x/y:0;
+ const dGap=rate(lab.dm,lab.dmd)-rate(ent.dm,ent.dmd), sGap=rate(lab.sx,lab.sxd)-rate(ent.sx,ent.sxd);
+ const head = (dGap>=0.1&&sGap>=0.1) ? 'The perimeter is softer than the vault.' : ((dGap<=-0.1&&sGap<=-0.1) ? 'On this read, the perimeter is kept better than the vault.' : 'From the curb, the perimeter and the vault read much alike.');
+ const ringBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.c+'/'+r.t+'</span></span><span class="mt"><i style="width:'+(r.t?r.c/r.t*100:0).toFixed(1)+'%;background:var(--status-only-text)"></i></span><span class="mv tnum">'+pc(r.t?r.c/r.t:0)+'</span></div>').join('');
+ const secBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.sx+'/'+r.sxd+'</span></span><span class="mt"><i class="c" style="width:'+(r.sxd?r.sx/r.sxd*100:0).toFixed(1)+'%"></i></span><span class="mv tnum">'+pc(r.sxd?r.sx/r.sxd:0)+'</span></div>').join('');
+ const E=ring('entrusted');
+ const eSpoof=E.filter(p=>p.sc.L1==='below').length, eOrigin=E.filter(p=>p.sc.exp&&p.sc.exp.o).length, eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, ePartial=E.filter(p=>p.sc.L1==='meet'&&p.sc.pct!==undefined&&p.sc.pct<100).length;
+ const eGov=E.filter(p=>p.kind==='government').length;
+ const raters=S.find(x=>x.id==='letter')?S.find(x=>x.id==='letter').cats.filter(c=>/ratings/i.test(c.n)).flatMap(c=>c.p):[];
+ const rDm=raters.filter(p=>p.sc.L1==='meet').length, rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
+ const rwN=all.filter(p=>p.sc.rw&&p.sc.rw.length).length, rwAct=all.filter(p=>rwActive(p.sc).length).length;
+ const recN=all.filter(p=>p.sc.rec&&p.sc.rec.length).length, trN=all.filter(p=>p.sc.ofac&&p.sc.ofac!=='clear').length;
+ const top=(key,skip)=>{const m={};all.forEach(p=>{const v=p.sc[key];if(!v||skip.indexOf(v)>=0)return;m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
+ const M=top("mail",["?","none","other / self-hosted"]);
+ const monitor=all.filter(p=>p.sc.L1==='below'&&p.sc.dmarc==='none').length, belowAll=all.filter(p=>p.sc.L1==='below').length;
+ $("measured").innerHTML=
+  '<p class="mkick">Level 1 &middot; the observable Floor, by ring</p>'+
+  '<h3>'+head+'</h3>'+
+  '<p>The twenty labs that pledged at Seoul to invest in cybersecurity for unreleased weights enforce DMARC on <b>'+lab.dm+' of '+lab.dmd+'</b> of their mail domains, and <b>'+lab.sx+' of '+lab.sxd+'</b> publish a valid security.txt. The <b>'+ent.t+'</b> organizations those labs name as having tested their models before release: <b>'+ent.dm+' of '+ent.dmd+'</b>, and <b>'+ent.sx+' of '+ent.sxd+'</b>. The organizations warning the public: <b>'+war.dm+' of '+war.dmd+'</b>, and <b>'+war.sx+' of '+war.sxd+'</b>. These are small numbers, and one organization moves a share by several points; the gap on email is real but modest, and the gap on being reachable about a flaw is wide.</p>'+
+  '<p>The observable Floor is three things: a mail domain that tells receivers to reject forgeries of it, no Treasury sanctions designation, and no leak-site listing in the past year. Each costs close to nothing to meet. The share of each ring with nothing to resolve on it:</p>'+
+  '<div class="mbars">'+ringBars+'</div>'+
+  '<p class="mfoot">Share of each ring with no item to resolve on the observable Floor, '+SCAN_DATE+'. A domain that runs no mail, or whose mail could not be observed, is not counted against it.</p>'+
+  '<h3 class="mh2">The perimeter, read from the curb.</h3>'+
+  '<p>Every organization in the Entrusted ring appears in a lab’s own system card as an external tester. On the public record, <b>'+eSpoof+'</b> of the '+ent.t+' could have a message forged in their exact domain delivered without the receiving server being asked to stop it'+(ePartial?', and <b>'+ePartial+'</b> more enforce on only part of their mail':'')+'. <b>'+eOrigin+'</b> '+(eOrigin===1?'has a web address that also answers':'have web addresses that also answer')+' remote-admin, file-transfer or database services, the detail of which is held to Level 2. <b>'+eNoSec+'</b> publish no valid security.txt telling anyone where to report a flaw. None of this says how a lab’s model was held once inside, which only Level 2 can. It says the edge is softer here than at the lab it serves. The break-in at OpenAI in July 2026 came through a community forum, not the model: the soft edge is the one that gets used.</p>'+
+  '<h3 class="mh2">Can anyone tell them?</h3>'+
+  '<p>A security.txt file is the plain-text answer to one question: if you find a flaw in us, where do you send it. It is one file, and its standard dates from 2022. The organizations asking everyone else to fix their weaknesses are the ones that should be easiest to reach about their own.</p>'+
+  '<div class="mbars conc">'+secBars+'</div>'+
+  '<p class="mfoot">Share publishing a valid, unexpired security.txt (RFC 9116) at /.well-known/, among those whose website answered the read. Its absence does not prove no reporting channel exists. For that reason it is Standard Practice in this edition, not the Floor.</p>'+
+  (raters.length?'<h3 class="mh2">The raters, rated.</h3><p>'+raters.length+' security-ratings firms signed the defense letter. Their business is scoring other companies from the outside, so the Standard reads them the same way. '+rDm+' of '+raters.length+' enforce DMARC, '+rHsts+' of '+raters.length+' serve HSTS for six months or more, '+rSts+' of '+raters.length+' publish MTA-STS, and '+rSec+' of '+raters.length+' publish a valid security.txt. The one thing this map will not do is turn that into a number.</p>':'')+
+  '<h3 class="mh2">On the public record.</h3>'+
+  '<p>Every organization was screened on '+SCAN_DATE+' against the 26,146 entries of the US Consolidated Screening List. '+(trN?trN+' carry a Treasury designation.':'None carries a Treasury sanctions designation.')+' '+(recN?recN+' carries an export-control record: a Seoul signatory on the Commerce Department’s Entity List, shown on its profile and not scored.':'')+' '+rwN+' '+(rwN===1?'appears':'appear')+' on ransomware.live as a named victim of an extortion leak site, '+rwAct+' within the last year. Each listing is an attacker’s claim, dated and linked.</p>'+
+  '<h3 class="mh2">And most of them share an inbox provider.</h3>'+
+  '<p>'+(M[0]?pc(M[0][1]/N)+' of the '+N+' route mail through '+M[0][0]+(M[1]?', and '+pc(M[1][1]/N)+' through '+M[1][0]:'')+'. ':'')+'Of the '+belowAll+' mail domains below the Floor, '+monitor+' already publish a DMARC record in monitoring mode, the step before enforcement. On the platforms most of them use, the remaining step is a single DNS change once every legitimate sender is signing.</p>'+
+  '<p class="mfoot">Read from the public record on '+SCAN_DATE+'. Nothing was supplied by the organizations and nothing was tested against their systems. An organization that has since changed its configuration can ask for a re-measure, and the record will show the date it changed.</p>';
+}
+{const all=S.flatMap(s=>s.cats.flatMap(c=>c.p));
+ const srcN=all.filter(p=>p.su).length, flagN=all.filter(p=>p.u).length;
+ document.querySelectorAll('[data-n="sourced"]').forEach(e=>e.textContent=srcN);
+ document.querySelectorAll('[data-n="flagged"]').forEach(e=>e.textContent=flagN);
+ document.querySelectorAll('[data-n="scandate"]').forEach(e=>e.textContent=SCAN_DATE);
+ document.querySelectorAll('[data-n="held"]').forEach(e=>e.textContent=(HOLD||[]).length);
+ document.querySelectorAll('[data-n="cats"]').forEach(e=>e.textContent=S.reduce((a,s)=>a+s.cats.length,0));}
+q.placeholder=(q.dataset.ph||"").replace("%N%",total);
+render();
+</script>

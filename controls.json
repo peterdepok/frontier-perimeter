@@ -1,0 +1,622 @@
+{
+ "title": "The Frontier Perimeter Security Standard",
+ "subtitle": "A building code for the organizations that build, test, rate, warn about and oversee frontier AI. It asks one question of each: is the edge of this organization sound enough to be trusted near an unreleased model? We inspect to this code from the public record; we do not certify anyone.",
+ "version": "v0.3 draft (AI-risk actors edition)",
+ "tiers": {
+  "floor": "The Floor. The minimum. The least any organization should clear before it is trusted with pre-release model access, or before it asks the world to fix its own weaknesses. Every observable Floor control costs close to nothing to meet. Binary: clears the observable Floor, or has items to resolve.",
+  "std": "Standard Practice. Built to spec, not just to code. What an organization that handles unreleased models, or publicly warns about their risk, should demonstrate above the Floor."
+ },
+ "levels": {
+  "1": "Curb inspection. Observable from the public record with no cooperation and nothing sent to the organization's systems beyond an ordinary visit to its public website. What this map publishes.",
+  "2": "Interior inspection. Requires the organization to open the door. Offered to any actor on the map as a self-assessment."
+ },
+ "grading": "Every control is pass / below-code / recommended / not-observable against a named requirement. No composite score. A permit records that the work met code at inspection; it does not certify the firm will not be breached.",
+ "families": [
+  {
+   "id": "A",
+   "name": "Email trust",
+   "q": "Can a message forged in this organization’s name reach a lab, a colleague, or the public?",
+   "controls": [
+    {
+     "id": "A1",
+     "name": "Enforcing DMARC",
+     "std": "Publishes a DMARC policy of quarantine or reject, so receivers act on mail forged in the organization's exact name.",
+     "tier": "floor",
+     "lvl": 1,
+     "cis": "9.2",
+     "ins": "Email security",
+     "csf": "PR.DS",
+     "have": "yes",
+     "src": "sc.L1"
+    },
+    {
+     "id": "A2",
+     "name": "SPF hard-fail",
+     "std": "Publishes an SPF record ending in -all, so unauthorised senders are rejected.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "9.2",
+     "ins": "Email security",
+     "csf": "PR.DS",
+     "have": "yes",
+     "src": "sc.spf"
+    },
+    {
+     "id": "A3",
+     "name": "DKIM signing",
+     "std": "Signs outbound mail with DKIM so recipients can verify integrity and origin.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "9.2",
+     "ins": "Email security",
+     "csf": "PR.DS",
+     "have": "yes",
+     "src": "sc.dk (DNS multi-selector)"
+    },
+    {
+     "id": "A4",
+     "name": "Transport hardening (MTA-STS / TLS-RPT)",
+     "std": "Publishes MTA-STS and TLS reporting so mail cannot be silently downgraded.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "9.2",
+     "ins": "Email security",
+     "csf": "PR.DS",
+     "have": "yes",
+     "src": "sc.mtasts"
+    },
+    {
+     "id": "A5",
+     "name": "No live look-alike domains",
+     "std": "No mail-capable typo or homoglyph look-alike of the organization's domain is registered to a third party.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "9",
+     "ins": "Brand / phishing",
+     "csf": "PR.AT",
+     "have": "yes",
+     "src": "sc.look"
+    },
+    {
+     "id": "A6",
+     "name": "Inbound phishing controls",
+     "std": "Runs an email security gateway with anti-phishing and impersonation protection.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "9.7",
+     "ins": "Email filtering",
+     "csf": "PR.AT",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "A8",
+     "name": "Security awareness training",
+     "std": "Trains staff against phishing and social engineering on a recurring basis.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "14",
+     "ins": "Awareness training",
+     "csf": "PR.AT",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "name": "Transport & web edge",
+   "q": "Is the front door sound?",
+   "controls": [
+    {
+     "id": "B1",
+     "name": "Strong TLS",
+     "std": "HTTPS/TLS configuration rates A- or better. Not read in this edition: an independent TLS grade requires a third-party active handshake scan, which this map does not run.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "3.10",
+     "ins": "Encryption in transit",
+     "csf": "PR.DS",
+     "have": "no",
+     "src": "sc.tls"
+    },
+    {
+     "id": "B2",
+     "name": "HSTS on the public website",
+     "std": "Serves a Strict-Transport-Security header with a max-age of at least six months on the organization's public website, so browsers refuse a downgrade to plain HTTP.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "16",
+     "ins": "Application security",
+     "csf": "PR.PS",
+     "have": "yes",
+     "src": "HTTP read of the public homepage"
+    },
+    {
+     "id": "B3",
+     "name": "Shielded origin",
+     "std": "Web origin sits behind a CDN or WAF rather than answering directly from an exposed server.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "13",
+     "ins": "Network security",
+     "csf": "PR.IR",
+     "have": "yes",
+     "src": "sc.exp"
+    },
+    {
+     "id": "B4",
+     "name": "No known-exploited vulnerabilities",
+     "std": "The organization's directly-reachable services carry no known-exploited (CISA KEV) or critical unpatched CVEs.",
+     "tier": "floor",
+     "lvl": 1,
+     "cis": "7",
+     "ins": "Patch management",
+     "csf": "PR.PS",
+     "have": "yes-private",
+     "src": "exp_full (Level 2 detail)"
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "name": "Attack surface",
+   "q": "What is the organization leaving open?",
+   "controls": [
+    {
+     "id": "C1",
+     "name": "No exposed admin/database services",
+     "std": "No RDP, SMB, database, or remote-admin ports reachable on public addresses.",
+     "tier": "floor",
+     "lvl": 1,
+     "cis": "4.6",
+     "ins": "Exposed services / RDP",
+     "csf": "PR.IR",
+     "have": "yes-private",
+     "src": "exp_full (Level 2 detail)"
+    },
+    {
+     "id": "C2",
+     "name": "DNS & domain hygiene",
+     "std": "DNSSEC and CAA present; no dangling subdomains vulnerable to takeover.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "4",
+     "ins": "DNS health",
+     "csf": "PR.IR",
+     "have": "partial",
+     "src": "sc.dnssec / sc.caa"
+    },
+    {
+     "id": "C3",
+     "name": "Clean network reputation",
+     "std": "Addresses do not appear on malware, botnet, or spam blocklists.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "13",
+     "ins": "IP reputation",
+     "csf": "DE.CM",
+     "have": "yes",
+     "src": "sc.rep (FireHOL level1)"
+    }
+   ]
+  },
+  {
+   "id": "D",
+   "name": "Access & credentials",
+   "q": "How hard is it to get in?",
+   "controls": [
+    {
+     "id": "D1",
+     "name": "MFA everywhere",
+     "std": "Multi-factor authentication on email, remote access, and all privileged accounts.",
+     "tier": "floor",
+     "lvl": 2,
+     "cis": "6.3",
+     "ins": "MFA (primary requirement)",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "D2",
+     "name": "Privileged access management",
+     "std": "Administrative access is least-privilege, inventoried, and separated from daily-use accounts.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "5.4",
+     "ins": "PAM",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "D3",
+     "name": "No exposed credentials",
+     "std": "No corporate credentials for the organization's domain sit in known breach or infostealer dumps.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "6",
+     "ins": "Credential exposure",
+     "csf": "DE.CM",
+     "have": "no",
+     "src": "credential feed"
+    },
+    {
+     "id": "D4",
+     "name": "Prompt offboarding",
+     "std": "Access is revoked promptly when staff or contractors leave.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "5.3",
+     "ins": "Access management",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "D5",
+     "name": "Centralized identity (SSO)",
+     "std": "Single sign-on with central control over accounts and enforcement.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "6.7",
+     "ins": "Access management",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "K",
+   "name": "Pre-release access",
+   "q": "When a lab hands this organization an unreleased model, what stands between that access and an attacker?",
+   "controls": [
+    {
+     "id": "K1",
+     "name": "Isolated, phishing-resistant pre-release access",
+     "std": "Pre-release model access (API keys, weights, sandboxes) is held in dedicated accounts protected by phishing-resistant MFA, separate from staff's everyday email and collaboration accounts, and every use is logged.",
+     "tier": "floor",
+     "lvl": 2,
+     "cis": "6.5",
+     "ins": "Access control",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "K2",
+     "name": "Access ends with the engagement",
+     "std": "Pre-release credentials and artifacts are revoked or destroyed when the engagement ends, and the organization can show the lab that it happened.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "5.3",
+     "ins": "Access control",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "K3",
+     "name": "No pre-release material in general-purpose tools",
+     "std": "Pre-release outputs, transcripts and evaluation results are not stored in personal drives, shared chat workspaces or third-party AI tools outside the lab's agreed environment.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "3.3",
+     "ins": "Data protection",
+     "csf": "PR.DS",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "K4",
+     "name": "Named owner for lab relationships",
+     "std": "A named person is accountable for each lab's access and is the first call if the lab needs to revoke it in a hurry.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "GV",
+     "ins": "Governance",
+     "csf": "GV.RR",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "E",
+   "name": "Resilience",
+   "q": "If hit, can the organization recover without paying?",
+   "controls": [
+    {
+     "id": "E1",
+     "name": "Tested, isolated backups",
+     "std": "Backups are immutable or offline, and restoration is tested.",
+     "tier": "floor",
+     "lvl": 2,
+     "cis": "11.2",
+     "ins": "Backups (primary requirement)",
+     "csf": "RC.RP",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "E2",
+     "name": "Endpoint detection & response",
+     "std": "EDR/managed detection across endpoints and servers.",
+     "tier": "floor",
+     "lvl": 2,
+     "cis": "10.7",
+     "ins": "EDR (primary requirement)",
+     "csf": "DE.CM",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "E3",
+     "name": "Incident-response plan",
+     "std": "A documented, exercised incident-response plan with defined roles and notification paths.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "17.1",
+     "ins": "IR plan",
+     "csf": "RS.MA",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "name": "Governance & record",
+   "q": "Is the organization a clean, accountable counterparty that can be reached about a flaw?",
+   "controls": [
+    {
+     "id": "F1",
+     "name": "No US Treasury sanctions designation",
+     "std": "Not designated on any US Treasury (OFAC) list carried in the US Consolidated Screening List: SDN, SSI, NS-MBS, CMIC, CAPTA or PLC. Listings on Commerce (Entity List, Denied Persons, Unverified, Military End User) or State (ISN, ITAR debarred) lists are export-control records: they are shown on the actor's profile as a matter of record and do not count against the Floor.",
+     "tier": "floor",
+     "lvl": 1,
+     "cis": "GV",
+     "ins": "KYC",
+     "csf": "GV.SC",
+     "have": "yes",
+     "src": "US Consolidated Screening List (trade.gov), exact name and alias match"
+    },
+    {
+     "id": "F2",
+     "name": "Clean regulatory standing",
+     "std": "No unresolved enforcement action of concern on the public record. Not read in this edition beyond the screening lists above.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "GV",
+     "ins": "Regulatory",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "sc.rec / sc.bc"
+    },
+    {
+     "id": "F3",
+     "name": "Breach transparency",
+     "std": "Any past breach is on the public regulatory record; the organization can speak to it.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "GV",
+     "ins": "Loss history",
+     "csf": "GV.SC",
+     "have": "yes",
+     "src": "sc.breach"
+    },
+    {
+     "id": "F4",
+     "name": "Independent security attestation",
+     "std": "Holds a current SOC 2 Type II, ISO 27001, or equivalent.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "GV",
+     "ins": "Attestation",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "F5",
+     "name": "Named security contact",
+     "std": "Publishes a valid, unexpired security.txt (RFC 9116) at /.well-known/, naming where to report a vulnerability. An organization that asks others to fix their weaknesses should be reachable when someone finds one of its own.",
+     "tier": "std",
+     "lvl": 1,
+     "cis": "17.2",
+     "ins": "IR contact",
+     "csf": "RS.CO",
+     "have": "yes",
+     "src": "HTTP read of /.well-known/security.txt"
+    },
+    {
+     "id": "F6",
+     "name": "Carries cyber insurance",
+     "std": "Holds a current cyber-insurance policy, having passed an underwriter's control bar.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "GV",
+     "ins": "Insurance",
+     "csf": "GV.RM",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "H",
+   "name": "Data handling",
+   "q": "How is sensitive material held, and who else touches it?",
+   "controls": [
+    {
+     "id": "H1",
+     "name": "Encryption at rest",
+     "std": "Family data is encrypted at rest, with managed keys.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "3.11",
+     "ins": "Data protection",
+     "csf": "PR.DS",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "H2",
+     "name": "Data residency disclosed",
+     "std": "The organization can state where its clients' and partners' data physically resides.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "3",
+     "ins": "Data governance",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "H3",
+     "name": "Sub-processor disclosure",
+     "std": "Discloses the third parties that touch its clients' and partners' data.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "15",
+     "ins": "Supply chain",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "H4",
+     "name": "AI / LLM data-handling policy",
+     "std": "Has a stated policy governing whether and how sensitive and pre-release material is exposed to third-party AI tools.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "3",
+     "ins": "Data governance",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "H5",
+     "name": "Retention & secure deletion",
+     "std": "Retains sensitive data no longer than needed and deletes it securely.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "3.5",
+     "ins": "Data governance",
+     "csf": "PR.DS",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "I",
+   "name": "Supply chain & continuity",
+   "q": "Does the organization manage the risk behind it, and watch its own systems?",
+   "controls": [
+    {
+     "id": "I1",
+     "name": "Own vendor-risk program",
+     "std": "Runs its own third-party / sub-processor risk assessment.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "15.1",
+     "ins": "Supply chain",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "I2",
+     "name": "Independent penetration testing",
+     "std": "Commissions regular independent penetration tests and remediates findings.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "18",
+     "ins": "Testing",
+     "csf": "ID.RA",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "I3",
+     "name": "Logging & monitoring",
+     "std": "Centralised logging and monitoring capable of detecting intrusion.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "8",
+     "ins": "Detection",
+     "csf": "DE.CM",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "I4",
+     "name": "Staff background checks",
+     "std": "Vets staff and contractors who will handle pre-release models, weights or evaluation results.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "n/a",
+     "ins": "Personnel security",
+     "csf": "PR.AA",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "J",
+   "name": "Contract",
+   "q": "What has the organization agreed to in writing?",
+   "controls": [
+    {
+     "id": "J1",
+     "name": "Breach-notification SLA",
+     "std": "The contract commits the organization to notify the counterparty within a defined time of a breach.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "GV",
+     "ins": "Contractual",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    },
+    {
+     "id": "J2",
+     "name": "Right to audit",
+     "std": "The contract preserves its clients' and partners' right to audit or re-assess the organization's controls.",
+     "tier": "std",
+     "lvl": 2,
+     "cis": "GV",
+     "ins": "Contractual",
+     "csf": "GV.SC",
+     "have": "no",
+     "src": "questionnaire"
+    }
+   ]
+  },
+  {
+   "id": "G",
+   "name": "Documented exposure",
+   "q": "What does the public record already say has happened?",
+   "controls": [
+    {
+     "id": "G1",
+     "name": "No active leak-site listing",
+     "std": "Not listed on a ransomware or extortion leak site within the twelve months before the scan. Older listings are shown as a matter of record and do not count against the Floor. A listing is an attacker's claim, not a confirmed breach.",
+     "tier": "floor",
+     "lvl": 1,
+     "cis": "GV",
+     "ins": "Loss history",
+     "csf": "DE.CM",
+     "have": "yes",
+     "src": "sc.rw"
+    }
+   ]
+  }
+ ],
+ "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2."
+}

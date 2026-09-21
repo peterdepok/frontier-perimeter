@@ -1,0 +1,2648 @@
+[
+ {
+  "name": "1Password",
+  "domain": "1password.com",
+  "category": "Security vendor",
+  "hq": "CA",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "7AI",
+  "domain": "7ai.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "agentic AI SOC"
+ },
+ {
+  "name": "Abnormal AI",
+  "domain": "abnormal.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "behavioral-AI email security; formerly abnormalsecurity.com (both may be live)"
+ },
+ {
+  "name": "Above Security",
+  "domain": "above.security",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-native insider-risk; Israeli founders"
+ },
+ {
+  "name": "Abstract Security",
+  "domain": "abstract.security",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Acalvio",
+  "domain": "acalvio.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "deception technology"
+ },
+ {
+  "name": "Act Security",
+  "domain": "act.security",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "cloud security for AI-agent permissions; HQ uncertain (IL/US)"
+ },
+ {
+  "name": "Action1",
+  "domain": "action1.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "patch management / vuln remediation"
+ },
+ {
+  "name": "AegisAI",
+  "domain": "aegisai.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "agentic AI email security"
+ },
+ {
+  "name": "Aeon AI Risks Management",
+  "domain": "airiskmanagement.ca",
+  "category": "AI safety & policy",
+  "hq": "CA",
+  "kind": "company",
+  "confidence": "low",
+  "note": "AI risk management consultancy; domain from search only"
+ },
+ {
+  "name": "AI-Sentinel LLC",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "multiple unrelated 'AI-Sentinel' sites (ai-sentinel.io etc.); could not confirm"
+ },
+ {
+  "name": "Aidome",
+  "domain": "aidome.co",
+  "category": "AI security",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "enterprise AI governance & security"
+ },
+ {
+  "name": "Aikido",
+  "domain": "aikido.dev",
+  "category": "Security vendor",
+  "hq": "BE",
+  "kind": "company",
+  "confidence": "high",
+  "note": "Aikido Security"
+ },
+ {
+  "name": "Aira Security",
+  "domain": "airasecurity.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI agent enforcement layer; also uses airasecurity.com for app"
+ },
+ {
+  "name": "Airlock Digital",
+  "domain": "airlockdigital.com",
+  "category": "Security vendor",
+  "hq": "AU",
+  "kind": "company",
+  "confidence": "high",
+  "note": "application allowlisting"
+ },
+ {
+  "name": "Airrived Inc",
+  "domain": "airrived.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "agentic security ops"
+ },
+ {
+  "name": "Aisle",
+  "domain": "aisle.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-native vuln discovery (AISLE)"
+ },
+ {
+  "name": "Akamai",
+  "domain": "akamai.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "CDN + security"
+ },
+ {
+  "name": "Alert Enterprise",
+  "domain": "alertenterprise.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "cyber-physical identity security"
+ },
+ {
+  "name": "Align on Artificial Intelligence",
+  "domain": null,
+  "category": "AI safety & policy",
+  "hq": null,
+  "kind": "nonprofit",
+  "confidence": "low",
+  "note": "not found in search; name suggests AI policy"
+ },
+ {
+  "name": "Allure Security",
+  "domain": "alluresecurity.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "brand impersonation protection"
+ },
+ {
+  "name": "Ancora Cyber",
+  "domain": "ancoracyber.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "CMMC RPO / security consultancy (FL); SecurityScorecard rates ancora.ws, email domain may differ"
+ },
+ {
+  "name": "Anomity",
+  "domain": "anomity.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "endpoint security for AI agents & MCPs"
+ },
+ {
+  "name": "Anthropic",
+  "domain": "anthropic.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "APIsec",
+  "domain": "apisec.ai",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "API security testing; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Appalachian Cyber",
+  "domain": "appcyber.tech",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "small security consultancy; several similarly named firms"
+ },
+ {
+  "name": "Appgate",
+  "domain": "appgate.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "zero trust access"
+ },
+ {
+  "name": "APX Security",
+  "domain": "apxlabs.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "'APX Security, Inc.' trust center on apxlabs.ai; product unclear"
+ },
+ {
+  "name": "Arcanna.ai",
+  "domain": "arcanna.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI SOC decision platform (site fetched)"
+ },
+ {
+  "name": "Arctic Wolf",
+  "domain": "arcticwolf.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "ARGORIX AI Security & Governance",
+  "domain": "argorix.com",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI security & governance platform"
+ },
+ {
+  "name": "Atredis Partners",
+  "domain": "atredis.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "security research/pentest consultancy; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "AttackIQ",
+  "domain": "attackiq.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "BAS"
+ },
+ {
+  "name": "AuthHub",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous (ASEE product name, others); not confirmed"
+ },
+ {
+  "name": "Aviatrix",
+  "domain": "aviatrix.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "cloud network security"
+ },
+ {
+  "name": "AWS",
+  "domain": "amazon.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Amazon Web Services; builds Nova models; staff email amazon.com, public site aws.amazon.com"
+ },
+ {
+  "name": "Backslash Security",
+  "domain": "backslash.security",
+  "category": "AI security",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security for agentic AI tools on endpoints; verified by site fetch"
+ },
+ {
+  "name": "Barracuda Networks",
+  "domain": "barracuda.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Bedrock Labs",
+  "domain": "bedrockdata.ai",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Bedrock Labs Inc. = Bedrock Data (formerly Bedrock Security), AI data security/governance"
+ },
+ {
+  "name": "BeyondTrust",
+  "domain": "beyondtrust.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "PAM / identity security"
+ },
+ {
+  "name": "Binalyze",
+  "domain": "binalyze.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "DFIR platform; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Bitdefender",
+  "domain": "bitdefender.com",
+  "category": "Security vendor",
+  "hq": "RO",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "BitScore Cybertech",
+  "domain": "bitscore.in",
+  "category": "Security vendor",
+  "hq": "IN",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "cyber risk ratings (Bitsight partner)"
+ },
+ {
+  "name": "Bitsight",
+  "domain": "bitsight.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security ratings"
+ },
+ {
+  "name": "Black Kite",
+  "domain": "blackkite.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "third-party cyber risk"
+ },
+ {
+  "name": "Black Swan Cyber Security Solutions",
+  "domain": "blackswancyber.co.uk",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "small UK security services provider"
+ },
+ {
+  "name": "Blaze Information Security",
+  "domain": "blazeinfosec.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "pentest consultancy; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "BlockchainUnmasked",
+  "domain": "blockchainunmasked.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "blockchain intelligence / crypto-crime investigations"
+ },
+ {
+  "name": "Bluebear Security",
+  "domain": "bluebear.io",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Israeli stealth-stage security startup ('coming soon' site)"
+ },
+ {
+  "name": "Bluehex",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": "NZ",
+  "kind": "company",
+  "confidence": "low",
+  "note": "possibly NZ tech/security firm; ambiguous with Blue Hexagon; not confirmed"
+ },
+ {
+  "name": "Bountykai",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not found in search"
+ },
+ {
+  "name": "BrainSec Soluções",
+  "domain": "brainsec.com.br",
+  "category": "Security vendor",
+  "hq": "BR",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Brazilian cybersecurity firm"
+ },
+ {
+  "name": "BugBase",
+  "domain": "bugbase.ai",
+  "category": "Security vendor",
+  "hq": "IN",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "bug bounty / continuous VA (site fetched; country from prior knowledge)"
+ },
+ {
+  "name": "Bugcrowd",
+  "domain": "bugcrowd.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "crowdsourced security"
+ },
+ {
+  "name": "Business Cyber Guardian",
+  "domain": "businesscyberguardian.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "product brand of Reliable Energy Analytics LLC (reliableenergyanalytics.com); staff email may use parent domain"
+ },
+ {
+  "name": "C2SEC",
+  "domain": "c2sec.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security posture / cyber risk"
+ },
+ {
+  "name": "Calif",
+  "domain": "calif.io",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "offensive security research firm using AI (Thai Duong)"
+ },
+ {
+  "name": "Cantina Security",
+  "domain": "cantina.security",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "web3 security; cantina.xyz now redirects to cantina.security"
+ },
+ {
+  "name": "Casco",
+  "domain": "casco.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI pentesting / AI agent security (YC X25)"
+ },
+ {
+  "name": "Cato Networks",
+  "domain": "catonetworks.com",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "SASE"
+ },
+ {
+  "name": "Caution",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": "KY",
+  "kind": "company",
+  "confidence": "low",
+  "note": "Caution SEZC (YC), hardened hosting platform; domain not confirmed"
+ },
+ {
+  "name": "Caveat Labs",
+  "domain": "caveatlabs.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "vCISO / security consulting (Colorado)"
+ },
+ {
+  "name": "Center for Internet Security",
+  "domain": "cisecurity.org",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "nonprofit",
+  "confidence": "high",
+  "note": "nonprofit security standards body (CIS Controls, MS-ISAC); category is closest fit"
+ },
+ {
+  "name": "Chainguard",
+  "domain": "chainguard.dev",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "secure container images"
+ },
+ {
+  "name": "Chakam Cybersecurity",
+  "domain": "chakamcybersecurity.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "small security consultancy"
+ },
+ {
+  "name": "Check Point",
+  "domain": "checkpoint.com",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Ciphershield",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "several unrelated 'CipherShield' firms (ciphershield.au, .com, .net); not disambiguated"
+ },
+ {
+  "name": "Cisco",
+  "domain": "cisco.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "major security vendor (Splunk, Talos); also networking"
+ },
+ {
+  "name": "Clearly AI",
+  "domain": "clearly-ai.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI security/privacy review automation (Seattle)"
+ },
+ {
+  "name": "Cloaked",
+  "domain": "cloaked.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "consumer privacy/identity protection"
+ },
+ {
+  "name": "Cloud Security Alliance",
+  "domain": "cloudsecurityalliance.org",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "nonprofit",
+  "confidence": "high",
+  "note": "nonprofit cloud/AI security standards body (runs AI Safety Initiative); category is closest fit"
+ },
+ {
+  "name": "Cloudflare",
+  "domain": "cloudflare.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "CloudPeek",
+  "domain": "cloudpeek.io",
+  "category": "AI security",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI cyber security platform; CYBERUK sponsor"
+ },
+ {
+  "name": "Clover Security",
+  "domain": "clover.security",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "product security for the agentic SDLC"
+ },
+ {
+  "name": "Cobalt",
+  "domain": "cobalt.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "PTaaS"
+ },
+ {
+  "name": "Cogent Security",
+  "domain": "cogent.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI-agent vulnerability management; site on cogent.com, platform/trust center on cogent.security - check both"
+ },
+ {
+  "name": "Cognition",
+  "domain": "cognition.ai",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "Devin/Windsurf; trains own SWE models"
+ },
+ {
+  "name": "Cohesity",
+  "domain": "cohesity.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "data security & backup"
+ },
+ {
+  "name": "ConnectSecure",
+  "domain": "connectsecure.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "vuln management for MSPs; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "ContraForce",
+  "domain": "contraforce.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "security automation for MSSPs; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "ContrailRisks",
+  "domain": "contrailrisks.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "independent cyber security advisory"
+ },
+ {
+  "name": "Conviso Application Security",
+  "domain": "convisoappsec.com",
+  "category": "Security vendor",
+  "hq": "BR",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AppSec consulting & platform (site fetched)"
+ },
+ {
+  "name": "Copper Horse",
+  "domain": "copperhorse.co.uk",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI/IoT/automotive security consultancy (site fetched)"
+ },
+ {
+  "name": "Corelight",
+  "domain": "corelight.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "NDR"
+ },
+ {
+  "name": "Corridor",
+  "domain": "corridor.dev",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security layer for AI coding"
+ },
+ {
+  "name": "Cotool",
+  "domain": "cotool.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI agents for security teams (YC)"
+ },
+ {
+  "name": "CPX",
+  "domain": "cpx.net",
+  "category": "Security vendor",
+  "hq": "AE",
+  "kind": "company",
+  "confidence": "high",
+  "note": "G42 cyber & physical security company (site fetched)"
+ },
+ {
+  "name": "CQR",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous: cqr.company (pentest), cqr.com.sa (Saudi OT), CQR AU (now CyberCX)"
+ },
+ {
+  "name": "Crogl",
+  "domain": "crogl.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI security alert investigation (site fetched)"
+ },
+ {
+  "name": "CrowdStrike",
+  "domain": "crowdstrike.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Cyber Squad",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "several unrelated firms (cybersquad.ro, UK, Canada)"
+ },
+ {
+  "name": "CyberDome",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous (cyberdome.net NG, cyberdomeusa.com, Celerium product)"
+ },
+ {
+  "name": "CyberFora",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not found"
+ },
+ {
+  "name": "CyberGeist Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "small San Diego security consultancy; no website found"
+ },
+ {
+  "name": "Cyberhuset",
+  "domain": "cyberhuset.no",
+  "category": "Security vendor",
+  "hq": "NO",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Norwegian cyber security consultancy/training"
+ },
+ {
+  "name": "CyberOps Advisory",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous (cyberops.com.au, cyberopsconsulting.org, cyberops.com)"
+ },
+ {
+  "name": "Cyberrock",
+  "domain": "cyberrock.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "'AI cyber defence' product company"
+ },
+ {
+  "name": "CyberSolace",
+  "domain": "cybersolace.co.uk",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "UK cybersecurity consulting (also cybersolace.io exists)"
+ },
+ {
+  "name": "Cybyr.com",
+  "domain": "cybyr.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "vCISO/SMB security services"
+ },
+ {
+  "name": "Cycode",
+  "domain": "cycode.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "ASPM; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Cyera",
+  "domain": "cyera.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-native data security; site canonical cyera.com (cyera.io legacy)"
+ },
+ {
+  "name": "Cyolo",
+  "domain": "cyolo.io",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "secure remote access (OT); domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Cyrex",
+  "domain": "cyrextech.net",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "low",
+  "note": "game-security/pentest firm; site TLS cert mismatch on fetch; name ambiguous"
+ },
+ {
+  "name": "Cyware",
+  "domain": "cyware.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "threat intel / SOAR"
+ },
+ {
+  "name": "DAC REGIS/ZeroTRUST",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not found"
+ },
+ {
+  "name": "Darktrace",
+  "domain": "darktrace.com",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-based detection"
+ },
+ {
+  "name": "DataDome",
+  "domain": "datadome.co",
+  "category": "Security vendor",
+  "hq": "FR",
+  "kind": "company",
+  "confidence": "high",
+  "note": "bot/fraud protection"
+ },
+ {
+  "name": "Datasec",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous (Datasec Inc. datasec-inc.com and others)"
+ },
+ {
+  "name": "Deepwatch",
+  "domain": "deepwatch.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "MDR"
+ },
+ {
+  "name": "DeNexus",
+  "domain": "denexus.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "OT cyber risk quantification; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "depthfirst",
+  "domain": "depthfirst.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-native security; builds security models"
+ },
+ {
+  "name": "Doppel",
+  "domain": "doppel.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-native social engineering defense (site fetched)"
+ },
+ {
+  "name": "Dowsers",
+  "domain": "dowsers.finance",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "DeFi protocol risk/security audits"
+ },
+ {
+  "name": "Dragos",
+  "domain": "dragos.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "ICS/OT security"
+ },
+ {
+  "name": "Dropzone.ai",
+  "domain": "dropzone.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI SOC agents (site fetched)"
+ },
+ {
+  "name": "Dtwo",
+  "domain": "dtwo.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "security control plane for AI agents"
+ },
+ {
+  "name": "Echo",
+  "domain": "echo.ai",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Echo Software, CVE-free container images; generic name, assumed security Echo"
+ },
+ {
+  "name": "Elastic",
+  "domain": "elastic.co",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "search/observability with major SIEM/XDR line"
+ },
+ {
+  "name": "Enclave",
+  "domain": "enclave.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "autonomous security team / AI code security (Israeli founders); generic name"
+ },
+ {
+  "name": "Ent AI",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "listed as network-security startup on PitchBook/StartupHub; domain not found"
+ },
+ {
+  "name": "Evaluris Solutions",
+  "domain": "evaluris.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI-assisted offensive security training/services"
+ },
+ {
+  "name": "Exein",
+  "domain": "exein.io",
+  "category": "Security vendor",
+  "hq": "IT",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "embedded/IoT security; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "ExVul Security",
+  "domain": "exvul.com",
+  "category": "Security vendor",
+  "hq": "SG",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Web3/smart-contract security"
+ },
+ {
+  "name": "F5",
+  "domain": "f5.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Faraday",
+  "domain": "faradaysec.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "generic name; assumed Faraday Security (vuln management platform, site fetched)"
+ },
+ {
+  "name": "ForceAI Security",
+  "domain": "forceaisecurity.com",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "agentic AI security platform"
+ },
+ {
+  "name": "ForEffect",
+  "domain": "foreffectai.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "fractional CIO/CISO, AI & cyber consulting; name collides with AI video app"
+ },
+ {
+  "name": "Fortinet",
+  "domain": "fortinet.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Frenos",
+  "domain": "frenos.io",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI-native OT security posture / simulated pentest"
+ },
+ {
+  "name": "Gardera Security",
+  "domain": "gardera.io",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "'autonomous security engineer'; Claude Code plugin on GitHub"
+ },
+ {
+  "name": "GeeTest",
+  "domain": "geetest.com",
+  "category": "Security vendor",
+  "hq": "CN",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "CAPTCHA/bot management"
+ },
+ {
+  "name": "Gen Digital",
+  "domain": "gendigital.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "Norton/Avast"
+ },
+ {
+  "name": "GitGuardian",
+  "domain": "gitguardian.com",
+  "category": "Security vendor",
+  "hq": "FR",
+  "kind": "company",
+  "confidence": "high",
+  "note": "secrets detection"
+ },
+ {
+  "name": "Global AI Trust Alliance",
+  "domain": "gaita.org",
+  "category": "AI safety & policy",
+  "hq": null,
+  "kind": "nonprofit",
+  "confidence": "medium",
+  "note": "GAITA"
+ },
+ {
+  "name": "Global Resilience Federation",
+  "domain": "grf.org",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "nonprofit",
+  "confidence": "medium",
+  "note": "nonprofit ISAC hub; category is closest fit; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Glow",
+  "domain": "glow.io",
+  "category": "AI security",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-era endpoint security ($180M, Jul 2026)"
+ },
+ {
+  "name": "Google",
+  "domain": "google.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "Google/DeepMind (Gemini); also security (Mandiant, Wiz)"
+ },
+ {
+  "name": "Granite Mountain Security Consultancy",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "small security consultancy; not verified (search budget exhausted)"
+ },
+ {
+  "name": "Gray Swan",
+  "domain": "grayswan.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "LLM security & red-teaming (site fetched)"
+ },
+ {
+  "name": "Grego AI",
+  "domain": "grego.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI smart-contract vulnerability detection"
+ },
+ {
+  "name": "GreyNoise",
+  "domain": "greynoise.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "internet scan intelligence"
+ },
+ {
+  "name": "Grip Security",
+  "domain": "grip.security",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "SaaS identity security; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Hack The Box",
+  "domain": "hackthebox.com",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "high",
+  "note": "cyber training/ranges"
+ },
+ {
+  "name": "HackBlock",
+  "domain": "hackblock.in",
+  "category": "Security vendor",
+  "hq": "IN",
+  "kind": "company",
+  "confidence": "low",
+  "note": "offensive security services; name shared with others"
+ },
+ {
+  "name": "HackerOne",
+  "domain": "hackerone.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "bug bounty; also AI red-teaming"
+ },
+ {
+  "name": "Hackmetrix.com",
+  "domain": "hackmetrix.com",
+  "category": "Security vendor",
+  "hq": "CL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "LatAm security/compliance; name is domain"
+ },
+ {
+  "name": "Helmet Security",
+  "domain": "helmetsecurity.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "agentic AI / MCP security (DC); also uses helmet.sh"
+ },
+ {
+  "name": "Hugging Face",
+  "domain": "huggingface.co",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "model hub; develops open models"
+ },
+ {
+  "name": "i4 Ops",
+  "domain": "i4ops.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI-powered data exfiltration prevention; also i4ops.ai"
+ },
+ {
+  "name": "IBLISS Digital Security",
+  "domain": "ibliss.com.br",
+  "category": "Security vendor",
+  "hq": "BR",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "IBM",
+  "domain": "ibm.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Granite models; also security services (X-Force)"
+ },
+ {
+  "name": "Immersive Technologies",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous: could be Immersive (immersivelabs.com, cyber workforce) or Immersive Technologies (mining simulators, AU)"
+ },
+ {
+  "name": "Immune Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not confirmed (immunesda.com is one candidate)"
+ },
+ {
+  "name": "Invysta Technology Group",
+  "domain": "invysta.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "access & authorization security (San Clemente, CA)"
+ },
+ {
+  "name": "ironproof",
+  "domain": "ironproof.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "provable security for AI and critical software"
+ },
+ {
+  "name": "iSec",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous (iSec Group isec-group.com, ISEC International, others)"
+ },
+ {
+  "name": "Islo",
+  "domain": "islo.dev",
+  "category": "AI security",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI coding-agent sandbox from Incredibuild; staff email likely incredibuild.com"
+ },
+ {
+  "name": "JANUS Associates",
+  "domain": "janusassociates.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "security consultancy; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Jscrambler",
+  "domain": "jscrambler.com",
+  "category": "Security vendor",
+  "hq": "PT",
+  "kind": "company",
+  "confidence": "high",
+  "note": "client-side/JS security"
+ },
+ {
+  "name": "Kairo AI",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "ambiguous: Kairo AI Security Inc (GA), kairoaisec.com (smart-contract security), Tuskira product name"
+ },
+ {
+  "name": "Kasada",
+  "domain": "kasada.io",
+  "category": "Security vendor",
+  "hq": "AU",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "bot defense; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "KOAN IT Security",
+  "domain": "koan-security.com",
+  "category": "Security vendor",
+  "hq": "DE",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "KOAN IT Security GmbH"
+ },
+ {
+  "name": "Kolega Labs",
+  "domain": "kolega.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI code remediation (product site kolega.dev)"
+ },
+ {
+  "name": "Krav Maga Hacking",
+  "domain": "kmhcorp.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "boutique cybersecurity consultancy"
+ },
+ {
+  "name": "Krill Security",
+  "domain": "krillsecurity.com",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "agentic offensive security platform"
+ },
+ {
+  "name": "Kyberis",
+  "domain": "kyberis.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "threat intelligence for AI agents; name collides with crypto token/other firms"
+ },
+ {
+  "name": "Layer48 Technology Solutions (India)",
+  "domain": "layer48.com",
+  "category": "Security vendor",
+  "hq": "IN",
+  "kind": "company",
+  "confidence": "low",
+  "note": "'technology and information security solutions'; site brands as Corp., country unverified"
+ },
+ {
+  "name": "Legion Security Inc",
+  "domain": "legionsecurity.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI SOC agents (site verified by fetch)"
+ },
+ {
+  "name": "LinkShadow",
+  "domain": "linkshadow.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-driven NDR/identity threat (site fetched)"
+ },
+ {
+  "name": "Loom Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Lyrie.ai",
+  "domain": "lyrie.ai",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "unified security platform (WAF/endpoint/vuln scanning) per its site"
+ },
+ {
+  "name": "Malwarebytes",
+  "domain": "malwarebytes.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Manifest",
+  "domain": "manifestcyber.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Manifest Cyber, SBOM/AIBOM supply-chain security; generic name, assumed this Manifest"
+ },
+ {
+  "name": "Mantissa",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Mate Security",
+  "domain": "mate.security",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI SOC platform (site verified by fetch)"
+ },
+ {
+  "name": "Mend.io",
+  "domain": "mend.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AppSec/SCA"
+ },
+ {
+  "name": "Menlo Security",
+  "domain": "menlosecurity.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "browser security"
+ },
+ {
+  "name": "Microsoft",
+  "domain": "microsoft.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "also major security vendor"
+ },
+ {
+  "name": "MicroWorld Technologies",
+  "domain": "escanav.com",
+  "category": "Security vendor",
+  "hq": "IN",
+  "kind": "company",
+  "confidence": "low",
+  "note": "eScan antivirus maker; corporate site may be mwti.net - verify"
+ },
+ {
+  "name": "mistwire.io",
+  "domain": "mistwire.io",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "signed governance/policy enforcement for AI agents (site fetched)"
+ },
+ {
+  "name": "Mitiga Security",
+  "domain": "mitiga.io",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "cloud IR; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Mixmode",
+  "domain": "mixmode.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI threat detection; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Nametag",
+  "domain": "getnametag.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "identity verification (verified by site fetch)"
+ },
+ {
+  "name": "Nebula Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "NetFoundry",
+  "domain": "netfoundry.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "zero-trust networking; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "NetShield",
+  "domain": "netshieldcorp.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "low",
+  "note": "network security appliances; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Netskope",
+  "domain": "netskope.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "SASE"
+ },
+ {
+  "name": "NeuroStrike",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "NexaDefend",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Nothreat",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "nothreat.com is an unrelated US threat-assessment psychology practice; signatory likely a different firm, domain unconfirmed"
+ },
+ {
+  "name": "Novee Security",
+  "domain": "novee.security",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI pentesting (site verified by fetch)"
+ },
+ {
+  "name": "nowsecure.com",
+  "domain": "nowsecure.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "mobile app security"
+ },
+ {
+  "name": "NROC Security",
+  "domain": "nrocsecurity.com",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "GenAI usage governance/security (site verified by fetch)"
+ },
+ {
+  "name": "NSS Labs",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "historic security test lab brand (closed 2020); current entity unverified"
+ },
+ {
+  "name": "NUA Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Nullify",
+  "domain": "nullify.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "autonomous product security (site fetched)"
+ },
+ {
+  "name": "NullSquare",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Obsidian Security",
+  "domain": "obsidiansecurity.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "SaaS security"
+ },
+ {
+  "name": "Octane Security",
+  "domain": "octane.security",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI appsec (site fetched)"
+ },
+ {
+  "name": "Okta",
+  "domain": "okta.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "identity"
+ },
+ {
+  "name": "OpenAI",
+  "domain": "openai.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "letter author"
+ },
+ {
+  "name": "Opera Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Outtake AI",
+  "domain": "outtake.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "agentic digital risk protection (site fetched)"
+ },
+ {
+  "name": "Owl Cyber Defense",
+  "domain": "owlcyberdefense.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "cross-domain / data diodes"
+ },
+ {
+  "name": "OWNROOT",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Palo Alto Networks",
+  "domain": "paloaltonetworks.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Palosade",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "believed AI-agent security startup; not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Pensar",
+  "domain": "pensar.dev",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI pentest + patching (site fetched)"
+ },
+ {
+  "name": "Perplexity",
+  "domain": "perplexity.ai",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI search; post-trains own models"
+ },
+ {
+  "name": "Pervaziv AI",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "pervaziv.com did not load; not confirmed"
+ },
+ {
+  "name": "PlugSecure",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "PQShield",
+  "domain": "pqshield.com",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "high",
+  "note": "post-quantum cryptography"
+ },
+ {
+  "name": "Precize AI",
+  "domain": "precize.ai",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI-driven security/infrastructure issue resolution (site fetched)"
+ },
+ {
+  "name": "Proofpoint",
+  "domain": "proofpoint.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Prophet Security",
+  "domain": "prophetsecurity.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI SOC; published blog on signing the letter"
+ },
+ {
+  "name": "Raven",
+  "domain": "raven.io",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "runtime application protection; generic name, assumed this Raven"
+ },
+ {
+  "name": "REDLattice",
+  "domain": "redlattice.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "cyber operations/research; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Refelctiz",
+  "domain": "reflectiz.com",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "name misspelled on page (Reflectiz, web exposure security)"
+ },
+ {
+  "name": "ReliaQuest",
+  "domain": "reliaquest.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security operations"
+ },
+ {
+  "name": "RemoteThreat",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Rubrik",
+  "domain": "rubrik.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "data security & backup"
+ },
+ {
+  "name": "RunSybil",
+  "domain": "runsybil.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI offensive security (site verified by fetch)"
+ },
+ {
+  "name": "Scale AI",
+  "domain": "scale.com",
+  "category": "AI developer",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "AI data, evaluation and red-teaming (SEAL); not a frontier model lab"
+ },
+ {
+  "name": "Scorpiones",
+  "domain": "scorpiones.io",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "high",
+  "note": "offensive security services (site fetched)"
+ },
+ {
+  "name": "Seal Security",
+  "domain": "seal.security",
+  "category": "Security vendor",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "open-source vulnerability patching (site fetched)"
+ },
+ {
+  "name": "SecuraNova",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "SecureSupply",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Securitate.Pro",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Security Risk Advisors",
+  "domain": "sra.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Security Scorecard",
+  "domain": "securityscorecard.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security ratings"
+ },
+ {
+  "name": "SecurityBridge",
+  "domain": "securitybridge.com",
+  "category": "Security vendor",
+  "hq": "DE",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "SAP security; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Seekurity",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "SEGURIDAD QAP",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Sekoia",
+  "domain": "sekoia.io",
+  "category": "Security vendor",
+  "hq": "FR",
+  "kind": "company",
+  "confidence": "high",
+  "note": "SOC platform"
+ },
+ {
+  "name": "SelfHack AI",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "semgrep",
+  "domain": "semgrep.dev",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "code security"
+ },
+ {
+  "name": "SentinelOne",
+  "domain": "sentinelone.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Serianu",
+  "domain": "serianu.com",
+  "category": "Security vendor",
+  "hq": "KE",
+  "kind": "company",
+  "confidence": "high",
+  "note": "Pan-African cybersecurity consulting (site fetched)"
+ },
+ {
+  "name": "Sevorix",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "ShadeSec",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Sharpen Technologies",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "possibly SOC platform vendor; not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Sidekick Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Sidenty",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "SITS Group",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Snyk",
+  "domain": "snyk.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "developer security"
+ },
+ {
+  "name": "Socket",
+  "domain": "socket.dev",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "supply-chain security; generic name, assumed Socket (socket.dev)"
+ },
+ {
+  "name": "SOCNova Bilişim",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": "TR",
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "SonarSource",
+  "domain": "sonarsource.com",
+  "category": "Security vendor",
+  "hq": "CH",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "code quality & security"
+ },
+ {
+  "name": "Sophos",
+  "domain": "sophos.com",
+  "category": "Security vendor",
+  "hq": "GB",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Sparkle Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "SpecterOps",
+  "domain": "specterops.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "identity attack path / red team"
+ },
+ {
+  "name": "SQ1 Security Technology Pvt Ltd",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": "IN",
+  "kind": "company",
+  "confidence": "low",
+  "note": "Indian security firm; not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "StealerHunt",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Stream security",
+  "domain": "stream.security",
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI-native cloud security (site fetched)"
+ },
+ {
+  "name": "Subverted",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Sumo Logic",
+  "domain": "sumologic.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "log analytics / SIEM"
+ },
+ {
+  "name": "Surf AI",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Swimlane",
+  "domain": "swimlane.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security automation"
+ },
+ {
+  "name": "Synack",
+  "domain": "synack.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "crowdsourced pentest"
+ },
+ {
+  "name": "Sysdig",
+  "domain": "sysdig.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "cloud security"
+ },
+ {
+  "name": "Tailscale",
+  "domain": "tailscale.com",
+  "category": "Security vendor",
+  "hq": "CA",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "zero-trust networking/VPN"
+ },
+ {
+  "name": "TechSecure AI",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Tenable",
+  "domain": "tenable.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "exposure management"
+ },
+ {
+  "name": "Tenzai",
+  "domain": "tenzai.com",
+  "category": "AI security",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI pentesting (site verified by fetch)"
+ },
+ {
+  "name": "Terra Security",
+  "domain": "terra.security",
+  "category": "AI security",
+  "hq": "IL",
+  "kind": "company",
+  "confidence": "high",
+  "note": "agentic pentesting (site verified by fetch)"
+ },
+ {
+  "name": "Tesorion",
+  "domain": "tesorion.nl",
+  "category": "Security vendor",
+  "hq": "NL",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "thinkingidentities.ai",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Torq",
+  "domain": "torq.io",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI SOC/hyperautomation"
+ },
+ {
+  "name": "Trail of Bits",
+  "domain": "trailofbits.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "security research; also AI security work"
+ },
+ {
+  "name": "TrendAI",
+  "domain": "trendmicro.com",
+  "category": "Security vendor",
+  "hq": "JP",
+  "kind": "company",
+  "confidence": "high",
+  "note": "TrendAI is Trend Micro's enterprise security business; staff email trendmicro.com"
+ },
+ {
+  "name": "Tropico Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "TrueSec Cybersecurity",
+  "domain": "truesec.com",
+  "category": "Security vendor",
+  "hq": "SE",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Tuskira",
+  "domain": "tuskira.ai",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI security agents platform (site verified by fetch)"
+ },
+ {
+  "name": "Under Protection",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "ValueMentor",
+  "domain": "valuementor.com",
+  "category": "Security vendor",
+  "hq": "AE",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "security testing & assurance (site fetched; HQ per site)"
+ },
+ {
+  "name": "Veracode",
+  "domain": "veracode.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AppSec"
+ },
+ {
+  "name": "Veria Labs",
+  "domain": null,
+  "category": "AI security",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "VerSprite",
+  "domain": "versprite.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "VGS",
+  "domain": "verygoodsecurity.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "Very Good Security, data tokenization"
+ },
+ {
+  "name": "VicOne",
+  "domain": "vicone.com",
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "medium",
+  "note": "automotive security; Trend Micro subsidiary"
+ },
+ {
+  "name": "Vigil Research Labs",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "VIVID Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "VoodooSoft",
+  "domain": "voodooshield.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "VoodooSoft LLC, CyberLock endpoint protection (site fetched)"
+ },
+ {
+  "name": "Walacor Corporation",
+  "domain": "walacor.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "secure data integrity platform (site fetched)"
+ },
+ {
+  "name": "WatchGuard Technologies",
+  "domain": "watchguard.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "name": "Wingback Security",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "WinMagic",
+  "domain": "winmagic.com",
+  "category": "Security vendor",
+  "hq": "CA",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "encryption/authentication; domain from well-established knowledge/site fetch; not individually re-searched"
+ },
+ {
+  "name": "Wiz",
+  "domain": "wiz.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "cloud security (Google)"
+ },
+ {
+  "name": "XBOW",
+  "domain": "xbow.com",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "autonomous AI pentesting (site fetched)"
+ },
+ {
+  "name": "Zellic",
+  "domain": "zellic.io",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "medium",
+  "note": "security audits incl. crypto (verified by site fetch)"
+ },
+ {
+  "name": "Zenity",
+  "domain": "zenity.io",
+  "category": "AI security",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "AI agent security"
+ },
+ {
+  "name": "ZeroFox",
+  "domain": "zerofox.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "external threat protection"
+ },
+ {
+  "name": "ZeroShield",
+  "domain": null,
+  "category": "Security vendor",
+  "hq": null,
+  "kind": "company",
+  "confidence": "low",
+  "note": "not verified: web-search budget exhausted; included on name only"
+ },
+ {
+  "name": "Zscaler",
+  "domain": "zscaler.com",
+  "category": "Security vendor",
+  "hq": "US",
+  "kind": "company",
+  "confidence": "high",
+  "note": "zero trust"
+ }
+]

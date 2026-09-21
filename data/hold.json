@@ -1,0 +1,52 @@
+[
+ {
+  "n": "Andon Labs",
+  "w": "andonlabs.com",
+  "why": "Named in Anthropic system cards under an \"External testing\" heading, but no sentence confirming pre-release access was verified."
+ },
+ {
+  "n": "Eleos AI Research",
+  "w": "eleosai.org",
+  "why": "Named for an external welfare assessment in the Mythos Preview card; no pre-release wording verified."
+ },
+ {
+  "n": "Centre for the Governance of AI",
+  "w": "governance.ai",
+  "why": "Qualifying text is a co-authored paper led by Google DeepMind, not an organizational warning."
+ },
+ {
+  "n": "AI Futures Project",
+  "w": "aifutures.org",
+  "why": "Its AI 2027 scenario is a forecast narrative; no direct organizational warning verified on its own site."
+ },
+ {
+  "n": "AI Lab Watch",
+  "w": "ailabwatch.org",
+  "why": "A one-person project; its site says maintenance stopped in September 2025."
+ },
+ {
+  "n": "UpGuard",
+  "w": "upguard.com",
+  "why": "A security-ratings firm, but not a signatory of the Collective Cyber Defense letter, so it has no signed document to anchor inclusion."
+ },
+ {
+  "n": "Deloitte",
+  "w": "deloitte.com",
+  "why": "Named in Anthropic cards for evaluations \"developed with\" it, not for model access."
+ },
+ {
+  "n": "Coefficient Giving and the Survival and Flourishing Fund",
+  "w": "coefficientgiving.org",
+  "why": "Funders of AI-safety work; a candidate \"money behind the warning\" ring for a later edition."
+ },
+ {
+  "n": "IndiaAI Safety Institute and Kenya",
+  "w": "indiaai.gov.in",
+  "why": "India is not a network member; Kenya is a member without a dedicated institute."
+ },
+ {
+  "n": "~150 security vendors that signed the letter",
+  "w": "",
+  "why": "Cyber companies, not AI-risk actors. A possible second edition."
+ }
+]

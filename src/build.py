@@ -17,7 +17,6 @@ m=re.match(r'\s*<title>(.*?)</title>\s*',body,re.S); title=m.group(1); rest=body
 DESC='A curb inspection of the organizations in the AI-risk debate: the labs, the evaluators they entrust with unreleased models, the groups warning the public, and the institutes charged with measuring the risk. Read from the public record against a published code. A record, not a grade.'
 head=('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
 '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-'<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">\n'
 f'<meta name="description" content="{DESC}">\n'
 '<meta property="og:title" content="The Frontier Perimeter">\n'
 '<meta property="og:description" content="A frontier lab’s attack surface includes everyone it lets test the model. 65 organizations, read from the curb against a published code.">\n'
@@ -30,7 +29,7 @@ atpl=rd('src','assessment-template.html').replace('__QUESTIONS__',ques)
 am=re.match(r'\s*<title>(.*?)</title>\s*',atpl,re.S); arest=atpl[am.end():]
 ahead=('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
 '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-'<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">\n<meta name="theme-color" content="#072a3a">\n'
+'<meta name="theme-color" content="#072a3a">\n'
 f'<title>{am.group(1)}</title>\n<style>\n:root{{color-scheme:dark light}}\nhtml,body{{margin:0}}\n[hidden]{{display:none!important}}\n</style>\n</head>\n<body>\n')
 open(P('assessment.html'),'w').write(ahead+arest+'\n</body>\n</html>\n')
 n=sum(len(c['p']) for s in json.loads(data) for c in s['cats'])

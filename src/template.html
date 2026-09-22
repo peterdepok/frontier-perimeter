@@ -469,7 +469,7 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 .d-fields .k{color:var(--text-muted)}
 .d-fields .v{font-weight:500;text-align:right;color:var(--text-strong)}
 .d-fields .v.empty{color:var(--gold);font-weight:600;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
-@media (max-width:560px){.chip-name{max-width:140px}.topbar{padding:10px 16px}.rail{padding:8px 16px}.controls,.foot{padding-inline:16px}.wrap{padding-inline:16px}}
+@media (max-width:560px){.chip-name{max-width:140px}.topbar{padding:10px 16px}.rail{padding:8px 16px}.controls,.foot{padding-inline:16px}.wrap{padding-inline:16px}.flag{display:none}}
 .pm-note{display:block;font-size:.78em;opacity:.72;margin-top:2px;font-weight:400}
 .d-quote{font-style:italic}
 .d-also{margin:8px 0 0 18px;padding:0;font-size:.92em}
@@ -1063,7 +1063,6 @@ const OBS=[
    yes:["Signed","good"], no:["Not signed","mid"], "?":["Not measured in this pass","unk"]}]
 ];
 /* ---- shared status logic for this edition: one place, used by the permit, the field stats and the overview ---- */
-function daysAgo(iso){return (Date.parse(SCAN_ISO)-Date.parse(iso))/864e5}
 function daysAgo(iso){return (Date.parse(SCAN_ISO)-Date.parse(iso))/864e5}
 function rwActive(sc){return (sc.rw||[]).filter(r=>daysAgo(r.d)<=ACTIVE_DAYS)}
 function st(sc){

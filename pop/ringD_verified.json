@@ -1,20 +1,182 @@
 [
-{"name":"Center for AI Safety (CAIS)","domain":"safe.ai","source":"https://safe.ai/work/statement-on-ai-risk","doc":"Statement on AI Risk (2023)","quote":"Mitigating the risk of extinction from AI should be a global priority","status":"verified","why":"Exact match. Full sentence continues '...alongside other societal-scale risks such as pandemics and nuclear war.' The page also points to aistatement.com.","hq":"US"},
-{"name":"Future of Life Institute (FLI)","domain":"futureoflife.org","source":"https://futureoflife.org/index","doc":"AI Safety Index, Summer 2026 (July 2026)","quote":"AI experts rate leading AI companies on key safety and security domains.","status":"verified","why":"Exact match. Qualifies as a lab rater.","hq":"US"},
-{"name":"Machine Intelligence Research Institute (MIRI)","domain":"intelligence.org","source":"https://intelligence.org","doc":"MIRI homepage","quote":"The default consequence of the creation of artificial superintelligence (ASI) is human extinction.","status":"verified","why":"Exact match, 14 words.","hq":"US"},
-{"name":"SaferAI","domain":"safer-ai.org","source":"https://tracker.safer-ai.org/","doc":"SaferAI Ratings / risk-management tracker","quote":"We rate frontier AI companies' risk management practices.","status":"verified","why":"Exact match. Ratings sit on the tracker.safer-ai.org subdomain.","hq":"FR"},
-{"name":"The Midas Project","domain":"themidasproject.com","source":"https://www.themidasproject.com/articles/2025/02/28/announcing-the-seoul-commitment-tracker/","doc":"Announcing the Seoul Commitment Tracker (Feb 2025)","quote":"The Seoul Tracker evaluates sixteen leading AI companies","status":"verified","why":"Exact match (sentence continues '...that promised to implement safety frameworks at the 2024 AI Seoul Summit'). Also says no company earned better than 'B-' and six got 'F'.","hq":"US"},
-{"name":"ControlAI","domain":"controlai.org","source":"https://controlai.org/","doc":"ControlAI homepage","quote":"We seriously risk human extinction by building superintelligence.","status":"verified","why":"The draft quote ('extinction of the human race') did not match: the fetch returned 'extinction of the humanity', so the wording is uncertain. Replaced it with an unambiguous sentence. Confirmed: controlai.com returns a 302 redirect to controlai.org.","hq":"GB"},
-{"name":"PauseAI (Global)","domain":"pauseai.info","source":"https://pauseai.info/","doc":"PauseAI homepage","quote":"We are risking human extinction.","status":"verified","why":"The draft quote on /xrisk was CAIS's wording, cited there, not PauseAI's own voice. Replaced it with the homepage line: 'We are risking human extinction. We need to pause AI development, right now.'","hq":"NL"},
-{"name":"PauseAI US","domain":"pauseai-us.org","source":"https://www.pauseai-us.org/","doc":"PauseAI US homepage","quote":"a technology that could cause mass unemployment, catastrophic accidents, and even human extinction","status":"verified","why":"The draft quote from /about/ was a line about opinion polls, not an organizational warning. Replaced it with the homepage sentence 'AI companies are racing to build a technology that could cause...'.","hq":"US"},
-{"name":"Redwood Research","domain":"redwoodresearch.org","source":"https://www.redwoodresearch.org","doc":"Redwood Research homepage","quote":"a bedrock approach for mitigating catastrophic risk from misaligned AI","status":"verified","why":"Exact match ('AI control has been framed as a bedrock approach...'). The homepage also says 'could enable future AIs to take over.' It is written in a research voice rather than as a public campaign.","hq":"US"},
-{"name":"Centre for the Governance of AI (GovAI)","domain":"governance.ai","source":"https://www.governance.ai/research-paper/model-evaluation-for-extreme-risks","doc":"Model Evaluation for Extreme Risks (co-authored paper)","quote":"Further progress in AI development could lead to capabilities that pose extreme risks","status":"weak","why":"The quote is verbatim but comes from a paper led by DeepMind (Shevlane et al.) with GovAI co-authors, and its 'extreme risks' examples are cyber and manipulation. The about page ('help decision-makers ... navigate the transition to a world with advanced AI') has no catastrophic or loss-of-control warning. Its research list covers catastrophic misuse (power grid, bioterrorism) but nothing on extinction or loss of control. Legal entity: US 501(c)(3) with UK subsidiary; offices in London and DC.","hq":"GB"},
-{"name":"Centre for Long-Term Resilience (CLTR)","domain":"longtermresilience.org","source":"https://www.longtermresilience.org/reports/ai-loss-of-control-incidents-are-worsening-shows-cltr-analysis/","doc":"AI loss of control incidents are worsening (29 Aug 2026)","quote":"AI loss of control incidents are worsening significantly.","status":"verified","why":"Exact match. The report also says 'including ones with catastrophic consequences'. CLTR manages the Loss of Control Observatory.","hq":"GB"},
-{"name":"Centre for the Study of Existential Risk (CSER)","domain":"cser.ac.uk","source":"https://www.cser.ac.uk/research/risks-from-artificial-intelligence/","doc":"Risks from Artificial Intelligence (research area)","quote":"could also potentially pose catastrophic risks from accidents (safety) or misuse (security)","status":"verified","why":"This AI-specific page replaces the draft's generic mission quote, which was verbatim on /about-us/ but not about AI. The wording is hedged. The page belongs to a University of Cambridge centre.","hq":"GB"},
-{"name":"AI Futures Project","domain":"aifutures.org","source":"https://ai-2027.com","doc":"AI 2027 (Apr 2025)","quote":"Agent-4 is adversarially misaligned","status":"verified","why":"Verbatim, and the page credits the AI Futures Project, so it is the org's own named publication. Caveat: the quote is scenario narrative, not a direct statement. aifutures.org itself has no warning language. The ai-futures.org redirect was not checked.","hq":"US"},
-{"name":"Encode","domain":"encodeai.org","source":"https://encodeai.org/priorities/","doc":"Encode priorities","quote":"We believe AI could cause catastrophic risks","status":"verified","why":"The draft dropped 'We believe'. The full sentence adds 'whether through deliberate misuse or the loss of human control', 16 words total, so it was trimmed.","hq":"US"},
-{"name":"CeSIA (Centre pour la Sécurité de l'IA)","domain":"cesia.org","source":"https://red-lines.ai","doc":"Global Call for AI Red Lines (co-organizer)","quote":"increasingly difficult to exert meaningful human control in the coming years","status":"verified","why":"Exact match. red-lines.ai names CeSIA as one of three launch organizers, with The Future Society and CHAI, so this is a joint campaign. CeSIA's own site (cesia.org/en/, Paris, no redirect seen) says only 'dedicated to preventing major risks associated with AI'. The securite-ia.fr redirect was not checked.","hq":"FR"},
-{"name":"Palisade Research","domain":"palisaderesearch.org","source":"https://palisaderesearch.org/about/","doc":"About Palisade","quote":"avoid permanent disempowerment by strategic AI agents","status":"verified","why":"Exact match. The page also says 'nobody has a credible plan to prevent humans from losing control of superintelligence'. It confirms a Berkeley, CA location.","hq":"US"},
-{"name":"Existential Risk Observatory","domain":"existentialriskobservatory.org","source":"https://www.existentialriskobservatory.org/","doc":"ERO homepage (list of existential risks)","quote":"Future artificial intelligence (AI) with goals that may be different from ours","status":"verified","why":"Verbatim item in a list introduced by 'The most important existential risks as recent research identifies them are:'. The draft's blog post ('Yes RAND, AI Could Really Cause Human Extinction') could not be fetched because of a robots.txt error, so its title is unverified; a manual browser check would give a stronger quote. HQ NL (Amsterdam per draft; not confirmed on the page).","hq":"NL"},
-{"name":"AISafety.info (Stampy)","domain":"aisafety.info","source":"https://aisafety.info/questions/NM3I/","doc":"6: AI's goals may not match ours","quote":"Create a superintelligent AI with the wrong goals? Your species goes extinct.","status":"verified","why":"Exact match. The page also says 'the default outcome is a catastrophe.' Fiscally sponsored by Ashgro (US).","hq":"US"}
+ {
+  "name": "Center for AI Safety (CAIS)",
+  "domain": "safe.ai",
+  "source": "https://safe.ai/work/statement-on-ai-risk",
+  "doc": "Statement on AI Risk (2023)",
+  "quote": "Mitigating the risk of extinction from AI should be a global priority",
+  "status": "verified",
+  "why": "Exact match. Full sentence continues '...alongside other societal-scale risks such as pandemics and nuclear war.' The page also points to aistatement.com.",
+  "hq": "US"
+ },
+ {
+  "name": "Future of Life Institute (FLI)",
+  "domain": "futureoflife.org",
+  "source": "https://futureoflife.org/index",
+  "doc": "AI Safety Index, Summer 2026 (July 2026)",
+  "quote": "AI experts rate leading AI companies on key safety and security domains.",
+  "status": "verified",
+  "why": "Exact match. Qualifies as a lab rater.",
+  "hq": "US"
+ },
+ {
+  "name": "Machine Intelligence Research Institute (MIRI)",
+  "domain": "intelligence.org",
+  "source": "https://intelligence.org",
+  "doc": "MIRI homepage",
+  "quote": "The default consequence of the creation of artificial superintelligence (ASI) is human extinction.",
+  "status": "verified",
+  "why": "Exact match, 14 words.",
+  "hq": "US"
+ },
+ {
+  "name": "SaferAI",
+  "domain": "safer-ai.org",
+  "source": "https://tracker.safer-ai.org/",
+  "doc": "SaferAI Ratings / risk-management tracker",
+  "quote": "We rate frontier AI companies' risk management practices.",
+  "status": "verified",
+  "why": "Exact match. Ratings sit on the tracker.safer-ai.org subdomain.",
+  "hq": "FR"
+ },
+ {
+  "name": "The Midas Project",
+  "domain": "themidasproject.com",
+  "source": "https://www.themidasproject.com/articles/2025/02/28/announcing-the-seoul-commitment-tracker/",
+  "doc": "Announcing the Seoul Commitment Tracker (Feb 2025)",
+  "quote": "The Seoul Tracker evaluates sixteen leading AI companies",
+  "status": "verified",
+  "why": "Exact match (sentence continues '...that promised to implement safety frameworks at the 2024 AI Seoul Summit'). Also says no company earned better than 'B-' and six got 'F'.",
+  "hq": "US"
+ },
+ {
+  "name": "ControlAI",
+  "domain": "controlai.org",
+  "source": "https://controlai.org/",
+  "doc": "ControlAI homepage",
+  "quote": "If superintelligent AI is developed anywhere, this could cause the extinction of the human race.",
+  "status": "verified",
+  "why": "The draft quote ('extinction of the human race') did not match: the fetch returned 'extinction of the humanity', so the wording is uncertain. Replaced it with an unambiguous sentence. Confirmed: controlai.com returns a 302 redirect to controlai.org.",
+  "hq": "GB"
+ },
+ {
+  "name": "PauseAI (Global)",
+  "domain": "pauseai.info",
+  "source": "https://pauseai.info/",
+  "doc": "PauseAI homepage",
+  "quote": "AI could end humanity.",
+  "status": "verified",
+  "why": "The draft quote on /xrisk was CAIS's wording, cited there, not PauseAI's own voice. Replaced it with the homepage line: 'We are risking human extinction. We need to pause AI development, right now.'",
+  "hq": "NL"
+ },
+ {
+  "name": "PauseAI US",
+  "domain": "pauseai-us.org",
+  "source": "https://www.pauseai-us.org/",
+  "doc": "PauseAI US homepage",
+  "quote": "a technology that could cause mass unemployment, catastrophic accidents, and even human extinction",
+  "status": "verified",
+  "why": "The draft quote from /about/ was a line about opinion polls, not an organizational warning. Replaced it with the homepage sentence 'AI companies are racing to build a technology that could cause...'.",
+  "hq": "US"
+ },
+ {
+  "name": "Redwood Research",
+  "domain": "redwoodresearch.org",
+  "source": "https://www.redwoodresearch.org",
+  "doc": "Redwood Research homepage",
+  "quote": "a bedrock approach for mitigating catastrophic risk from misaligned AI",
+  "status": "verified",
+  "why": "Exact match ('AI control has been framed as a bedrock approach...'). The homepage also says 'could enable future AIs to take over.' It is written in a research voice rather than as a public campaign.",
+  "hq": "US"
+ },
+ {
+  "name": "Centre for the Governance of AI (GovAI)",
+  "domain": "governance.ai",
+  "source": "https://www.governance.ai/research-paper/model-evaluation-for-extreme-risks",
+  "doc": "Model Evaluation for Extreme Risks (co-authored paper)",
+  "quote": "Further progress in AI development could lead to capabilities that pose extreme risks",
+  "status": "weak",
+  "why": "The quote is verbatim but comes from a paper led by DeepMind (Shevlane et al.) with GovAI co-authors, and its 'extreme risks' examples are cyber and manipulation. The about page ('help decision-makers ... navigate the transition to a world with advanced AI') has no catastrophic or loss-of-control warning. Its research list covers catastrophic misuse (power grid, bioterrorism) but nothing on extinction or loss of control. Legal entity: US 501(c)(3) with UK subsidiary; offices in London and DC.",
+  "hq": "GB"
+ },
+ {
+  "name": "Centre for Long-Term Resilience (CLTR)",
+  "domain": "longtermresilience.org",
+  "source": "https://www.longtermresilience.org/reports/ai-loss-of-control-incidents-are-worsening-shows-cltr-analysis/",
+  "doc": "AI loss of control incidents are worsening (29 Aug 2026)",
+  "quote": "AI loss of control incidents are worsening significantly.",
+  "status": "verified",
+  "why": "Exact match. The report also says 'including ones with catastrophic consequences'. CLTR manages the Loss of Control Observatory.",
+  "hq": "GB"
+ },
+ {
+  "name": "Centre for the Study of Existential Risk (CSER)",
+  "domain": "cser.ac.uk",
+  "source": "https://www.cser.ac.uk/research/risks-from-artificial-intelligence/",
+  "doc": "Risks from Artificial Intelligence (research area)",
+  "quote": "could also potentially pose catastrophic risks from accidents (safety) or misuse (security)",
+  "status": "verified",
+  "why": "This AI-specific page replaces the draft's generic mission quote, which was verbatim on /about-us/ but not about AI. The wording is hedged. The page belongs to a University of Cambridge centre.",
+  "hq": "GB"
+ },
+ {
+  "name": "AI Futures Project",
+  "domain": "aifutures.org",
+  "source": "https://ai-2027.com",
+  "doc": "AI 2027 (Apr 2025)",
+  "quote": "Agent-4 is adversarially misaligned",
+  "status": "verified",
+  "why": "Verbatim, and the page credits the AI Futures Project, so it is the org's own named publication. Caveat: the quote is scenario narrative, not a direct statement. aifutures.org itself has no warning language. The ai-futures.org redirect was not checked.",
+  "hq": "US"
+ },
+ {
+  "name": "Encode",
+  "domain": "encodeai.org",
+  "source": "https://encodeai.org/priorities/",
+  "doc": "Encode priorities",
+  "quote": "We believe AI could cause catastrophic risks",
+  "status": "verified",
+  "why": "The draft dropped 'We believe'. The full sentence adds 'whether through deliberate misuse or the loss of human control', 16 words total, so it was trimmed.",
+  "hq": "US"
+ },
+ {
+  "name": "CeSIA (Centre pour la Sécurité de l'IA)",
+  "domain": "cesia.org",
+  "source": "https://red-lines.ai",
+  "doc": "Global Call for AI Red Lines (co-organizer)",
+  "quote": "increasingly difficult to exert meaningful human control in the coming years",
+  "status": "verified",
+  "why": "Exact match. red-lines.ai names CeSIA as one of three launch organizers, with The Future Society and CHAI, so this is a joint campaign. CeSIA's own site (cesia.org/en/, Paris, no redirect seen) says only 'dedicated to preventing major risks associated with AI'. The securite-ia.fr redirect was not checked.",
+  "hq": "FR"
+ },
+ {
+  "name": "Palisade Research",
+  "domain": "palisaderesearch.org",
+  "source": "https://palisaderesearch.org/about/",
+  "doc": "About Palisade",
+  "quote": "avoid permanent disempowerment by strategic AI agents",
+  "status": "verified",
+  "why": "Exact match. The page also says 'nobody has a credible plan to prevent humans from losing control of superintelligence'. It confirms a Berkeley, CA location.",
+  "hq": "US"
+ },
+ {
+  "name": "Existential Risk Observatory",
+  "domain": "existentialriskobservatory.org",
+  "source": "https://www.existentialriskobservatory.org/",
+  "doc": "ERO homepage (list of existential risks)",
+  "quote": "Future artificial intelligence (AI) with goals that may be different from ours",
+  "status": "verified",
+  "why": "Verbatim item in a list introduced by 'The most important existential risks as recent research identifies them are:'. The draft's blog post ('Yes RAND, AI Could Really Cause Human Extinction') could not be fetched because of a robots.txt error, so its title is unverified; a manual browser check would give a stronger quote. HQ NL (Amsterdam per draft; not confirmed on the page).",
+  "hq": "NL"
+ },
+ {
+  "name": "AISafety.info (Stampy)",
+  "domain": "aisafety.info",
+  "source": "https://aisafety.info/questions/NM3I/",
+  "doc": "6: AI's goals may not match ours",
+  "quote": "Create a superintelligent AI with the wrong goals? Your species goes extinct.",
+  "status": "verified",
+  "why": "Exact match. The page also says 'the default outcome is a catastrophe.' Fiscally sponsored by Ashgro (US).",
+  "hq": "US"
+ }
 ]

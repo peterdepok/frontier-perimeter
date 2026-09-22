@@ -133,7 +133,7 @@
   "dmarc": "reject",
   "rua": true,
   "spf": "hardfail",
-  "dnssec": "?",
+  "dnssec": "no",
   "mx": "yes"
  },
  "encodeai.org": {
@@ -332,9 +332,9 @@
  "minimax.io": {
   "d": "minimax.io",
   "dmarc": "absent",
-  "spf": "absent",
+  "spf": "hardfail",
   "dnssec": "no",
-  "mx": "no"
+  "mx": "yes"
  },
  "mistral.ai": {
   "d": "mistral.ai",

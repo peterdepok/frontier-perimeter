@@ -1,1 +1,457 @@
-{"01.ai": {"d": "01.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "10alabs.com": {"d": "10alabs.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "aisafety.info": {"d": "aisafety.info", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "aisi.go.jp": {"d": "aisi.go.jp", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "aisi.gov.uk": {"d": "aisi.gov.uk", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "aisi.re.kr": {"d": "aisi.re.kr", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "amazon.com": {"d": "amazon.com", "mtasts": "no", "tlsrpt": "no", "bimi": "yes", "caa": "no"}, "anthropic.com": {"d": "anthropic.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "apolloresearch.ai": {"d": "apolloresearch.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "bitsight.com": {"d": "bitsight.com", "mtasts": "no", "tlsrpt": "yes", "bimi": "no", "caa": "no"}, "blackkite.com": {"d": "blackkite.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "cesia.org": {"d": "cesia.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "cognition.ai": {"d": "cognition.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "cohere.com": {"d": "cohere.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "controlai.org": {"d": "controlai.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "cser.ac.uk": {"d": "cser.ac.uk", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "ec.europa.eu": {"d": "ec.europa.eu", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "encodeai.org": {"d": "encodeai.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "entreprises.gouv.fr": {"d": "entreprises.gouv.fr", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "epoch.ai": {"d": "epoch.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "existentialriskobservatory.org": {"d": "existentialriskobservatory.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "faculty.ai": {"d": "faculty.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "far.ai": {"d": "far.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "futureoflife.org": {"d": "futureoflife.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "g42.ai": {"d": "g42.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "google.com": {"d": "google.com", "mtasts": "yes", "tlsrpt": "yes", "bimi": "no", "caa": "yes"}, "grayswan.ai": {"d": "grayswan.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "haizelabs.com": {"d": "haizelabs.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "huggingface.co": {"d": "huggingface.co", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "ibm.com": {"d": "ibm.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "industry.gov.au": {"d": "industry.gov.au", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "inflection.ai": {"d": "inflection.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "intelligence.org": {"d": "intelligence.org", "mtasts": "yes", "tlsrpt": "yes", "bimi": "no", "caa": "no"}, "irregular.com": {"d": "irregular.com", "mtasts": "yes", "tlsrpt": "yes", "bimi": "no", "caa": "no"}, "ised-isde.canada.ca": {"d": "ised-isde.canada.ca", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "longtermresilience.org": {"d": "longtermresilience.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "magic.dev": {"d": "magic.dev", "mtasts": "yes", "tlsrpt": "yes", "bimi": "no", "caa": "no"}, "meta.com": {"d": "meta.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "metr.org": {"d": "metr.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "microsoft.com": {"d": "microsoft.com", "mtasts": "yes", "tlsrpt": "yes", "bimi": "no", "caa": "yes"}, "minimax.io": {"d": "minimax.io", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "mistral.ai": {"d": "mistral.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "navercorp.com": {"d": "navercorp.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "nist.gov": {"d": "nist.gov", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "nvidia.com": {"d": "nvidia.com", "mtasts": "no", "tlsrpt": "no", "bimi": "yes", "caa": "no"}, "openai.com": {"d": "openai.com", "mtasts": "no", "tlsrpt": "no", "bimi": "yes", "caa": "yes"}, "palisaderesearch.org": {"d": "palisaderesearch.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "yes"}, "pauseai-us.org": {"d": "pauseai-us.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "pauseai.info": {"d": "pauseai.info", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "perplexity.ai": {"d": "perplexity.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "yes", "caa": "no"}, "redwoodresearch.org": {"d": "redwoodresearch.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "safe.ai": {"d": "safe.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "safer-ai.org": {"d": "safer-ai.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "samsung.com": {"d": "samsung.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "scale.com": {"d": "scale.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "securebio.org": {"d": "securebio.org", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "securityscorecard.com": {"d": "securityscorecard.com", "mtasts": "yes", "tlsrpt": "yes", "bimi": "no", "caa": "no"}, "sgaisi.sg": {"d": "sgaisi.sg", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "signaturescience.com": {"d": "signaturescience.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "themidasproject.com": {"d": "themidasproject.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "tii.ae": {"d": "tii.ae", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "trajectorylabs.com": {"d": "trajectorylabs.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "virtueai.com": {"d": "virtueai.com", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}, "x.ai": {"d": "x.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "yes", "caa": "?"}, "z.ai": {"d": "z.ai", "mtasts": "no", "tlsrpt": "no", "bimi": "no", "caa": "no"}}
+{
+ "01.ai": {
+  "d": "01.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "10alabs.com": {
+  "d": "10alabs.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "aisafety.info": {
+  "d": "aisafety.info",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "aisi.go.jp": {
+  "d": "aisi.go.jp",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "aisi.gov.uk": {
+  "d": "aisi.gov.uk",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "aisi.re.kr": {
+  "d": "aisi.re.kr",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "amazon.com": {
+  "d": "amazon.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "yes",
+  "caa": "no"
+ },
+ "anthropic.com": {
+  "d": "anthropic.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "apolloresearch.ai": {
+  "d": "apolloresearch.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "bitsight.com": {
+  "d": "bitsight.com",
+  "mtasts": "no",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "blackkite.com": {
+  "d": "blackkite.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "cesia.org": {
+  "d": "cesia.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "cognition.ai": {
+  "d": "cognition.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "cohere.com": {
+  "d": "cohere.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "controlai.org": {
+  "d": "controlai.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "cser.ac.uk": {
+  "d": "cser.ac.uk",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "ec.europa.eu": {
+  "d": "ec.europa.eu",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "encodeai.org": {
+  "d": "encodeai.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "entreprises.gouv.fr": {
+  "d": "entreprises.gouv.fr",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "epoch.ai": {
+  "d": "epoch.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "existentialriskobservatory.org": {
+  "d": "existentialriskobservatory.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "faculty.ai": {
+  "d": "faculty.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "far.ai": {
+  "d": "far.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "futureoflife.org": {
+  "d": "futureoflife.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "g42.ai": {
+  "d": "g42.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "google.com": {
+  "d": "google.com",
+  "mtasts": "yes",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "grayswan.ai": {
+  "d": "grayswan.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "haizelabs.com": {
+  "d": "haizelabs.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "huggingface.co": {
+  "d": "huggingface.co",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "ibm.com": {
+  "d": "ibm.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "industry.gov.au": {
+  "d": "industry.gov.au",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "inflection.ai": {
+  "d": "inflection.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "intelligence.org": {
+  "d": "intelligence.org",
+  "mtasts": "yes",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "irregular.com": {
+  "d": "irregular.com",
+  "mtasts": "yes",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "ised-isde.canada.ca": {
+  "d": "ised-isde.canada.ca",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "longtermresilience.org": {
+  "d": "longtermresilience.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "magic.dev": {
+  "d": "magic.dev",
+  "mtasts": "yes",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "meta.com": {
+  "d": "meta.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "metr.org": {
+  "d": "metr.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "microsoft.com": {
+  "d": "microsoft.com",
+  "mtasts": "yes",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "minimax.io": {
+  "d": "minimax.io",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "mistral.ai": {
+  "d": "mistral.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "navercorp.com": {
+  "d": "navercorp.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "nist.gov": {
+  "d": "nist.gov",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "nvidia.com": {
+  "d": "nvidia.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "yes",
+  "caa": "no"
+ },
+ "openai.com": {
+  "d": "openai.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "yes",
+  "caa": "yes"
+ },
+ "palisaderesearch.org": {
+  "d": "palisaderesearch.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "yes"
+ },
+ "pauseai-us.org": {
+  "d": "pauseai-us.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "pauseai.info": {
+  "d": "pauseai.info",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "perplexity.ai": {
+  "d": "perplexity.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "yes",
+  "caa": "no"
+ },
+ "redwoodresearch.org": {
+  "d": "redwoodresearch.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "safe.ai": {
+  "d": "safe.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "safer-ai.org": {
+  "d": "safer-ai.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "samsung.com": {
+  "d": "samsung.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "scale.com": {
+  "d": "scale.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "securebio.org": {
+  "d": "securebio.org",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "securityscorecard.com": {
+  "d": "securityscorecard.com",
+  "mtasts": "yes",
+  "tlsrpt": "yes",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "sgaisi.sg": {
+  "d": "sgaisi.sg",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "signaturescience.com": {
+  "d": "signaturescience.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "themidasproject.com": {
+  "d": "themidasproject.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "tii.ae": {
+  "d": "tii.ae",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "trajectorylabs.com": {
+  "d": "trajectorylabs.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "virtueai.com": {
+  "d": "virtueai.com",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ },
+ "x.ai": {
+  "d": "x.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "yes",
+  "caa": "yes"
+ },
+ "z.ai": {
+  "d": "z.ai",
+  "mtasts": "no",
+  "tlsrpt": "no",
+  "bimi": "no",
+  "caa": "no"
+ }
+}

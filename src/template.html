@@ -413,6 +413,11 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 .mth-k{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
 .mth-v{font-size:12.5px;line-height:1.5;color:var(--text-body);max-width:92ch}
 .mth-v.lim{color:var(--text-secondary)}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:14px 0 0}
+.dl{display:block;border:1px solid var(--border-default);border-radius:10px;padding:12px 14px;background:var(--surface-card);text-decoration:none;color:inherit}
+.dl:hover{border-color:var(--gold-border)}
+.dl b{display:block;font-size:13.5px;color:var(--gold);font-weight:600}
+.dl span{display:block;font-size:12px;color:var(--text-body);margin-top:4px;line-height:1.45}
 .lit-c{display:block;margin:6px 0 0;padding-left:10px;border-left:2px solid var(--map-edge);font-size:13px;color:var(--text-body);line-height:1.4}
 .lit-c .lit-m{display:block;font-size:11px;color:var(--text-muted);letter-spacing:.02em}
 .lit-c .lit-r{font-size:11px;color:var(--warn)}
@@ -607,7 +612,7 @@ details.full-record>summary:hover{color:var(--text-strong)}
   </div>
 </main>
 
-<p class="foot">Read from the public record on <span data-n="scandate">the scan date</span>. Inclusion documents were fetched and quoted in September 2026. <b>What this is:</b> a Level 1 curb inspection of the organizations in the AI-risk debate, against a published code, with every reading dated, sourced and bounded on the Method page. <b>What it is not:</b> a security rating, a ranking, a penetration test or a finding about any organization&rsquo;s internal controls. The controls that protect model weights from a capable attacker sit behind Level 2 and beyond it; a clean curb says nothing about them, and a mark below the Floor says only what it says. Any organization can ask for a re-measure. Inclusion is neither an endorsement nor an accusation. By Pete Depok (Deep Hawks). An independent work; not a publication of any organization the author advises.</p>
+<p class="foot">Read from the public record on <span data-n="scandate">the scan date</span>. Inclusion documents were fetched and quoted in September 2026. <b>What this is:</b> a Level 1 curb inspection of the organizations in the AI-risk debate, against a published code, with every reading dated, sourced and bounded on the Method page. <b>What it is not:</b> a security rating, a ranking, a penetration test or a finding about any organization&rsquo;s internal controls. The controls that protect model weights from a capable attacker sit behind Level 2 and beyond it; a clean curb says nothing about them, and a mark below the Floor says only what it says. Any organization can ask for a re-measure. Inclusion is neither an endorsement nor an accusation. By Pete Depok (Deep Hawks). An independent work; not a publication of any organization the author advises. <b>Data, code and the validator:</b> <a class="ovlink" href="https://github.com/peterdepok/frontier-perimeter" target="_blank" rel="noopener noreferrer">github.com/peterdepok/frontier-perimeter</a>. Report a correction or re-measure as an issue.</p>
 </div>
 
 <div class="tip" id="tip"></div>
@@ -1316,7 +1321,17 @@ function methodHtml(){
     '<h2 class="std-h">Every signal, sourced</h2>'+
     '<p class="gp-p">For each Level 1 signal: what it is, its authoritative source of truth, exactly how this instrument reads it, and what it cannot see. Level 2 controls are listed in full on The Standard.</p>'+
     groups+
-    '<p class="mfoot" style="margin-top:20px">The code (controls.json), the Level 2 instrument (questionnaire.json), this methodology (methodology.json) and the full record (data/providers.json) are served alongside the site and versioned with it, and the scanner that produces the record is published in the same repository.</p>'+
+    '<h2 class="std-h">Data, code &amp; reproducibility</h2>'+
+    '<p class="gp-p">Everything on this map is generated from the files below, served alongside the site and versioned with it. The scanner that produces the record, the build, and a validator that re-checks the invariants are in the same public repository. Dataset read on '+SCAN_DATE+'; methodology '+esc(M.version)+'.</p>'+
+    '<div class="dl-grid">'+
+    '<a class="dl" href="./data/providers.json" download><b>providers.json &darr;</b><span>Every organization, its inclusion source and quoted sentence, and its Level 1 signals — the public record the map renders.</span></a>'+
+    '<a class="dl" href="./controls.json" download><b>controls.json &darr;</b><span>The Frontier Perimeter Security Standard: every control, its tier, level and framework mapping.</span></a>'+
+    '<a class="dl" href="./methodology.json" download><b>methodology.json &darr;</b><span>How each signal is read, its source of truth, and what it cannot see.</span></a>'+
+    '<a class="dl" href="./questionnaire.json" download><b>questionnaire.json &darr;</b><span>The Level 2 self-assessment instrument.</span></a>'+
+    '<a class="dl" href="'+REPO+'" target="_blank" rel="noopener noreferrer"><b>Repository &nearr;</b><span>The scanner, the build, this methodology and the validator. Report a correction or re-measure as an issue.</span></a>'+
+    '<a class="dl" href="'+REPO+'/blob/main/VERIFICATION.md" target="_blank" rel="noopener noreferrer"><b>Verification log &nearr;</b><span>Every inclusion quote checked against its primary source, and the data re-verification record.</span></a>'+
+    '</div>'+
+    '<p class="mfoot" style="margin-top:14px">The public data preserves the disclosure boundaries of the site: withheld Level 2 detail — which exposed service, which indexed vulnerability — is never present in providers.json. Field definitions live in this methodology; the same dated, sourced record backs every figure, chart, table and profile, so a reader can re-compute any statistic from providers.json.</p>'+
     '</div>';
 }
 function fieldStats(){

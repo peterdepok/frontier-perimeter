@@ -424,7 +424,7 @@ const STD=ALL.filter(x=>x.tier==='std');
 
 document.getElementById('ttl').textContent=QSET.title+'.';
 document.getElementById('lede').textContent=QSET.subtitle;
-document.getElementById('disc').textContent=QSET.note+' This self-assessment stays in your browser; nothing is submitted anywhere. Download or print it to share with a lab you work with, or to hand back with your evidence attached.';
+document.getElementById('disc').textContent=QSET.note+' This self-assessment runs entirely in your browser: answers are saved only in this browser’s local storage, nothing is sent to any server, and no one reviews or receives it unless you export and share it yourself. It records what an organization reports about itself; it is not independent verification, and a completed self-assessment never becomes a reviewed result on the public map. Do not paste secrets, credentials, private keys or sensitive infrastructure detail here — describe your evidence in words and keep the evidence itself elsewhere. Download or print it to hand to a lab you work with.';
 document.getElementById('firm').value=state.firm||'';
 
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}

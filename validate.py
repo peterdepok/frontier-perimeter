@@ -29,7 +29,15 @@ errors, warnings = [], []
 
 # ---- the status rule, re-implemented from the published fields only ----
 def dmarc_state(sc):
-    """Mirror of st(sc).A1 in the site. A meet requires an enforcing policy at pct=100."""
+    """Mirror of st(sc).A1 in the site, per RFC 9989.
+
+    A record requesting enforcement (p=quarantine or reject) clears the observable
+    Floor. Per RFC 9989 the pct tag is retired; a record still carrying pct<100 is
+    read as an enforcing policy in *partial rollout* ('partial') — it clears the
+    Floor with that caveat, and is never described as a rejection percentage. A
+    record expressing no preference (p=none) or absent is 'fail'. Receiver
+    behaviour is not measured anywhere.
+    """
     L = sc.get("L1")
     if L == "meet":
         pct = sc.get("pct")
@@ -37,6 +45,10 @@ def dmarc_state(sc):
     if L == "below":  return "fail"
     if L == "nomail": return "nomail"
     return "na"
+
+def clears_floor(sc):
+    """The single Floor-clearing rule: the record requests enforcement."""
+    return dmarc_state(sc) in ("pass", "partial")
 
 # 1. inclusion evidence
 for p in firms:
@@ -57,7 +69,7 @@ for p in firms:
         errors.append(f"duplicate name {p.get('n')}")
     seen_name[n] = True
 
-# 3. unknown/failed can never be a meet; pass requires pct=100
+# 3. unknown/failed can never be a meet; a clean 'pass' carries no legacy pct tag
 for p in firms:
     sc = p.get("sc") or {}
     st = dmarc_state(sc)
@@ -65,7 +77,37 @@ for p in firms:
         if sc.get("L1") != "meet":
             errors.append(f"{p.get('n')}: DMARC 'pass' but L1 is {sc.get('L1')!r}")
         if sc.get("pct") is not None and sc["pct"] < 100:
-            errors.append(f"{p.get('n')}: DMARC 'pass' but pct={sc['pct']} (<100)")
+            errors.append(f"{p.get('n')}: DMARC 'pass' but carries pct={sc['pct']} (<100); should be 'partial'")
+
+# 3b. no contradictory DMARC conclusions per organization.
+#     Every summary, finding, table and aggregate on the site derives from the
+#     one interpretation, st(sc).A1. This re-derives the Floor-clearing conclusion
+#     two independent ways — from the parsed state, and from the raw published
+#     policy tag — and requires them to agree for every org whose mail was read.
+#     A disagreement is exactly the "reader sees conflicting conclusions" bug.
+ENFORCING_TAGS = ("quarantine", "reject")
+NOPREF_TAGS    = ("none", "absent")
+for p in firms:
+    sc = p.get("sc") or {}
+    a1 = dmarc_state(sc)
+    if a1 not in ("pass", "partial", "fail"):
+        continue  # nomail / not-observable: no policy conclusion is stated
+    policy = sc.get("dmarc")
+    by_state  = clears_floor(sc)                 # pass|partial -> clears
+    by_policy = policy in ENFORCING_TAGS         # raw tag requests enforcement
+    if by_state != by_policy:
+        errors.append(
+            f"{p.get('n')}: contradictory DMARC conclusion — state {a1!r} "
+            f"(clears Floor={by_state}) but published policy {policy!r} "
+            f"(requests enforcement={by_policy})")
+    # a 'fail' must be backed by a no-preference/absent tag, never an enforcing one
+    if a1 == "fail" and policy not in NOPREF_TAGS:
+        errors.append(f"{p.get('n')}: DMARC 'fail' but policy tag is {policy!r} "
+                      f"(expected one of {NOPREF_TAGS})")
+    # an enforcing state must be backed by an enforcing tag
+    if a1 in ("pass", "partial") and policy not in ENFORCING_TAGS:
+        errors.append(f"{p.get('n')}: DMARC {a1!r} but policy tag is {policy!r} "
+                      f"(expected one of {ENFORCING_TAGS})")
 
 # 4. sanctions and leak-site are public-record, not Floor
 tier = {c["id"]: c["tier"] for f in controls["families"] for c in f["controls"]}
@@ -102,8 +144,12 @@ print(f"  DMARC overall: {overall}")
 print(f"  DMARC entrusted ({len(entrusted)}): {ent}")
 print(f"  observable Level-1 Floor control(s): {floor_l1}")
 print(f"  sanctioned organizations: {len(ofac_notclear)} {ofac_notclear or ''}")
-print(f"  headline: {ent['fail']} of {len(entrusted)} entrusted do not enforce DMARC; "
-      f"{ent['partial']} enforce partly; {overall['pass']} of {overall['pass']+overall['partial']+overall['fail']} readable domains fully enforce")
+ov_den = overall['pass'] + overall['partial'] + overall['fail']
+ov_enf = overall['pass'] + overall['partial']
+print(f"  headline: {ent['fail']} of {len(entrusted)} entrusted request no DMARC enforcement "
+      f"(p=none or absent); {ent['partial']} request enforcement in a legacy partial rollout; "
+      f"{ov_enf} of {ov_den} readable domains request enforcement")
+print("  note: receiver behaviour is NOT measured; figures describe the published record only")
 
 if warnings:
     print(f"\n  {len(warnings)} warning(s):")

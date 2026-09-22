@@ -555,13 +555,13 @@ details.full-record>summary:hover{color:var(--text-strong)}
     <section class="intro">
       <p class="kicker">Level 1 &middot; read from the public record &middot; <span data-n="scandate">the scan date</span></p>
       <h1>Frontier labs vet their models. Who vets the organizations that test them?</h1>
-      <p class="lede-sub">Before a model ships, its developer gives outside organizations early access to test it: evaluation nonprofits, red teams, biosecurity specialists, government institutes. This reads the publicly observable security edge of <b><span class="tnum" data-n="all">65</span></b> organizations named in frontier-AI testing, development, oversight and advocacy &mdash; each included from a cited public document. It is a curb inspection of what anyone can observe from outside. It is <b>not</b> an assessment of the internal environments that actually hold model access.</p>
-      <div class="lede-find" id="ledeFind"></div>
+      <p class="lede-sub">Before a model ships, its developer gives outside organizations early access to test it. This reads the publicly observable security edge of <b><span class="tnum" data-n="all">65</span></b> organizations named in frontier-AI testing, oversight and advocacy &mdash; each included from a cited public document. It is a curb inspection of what anyone can observe from outside, <b>not</b> an assessment of the internal environments that hold model access.</p>
       <div class="lede-cta">
         <button class="pill on" type="button" onclick="selectTab(0)">Explore the organizations &rarr;</button>
         <a class="ovlink" href="#" onclick="selectTab(-4);return false">Read the method</a>
         <a class="ovlink" href="#" onclick="selectTab(-3);return false">See the Standard</a>
       </div>
+      <div class="lede-find" id="ledeFind"></div>
       <div class="essay">
         <h2>Why the edge is the point</h2>
         <p>From the moment a lab grants pre-release access, each organization it trusts becomes part of the lab&rsquo;s attack surface, and nobody publishes a measure of it. In July 2026 a three-person research team reached OpenAI&rsquo;s GitHub organization and employee accounts through an image-upload flaw on its community forum, a peripheral site nobody thinks of as the vault (<a class="ovlink" href="https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/" target="_blank" rel="noopener">TechCrunch, 18 September 2026</a>). Attackers go through whatever is attached to the building.</p>
@@ -1178,12 +1178,16 @@ function st(sc){
   S.F5= sc.sectxt==='yes'?'rec':(sc.sectxt==='no'||sc.sectxt==='expired')?'recx':'na';
   return S;
 }
-// The only pass/fail control observable from the curb is DMARC enforcement (A1).
-// Sanctions moved to public-record standing (v0.4); exposed-service and vulnerability
-// determinations are Level 2. "Below the Floor" means A1 does not fully meet: it does
-// not enforce (fail) or enforces on only part of its mail (partial).
-function floorItems(sc){const s=st(sc);return ['A1'].filter(k=>s[k]==='fail'||s[k]==='partial')}
-function floorClear(sc){return st(sc).A1==='pass'}
+// The only pass/fail control observable from the curb is whether the DMARC record
+// requests an enforcing policy (A1). Sanctions are public-record standing (v0.4);
+// exposed-service and vulnerability determinations are Level 2. Following RFC 9989
+// (which obsoletes RFC 7489 and retires the pct tag), a p=quarantine or p=reject
+// record REQUESTS enforcement and clears the observable Floor; a legacy pct<100 is a
+// partial-rollout caveat, not a below-Floor failure. "Below the Floor" (A1=fail) means
+// the record expresses no preference (p=none) or there is no DMARC record at all.
+function floorItems(sc){const s=st(sc);return ['A1'].filter(k=>s[k]==='fail')}
+function enforcing(sc){const a=st(sc).A1;return a==='pass'||a==='partial';}  // record requests enforcement
+function floorClear(sc){return enforcing(sc);}
 function belowFloor(sc){return floorItems(sc).length>0}
 function recHtml(p){
   const sc=p.sc||{}; let items='';
@@ -1332,14 +1336,19 @@ function methodHtml(){
     '<a class="dl" href="'+REPO+'/blob/main/VERIFICATION.md" target="_blank" rel="noopener noreferrer"><b>Verification log &nearr;</b><span>Every inclusion quote checked against its primary source, and the data re-verification record.</span></a>'+
     '</div>'+
     '<p class="mfoot" style="margin-top:14px">The public data preserves the disclosure boundaries of the site: withheld Level 2 detail — which exposed service, which indexed vulnerability — is never present in providers.json. Field definitions live in this methodology; the same dated, sourced record backs every figure, chart, table and profile, so a reader can re-compute any statistic from providers.json.</p>'+
+    ((M.changes&&M.changes.length)?'<h2 class="std-h">Change history</h2>'+
+      '<p class="gp-p">What changed between methodology versions, and why. Raw records are preserved across revisions; where a revision changes a classification it is the interpretation that changed, not the underlying evidence.</p>'+
+      '<div class="mth-sig"><div class="mth-rows">'+
+      M.changes.map(c=>'<div class="mth-r"><span class="mth-k">'+esc(c.version)+(c.date?' &middot; '+esc(c.date):'')+'</span><span class="mth-v">'+esc(c.summary)+'</span></div>').join('')+
+      '</div></div>':'')+
     '</div>';
 }
 function fieldStats(){
   const F=[]; S.forEach(s=>s.cats.forEach(c=>c.p.forEach(p=>{if(p.sc)F.push(p.sc);})));
   const N=F.length;
-  const share=(k)=>{const obs=F.map(st).filter(x=>x[k]!=='na'&&x[k]!=='nomail'&&x[k]!=='l2');return [obs.filter(x=>x[k]==='pass'||x[k]==='rec').length,obs.length]};
+  const share=(k)=>{const obs=F.map(st).filter(x=>x[k]!=='na'&&x[k]!=='nomail'&&x[k]!=='l2');return [obs.filter(x=>x[k]==='pass'||x[k]==='rec'||x[k]==='partial').length,obs.length]};
   const rows=[
-    ['A1','Fully enforcing DMARC (pct=100)','floor'],
+    ['A1','Requests DMARC enforcement (p=quarantine or reject)','floor'],
     ['B3','Web edge: only web ports on assessed host','std'],['A3','DKIM key published (common selectors)','std'],['A2','SPF ends in -all (hard fail)','std'],['A4','MTA-STS record present','std'],
     ['A5','No homoglyph look-alike with live mail','std'],['B2','HSTS (six months or more)','std'],['F5','Valid security.txt','std'],
     ['C2','DNSSEC + CAA records present','std'],['C3','Clean network reputation','std']].map(([k,l,t])=>{const [m,d]=share(k);return [l,m,d,t]});
@@ -1352,10 +1361,10 @@ function fieldStats(){
   const dmFail=F.filter(x=>st(x).A1==='fail').length;
   const dmNoMail=F.filter(x=>st(x).A1==='nomail').length;
   const dmDen=dmFull+dmPartial+dmFail;
-  const dmPct=dmDen?Math.round(100*dmFull/dmDen):0;
+  const dmEnf=dmFull+dmPartial;
   return '<div class="fld">'+
-    '<div class="fld-head"><span class="fld-big">'+dmFull+'<span style="font-size:.5em;color:var(--text-muted)"> / '+dmDen+'</span></span>'+
-    '<span class="fld-cap">organizations, of the '+dmDen+' whose mail domain could be read, fully enforce DMARC (p=quarantine or reject at pct=100) &mdash; the one control observable from the curb that a receiving server actually acts on. <b>'+dmPartial+'</b> more enforce on only part of their mail, <b>'+dmFail+'</b> do not enforce, and <b>'+dmNoMail+'</b> publish no mail servers (not applicable). Sanctions and ransomware listings are matters of public record, shown separately below and never scored against the Floor. Everything else on the Floor &mdash; phishing-resistant MFA, isolated pre-release access, backups, endpoint detection &mdash; needs Level 2.</span></div>'+
+    '<div class="fld-head"><span class="fld-big">'+dmEnf+'<span style="font-size:.5em;color:var(--text-muted)"> / '+dmDen+'</span></span>'+
+    '<span class="fld-cap">organizations, of the '+dmDen+' whose mail domain could be read, publish a DMARC record that <b>requests enforcement</b> (p=quarantine or reject) &mdash; the one control observable from the curb that a receiving server is asked to act on. What any receiver then does is its own local policy and is not measured here. Of these, <b>'+dmPartial+'</b> carry the retired pct tag, a legacy partial-rollout signal. <b>'+dmFail+'</b> request no enforcement (p=none or no record), and <b>'+dmNoMail+'</b> publish no mail servers (not applicable). Sanctions and ransomware listings are matters of public record, shown separately below and never scored against the Floor. Everything else on the Floor &mdash; phishing-resistant MFA, isolated pre-release access, backups, endpoint detection &mdash; needs Level 2.</span></div>'+
     '<p class="mkick" style="margin-top:18px">Floor, the one curb-observable control</p><div class="mbars conc">'+rows.filter(r=>r[3]==='floor').map(bar).join('')+'</div>'+
     '<p class="mkick" style="margin-top:20px;color:var(--status-only-text)">Standard Practice, observable</p><div class="mbars conc">'+rows.filter(r=>r[3]==='std').map(bar).join('')+'</div>'+
     fieldBySector()+
@@ -1399,14 +1408,16 @@ function questionnaireHtml(){
 function summaryCard(p){
   const sc=p.sc; if(!sc)return"";
   const s=st(sc);
-  const A={pass:['Observed clear','good','It enforces DMARC at pct=100, so a message forged in its exact domain is rejected.'],
-    partial:['Partly enforced','mid','It enforces DMARC on only part of its mail (pct='+sc.pct+'), so forgeries of its exact domain are only partly rejected.'],
-    fail:['Item to resolve','weak','It does not enforce DMARC, so a message forged in its exact domain is not reliably rejected.'],
+  const dmObs = sc.dmarc==='reject'?'p=reject':sc.dmarc==='quarantine'?'p=quarantine':sc.dmarc==='none'?'p=none':'no DMARC record';
+  const asks = sc.dmarc==='reject'?'reject':'quarantine';
+  const A={pass:['Observed clear','good','Its DMARC record ('+dmObs+') requests an enforcing policy, asking receivers to '+asks+' mail forged in its exact domain. What a receiver does is its own local policy and is not measured.'],
+    partial:['Partial rollout','mid','Its DMARC record ('+dmObs+') requests enforcement but carries pct='+sc.pct+', a partial-rollout tag retired in RFC 9989. It clears the observable Floor, with that caveat.'],
+    fail:['Item to resolve','weak','Its DMARC record ('+dmObs+') requests no enforcement, so nothing in it asks a receiver to act on mail forged in its exact domain.'],
     nomail:['Not applicable','unk','It publishes no mail servers, so the DMARC control does not apply.'],
     na:['Not observable','unk','Its mail configuration could not be read in this pass.']}[s.A1]||['Not observable','unk',''];
   const extra=[];
-  if(sc.sectxt==='no'||sc.sectxt==='expired') extra.push('It publishes no valid security.txt, so there is no listed address to report a flaw to it.');
-  if(sc.exp&&sc.exp.o) extra.push('The single assessed web host also answers non-web services; the detail is held to Level 2.');
+  if(sc.sectxt==='no'||sc.sectxt==='expired') extra.push('No valid security.txt was found at the checked location; this is not evidence that no reporting channel exists elsewhere.');
+  if(sc.exp&&sc.exp.o) extra.push('The single assessed web host also answers non-web services; the detail is held to Level 2, and this is one host, not the whole infrastructure.');
   return '<div class="sumcard">'+
     '<div class="sum-row"><span class="sum-k">Observable Floor · DMARC</span><span class="pm-b '+A[1]+'">'+A[0]+'</span></div>'+
     '<p class="sum-obs">'+A[2]+(extra.length?' '+extra.join(' '):'')+'</p>'+
@@ -1415,16 +1426,17 @@ function summaryCard(p){
 }
 function permitHtml(p){
   const sc=p.sc; if(!sc)return"";
-  const B={pass:['Observed clear','good'],partial:['Partly enforced','mid'],fail:['Item to resolve','weak'],rec:['Present','good'],recx:['Advisable','mid'],l2:['Requires Level 2','mid'],na:['Not observable','unk'],nomail:['Not applicable · no mail','unk']};
+  const B={pass:['Observed clear','good'],partial:['Partial rollout','mid'],fail:['Item to resolve','weak'],rec:['Present','good'],recx:['Advisable','mid'],l2:['Requires Level 2','mid'],na:['Not observable','unk'],nomail:['Not applicable · no mail','unk']};
   const s=st(sc);
   function row(id,label,v,note){return '<div class="pm-c"><span class="pm-n">'+id+' '+label+(note?'<span class="pm-note">'+note+'</span>':'')+'</span><span class="pm-b '+B[v][1]+'">'+B[v][0]+'</span></div>';}
   const act=rwActive(sc);
+  const a1ask = sc.dmarc==='reject'?'reject':'quarantine';
   const a1note = s.A1==='partial'
-      ? 'DMARC is published as p='+(sc.dmarc||'quarantine')+', but pct='+sc.pct+', so receivers are asked to act on only '+sc.pct+'% of forged mail. A full pass is pct=100; below that, forgeries of the exact domain are only partly rejected.'
-      : s.A1==='fail'&&sc.dmarc==='none' ? (sc.rua?'Published in monitoring mode (p=none) with reports collected, so no forged mail is acted on':'Published, but p=none asks receivers to do nothing')
+      ? 'p='+(sc.dmarc||'quarantine')+' with pct='+sc.pct+'. The record requests an enforcing policy; pct is a partial-rollout tag retired in RFC 9989, ignored by conforming receivers and honoured as '+sc.pct+'% by legacy ones. Receiver behaviour is not measured.'
+      : s.A1==='fail'&&sc.dmarc==='none' ? (sc.rua?'p=none (no preference), with aggregate reports collected. No enforcement is requested; p=none does not guarantee delivery':'p=none: the record expresses no preference, so no enforcement is requested')
       : s.A1==='fail'&&sc.dmarc==='absent' ? 'No DMARC record, though the domain receives mail'
-      : s.A1==='nomail' ? 'Domain publishes no mail servers; a reject policy would still lock the name'
-      : s.A1==='pass' ? 'p='+(sc.dmarc||'reject')+', pct=100: receivers are asked to reject or quarantine every message forged in this exact domain'
+      : s.A1==='nomail' ? 'Domain publishes no mail servers; the control does not apply'
+      : s.A1==='pass' ? 'p='+(sc.dmarc||'reject')+(sc.pct!==undefined?', pct='+sc.pct:'')+': the record requests receivers '+a1ask+' mail forged in this exact domain. Receiver behaviour is not measured'
       : (sc.ovr||'');
   const floorObs=[
     ['A1','Enforcing DMARC on the mail domain',s.A1, a1note]];
@@ -1476,8 +1488,8 @@ function obsHtml(p){
     const v=sc[k]; const m=map[v]||map["?"];
     let extra="";
     if(k==="dmarc"&&(v==="quarantine"||v==="reject")&&sc.pct!==undefined&&sc.pct<100)
-      extra=' <span class="ob-pct">applied to '+sc.pct+'% of failing mail</span>';
-    if(k==="dmarc"&&v==="none"&&sc.rua) extra=' <span class="ob-pct">reports collected</span>';
+      extra=' <span class="ob-pct">carries pct='+sc.pct+' (a tag retired in RFC 9989)</span>';
+    if(k==="dmarc"&&v==="none"&&sc.rua) extra=' <span class="ob-pct">aggregate reports collected</span>';
     return '<li><span class="dn">'+label+'</span><span class="ob-v '+m[1]+'">'+m[0]+extra+'</span>'+
            '<span class="dd">'+why+'</span></li>';
   }).join("");
@@ -1499,18 +1511,30 @@ function obsHtml(p){
   const gone = sc.gone?'<p class="d-note" style="color:var(--warn)"><b>This domain did not resolve on '+SCAN_DATE+'.</b></p>':'';
   const MARK=[['spf','hardfail','SPF hard fail'],['dnssec','yes','DNSSEC'],['caa','yes','CAA'],['mtasts','yes','MTA-STS'],['tlsrpt','yes','TLS-RPT'],['bimi','yes','BIMI']];
   const held=MARK.filter(([k,v])=>sc[k]===v).map(m=>m[2]);
+  // One interpretation, shared with the summary card and the permit: derive from st().A1.
   let l1='';
-  if(sc.L1==='meet'||sc.L1==='below'){
-    const ok=sc.L1==='meet';
-    l1='<div class="l1 '+(ok?'pass':'fail')+'"><span class="l1-tag">Floor &middot; email authentication</span>'+
-      '<span class="l1-v">'+(ok?'Meets the Floor':'Below the Floor')+'</span>'+
-      '<p>'+(ok?'This domain publishes an enforcing DMARC policy, so a receiving mail server is asked to quarantine or reject a message forged in its exact name. It does not stop a look-alike domain or a compromised mailbox, but it closes the cheapest route to a message that reads as this organization: to a lab, a colleague, a journalist.'
-             :'This domain receives mail but does not publish an enforcing DMARC policy, so a receiving server is not asked to act on a message forged in its exact name. For an organization near unreleased models, that is the cheapest route to a convincing message in its name: to a lab asking for credentials, to a colleague, to a journalist. Closing it is one line of DNS once mail sources are aligned.')+'</p>'+
-      (held.length?'<p class="l1-plus"><b>Also publishes:</b> '+held.join(', ')+'.</p>':'')+'</div>';
-  } else if(sc.L1==='nomail'){
-    l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">No mail on this domain</span><p>The domain publishes no mail servers and no DMARC record, so the Floor control is not scored. A domain that sends no mail can still be forged; the published practice for such domains is p=reject with SPF -all, which is advisable here.</p></div>';
-  } else if(sc.ovr){
-    l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">Not observable</span><p>'+sc.ovr+'</p></div>';
+  {
+    const a=st(sc).A1;
+    const dmObs = sc.dmarc==='reject'?'p=reject':sc.dmarc==='quarantine'?'p=quarantine':sc.dmarc==='none'?'p=none':sc.dmarc==='absent'?'no DMARC record':'a DMARC record';
+    const asks = sc.dmarc==='reject'?'reject':'treat as suspicious (quarantine)';
+    const pctNote = (sc.pct!==undefined&&sc.pct<100)?' The record also carries <b>pct='+sc.pct+'</b>, a tag retired in RFC 9989 (which obsoletes RFC 7489). Conforming receivers ignore pct and apply the policy in full; receivers still following the older standard may apply it to '+sc.pct+'% of failing mail. This inspection reads the record, not receiver behaviour.':'';
+    if(a==='pass'){
+      l1='<div class="l1 pass"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">Requests an enforcing policy</span>'+
+        '<p>The DMARC record is <b>'+dmObs+'</b>, so it asks a receiving mail server to '+asks+' a message forged in this exact domain. What any given receiver actually does is its own local policy and is not measured here. This closes the cheapest route to a message that reads as this organization; it does nothing against a look-alike domain or a compromised mailbox.'+pctNote+'</p>'+
+        (held.length?'<p class="l1-plus"><b>Also publishes:</b> '+held.join(', ')+'.</p>':'')+'</div>';
+    } else if(a==='partial'){
+      l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">Enforcing policy, partial rollout</span>'+
+        '<p>The DMARC record is <b>'+dmObs+'</b>, an enforcing policy, so it asks receivers to '+asks+' a message forged in this exact domain.'+pctNote+' A full commitment drops the retired pct tag entirely. Clears the observable Floor, with that caveat noted.</p>'+
+        (held.length?'<p class="l1-plus"><b>Also publishes:</b> '+held.join(', ')+'.</p>':'')+'</div>';
+    } else if(a==='fail'){
+      l1='<div class="l1 fail"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">No enforcing policy requested</span>'+
+        '<p>This domain receives mail, but its DMARC record is <b>'+(dmObs)+'</b>'+(sc.dmarc==='none'?', which expresses no preference':'')+', so nothing in the record asks a receiver to act on a message forged in its exact name. p=none does not guarantee delivery &mdash; a receiver may still apply its own local policy &mdash; but no enforcement is requested. Publishing p=quarantine or p=reject, once legitimate senders are aligned, closes the cheapest route to a message in this organization&rsquo;s name.</p>'+
+        (held.length?'<p class="l1-plus"><b>Also publishes:</b> '+held.join(', ')+'.</p>':'')+'</div>';
+    } else if(a==='nomail'){
+      l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">Not applicable &middot; no mail</span><p>The domain publishes no mail servers, so the DMARC control does not apply. A domain that sends no mail can still be forged; the published practice is p=reject with SPF -all.</p></div>';
+    } else if(sc.ovr){
+      l1='<div class="l1"><span class="l1-tag">Floor &middot; email authentication</span><span class="l1-v">Not observable</span><p>'+sc.ovr+'</p></div>';
+    }
   }
   return '<div class="d-sec"><h4>Observed from outside <span class="d-status meas">'+SCAN_DATE+'</span></h4>'+gone+l1+
     '<p class="d-note">Read from public DNS and one ordinary visit to the public website on '+SCAN_DATE+'. Nothing was supplied by the organization and nothing was tested against its systems. These are the records as published, not a grade; an organization that has changed its configuration since can ask for a re-measure.</p>'+
@@ -1651,51 +1675,50 @@ document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
  const all=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.sc), N=all.length;
  const pc=x=>Math.round(x*100)+"%";
  // shared calculation layer: A1 states drive every DMARC figure on the page
- const full=ps=>ps.filter(p=>st(p.sc).A1==='pass').length;            // fully enforces (pct=100)
+ const enf=ps=>ps.filter(p=>enforcing(p.sc)).length;   // record requests enforcement (p=quarantine|reject)
  const dmDen=ps=>ps.filter(p=>['pass','fail','partial'].includes(st(p.sc).A1)).length; // mail observed
  const dmPart=ps=>ps.filter(p=>st(p.sc).A1==='partial').length;
  const dmFail=ps=>ps.filter(p=>st(p.sc).A1==='fail').length;
  const secOk=ps=>ps.filter(p=>p.sc.sectxt==='yes').length, secDen=ps=>ps.filter(p=>p.sc.sectxt&&p.sc.sectxt!=='?').length;
- const R=S.map(s=>{const ps=ring(s.id);return {id:s.id,n:s.name,t:ps.length,c:full(ps),dmd:dmDen(ps),sx:secOk(ps),sxd:secDen(ps)}});
+ const R=S.map(s=>{const ps=ring(s.id);return {id:s.id,n:s.name,t:ps.length,c:enf(ps),dmd:dmDen(ps),sx:secOk(ps),sxd:secDen(ps)}});
  const E=ring('entrusted');
- const eFull=full(E), eDen=dmDen(E), ePartial=dmPart(E), eFail=dmFail(E);
+ const eEnf=enf(E), eDen=dmDen(E), ePartial=dmPart(E), eFail=dmFail(E);
  const eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, eSecDen=secDen(E);
  const eOrigin=E.filter(p=>p.sc.exp&&p.sc.exp.o).length;
  const srcN=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.su).length;
- const not=eFail+ePartial;
  // ---- the 15-second opening findings, from the same numbers ----
  $("ledeFind").innerHTML=
-  '<div class="lf"><div class="n"><b>'+not+' of '+E.length+'</b> entrusted evaluators do not fully enforce DMARC</div><div class="d">'+eFail+' publish no enforcing policy'+(ePartial?', '+ePartial+(ePartial===1?' enforces on only part of its mail':' enforce on only part of their mail'):'')+'. A message forged in their exact domain is not reliably rejected. Level 1, '+SCAN_DATE+'.</div></div>'+
-  '<div class="lf"><div class="n"><b>'+eNoSec+' of '+eSecDen+'</b> publish no security.txt</div><div class="d">No published address for reporting a vulnerability to them (RFC 9116). Absence is not proof that no channel exists.</div></div>'+
+  '<div class="lf"><div class="n"><b>'+eFail+' of '+E.length+'</b> entrusted evaluators request no DMARC enforcement</div><div class="d">Their record is p=none or absent, so nothing in it asks a receiver to act on mail forged in their exact domain'+(ePartial?'; '+ePartial+' more request enforcement but in a partial rollout (a legacy pct tag)':'')+'. Receiver behaviour is not measured. Level 1, '+SCAN_DATE+'.</div></div>'+
+  '<div class="lf"><div class="n"><b>'+eNoSec+' of '+eSecDen+'</b> publish no valid security.txt</div><div class="d">No machine-readable reporting address was found at the checked /.well-known/ location (RFC 9116). This is not evidence that no reporting channel exists elsewhere.</div></div>'+
   '<div class="lf"><div class="n"><span class="ok">'+srcN+' of '+total+'</span> carry a cited source</div><div class="d">Every organization is included from a public document, with the sentence quoted on its profile.</div></div>';
  // ---- the fuller findings ----
  const ringBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.c+'/'+r.dmd+'</span></span><span class="mt"><i style="width:'+(r.dmd?r.c/r.dmd*100:0).toFixed(1)+'%;background:var(--status-only-text)"></i></span><span class="mv tnum">'+pc(r.dmd?r.c/r.dmd:0)+'</span></div>').join('');
  const secBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.sx+'/'+r.sxd+'</span></span><span class="mt"><i class="c" style="width:'+(r.sxd?r.sx/r.sxd*100:0).toFixed(1)+'%"></i></span><span class="mv tnum">'+pc(r.sxd?r.sx/r.sxd:0)+'</span></div>').join('');
  const raters=S.find(x=>x.id==='letter')?S.find(x=>x.id==='letter').cats.filter(c=>/ratings/i.test(c.n)).flatMap(c=>c.p):[];
- const rDm=full(raters), rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
+ const rDm=enf(raters), rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
  const rwN=all.filter(p=>p.sc.rw&&p.sc.rw.length).length, rwAct=all.filter(p=>rwActive(p.sc).length).length;
  const recN=all.filter(p=>p.sc.rec&&p.sc.rec.length).length, trN=all.filter(p=>p.sc.ofac&&p.sc.ofac!=='clear').length;
  const top=(key,skip)=>{const m={};all.forEach(p=>{const v=p.sc[key];if(!v||skip.indexOf(v)>=0)return;m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
  const M=top("mail",["?","none","other / self-hosted"]);
- const monitor=all.filter(p=>p.sc.L1==='below'&&p.sc.dmarc==='none').length, belowAll=all.filter(p=>st(p.sc).A1==='fail'||st(p.sc).A1==='partial').length;
+ const monitor=all.filter(p=>st(p.sc).A1==='fail'&&p.sc.dmarc==='none').length, belowAll=all.filter(p=>st(p.sc).A1==='fail').length;
  $("measured").innerHTML=
   '<p class="mkick">Level 1 &middot; the observable edge, by ring</p>'+
   '<h3>The publicly observable edge is uneven, and mostly unmeasured.</h3>'+
-  '<p>The one control a receiving mail server actually acts on, and the one this map can read from the curb, is DMARC enforcement: whether a message forged in an organization&rsquo;s exact domain is rejected. It is a narrow signal. It says nothing about how model access is held inside &mdash; that is a Level 2 question no outside read can answer. But it is cheap, it is universal, and the field is uneven. Sanctions and ransomware listings are matters of public record, shown separately below and never scored against this control.</p>'+
-  '<p>Two rings carry different weight. The <b>'+E.length+'</b> <b>entrusted</b> organizations each appear in a frontier lab&rsquo;s own system card as having tested a model before release, so a weak edge there is documented operational exposure. The organizations <b>warning the public</b> or <b>rating others</b> are included for what they publish, not for any access, so the same control is read as ordinary hygiene, not exposure. The share of each ring that <b>fully enforces DMARC</b> (p=quarantine or reject at pct=100), among domains whose mail could be read:</p>'+
+  '<p>The one control a receiving mail server is asked to act on, and the one this map can read from the curb, is DMARC: whether an organization&rsquo;s published record <b>requests</b> that receivers reject or quarantine a message forged in its exact domain (p=quarantine or p=reject), or expresses no preference (p=none, or no record at all). What any receiver then does is its own local policy, which this inspection does not measure. It is a narrow signal, and it says nothing about how model access is held inside &mdash; that is a Level 2 question no outside read can answer. But it is cheap, it is universal, and the field is uneven. Sanctions and ransomware listings are matters of public record, shown separately below and never scored against this control.</p>'+
+  '<p>Two rings carry different weight. The <b>'+E.length+'</b> <b>entrusted</b> organizations each appear in a frontier lab&rsquo;s own system card as having tested a model before release, so a weak edge there is documented operational exposure. The organizations <b>warning the public</b> or <b>rating others</b> are included for what they publish, not for any access, so the same control is read as ordinary hygiene, not exposure. The share of each ring whose record <b>requests DMARC enforcement</b> (p=quarantine or reject), among domains whose mail could be read:</p>'+
   '<div class="mbars">'+ringBars+'</div>'+
-  '<p class="mfoot">Share fully enforcing DMARC, '+SCAN_DATE+'. Denominator excludes domains that publish no mail servers or whose mail could not be observed. Partial enforcement (pct&lt;100) is counted as not fully enforcing.</p>'+
+  '<p class="mfoot">Share whose DMARC record requests enforcement, '+SCAN_DATE+'. Denominator excludes domains that publish no mail servers or whose mail could not be observed. A record carrying the retired pct tag is counted as requesting enforcement, with the partial-rollout caveat shown on its profile.</p>'+
   '<h3 class="mh2" id="find-entrusted">The entrusted ring, in detail.</h3>'+
-  '<p>Of the <b>'+E.length+'</b> organizations the labs named as external testers, <b>'+eFail+'</b> publish no enforcing DMARC policy, so a message forged in their exact domain is not rejected'+(ePartial?', and <b>'+ePartial+'</b> more '+(ePartial===1?'enforces on only part of its mail':'enforce on only part of their mail'):'')+'. <b>'+eOrigin+'</b> '+(eOrigin===1?'has a web address whose single assessed host also answers':'have web addresses whose assessed host also answers')+' non-web services; which, and any indexed vulnerabilities, are held to Level 2. <b>'+eNoSec+'</b> of '+eSecDen+' publish no valid security.txt, so there is no published address to report a flaw to them. None of this establishes that the internal environment holding a model is weak &mdash; only Level 2 can speak to that. It establishes that the outside edge is uneven, and that the OpenAI break-in of July 2026 came through exactly this kind of peripheral surface.</p>'+
+  '<p>Of the <b>'+E.length+'</b> organizations the labs named as external testers, <b>'+eFail+'</b> publish a DMARC record that requests no enforcement (p=none or no record)'+(ePartial?', and <b>'+ePartial+'</b> more request enforcement in a partial rollout (a legacy pct tag)':'')+'. What a receiver does with any of these is not measured. <b>'+eOrigin+'</b> '+(eOrigin===1?'has a web address whose single assessed host also answers':'have web addresses whose assessed host also answers')+' non-web services; which, and any indexed vulnerabilities, are held to Level 2, and one host is not the whole infrastructure. <b>'+eNoSec+'</b> of '+eSecDen+' publish no valid security.txt at the checked location, so no machine-readable reporting address was found &mdash; which is not evidence that none exists elsewhere. None of this establishes that the internal environment holding a model is weak; only Level 2 can speak to that. It establishes that the outside edge is uneven, and that the OpenAI break-in of July 2026 came through exactly this kind of peripheral surface.</p>'+
   '<h3 class="mh2" id="find-reach">Can anyone tell them?</h3>'+
-  '<p>A security.txt file is the plain-text answer to one question: if you find a flaw in us, where do you send it. It is one file, and its standard (RFC 9116) dates from 2022. Organizations asking everyone else to fix their weaknesses are the ones that should be easiest to reach about their own. Share publishing a valid one, among those whose website answered:</p>'+
+  '<p>A security.txt file is the plain-text answer to one question: if you find a flaw in us, where do you send it. It is one file at a standard location (RFC 9116, 2022). Its absence at that location is not proof that no reporting channel exists &mdash; only that none was found there. Organizations asking everyone else to fix their weaknesses are the ones that should be easiest to reach about their own. Share publishing a valid one, among those whose website answered:</p>'+
   '<div class="mbars conc">'+secBars+'</div>'+
-  '<p class="mfoot">Valid, unexpired security.txt at /.well-known/, among websites that answered the read. Its absence does not prove no reporting channel exists; it is Standard Practice, not the Floor.</p>'+
-  (raters.length?'<h3 class="mh2">The raters, rated.</h3><p>'+raters.length+' security-ratings firms signed the Collective Cyber Defense letter. Their business is scoring other companies from the outside, so the Standard reads them the same way: '+rDm+' of '+raters.length+' fully enforce DMARC, '+rHsts+' serve HSTS for six months or more, '+rSts+' publish an MTA-STS record, and '+rSec+' publish a valid security.txt. This map will not turn that into a composite number.</p>':'')+
+  '<p class="mfoot">Valid, unexpired security.txt at /.well-known/, among websites that answered the read. Its absence at that location does not prove no reporting channel exists; it is Standard Practice, not the Floor.</p>'+
+  (raters.length?'<h3 class="mh2">The raters, rated.</h3><p>'+raters.length+' security-ratings firms signed the Collective Cyber Defense letter. Their business is scoring other companies from the outside, so the Standard reads them the same way: '+rDm+' of '+raters.length+' publish a DMARC record requesting enforcement, '+rHsts+' serve HSTS for six months or more, '+rSts+' publish an MTA-STS record, and '+rSec+' publish a valid security.txt. This map will not turn that into a composite number.</p>':'')+
   '<h3 class="mh2" id="find-record">On the public record.</h3>'+
   '<p>Separate from any security reading, every organization was screened on '+SCAN_DATE+' against the 26,146 entries of the US Consolidated Screening List. '+(trN?trN+' carry a Treasury designation.':'None carries a Treasury sanctions designation, which is why this is a matter of standing, not a Floor control.')+' '+(recN?recN+' carries an export-control record (a Seoul signatory on the Commerce Department&rsquo;s Entity List), shown on its profile and never scored.':'')+' '+rwN+' '+(rwN===1?'appears':'appear')+' on ransomware.live as a named victim of an extortion leak site, '+rwAct+' within the last year. A leak-site listing is an attacker&rsquo;s unverified claim, dated and linked, not a security finding.</p>'+
   '<h3 class="mh2">And most of them share an inbox provider.</h3>'+
-  '<p>'+(M[0]?pc(M[0][1]/N)+' of the '+N+' route mail through '+M[0][0]+(M[1]?', and '+pc(M[1][1]/N)+' through '+M[1][0]:'')+'. ':'')+'Of the '+belowAll+' domains not fully enforcing DMARC, '+monitor+' already publish a DMARC record in monitoring mode, the step before enforcement. On the platforms most of them use, the remaining step is a single DNS change once every legitimate sender is signing.</p>'+
+  '<p>'+(M[0]?pc(M[0][1]/N)+' of the '+N+' route mail through '+M[0][0]+(M[1]?', and '+pc(M[1][1]/N)+' through '+M[1][0]:'')+'. ':'')+'Of the '+belowAll+' domains whose record requests no enforcement, '+monitor+' already publish a DMARC record in monitoring mode (p=none), the step before requesting enforcement. On the platforms most of them use, the remaining step is a single DNS change once every legitimate sender is signing.</p>'+
   '<p class="mfoot">Read from the public record on '+SCAN_DATE+'. Nothing was supplied by the organizations and nothing was tested against their systems. An organization that has since changed its configuration can ask for a re-measure, and the record will show the date it changed.</p>';
 }
 {const all=S.flatMap(s=>s.cats.flatMap(c=>c.p));

@@ -1,6 +1,6 @@
 {
  "title": "Methodology & Measurement",
- "version": "v0.4 (AI-risk actors edition)",
+ "version": "v0.5 (AI-risk actors edition)",
  "subtitle": "How every reading on this map is taken, where its source of truth sits, and what it cannot see. The map makes an argument, so the method behind it is documented in full: anyone should be able to rerun it and get the same record.",
  "principles": [
   {
@@ -57,11 +57,11 @@
    "name": "DMARC policy",
    "cat": "Email",
    "level": 1,
-   "source": "RFC 7489 (DMARC)",
-   "ref": "https://www.rfc-editor.org/rfc/rfc7489",
-   "what": "Whether the domain tells receiving mail servers to reject or quarantine mail forged in its exact name.",
-   "measure": "The _dmarc TXT record is read and its policy parsed. A full meet is p=quarantine or reject at pct=100. A policy enforced on only part of the mail (pct<100) is recorded as a distinct 'partly enforced' state, not a pass, because forgeries of the exact domain are then only partly rejected.",
-   "limit": "DMARC governs only the organization's own exact domain; it does nothing against a look-alike domain or a compromised legitimate mailbox. It is the one pass/fail Floor control observable from the curb; the rest of the Floor is a Level 2 determination."
+   "source": "RFC 9989 (DMARC), which obsoletes RFC 7489 and RFC 9091",
+   "ref": "https://www.rfc-editor.org/rfc/rfc9989.html",
+   "what": "Whether the domain's published DMARC record requests that receiving mail servers reject or quarantine a message forged in its exact name (p=quarantine or p=reject), expresses no preference (p=none), or is absent.",
+   "measure": "Three things are kept distinct. (1) The DNS record observed: the _dmarc TXT record as published. (2) The policy it requests: p=reject or p=quarantine is read as requesting enforcement and clears the observable Floor; p=none, or no record, requests no enforcement. Per RFC 9989 the pct tag is retired and the t tag (t=y) marks a testing posture; a record still carrying pct<100 is read as an enforcing policy in partial rollout — it clears the Floor with that caveat shown on the profile, and is never described as a specific rejection percentage. (3) Actual receiver behaviour is NOT measured: what any given receiver does with failing mail is its own local policy, receivers do not all follow the same standard, and this inspection reads only the published record. p=none does not guarantee delivery, and p=quarantine is not rejection.",
+   "limit": "DMARC governs only the organization's own exact domain; it does nothing against a look-alike domain or a compromised legitimate mailbox. The record states a request, not an outcome — no claim is made about whether forged mail is actually rejected. It is the one Floor control observable from the curb; the rest of the Floor is a Level 2 determination."
   },
   {
    "id": "A2",
@@ -205,6 +205,18 @@
    "what": "Whether the organization has been posted as a victim on an extortion leak site.",
    "measure": "The actor's domain is searched on ransomware.live and each result read by hand; a listing is kept only when the victim named is the actor itself. Any listing is recorded as documented exposure, dated and linked, and is not scored against the Floor.",
    "limit": "A listing is the attacker's claim. Some groups recycle old data or post fabrications; the listing is shown with its date and group so it can be read as such."
+  }
+ ],
+ "changes": [
+  {
+   "version": "v0.5",
+   "date": "2026-09-22",
+   "summary": "DMARC methodology updated to RFC 9989 (obsoletes RFC 7489 and RFC 9091). The pct tag is now treated as retired and t=y as a testing flag. The measurement was corrected to separate the observed DNS record, the policy it requests, and actual receiver behaviour (which is not measured). A record requesting enforcement (p=quarantine or reject) now clears the observable Floor even in a legacy pct<100 partial rollout, which is shown as a caveat rather than counted as a failure; the earlier v0.4 model required pct=100 for a pass and mislabelled partial rollouts as not enforcing. Language that inferred receiver behaviour ('is rejected', 'not reliably rejected', 'fully enforce') and security.txt over-claims ('no reporting channel exists') were removed across the summaries, findings, tables and aggregates so every figure derives from one shared interpretation. Raw records are preserved on each profile; only the interpretation and headline framing changed."
+  },
+  {
+   "version": "v0.4",
+   "date": "2026-09",
+   "summary": "First public draft. Two independent axes (Floor vs Standard Practice, Level 1 vs Level 2); DMARC established as the single curb-observable Floor control; sanctions and leak-site listings separated as public record, never scored against the Floor; inclusion evidence required for every organization."
   }
  ]
 }

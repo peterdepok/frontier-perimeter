@@ -131,6 +131,47 @@ entrusted = [p for s in providers if s.get("id") == "entrusted" for c in s["cats
 ent = counts(entrusted)
 ofac_notclear = [p.get("n") for p in firms if (p.get("sc") or {}).get("ofac") not in ("clear", None)]
 
+# 5b. ring_agg — the one shared aggregation, mirrored from ringAgg() in the site.
+#     Every DMARC/security.txt figure on every surface (Overview ring bars, the
+#     Standard "By ring" table, the lede findings, each profile) must come from this,
+#     so the presentations reconcile. The classic bug was the Standard table using a
+#     pass-only numerator over a pass+fail denominator (partial dropped from both),
+#     giving 69% where the Overview showed 71%. These asserts fail if that returns.
+def ring_agg(group):
+    sc = [p.get("sc") or {} for p in group]
+    stt = [dmarc_state(s) for s in sc]
+    npass = stt.count("pass"); npart = stt.count("partial")
+    nfail = stt.count("fail"); nnom = stt.count("nomail"); nna = stt.count("na")
+    enf = npass + npart                      # requests enforcement (partial included)
+    dm_den = enf + nfail                     # mail observed
+    sec_ok = sum(1 for s in sc if s.get("sectxt") == "yes")
+    sec_den = sum(1 for s in sc if s.get("sectxt") and s.get("sectxt") != "?")
+    return {"N": len(group), "pass": npass, "partial": npart, "fail": nfail,
+            "nomail": nnom, "na": nna, "enf": enf, "dm_den": dm_den,
+            "obs_num": enf + nnom, "obs_den": len(group) - nna,
+            "sec_ok": sec_ok, "sec_den": sec_den}
+
+rings = [(s.get("name"), s.get("id"),
+          [p for c in s["cats"] for p in c["p"]]) for s in providers]
+ring_stats = [(name, ring_agg(grp)) for name, rid, grp in rings]
+
+# every ring: the enforcement numerator MUST include partial-rollout records, and
+# the denominator MUST be enf+fail (mail observed) — not a pass-only / pass+fail pair.
+for name, a in ring_stats:
+    if a["enf"] != a["pass"] + a["partial"]:
+        errors.append(f"{name}: enforcement numerator drops partial rollouts ({a})")
+    if a["dm_den"] != a["pass"] + a["partial"] + a["fail"]:
+        errors.append(f"{name}: DMARC denominator is not enf+fail ({a})")
+    if a["obs_num"] > a["obs_den"]:
+        errors.append(f"{name}: observable-Floor numerator exceeds denominator ({a})")
+
+# aggregates reconcile: the per-ring counts must sum to the overall counts.
+for key, tot in (("pass", overall["pass"]), ("partial", overall["partial"]),
+                 ("fail", overall["fail"]), ("nomail", overall["nomail"])):
+    s = sum(a[key] for _, a in ring_stats)
+    if s != tot:
+        errors.append(f"aggregate mismatch: rings sum {key}={s} but overall={tot}")
+
 # 6. versions
 if not controls.get("version"): errors.append("controls.json has no version")
 if not method.get("version"):   errors.append("methodology.json has no version")
@@ -150,6 +191,12 @@ print(f"  headline: {ent['fail']} of {len(entrusted)} entrusted request no DMARC
       f"(p=none or absent); {ent['partial']} request enforcement in a legacy partial rollout; "
       f"{ov_enf} of {ov_den} readable domains request enforcement")
 print("  note: receiver behaviour is NOT measured; figures describe the published record only")
+print("  by ring (one shared calculation — must match every surface on the site):")
+print(f"    {'ring':<26}{'orgs':>5}{'req-enf':>12}{'obs-floor':>12}{'sec.txt':>12}")
+for name, a in ring_stats:
+    def frac(n, d): return f"{n}/{d}" + (f" {round(100*n/d)}%" if d else " —")
+    print(f"    {name[:26]:<26}{a['N']:>5}{frac(a['enf'],a['dm_den']):>12}"
+          f"{frac(a['obs_num'],a['obs_den']):>12}{frac(a['sec_ok'],a['sec_den']):>12}")
 
 if warnings:
     print(f"\n  {len(warnings)} warning(s):")

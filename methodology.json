@@ -21,7 +21,7 @@
   },
   {
    "h": "Fair to the small",
-   "p": "Every observable Floor control costs close to nothing: an enforcing DMARC record is one line of DNS, and a security.txt is one text file. The Floor is the same for a trillion-dollar lab and a ten-person nonprofit, because the model access a lab hands to either is the same. Where an organization lives on a parent's domain (a ministry, a university), the record names the parent and says so."
+   "p": "The one observable Floor control costs close to nothing: an enforcing DMARC record is a single line of DNS. Cheaper Standard-Practice signals cost as little — a security.txt is one text file — but they sit above the Floor, not on it. The Floor is the same for a trillion-dollar lab and a ten-person nonprofit, because the model access a lab hands to either is the same. Where an organization lives on a parent's domain (a ministry, a university), the record names the parent and says so."
   }
  ],
  "population": {
@@ -131,13 +131,13 @@
   },
   {
    "id": "B3",
-   "name": "Web edge exposure (assessed host)",
+   "name": "Web-host exposure (assessed host)",
    "cat": "Web",
    "level": 1,
    "source": "Shodan InternetDB",
    "ref": "https://internetdb.shodan.io/",
-   "what": "Whether the website's address sits behind a CDN or managed edge, or also answers non-web services.",
-   "measure": "The single address the website resolves to is looked up in Shodan's passive InternetDB. Answering only web ports is recorded as a managed/CDN edge; also answering non-web services is recorded as a directly-reachable origin, with the detail held to Level 2.",
+   "what": "What a single passive read of the one web host the domain resolves to shows about which ports answer on that address.",
+   "measure": "The single address the website resolves to is looked up in Shodan's passive InternetDB. A host on which only web ports (HTTP/HTTPS) answered is recorded as a scoped observation that only web ports answered on that one address; this is not a determination that a CDN, WAF or other protective infrastructure is in place, and it is not a read of the whole infrastructure. A host that also answers non-web services (remote administration, file transfer, a database) is recorded as such, with which services, and any indexed vulnerabilities, held to Level 2.",
    "limit": "This is a passive read of one assessed host, not a scan and not a statement about the organization's wider infrastructure. 'Only web ports' on that host is not proof of a protective CDN or WAF, and says nothing about other addresses the organization operates."
   },
   {

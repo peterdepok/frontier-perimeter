@@ -104,6 +104,21 @@ button.pill.on{background:color-mix(in srgb,var(--gold) 20%,transparent);border-
 .intro{padding-block:26px 4px;max-width:70ch}
 .kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
 .intro h1{font-family:"Nanum Myeongjo",Georgia,serif;font-weight:400;font-size:clamp(25px,3.8vw,38px);line-height:1.2;color:var(--text-strong)}
+.intro-grid>*{min-width:0}
+/* Desktop: use the horizontal space. Findings become a right-hand rail beside the
+   sub / call-to-action / essay; on narrow screens everything stacks in reading order
+   (sub, CTA, findings, essay), the mobile default. */
+@media(min-width:920px){
+  .intro{max-width:1040px}
+  .intro h1{max-width:32ch}
+  .intro-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+    column-gap:44px;align-items:start;
+    grid-template-areas:"sub find" "cta find" "essay find"}
+  .intro-grid .lede-sub{grid-area:sub;max-width:none}
+  .intro-grid .lede-cta{grid-area:cta}
+  .intro-grid .lede-find{grid-area:find;margin-top:6px;grid-template-columns:1fr}
+  .intro-grid .essay{grid-area:essay;max-width:none}
+}
 .intro p{font-size:16.5px;line-height:1.6;color:var(--text-body);margin:12px 0 0}
 .intro p.covnote{font-size:14px;line-height:1.55;color:var(--text-muted);margin-top:16px;padding:11px 14px;border:1px solid var(--map-edge);border-left:2px solid var(--gold);border-radius:7px;background:var(--surface-card)}
 .intro p.covnote b{color:var(--text-body)}
@@ -393,6 +408,9 @@ table.cmp .grp td{background:var(--surface-input);font-size:10px;letter-spacing:
 .sr-c b{font-weight:600;color:var(--text-secondary);font-size:11.5px;font-variant-numeric:tabular-nums;margin-left:7px}
 .sr-bar{display:inline-block;width:56px;height:5px;border-radius:3px;background:var(--surface-track);overflow:hidden;vertical-align:middle}
 .sr-bar i{display:block;height:100%;background:var(--status-only-text)}
+.sr th{white-space:normal;line-height:1.3}
+.sr-sub{display:block;text-transform:none;letter-spacing:0;font-weight:400;color:var(--text-faint);font-size:9.5px;margin-top:2px}
+.sr-nd{margin-left:6px;color:var(--text-faint);font-size:10.5px}
 .ovlink{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-border);cursor:pointer;font-weight:500}
 .ovlink:hover{border-bottom-color:var(--gold)}
 .mth-prins{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -555,6 +573,7 @@ details.full-record>summary:hover{color:var(--text-strong)}
     <section class="intro">
       <p class="kicker">Level 1 &middot; read from the public record &middot; <span data-n="scandate">the scan date</span></p>
       <h1>Frontier labs vet their models. Who vets the organizations that test them?</h1>
+      <div class="intro-grid">
       <p class="lede-sub">Before a model ships, its developer gives outside organizations early access to test it. This reads the publicly observable security edge of <b><span class="tnum" data-n="all">65</span></b> organizations named in frontier-AI testing, oversight and advocacy &mdash; each included from a cited public document. It is a curb inspection of what anyone can observe from outside, <b>not</b> an assessment of the internal environments that hold model access.</p>
       <div class="lede-cta">
         <button class="pill on" type="button" onclick="selectTab(0)">Explore the organizations &rarr;</button>
@@ -566,6 +585,7 @@ details.full-record>summary:hover{color:var(--text-strong)}
         <h2>Why the edge is the point</h2>
         <p>From the moment a lab grants pre-release access, each organization it trusts becomes part of the lab&rsquo;s attack surface, and nobody publishes a measure of it. In July 2026 a three-person research team reached OpenAI&rsquo;s GitHub organization and employee accounts through an image-upload flaw on its community forum, a peripheral site nobody thinks of as the vault (<a class="ovlink" href="https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/" target="_blank" rel="noopener">TechCrunch, 18 September 2026</a>). Attackers go through whatever is attached to the building.</p>
         <p>Each organization is read against a published code, the <a class="ovlink" href="#" onclick="selectTab(-3);return false">Frontier Perimeter Security Standard</a>, on two independent axes: <b>the Floor</b> (the minimum) versus <b>Standard Practice</b> (hardening above it), and <b>Level 1</b> (publicly observable) versus <b>Level 2</b> (what only the organization can show). Nothing was supplied by any organization and nothing was tested against its systems. Every control is observed clear, an item to resolve, advisable, or not observable &mdash; never a score. Any organization can <a class="ovlink" href="./assessment.html">work the Level 2 self-assessment</a> or ask for a re-measure.</p>
+      </div>
       </div>
       <p class="covnote"><b><span class="tnum" data-n="sourced">65</span> of <span class="tnum" data-n="all">65</span></b> organizations carry a linked inclusion source you can open and check, with the sentence that put them here quoted on their profile.</p>
     </section>
@@ -1189,6 +1209,31 @@ function floorItems(sc){const s=st(sc);return ['A1'].filter(k=>s[k]==='fail')}
 function enforcing(sc){const a=st(sc).A1;return a==='pass'||a==='partial';}  // record requests enforcement
 function floorClear(sc){return enforcing(sc);}
 function belowFloor(sc){return floorItems(sc).length>0}
+// ONE shared aggregation for every ring on every surface (Overview, Standard table,
+// lede findings). All DMARC figures anywhere on the site come from this, so the
+// numbers reconcile by construction. A partial-rollout record (legacy pct tag)
+// counts as requesting enforcement; nomail = not applicable; na = not observable.
+function ringAgg(provs){
+  const F=(provs||[]).map(p=>p.sc).filter(Boolean);
+  const X=F.map(st);
+  const enf =X.filter(x=>x.A1==='pass'||x.A1==='partial').length; // requests enforcement
+  const part=X.filter(x=>x.A1==='partial').length;               // of enf, in partial rollout
+  const fail=X.filter(x=>x.A1==='fail').length;                  // requests no enforcement
+  const nomail=X.filter(x=>x.A1==='nomail').length;              // no mail servers: N/A
+  const na  =X.filter(x=>x.A1==='na').length;                    // could not be read
+  const dmDen=enf+fail;                                          // mail observed
+  const secOk=F.filter(s=>s.sectxt==='yes').length;
+  const secDen=F.filter(s=>s.sectxt&&s.sectxt!=='?').length;
+  // Observable Floor (Level 1) is one control, A1. "No open item" = requests
+  // enforcement, or the control does not apply (no mail); among orgs whose
+  // observable Floor could actually be read (na excluded). Level 2 is NOT assessed
+  // and is never counted here.
+  const obsClearNum=enf+nomail, obsClearDen=F.length-na;
+  return {N:F.length, enf, part, fail, nomail, na, dmDen, secOk, secDen,
+          dmarc: dmDen?enf/dmDen:null,
+          obsClearNum, obsClearDen, obsClear: obsClearDen?obsClearNum/obsClearDen:null,
+          sec: secDen?secOk/secDen:null};
+}
 function recHtml(p){
   const sc=p.sc||{}; let items='';
   if(sc.ofac==='clear')
@@ -1372,19 +1417,25 @@ function fieldStats(){
 }
 function fieldBySector(){
   const rows=S.map(s=>{
-    const F=[]; s.cats.forEach(c=>c.p.forEach(p=>{if(p.sc)F.push(p.sc);}));
-    const N=F.length; if(!N)return null;
-    const X=F.map(st);
-    const dm=X.filter(x=>x.A1==='pass').length, dmd=X.filter(x=>x.A1==='pass'||x.A1==='fail').length;
-    const sx=X.filter(x=>x.F5==='rec').length, sxd=X.filter(x=>x.F5!=='na').length;
-    return {name:s.name,N,clear:(N-F.filter(belowFloor).length)/N,dmarc:dmd?dm/dmd:null,sec:sxd?sx/sxd:null};
+    const provs=[]; s.cats.forEach(c=>c.p.forEach(p=>{if(p.sc)provs.push(p);}));
+    if(!provs.length)return null;
+    const a=ringAgg(provs);
+    return {name:s.name, N:a.N,
+      clear:a.obsClear, clearN:a.obsClearNum, clearD:a.obsClearDen,
+      dmarc:a.dmarc,    dmN:a.enf,          dmD:a.dmDen,
+      sec:a.sec,        secN:a.secOk,       secD:a.secDen};
   }).filter(Boolean);
   const pc=v=>v==null?'&mdash;':Math.round(100*v)+'%';
-  const cell=v=>'<td class="sr-c"><span class="sr-bar"><i style="width:'+(v==null?0:Math.round(100*v))+'%"></i></span><b>'+pc(v)+'</b></td>';
-  const body=rows.map(r=>'<tr><td class="sr-n">'+r.name+'</td><td class="sr-num">'+r.N+'</td>'+cell(r.clear)+cell(r.dmarc)+cell(r.sec)+'</tr>').join('');
+  const cell=(v,n,d)=>'<td class="sr-c"><span class="sr-bar"><i style="width:'+(v==null?0:Math.round(100*v))+'%"></i></span>'+
+    '<b>'+pc(v)+'</b>'+(d?'<span class="sr-nd tnum">'+n+'/'+d+'</span>':'<span class="sr-nd tnum">&mdash;</span>')+'</td>';
+  const body=rows.map(r=>'<tr><td class="sr-n">'+r.name+'</td><td class="sr-num">'+r.N+'</td>'+
+    cell(r.clear,r.clearN,r.clearD)+cell(r.dmarc,r.dmN,r.dmD)+cell(r.sec,r.secN,r.secD)+'</tr>').join('');
   return '<p class="mkick" style="margin-top:22px">By ring</p>'+
     '<div class="sr-wrap"><table class="sr"><thead><tr><th>Ring</th><th class="sr-num">Orgs</th>'+
-    '<th>Nothing to resolve on the Floor</th><th>DMARC enforcing (mail domains)</th><th>Valid security.txt</th></tr></thead><tbody>'+body+'</tbody></table></div>';
+    '<th>Observable Floor clear<br><span class="sr-sub">Level 1 &middot; DMARC</span></th>'+
+    '<th>Requests DMARC enforcement<br><span class="sr-sub">of mail domains read</span></th>'+
+    '<th>Valid security.txt<br><span class="sr-sub">Standard Practice</span></th></tr></thead><tbody>'+body+'</tbody></table></div>'+
+    '<p class="mfoot">Each cell shows the share and the count it is drawn from. <b>Observable Floor</b> is the single Level-1 control (DMARC): a ring member is counted clear when its record requests enforcement or publishes no mail (not applicable), among members whose record could be read. The Level-2 Floor &mdash; phishing-resistant MFA, isolated pre-release access, backups, endpoint detection &mdash; is <b>not</b> assessed here and is never counted as cleared. As of '+SCAN_DATE+'.</p>';
 }
 function questionnaireHtml(){
   const Q=QSET; if(!Q||!Q.sections)return"";
@@ -1456,7 +1507,7 @@ function permitHtml(p){
       ['A5','No homoglyph look-alike with live mail',s.A5]]],
     ['B','Web edge',[
       ['B2','HSTS on the public website',s.B2, sc.hsts==='short'?'Served, but max-age under six months':''],
-      ['B3','Web edge exposure (assessed host)',s.B3, b3note]]],
+      ['B3','Web-host exposure (assessed host)',s.B3, b3note]]],
     ['C','Attack surface',[
       ['C2','DNSSEC + CAA records present',s.C2, s.C2==='rec'?'Both records exist. This does not validate the DNSSEC chain or confirm certificate issuance is constrained in practice':''],
       ['C3','Clean network reputation',s.C3]]],
@@ -1506,8 +1557,8 @@ function obsHtml(p){
     return '<li><span class="dn">'+label+'</span><span class="ob-v '+(sc[k]==='none'||sc[k]==='other'?'unk':'mid')+'">'+v+'</span><span class="dd">'+why+extra+'</span></li>';
   }).join("");
   const domexp = sc.exp ? (sc.exp.cdn
-    ? '<li><span class="dn">Origin exposure</span><span class="ob-v good">'+(sc.exp.k==='edge'?'Managed edge, web ports only':'Behind a CDN/WAF')+'</span><span class="dd">The website’s address answers only as a web edge; no remote-admin, file-transfer or database service is indexed on it. Read from Shodan’s passive index on '+SCAN_DATE+'.</span></li>'
-    : '<li><span class="dn">Origin exposure</span><span class="ob-v mid">Origin directly reachable</span><span class="dd">The website’s address also answers services beyond the web: remote administration, file transfer or a database. Which ones, and any vulnerabilities indexed against them, are held to Level 2 and shared only with the organization. Read from Shodan’s passive index on '+SCAN_DATE+'.</span></li>') : '';
+    ? '<li><span class="dn">Web-host exposure</span><span class="ob-v good">Only web ports answered</span><span class="dd">On the single assessed host, only web ports (HTTP/HTTPS) answered; no remote-admin, file-transfer or database service was indexed on it. This is a scoped passive observation of one address on '+SCAN_DATE+' (Shodan), not a determination that a CDN, WAF or other protective infrastructure is in place, and not a read of the whole infrastructure.</span></li>'
+    : '<li><span class="dn">Web-host exposure</span><span class="ob-v mid">Non-web services answered</span><span class="dd">The website’s address also answers services beyond the web: remote administration, file transfer or a database. Which ones, and any vulnerabilities indexed against them, are held to Level 2 and shared only with the organization. Read from Shodan’s passive index on '+SCAN_DATE+'.</span></li>') : '';
   const gone = sc.gone?'<p class="d-note" style="color:var(--warn)"><b>This domain did not resolve on '+SCAN_DATE+'.</b></p>':'';
   const MARK=[['spf','hardfail','SPF hard fail'],['dnssec','yes','DNSSEC'],['caa','yes','CAA'],['mtasts','yes','MTA-STS'],['tlsrpt','yes','TLS-RPT'],['bimi','yes','BIMI']];
   const held=MARK.filter(([k,v])=>sc[k]===v).map(m=>m[2]);
@@ -1561,7 +1612,7 @@ function lookHtml(p){
   let out='';
   if(L.h&&L.h.length) out+='<li><span class="dn">Homoglyph domain</span><span class="ob-v weak">Live mail configured</span><span class="dd">A homoglyph of this domain, letters swapped for look-alike digits, is registered with working mail: '+L.h.map(d=>'<b>'+esc(d)+'</b>').join(', ')+'. It is not the organization’s own on any sign in DNS, and a message from it reads as the organization at a glance. Nothing was sent to it.</span></li>';
   if(L.y&&L.y.length) out+='<li><span class="dn">Near-miss domains</span><span class="ob-v mid">'+(L.yn||L.y.length)+' with live mail</span><span class="dd">One keystroke from '+p.w+', registered with working mail, e.g. '+L.y.slice(0,4).map(esc).join(', ')+'. Not asserted as malicious: many belong to unrelated businesses. A mistyped address can land at any of them.</span></li>';
-  if(L.d) out+='<li><span class="dn">Defensive registrations</span><span class="ob-v good">'+L.d+' observed</span><span class="dd">The organization appears to hold '+L.d+' look-alike domain'+(L.d===1?'':'s')+' itself, on its own name or mail servers or a brand-protection registrar.</span></li>';
+  if(L.d) out+='<li><span class="dn">Look-alikes on shared infrastructure</span><span class="ob-v unk">'+L.d+' associated</span><span class="dd">'+L.d+' look-alike domain'+(L.d===1?'':'s')+' resolve to the same registrar, name servers or mail servers as this organization. Shared providers are an association only; they are common infrastructure and do not establish that the organization owns or controls '+(L.d===1?'it':'them')+'. Ownership was not verified from the public record.</span></li>';
   if(!out)return"";
   return '<h5 class="ob-sub">Domain impersonation</h5><ul class="dims obs">'+out+'</ul>';
 }
@@ -1674,16 +1725,11 @@ document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
 {const ring=id=>{const s=S.find(x=>x.id===id);return s?s.cats.flatMap(c=>c.p).filter(p=>p.sc):[]};
  const all=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.sc), N=all.length;
  const pc=x=>Math.round(x*100)+"%";
- // shared calculation layer: A1 states drive every DMARC figure on the page
- const enf=ps=>ps.filter(p=>enforcing(p.sc)).length;   // record requests enforcement (p=quarantine|reject)
- const dmDen=ps=>ps.filter(p=>['pass','fail','partial'].includes(st(p.sc).A1)).length; // mail observed
- const dmPart=ps=>ps.filter(p=>st(p.sc).A1==='partial').length;
- const dmFail=ps=>ps.filter(p=>st(p.sc).A1==='fail').length;
- const secOk=ps=>ps.filter(p=>p.sc.sectxt==='yes').length, secDen=ps=>ps.filter(p=>p.sc.sectxt&&p.sc.sectxt!=='?').length;
- const R=S.map(s=>{const ps=ring(s.id);return {id:s.id,n:s.name,t:ps.length,c:enf(ps),dmd:dmDen(ps),sx:secOk(ps),sxd:secDen(ps)}});
- const E=ring('entrusted');
- const eEnf=enf(E), eDen=dmDen(E), ePartial=dmPart(E), eFail=dmFail(E);
- const eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, eSecDen=secDen(E);
+ // shared calculation layer: every DMARC figure on this page comes from ringAgg()
+ const R=S.map(s=>{const a=ringAgg(ring(s.id));return {id:s.id,n:s.name,t:a.N,c:a.enf,dmd:a.dmDen,sx:a.secOk,sxd:a.secDen}});
+ const E=ring('entrusted'), Ea=ringAgg(E);
+ const eEnf=Ea.enf, eDen=Ea.dmDen, ePartial=Ea.part, eFail=Ea.fail;
+ const eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, eSecDen=Ea.secDen;
  const eOrigin=E.filter(p=>p.sc.exp&&p.sc.exp.o).length;
  const srcN=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.su).length;
  // ---- the 15-second opening findings, from the same numbers ----
@@ -1695,7 +1741,7 @@ document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
  const ringBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.c+'/'+r.dmd+'</span></span><span class="mt"><i style="width:'+(r.dmd?r.c/r.dmd*100:0).toFixed(1)+'%;background:var(--status-only-text)"></i></span><span class="mv tnum">'+pc(r.dmd?r.c/r.dmd:0)+'</span></div>').join('');
  const secBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.sx+'/'+r.sxd+'</span></span><span class="mt"><i class="c" style="width:'+(r.sxd?r.sx/r.sxd*100:0).toFixed(1)+'%"></i></span><span class="mv tnum">'+pc(r.sxd?r.sx/r.sxd:0)+'</span></div>').join('');
  const raters=S.find(x=>x.id==='letter')?S.find(x=>x.id==='letter').cats.filter(c=>/ratings/i.test(c.n)).flatMap(c=>c.p):[];
- const rDm=enf(raters), rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
+ const rDm=ringAgg(raters).enf, rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
  const rwN=all.filter(p=>p.sc.rw&&p.sc.rw.length).length, rwAct=all.filter(p=>rwActive(p.sc).length).length;
  const recN=all.filter(p=>p.sc.rec&&p.sc.rec.length).length, trN=all.filter(p=>p.sc.ofac&&p.sc.ofac!=='clear').length;
  const top=(key,skip)=>{const m={};all.forEach(p=>{const v=p.sc[key];if(!v||skip.indexOf(v)>=0)return;m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};

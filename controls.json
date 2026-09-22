@@ -134,8 +134,8 @@
     },
     {
      "id": "B3",
-     "name": "Web edge exposure (assessed host)",
-     "std": "The one web address the domain resolves to answers only web ports (a CDN, WAF or managed edge), rather than also answering non-web services. This is a scoped observation of a single assessed host from a passive index, not a statement about the organization's wider infrastructure.",
+     "name": "Web-host exposure (assessed host)",
+     "std": "The one web address the domain resolves to answers only web ports (HTTP/HTTPS), rather than also answering non-web services. This is a scoped passive observation of a single assessed host: it records that only web ports answered on that address, and does not establish that a CDN, WAF or other protective infrastructure is in place, nor speak to the organization's wider infrastructure.",
      "tier": "std",
      "lvl": 1,
      "cis": "13",

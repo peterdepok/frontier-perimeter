@@ -473,6 +473,18 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 .tag.m{background:var(--status-member-bg);color:var(--status-member-text)}
 .tag.w{background:transparent;border:1px solid var(--warn);color:var(--warn)}
 .tag.x{background:var(--status-only-bg);color:var(--status-only-text)}
+.sumcard{margin:16px 0 0;border:1px solid var(--border-default);border-radius:12px;padding:14px 15px;background:var(--surface-card)}
+.sum-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sum-k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.sum-obs{font-size:13.5px;line-height:1.55;color:var(--text-body);margin:9px 0 0}
+.sum-meta{font-size:11.5px;line-height:1.5;color:var(--text-muted);margin:8px 0 0}
+details.full-record{margin-top:18px;border-top:1px solid var(--border-subtle)}
+details.full-record>summary{cursor:pointer;list-style:none;padding:14px 0 4px;font-size:11px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--gold);font-weight:600;display:flex;align-items:center;gap:8px}
+details.full-record>summary::-webkit-details-marker{display:none}
+details.full-record>summary::before{content:"\25B8";font-size:11px;transition:transform .15s;color:var(--text-muted)}
+details.full-record[open]>summary::before{transform:rotate(90deg)}
+details.full-record>summary:hover{color:var(--text-strong)}
 .d-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
 .copylink{font-size:11.5px;font-weight:600;color:var(--text-secondary);background:var(--surface-input);
  border:1px solid var(--border-input);border-radius:8px;padding:5px 10px;cursor:pointer;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center}
@@ -1369,6 +1381,23 @@ function questionnaireHtml(){
     '<p class="std-cta"><a href="./assessment.html">Open the self-assessment &rarr;</a><span>An organization can work through these itself, mark each control, and hand the result back with its evidence.</span></p>'+
     blocks;
 }
+function summaryCard(p){
+  const sc=p.sc; if(!sc)return"";
+  const s=st(sc);
+  const A={pass:['Observed clear','good','It enforces DMARC at pct=100, so a message forged in its exact domain is rejected.'],
+    partial:['Partly enforced','mid','It enforces DMARC on only part of its mail (pct='+sc.pct+'), so forgeries of its exact domain are only partly rejected.'],
+    fail:['Item to resolve','weak','It does not enforce DMARC, so a message forged in its exact domain is not reliably rejected.'],
+    nomail:['Not applicable','unk','It publishes no mail servers, so the DMARC control does not apply.'],
+    na:['Not observable','unk','Its mail configuration could not be read in this pass.']}[s.A1]||['Not observable','unk',''];
+  const extra=[];
+  if(sc.sectxt==='no'||sc.sectxt==='expired') extra.push('It publishes no valid security.txt, so there is no listed address to report a flaw to it.');
+  if(sc.exp&&sc.exp.o) extra.push('The single assessed web host also answers non-web services; the detail is held to Level 2.');
+  return '<div class="sumcard">'+
+    '<div class="sum-row"><span class="sum-k">Observable Floor · DMARC</span><span class="pm-b '+A[1]+'">'+A[0]+'</span></div>'+
+    '<p class="sum-obs">'+A[2]+(extra.length?' '+extra.join(' '):'')+'</p>'+
+    '<p class="sum-meta">Level 1, read from the public record on '+SCAN_DATE+'. This is what is observable from outside; it is not an assessment of the internal environment that holds model access. The full inspection record is below.</p>'+
+    '</div>';
+}
 function permitHtml(p){
   const sc=p.sc; if(!sc)return"";
   const B={pass:['Observed clear','good'],partial:['Partly enforced','mid'],fail:['Item to resolve','weak'],rec:['Present','good'],recx:['Advisable','mid'],l2:['Requires Level 2','mid'],na:['Not observable','unk'],nomail:['Not applicable · no mail','unk']};
@@ -1534,8 +1563,11 @@ function openP(p,fromRoute){
    (p.o?'<p class="d-note">'+esc(p.o)+'</p>':'')+
    (facts.length?'<div class="d-sec"><h4>Facts</h4><ul class="d-fields">'+
      facts.map(r=>'<li><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></li>').join("")+'</ul></div>':'')+
+   summaryCard(p)+
+   '<details class="full-record"><summary>Full inspection record</summary>'+
    permitHtml(p)+
    obsHtml(p)+
+   '</details>'+
    '<div class="d-sec"><h4>Only the organization can tell you <span class="d-status gap">Level 2 &middot; not assessed</span></h4>'+
      '<p class="d-note">An outside read sees the edge of an organization and nothing else. What protects a lab’s model once it is inside has to be asked. These are the questions a lab is well placed to put to anyone it entrusts, and the ones the <a href="./assessment.html">self-assessment</a> asks.</p>'+
      dimsHtml(null,false)+'</div>';

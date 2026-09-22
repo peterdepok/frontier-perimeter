@@ -602,6 +602,26 @@ details.full-record>summary:hover{color:var(--text-strong)}
 .ce-arrow{color:var(--text-muted)}
 .ce-now{color:var(--text-strong);font-weight:600}
 @media(max-width:560px){.ce-row{grid-template-columns:1fr}}
+/* M4: check-selection rubric */
+.ck-crits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border-default);border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin:14px 0 6px}
+.ck-crit{background:var(--surface-card);padding:11px 13px;display:flex;flex-direction:column;gap:3px}
+.ck-crit b{font-size:12.5px;color:var(--text-strong)} .ck-crit span{font-size:11.5px;color:var(--text-muted);line-height:1.4}
+.ck-list{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.ck-card{border:1px solid var(--border-default);border-radius:12px;padding:14px 15px;background:var(--surface-card)}
+.ck-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.ck-name{font-size:14.5px;font-weight:600;color:var(--text-strong)}
+.ck-layer{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border-default);border-radius:999px;padding:2px 8px}
+.ck-verdict{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.02em;border-radius:999px;padding:3px 10px;border:1px solid currentColor}
+.ck-verdict.ok{color:var(--assess)} .ck-verdict.mid{color:var(--gold)} .ck-verdict.weak{color:var(--warn)}
+.ck-scores{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 2px}
+.ck-s{font-size:11px;color:var(--text-muted);display:inline-flex;align-items:center;gap:5px}
+.ck-dot{font-size:10px;font-weight:700;border-radius:999px;padding:1px 7px}
+.ck-dot.hi{color:var(--assess);background:color-mix(in srgb,var(--assess) 16%,transparent)}
+.ck-dot.me{color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,transparent)}
+.ck-dot.lo{color:var(--text-faint);background:var(--surface-track)}
+.ck-rat{font-size:12.5px;color:var(--text-body);line-height:1.5;margin:9px 0 0}
+.ck-lim{font-size:11.5px;color:var(--text-muted);line-height:1.45;margin:7px 0 0}
+.ck-lim b{color:var(--text-body)}
 /* M3: compare bar, comparison overlay, briefing, toast */
 .cmp-toggle.on{color:var(--assess);border-color:var(--assess)}
 .cmpbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;
@@ -2334,6 +2354,90 @@ const REL={
 };
 const CHANGES=[];
 const SNAPMETA={"snapshots": ["2026-09-21"], "baseline": "2026-09-21", "latest": "2026-09-21", "count": 1};
+const CHECKS={
+ "version": "v0.1",
+ "principle": "Checks are added because they are actionable, attributable, permissibly collected and cheap to maintain, not to grow the count. A check that a reader cannot act on, cannot be reliably tied to the organization, cannot be read from the public record, or cannot be kept accurate is not added, however easy it is to compute. Coverage is not the goal; a small set of trustworthy signals is.",
+ "criteria": [
+  {"id": "actionability", "label": "Actionability", "q": "Can the organization do something concrete about a finding?"},
+  {"id": "attribution", "label": "Attribution reliability", "q": "Does the signal reliably belong to this organization, not a shared provider or an unrelated party?"},
+  {"id": "permission", "label": "Collection permission", "q": "Can it be read from the public record, passively, without touching the organization's systems?"},
+  {"id": "maintenance", "label": "Maintenance cost", "q": "What recurring effort keeps it accurate over time? Lower is better."},
+  {"id": "limitation", "label": "Known limitation", "q": "What the signal cannot show, stated up front."}
+ ],
+ "scale": {"high": "High", "med": "Medium", "low": "Low"},
+ "maintenance_note": "For maintenance, Low is favourable: it means the check stays accurate with little recurring effort.",
+ "verdicts": {
+  "adopt-floor": "Adopt — refines the observable Floor",
+  "adopt-standard": "Adopt — Standard Practice",
+  "hold": "Hold — promising but a criterion is unmet",
+  "reject": "Reject — a criterion fails on principle"
+ },
+ "candidates": [
+  {
+   "id": "dmarc-sp",
+   "name": "DMARC subdomain policy (sp=) and alignment",
+   "layer": "Email",
+   "actionability": "high", "attribution": "high", "permission": "high", "maintenance": "low",
+   "limitation": "Still reads the published record only; it says nothing about what any receiver does, and nothing about a compromised mailbox.",
+   "verdict": "adopt-floor",
+   "rationale": "A refinement of the one Floor control already read (A1): whether the enforcing policy also covers subdomains (sp=) and how alignment is set. One more field from the same DNS record, fully attributable, one line for the organization to fix."
+  },
+  {
+   "id": "subdomain-takeover",
+   "name": "Dangling DNS records (subdomain-takeover exposure)",
+   "layer": "Surface",
+   "actionability": "high", "attribution": "high", "permission": "high", "maintenance": "med",
+   "limitation": "Detection is heuristic: a dangling record is an exposure to investigate, not proof that a takeover has occurred or is possible.",
+   "verdict": "adopt-standard",
+   "rationale": "A CNAME pointing at a de-provisioned service is a well-understood, actionable exposure an attacker can claim. Read from public DNS, clearly the organization's own record. Worth adding as Standard Practice, phrased as an exposure to check rather than a confirmed finding."
+  },
+  {
+   "id": "exposed-files",
+   "name": "Exposed sensitive paths on the web host (/.git/, /.env)",
+   "layer": "Web",
+   "actionability": "high", "attribution": "high", "permission": "low", "maintenance": "med",
+   "limitation": "Probing specific paths is closer to active testing than a curb read; a 404 does not prove absence.",
+   "verdict": "hold",
+   "rationale": "The finding would be highly actionable, but guessing at paths crosses from observing the public record toward testing the organization's system, which this map does not do. Held unless it can be limited to what a single ordinary request already reveals."
+  },
+  {
+   "id": "ct-monitoring",
+   "name": "Certificate Transparency monitoring",
+   "layer": "Web",
+   "actionability": "low", "attribution": "med", "permission": "high", "maintenance": "high",
+   "limitation": "A newly issued certificate is normal activity, not a finding; volume is high and mostly benign.",
+   "verdict": "hold",
+   "rationale": "CT logs are public and permissible, but a new certificate is rarely something to act on, attribution to the right entity is fuzzy for shared names, and keeping a low-noise view is high effort. Not worth the maintenance for the signal it gives."
+  },
+  {
+   "id": "breach-credentials",
+   "name": "Employee credentials in breach corpora",
+   "layer": "Surface",
+   "actionability": "med", "attribution": "low", "permission": "low", "maintenance": "high",
+   "limitation": "Cannot separate a corporate account from a personal one, and cannot tell a rotated password from a live one.",
+   "verdict": "reject",
+   "rationale": "Attribution is unreliable and the collection aggregates personal data about individuals, which is out of scope for a public map of organizations. Rejected on the attribution and permission criteria regardless of how actionable it might seem."
+  },
+  {
+   "id": "server-banner",
+   "name": "Web-server software version disclosure",
+   "layer": "Web",
+   "actionability": "low", "attribution": "high", "permission": "high", "maintenance": "low",
+   "limitation": "Version banners are frequently absent, spoofed, or patched in place, so a version string rarely maps to a real vulnerability.",
+   "verdict": "reject",
+   "rationale": "Cheap and attributable, but the signal invites a false conclusion: a banner is not a vulnerability, and reading one as risk would be exactly the kind of overreach this map avoids. Rejected on actionability and its limitation."
+  },
+  {
+   "id": "open-buckets",
+   "name": "Open cloud storage buckets",
+   "layer": "Surface",
+   "actionability": "high", "attribution": "low", "permission": "med", "maintenance": "high",
+   "limitation": "A bucket name can rarely be tied to an organization from the outside without guessing, and enumerating names edges toward active discovery.",
+   "verdict": "hold",
+   "rationale": "An open bucket is highly actionable when it is truly the organization's, but proving ownership from outside usually means guessing names, which fails attribution and strains the passive-collection rule. Held pending a reliable, non-enumerative way to attribute a bucket."
+  }
+ ]
+};
 // index relationships by evaluator domain and by model id, once
 const RELBYEV={}, RELBYMODEL={};
 (REL&&REL.relationships||[]).forEach(r=>{(RELBYEV[r.evaluator]=RELBYEV[r.evaluator]||[]).push(r);(RELBYMODEL[r.model_id]=RELBYMODEL[r.model_id]||[]).push(r);});
@@ -3075,12 +3179,42 @@ function methodHtml(){
     '</div>'+
     '<p class="mfoot" style="margin-top:14px">The public data preserves the disclosure boundaries of the site: withheld Level 2 detail — which exposed service, which indexed vulnerability — is never present in providers.json. Field definitions live in this methodology; the same dated, sourced record backs every figure, chart, table and profile, so a reader can re-compute any statistic from providers.json.</p>'+
     changeFeedHtml()+
+    checksHtml()+
     ((M.changes&&M.changes.length)?'<h2 class="std-h">Methodology change history</h2>'+
       '<p class="gp-p">What changed between methodology versions, and why. Raw records are preserved across revisions; where a revision changes a classification it is the interpretation that changed, not the underlying evidence.</p>'+
       '<div class="mth-sig"><div class="mth-rows">'+
       M.changes.map(c=>'<div class="mth-r"><span class="mth-k">'+esc(c.version)+(c.date?' &middot; '+esc(c.date):'')+'</span><span class="mth-v">'+esc(c.summary)+'</span></div>').join('')+
       '</div></div>':'')+
     '</div>';
+}
+// The check-selection rubric: candidate checks scored on value, not count.
+const VERDICT_TONE={'adopt-floor':'ok','adopt-standard':'ok','hold':'mid','reject':'weak'};
+function checksHtml(){
+  const C=CHECKS; if(!C||!C.candidates)return"";
+  const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const crit=(C.criteria||[]).map(x=>'<div class="ck-crit"><b>'+esc(x.label)+'</b><span>'+esc(x.q)+'</span></div>').join('');
+  const dot=v=>{const t=v==='high'?'hi':v==='med'?'me':'lo';return '<span class="ck-dot '+t+'" title="'+esc(v)+'">'+esc((C.scale&&C.scale[v])||v)+'</span>';};
+  const order={'adopt-floor':0,'adopt-standard':1,'hold':2,'reject':3};
+  const cands=C.candidates.slice().sort((a,b)=>(order[a.verdict]-order[b.verdict]));
+  const rows=cands.map(c=>{
+    const vt=VERDICT_TONE[c.verdict]||'unk';
+    const vlabel=(C.verdicts&&C.verdicts[c.verdict])||c.verdict;
+    return '<div class="ck-card"><div class="ck-h"><span class="ck-name">'+esc(c.name)+'</span>'+
+      '<span class="ck-layer">'+esc(c.layer)+'</span><span class="ck-verdict '+vt+'">'+esc(vlabel)+'</span></div>'+
+      '<div class="ck-scores">'+
+        '<span class="ck-s">Actionability '+dot(c.actionability)+'</span>'+
+        '<span class="ck-s">Attribution '+dot(c.attribution)+'</span>'+
+        '<span class="ck-s">Permission '+dot(c.permission)+'</span>'+
+        '<span class="ck-s">Maintenance '+dot(c.maintenance)+'</span>'+
+      '</div>'+
+      '<p class="ck-rat">'+esc(c.rationale)+'</p>'+
+      '<p class="ck-lim"><b>Limitation:</b> '+esc(c.limitation)+'</p></div>';
+  }).join('');
+  return '<h2 class="std-h">What we might add, and why</h2>'+
+    '<p class="gp-p">'+esc(C.principle)+'</p>'+
+    '<div class="ck-crits">'+crit+'</div>'+
+    '<p class="mfoot">'+esc(C.maintenance_note)+'</p>'+
+    '<div class="ck-list">'+rows+'</div>';
 }
 // The evidence change log: what moved between dated snapshots, classified so a
 // reader can tell a newly discovered source from a genuinely new event.

@@ -1,0 +1,84 @@
+{
+ "version": "v0.1",
+ "principle": "Checks are added because they are actionable, attributable, permissibly collected and cheap to maintain, not to grow the count. A check that a reader cannot act on, cannot be reliably tied to the organization, cannot be read from the public record, or cannot be kept accurate is not added, however easy it is to compute. Coverage is not the goal; a small set of trustworthy signals is.",
+ "criteria": [
+  {"id": "actionability", "label": "Actionability", "q": "Can the organization do something concrete about a finding?"},
+  {"id": "attribution", "label": "Attribution reliability", "q": "Does the signal reliably belong to this organization, not a shared provider or an unrelated party?"},
+  {"id": "permission", "label": "Collection permission", "q": "Can it be read from the public record, passively, without touching the organization's systems?"},
+  {"id": "maintenance", "label": "Maintenance cost", "q": "What recurring effort keeps it accurate over time? Lower is better."},
+  {"id": "limitation", "label": "Known limitation", "q": "What the signal cannot show, stated up front."}
+ ],
+ "scale": {"high": "High", "med": "Medium", "low": "Low"},
+ "maintenance_note": "For maintenance, Low is favourable: it means the check stays accurate with little recurring effort.",
+ "verdicts": {
+  "adopt-floor": "Adopt — refines the observable Floor",
+  "adopt-standard": "Adopt — Standard Practice",
+  "hold": "Hold — promising but a criterion is unmet",
+  "reject": "Reject — a criterion fails on principle"
+ },
+ "candidates": [
+  {
+   "id": "dmarc-sp",
+   "name": "DMARC subdomain policy (sp=) and alignment",
+   "layer": "Email",
+   "actionability": "high", "attribution": "high", "permission": "high", "maintenance": "low",
+   "limitation": "Still reads the published record only; it says nothing about what any receiver does, and nothing about a compromised mailbox.",
+   "verdict": "adopt-floor",
+   "rationale": "A refinement of the one Floor control already read (A1): whether the enforcing policy also covers subdomains (sp=) and how alignment is set. One more field from the same DNS record, fully attributable, one line for the organization to fix."
+  },
+  {
+   "id": "subdomain-takeover",
+   "name": "Dangling DNS records (subdomain-takeover exposure)",
+   "layer": "Surface",
+   "actionability": "high", "attribution": "high", "permission": "high", "maintenance": "med",
+   "limitation": "Detection is heuristic: a dangling record is an exposure to investigate, not proof that a takeover has occurred or is possible.",
+   "verdict": "adopt-standard",
+   "rationale": "A CNAME pointing at a de-provisioned service is a well-understood, actionable exposure an attacker can claim. Read from public DNS, clearly the organization's own record. Worth adding as Standard Practice, phrased as an exposure to check rather than a confirmed finding."
+  },
+  {
+   "id": "exposed-files",
+   "name": "Exposed sensitive paths on the web host (/.git/, /.env)",
+   "layer": "Web",
+   "actionability": "high", "attribution": "high", "permission": "low", "maintenance": "med",
+   "limitation": "Probing specific paths is closer to active testing than a curb read; a 404 does not prove absence.",
+   "verdict": "hold",
+   "rationale": "The finding would be highly actionable, but guessing at paths crosses from observing the public record toward testing the organization's system, which this map does not do. Held unless it can be limited to what a single ordinary request already reveals."
+  },
+  {
+   "id": "ct-monitoring",
+   "name": "Certificate Transparency monitoring",
+   "layer": "Web",
+   "actionability": "low", "attribution": "med", "permission": "high", "maintenance": "high",
+   "limitation": "A newly issued certificate is normal activity, not a finding; volume is high and mostly benign.",
+   "verdict": "hold",
+   "rationale": "CT logs are public and permissible, but a new certificate is rarely something to act on, attribution to the right entity is fuzzy for shared names, and keeping a low-noise view is high effort. Not worth the maintenance for the signal it gives."
+  },
+  {
+   "id": "breach-credentials",
+   "name": "Employee credentials in breach corpora",
+   "layer": "Surface",
+   "actionability": "med", "attribution": "low", "permission": "low", "maintenance": "high",
+   "limitation": "Cannot separate a corporate account from a personal one, and cannot tell a rotated password from a live one.",
+   "verdict": "reject",
+   "rationale": "Attribution is unreliable and the collection aggregates personal data about individuals, which is out of scope for a public map of organizations. Rejected on the attribution and permission criteria regardless of how actionable it might seem."
+  },
+  {
+   "id": "server-banner",
+   "name": "Web-server software version disclosure",
+   "layer": "Web",
+   "actionability": "low", "attribution": "high", "permission": "high", "maintenance": "low",
+   "limitation": "Version banners are frequently absent, spoofed, or patched in place, so a version string rarely maps to a real vulnerability.",
+   "verdict": "reject",
+   "rationale": "Cheap and attributable, but the signal invites a false conclusion: a banner is not a vulnerability, and reading one as risk would be exactly the kind of overreach this map avoids. Rejected on actionability and its limitation."
+  },
+  {
+   "id": "open-buckets",
+   "name": "Open cloud storage buckets",
+   "layer": "Surface",
+   "actionability": "high", "attribution": "low", "permission": "med", "maintenance": "high",
+   "limitation": "A bucket name can rarely be tied to an organization from the outside without guessing, and enumerating names edges toward active discovery.",
+   "verdict": "hold",
+   "rationale": "An open bucket is highly actionable when it is truly the organization's, but proving ownership from outside usually means guessing names, which fails attribution and strains the passive-collection rule. Held pending a reliable, non-enumerative way to attribute a bucket."
+  }
+ ]
+}

@@ -12,7 +12,8 @@ tpl=rd('src','template.html')
 data=rd('data','providers.json'); hold=rd('data','hold.json')
 scan=rd('data','scan_meta.json'); ctrl=rd('controls.json'); ques=rd('questionnaire.json'); meth=rd('methodology.json')
 rel=rd('data','relationships.json')
-for name,blob in [('scan',scan),('providers',data),('controls',ctrl),('questionnaire',ques),('methodology',meth),('hold',hold),('relationships',rel)]:
+checks=rd('data','check_proposals.json')
+for name,blob in [('scan',scan),('providers',data),('controls',ctrl),('questionnaire',ques),('methodology',meth),('hold',hold),('relationships',rel),('check_proposals',checks)]:
     json.loads(blob)   # fail loudly on a malformed data file
 # change feed, computed at build time from the committed snapshots (empty at baseline)
 _snaps=_snap.load_snapshots()
@@ -20,7 +21,8 @@ changes=json.dumps(_snap.build_feed(_snaps), ensure_ascii=False)
 snapmeta=json.dumps(_snap.feed_meta(_snaps), ensure_ascii=False)
 body=(tpl.replace('__DATA__',data).replace('__ECON__','{}').replace('__CONTROLS__',ctrl)
          .replace('__QUESTIONS__',ques).replace('__METHOD__',meth).replace('__HOLD__',hold).replace('__SCAN__',scan)
-         .replace('__RELATIONSHIPS__',rel).replace('__CHANGES__',changes).replace('__SNAPMETA__',snapmeta))
+         .replace('__RELATIONSHIPS__',rel).replace('__CHANGES__',changes).replace('__SNAPMETA__',snapmeta)
+         .replace('__CHECKS__',checks))
 m=re.match(r'\s*<title>(.*?)</title>\s*',body,re.S); title=m.group(1); rest=body[m.end():]
 DESC='A curb inspection of the organizations in the AI-risk debate: the labs, the evaluators they entrust with unreleased models, the groups warning the public, and the institutes charged with measuring the risk. Read from the public record against a published code. A record, not a grade.'
 head=('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'

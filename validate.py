@@ -24,6 +24,7 @@ controls  = load("controls.json")
 method    = load("methodology.json")
 scan      = load("data/scan_meta.json")
 rel       = load("data/relationships.json")
+checks    = load("data/check_proposals.json")
 
 firms = [p for s in providers for c in s["cats"] for p in c["p"]]
 errors, warnings = [], []
@@ -213,6 +214,24 @@ for m in (rel.get("models") or []):
         errors.append(f"model {m.get('model_id')}: index evaluators {sorted(got)} != relationship records {sorted(want)}")
 if not rel.get("version"):
     errors.append("relationships.json has no version")
+
+# 5c-ii. the check-selection rubric: every candidate must be scored on all five
+#        criteria and carry a defined verdict — so additions are argued, not tallied.
+_scale = set((checks.get("scale") or {}).keys())
+_verdicts = set((checks.get("verdicts") or {}).keys())
+for cand in (checks.get("candidates") or []):
+    cid = cand.get("id") or cand.get("name")
+    for crit in ("actionability", "attribution", "permission", "maintenance"):
+        if cand.get(crit) not in _scale:
+            errors.append(f"check proposal {cid}: {crit} {cand.get(crit)!r} not in scale {sorted(_scale)}")
+    if not cand.get("limitation"):
+        errors.append(f"check proposal {cid}: no stated limitation")
+    if cand.get("verdict") not in _verdicts:
+        errors.append(f"check proposal {cid}: verdict {cand.get('verdict')!r} not in {sorted(_verdicts)}")
+    if not cand.get("rationale"):
+        errors.append(f"check proposal {cid}: no rationale")
+if not checks.get("principle"):
+    errors.append("check_proposals.json has no selection principle")
 
 # 5d. versioned snapshots: the latest committed snapshot must reconcile with the
 #     current data, so the change feed's baseline is accurate (no drift).

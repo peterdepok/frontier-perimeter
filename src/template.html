@@ -573,6 +573,26 @@ details.full-record>summary:hover{color:var(--text-strong)}
 .ce-arrow{color:var(--text-muted)}
 .ce-now{color:var(--text-strong);font-weight:600}
 @media(max-width:560px){.ce-row{grid-template-columns:1fr}}
+/* M4: check-selection rubric */
+.ck-crits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border-default);border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin:14px 0 6px}
+.ck-crit{background:var(--surface-card);padding:11px 13px;display:flex;flex-direction:column;gap:3px}
+.ck-crit b{font-size:12.5px;color:var(--text-strong)} .ck-crit span{font-size:11.5px;color:var(--text-muted);line-height:1.4}
+.ck-list{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.ck-card{border:1px solid var(--border-default);border-radius:12px;padding:14px 15px;background:var(--surface-card)}
+.ck-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.ck-name{font-size:14.5px;font-weight:600;color:var(--text-strong)}
+.ck-layer{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--border-default);border-radius:999px;padding:2px 8px}
+.ck-verdict{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.02em;border-radius:999px;padding:3px 10px;border:1px solid currentColor}
+.ck-verdict.ok{color:var(--assess)} .ck-verdict.mid{color:var(--gold)} .ck-verdict.weak{color:var(--warn)}
+.ck-scores{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 2px}
+.ck-s{font-size:11px;color:var(--text-muted);display:inline-flex;align-items:center;gap:5px}
+.ck-dot{font-size:10px;font-weight:700;border-radius:999px;padding:1px 7px}
+.ck-dot.hi{color:var(--assess);background:color-mix(in srgb,var(--assess) 16%,transparent)}
+.ck-dot.me{color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,transparent)}
+.ck-dot.lo{color:var(--text-faint);background:var(--surface-track)}
+.ck-rat{font-size:12.5px;color:var(--text-body);line-height:1.5;margin:9px 0 0}
+.ck-lim{font-size:11.5px;color:var(--text-muted);line-height:1.45;margin:7px 0 0}
+.ck-lim b{color:var(--text-body)}
 /* M3: compare bar, comparison overlay, briefing, toast */
 .cmp-toggle.on{color:var(--assess);border-color:var(--assess)}
 .cmpbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;
@@ -741,6 +761,7 @@ const HOLD=__HOLD__;
 const REL=__RELATIONSHIPS__;
 const CHANGES=__CHANGES__;
 const SNAPMETA=__SNAPMETA__;
+const CHECKS=__CHECKS__;
 // index relationships by evaluator domain and by model id, once
 const RELBYEV={}, RELBYMODEL={};
 (REL&&REL.relationships||[]).forEach(r=>{(RELBYEV[r.evaluator]=RELBYEV[r.evaluator]||[]).push(r);(RELBYMODEL[r.model_id]=RELBYMODEL[r.model_id]||[]).push(r);});
@@ -1482,12 +1503,42 @@ function methodHtml(){
     '</div>'+
     '<p class="mfoot" style="margin-top:14px">The public data preserves the disclosure boundaries of the site: withheld Level 2 detail — which exposed service, which indexed vulnerability — is never present in providers.json. Field definitions live in this methodology; the same dated, sourced record backs every figure, chart, table and profile, so a reader can re-compute any statistic from providers.json.</p>'+
     changeFeedHtml()+
+    checksHtml()+
     ((M.changes&&M.changes.length)?'<h2 class="std-h">Methodology change history</h2>'+
       '<p class="gp-p">What changed between methodology versions, and why. Raw records are preserved across revisions; where a revision changes a classification it is the interpretation that changed, not the underlying evidence.</p>'+
       '<div class="mth-sig"><div class="mth-rows">'+
       M.changes.map(c=>'<div class="mth-r"><span class="mth-k">'+esc(c.version)+(c.date?' &middot; '+esc(c.date):'')+'</span><span class="mth-v">'+esc(c.summary)+'</span></div>').join('')+
       '</div></div>':'')+
     '</div>';
+}
+// The check-selection rubric: candidate checks scored on value, not count.
+const VERDICT_TONE={'adopt-floor':'ok','adopt-standard':'ok','hold':'mid','reject':'weak'};
+function checksHtml(){
+  const C=CHECKS; if(!C||!C.candidates)return"";
+  const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const crit=(C.criteria||[]).map(x=>'<div class="ck-crit"><b>'+esc(x.label)+'</b><span>'+esc(x.q)+'</span></div>').join('');
+  const dot=v=>{const t=v==='high'?'hi':v==='med'?'me':'lo';return '<span class="ck-dot '+t+'" title="'+esc(v)+'">'+esc((C.scale&&C.scale[v])||v)+'</span>';};
+  const order={'adopt-floor':0,'adopt-standard':1,'hold':2,'reject':3};
+  const cands=C.candidates.slice().sort((a,b)=>(order[a.verdict]-order[b.verdict]));
+  const rows=cands.map(c=>{
+    const vt=VERDICT_TONE[c.verdict]||'unk';
+    const vlabel=(C.verdicts&&C.verdicts[c.verdict])||c.verdict;
+    return '<div class="ck-card"><div class="ck-h"><span class="ck-name">'+esc(c.name)+'</span>'+
+      '<span class="ck-layer">'+esc(c.layer)+'</span><span class="ck-verdict '+vt+'">'+esc(vlabel)+'</span></div>'+
+      '<div class="ck-scores">'+
+        '<span class="ck-s">Actionability '+dot(c.actionability)+'</span>'+
+        '<span class="ck-s">Attribution '+dot(c.attribution)+'</span>'+
+        '<span class="ck-s">Permission '+dot(c.permission)+'</span>'+
+        '<span class="ck-s">Maintenance '+dot(c.maintenance)+'</span>'+
+      '</div>'+
+      '<p class="ck-rat">'+esc(c.rationale)+'</p>'+
+      '<p class="ck-lim"><b>Limitation:</b> '+esc(c.limitation)+'</p></div>';
+  }).join('');
+  return '<h2 class="std-h">What we might add, and why</h2>'+
+    '<p class="gp-p">'+esc(C.principle)+'</p>'+
+    '<div class="ck-crits">'+crit+'</div>'+
+    '<p class="mfoot">'+esc(C.maintenance_note)+'</p>'+
+    '<div class="ck-list">'+rows+'</div>';
 }
 // The evidence change log: what moved between dated snapshots, classified so a
 // reader can tell a newly discovered source from a genuinely new event.

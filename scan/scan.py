@@ -13,6 +13,7 @@ def q(name,rdtype,tries=3):
     for i in range(tries):
         try:
             r=dns.resolver.Resolver(configure=False); r.nameservers=[['8.8.8.8','1.1.1.1','9.9.9.9'][i%3]]
+            r.use_edns(0,0,4096)  # advertise a 4096-byte UDP buffer so large TXT sets are not truncated
             r.lifetime=5+3*i; r.timeout=3+2*i
             a=r.resolve(name,rdtype)
             return 'ok',[b''.join(x.strings).decode('utf8','ignore') if rdtype=='TXT' else str(x) for x in a]

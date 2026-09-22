@@ -1,8 +1,9 @@
-# Nothing here is for indexing or training. Reinforced by an
-# X-Robots-Tag header and a meta robots tag on every response.
+# Search engines are welcome. AI training and scraping crawlers are not:
+# each is named below and disallowed. This is a public reference, meant to
+# be found and read, not harvested for model training.
 
 User-agent: *
-Disallow: /
+Allow: /
 
 # Named explicitly so the exclusion is demonstrable rather than implied.
 User-agent: GPTBot
@@ -55,3 +56,5 @@ User-agent: SemrushBot
 Disallow: /
 User-agent: AhrefsBot
 Disallow: /
+
+Sitemap: https://frontier-perimeter.vercel.app/sitemap.xml

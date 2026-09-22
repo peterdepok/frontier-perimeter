@@ -1,470 +1,471 @@
 {
-"01.ai": {
-"d": "01.ai",
-"host": "www.01.ai",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"10alabs.com": {
-"d": "10alabs.com",
-"host": "10alabs.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"aisafety.info": {
-"d": "aisafety.info",
-"host": "aisafety.info",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"aisi.go.jp": {
-"d": "aisi.go.jp",
-"host": "aisi.go.jp",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"aisi.gov.uk": {
-"d": "aisi.gov.uk",
-"host": "www.aisi.gov.uk",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"aisi.re.kr": {
-"d": "aisi.re.kr",
-"host": "aisi.re.kr",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"amazon.com": {
-"d": "amazon.com",
-"host": "www.amazon.com",
-"hsts": "yes",
-"hsts_age": 47474747,
-"sectxt": "yes"
-},
-"anthropic.com": {
-"d": "anthropic.com",
-"host": "www.anthropic.com",
-"hsts": "short",
-"hsts_age": 3600,
-"sectxt": "yes",
-"sectxt_exp": "2026-12-31"
-},
-"apolloresearch.ai": {
-"d": "apolloresearch.ai",
-"host": "apolloresearch.ai",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"bitsight.com": {
-"d": "bitsight.com",
-"host": "www.bitsight.com",
-"hsts": "short",
-"hsts_age": 2592000,
-"sectxt": "yes",
-"sectxt_exp": "2026-10-31"
-},
-"blackkite.com": {
-"d": "blackkite.com",
-"host": "blackkite.com",
-"hsts": "short",
-"hsts_age": 2592000,
-"sectxt": "no"
-},
-"cesia.org": {
-"d": "cesia.org",
-"host": "cesia.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"cognition.ai": {
-"d": "cognition.ai",
-"host": "cognition.com",
-"hsts": "yes",
-"hsts_age": 63072000,
-"sectxt": "no"
-},
-"cohere.com": {
-"d": "cohere.com",
-"host": "cohere.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"controlai.org": {
-"d": "controlai.org",
-"host": "controlai.org",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"cser.ac.uk": {
-"d": "cser.ac.uk",
-"host": "www.cser.ac.uk",
-"hsts": "short",
-"hsts_age": 1209600,
-"sectxt": "?"
-},
-"ec.europa.eu": {
-"d": "ec.europa.eu",
-"host": "commission.europa.eu",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"encodeai.org": {
-"d": "encodeai.org",
-"host": "encodeai.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"entreprises.gouv.fr": {
-"d": "entreprises.gouv.fr",
-"host": "www.entreprises.gouv.fr",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"epoch.ai": {
-"d": "epoch.ai",
-"host": "epoch.ai",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"existentialriskobservatory.org": {
-"d": "existentialriskobservatory.org",
-"host": "www.existentialriskobservatory.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"faculty.ai": {
-"d": "faculty.ai",
-"host": "faculty.ai",
-"hsts": "yes",
-"hsts_age": 63072000,
-"sectxt": "no"
-},
-"far.ai": {
-"d": "far.ai",
-"host": "www.far.ai",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"futureoflife.org": {
-"d": "futureoflife.org",
-"host": "futureoflife.org",
-"hsts": "yes",
-"hsts_age": 15768000,
-"sectxt": "no"
-},
-"g42.ai": {
-"d": "g42.ai",
-"host": "g42.ai",
-"hsts": "yes",
-"hsts_age": 16070400,
-"sectxt": "no"
-},
-"google.com": {
-"d": "google.com",
-"host": "www.google.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2030-04-01"
-},
-"grayswan.ai": {
-"d": "grayswan.ai",
-"host": "www.grayswan.ai",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2027-01-22"
-},
-"haizelabs.com": {
-"d": "haizelabs.com",
-"host": "haizelabs.com",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"huggingface.co": {
-"d": "huggingface.co",
-"host": "huggingface.co",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2030-07-01"
-},
-"ibm.com": {
-"d": "ibm.com",
-"host": "www.ibm.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2026-10-21"
-},
-"industry.gov.au": {
-"d": "industry.gov.au",
-"host": "www.industry.gov.au",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes"
-},
-"inflection.ai": {
-"d": "inflection.ai",
-"host": "inflection.ai",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"intelligence.org": {
-"d": "intelligence.org",
-"host": "intelligence.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"irregular.com": {
-"d": "irregular.com",
-"host": "www.irregular.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"ised-isde.canada.ca": {
-"d": "ised-isde.canada.ca",
-"host": "ised-isde.canada.ca",
-"hsts": "?",
-"sectxt": "?"
-},
-"longtermresilience.org": {
-"d": "longtermresilience.org",
-"host": "www.longtermresilience.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"magic.dev": {
-"d": "magic.dev",
-"host": "magic.dev",
-"hsts": "yes",
-"hsts_age": 63072000,
-"sectxt": "yes",
-"sectxt_exp": "2027-08-08"
-},
-"meta.com": {
-"d": "meta.com",
-"host": "www.meta.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "?"
-},
-"metr.org": {
-"d": "metr.org",
-"host": "metr.org",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2027-05-22"
-},
-"microsoft.com": {
-"d": "microsoft.com",
-"host": "www.microsoft.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2026-09-23"
-},
-"minimax.io": {
-"d": "minimax.io",
-"host": "www.minimax.io",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"mistral.ai": {
-"d": "mistral.ai",
-"host": "mistral.ai",
-"hsts": "yes",
-"hsts_age": 15552000,
-"sectxt": "yes",
-"sectxt_exp": "2027-05-05"
-},
-"navercorp.com": {
-"d": "navercorp.com",
-"host": "navercorp.com",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"nist.gov": {
-"d": "nist.gov",
-"host": "www.nist.gov",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"nvidia.com": {
-"d": "nvidia.com",
-"host": "www.nvidia.com",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"openai.com": {
-"d": "openai.com",
-"host": "openai.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes"
-},
-"palisaderesearch.org": {
-"d": "palisaderesearch.org",
-"host": "palisaderesearch.org",
-"hsts": "yes",
-"hsts_age": 15552000,
-"sectxt": "expired",
-"sectxt_exp": "2025-12-31"
-},
-"pauseai-us.org": {
-"d": "pauseai-us.org",
-"host": "www.pauseai-us.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"pauseai.info": {
-"d": "pauseai.info",
-"host": "pauseai.info",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"perplexity.ai": {
-"d": "perplexity.ai",
-"host": "www.perplexity.ai",
-"hsts": "yes",
-"hsts_age": 15552000,
-"sectxt": "expired",
-"sectxt_exp": "2025-11-18"
-},
-"redwoodresearch.org": {
-"d": "redwoodresearch.org",
-"host": "www.redwoodresearch.org",
-"hsts": "yes",
-"hsts_age": 63072000,
-"sectxt": "no"
-},
-"safe.ai": {
-"d": "safe.ai",
-"host": "safe.ai",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"safer-ai.org": {
-"d": "safer-ai.org",
-"host": "www.safer-ai.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"samsung.com": {
-"d": "samsung.com",
-"host": "www.samsung.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"scale.com": {
-"d": "scale.com",
-"host": "scale.com",
-"hsts": "yes",
-"hsts_age": 63072000,
-"sectxt": "expired",
-"sectxt_exp": "2025-06-07"
-},
-"securebio.org": {
-"d": "securebio.org",
-"host": "securebio.org",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"securityscorecard.com": {
-"d": "securityscorecard.com",
-"host": "securityscorecard.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"sgaisi.sg": {
-"d": "sgaisi.sg",
-"host": "sgaisi.sg",
-"hsts": "yes",
-"hsts_age": 15552000,
-"sectxt": "no"
-},
-"signaturescience.com": {
-"d": "signaturescience.com",
-"host": "www.signaturescience.com",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-},
-"themidasproject.com": {
-"d": "themidasproject.com",
-"host": "www.themidasproject.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"tii.ae": {
-"d": "tii.ae",
-"host": "www.tii.ae",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"trajectorylabs.com": {
-"d": "trajectorylabs.com",
-"host": "www.trajectorylabs.com",
-"hsts": "yes",
-"hsts_age": 63072000,
-"sectxt": "no"
-},
-"virtueai.com": {
-"d": "virtueai.com",
-"host": "www.virtueai.com",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "no"
-},
-"x.ai": {
-"d": "x.ai",
-"host": "x.ai",
-"hsts": "yes",
-"hsts_age": 31536000,
-"sectxt": "yes",
-"sectxt_exp": "2027-06-29"
-},
-"z.ai": {
-"d": "z.ai",
-"host": "chat.z.ai",
-"hsts": "no",
-"hsts_age": 0,
-"sectxt": "no"
-}
+ "01.ai": {
+  "d": "01.ai",
+  "host": "www.01.ai",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "10alabs.com": {
+  "d": "10alabs.com",
+  "host": "10alabs.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "aisafety.info": {
+  "d": "aisafety.info",
+  "host": "aisafety.info",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "aisi.go.jp": {
+  "d": "aisi.go.jp",
+  "host": "aisi.go.jp",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "aisi.gov.uk": {
+  "d": "aisi.gov.uk",
+  "host": "www.aisi.gov.uk",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "aisi.re.kr": {
+  "d": "aisi.re.kr",
+  "host": "aisi.re.kr",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "amazon.com": {
+  "d": "amazon.com",
+  "host": "www.amazon.com",
+  "hsts": "yes",
+  "hsts_age": 47474747,
+  "sectxt": "yes"
+ },
+ "anthropic.com": {
+  "d": "anthropic.com",
+  "host": "www.anthropic.com",
+  "hsts": "short",
+  "hsts_age": 3600,
+  "sectxt": "yes",
+  "sectxt_exp": "2026-12-31"
+ },
+ "apolloresearch.ai": {
+  "d": "apolloresearch.ai",
+  "host": "apolloresearch.ai",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "bitsight.com": {
+  "d": "bitsight.com",
+  "host": "www.bitsight.com",
+  "hsts": "short",
+  "hsts_age": 2592000,
+  "sectxt": "yes",
+  "sectxt_exp": "2026-10-31"
+ },
+ "blackkite.com": {
+  "d": "blackkite.com",
+  "host": "blackkite.com",
+  "hsts": "short",
+  "hsts_age": 2592000,
+  "sectxt": "no"
+ },
+ "cesia.org": {
+  "d": "cesia.org",
+  "host": "cesia.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "cognition.ai": {
+  "d": "cognition.ai",
+  "host": "cognition.com",
+  "hsts": "yes",
+  "hsts_age": 63072000,
+  "sectxt": "no"
+ },
+ "cohere.com": {
+  "d": "cohere.com",
+  "host": "cohere.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "controlai.org": {
+  "d": "controlai.org",
+  "host": "controlai.org",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "cser.ac.uk": {
+  "d": "cser.ac.uk",
+  "host": "www.cser.ac.uk",
+  "hsts": "short",
+  "hsts_age": 1209600,
+  "sectxt": "?"
+ },
+ "ec.europa.eu": {
+  "d": "ec.europa.eu",
+  "host": "commission.europa.eu",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "encodeai.org": {
+  "d": "encodeai.org",
+  "host": "encodeai.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "entreprises.gouv.fr": {
+  "d": "entreprises.gouv.fr",
+  "host": "www.entreprises.gouv.fr",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "epoch.ai": {
+  "d": "epoch.ai",
+  "host": "epoch.ai",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "existentialriskobservatory.org": {
+  "d": "existentialriskobservatory.org",
+  "host": "www.existentialriskobservatory.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "faculty.ai": {
+  "d": "faculty.ai",
+  "host": "faculty.ai",
+  "hsts": "yes",
+  "hsts_age": 63072000,
+  "sectxt": "no"
+ },
+ "far.ai": {
+  "d": "far.ai",
+  "host": "www.far.ai",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "futureoflife.org": {
+  "d": "futureoflife.org",
+  "host": "futureoflife.org",
+  "hsts": "yes",
+  "hsts_age": 15768000,
+  "sectxt": "no"
+ },
+ "g42.ai": {
+  "d": "g42.ai",
+  "host": "g42.ai",
+  "hsts": "yes",
+  "hsts_age": 16070400,
+  "sectxt": "no"
+ },
+ "google.com": {
+  "d": "google.com",
+  "host": "www.google.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2030-04-01"
+ },
+ "grayswan.ai": {
+  "d": "grayswan.ai",
+  "host": "www.grayswan.ai",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2027-01-22"
+ },
+ "haizelabs.com": {
+  "d": "haizelabs.com",
+  "host": "haizelabs.com",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "huggingface.co": {
+  "d": "huggingface.co",
+  "host": "huggingface.co",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2030-07-01"
+ },
+ "ibm.com": {
+  "d": "ibm.com",
+  "host": "www.ibm.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2026-10-21"
+ },
+ "industry.gov.au": {
+  "d": "industry.gov.au",
+  "host": "www.industry.gov.au",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes"
+ },
+ "inflection.ai": {
+  "d": "inflection.ai",
+  "host": "inflection.ai",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "intelligence.org": {
+  "d": "intelligence.org",
+  "host": "intelligence.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "irregular.com": {
+  "d": "irregular.com",
+  "host": "www.irregular.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "ised-isde.canada.ca": {
+  "d": "ised-isde.canada.ca",
+  "host": "ised-isde.canada.ca",
+  "hsts": "?",
+  "sectxt": "?"
+ },
+ "longtermresilience.org": {
+  "d": "longtermresilience.org",
+  "host": "www.longtermresilience.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "magic.dev": {
+  "d": "magic.dev",
+  "host": "magic.dev",
+  "hsts": "yes",
+  "hsts_age": 63072000,
+  "sectxt": "yes",
+  "sectxt_exp": "2027-08-08"
+ },
+ "meta.com": {
+  "d": "meta.com",
+  "host": "www.meta.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_expires": "2026-10-21"
+ },
+ "metr.org": {
+  "d": "metr.org",
+  "host": "metr.org",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2027-05-22"
+ },
+ "microsoft.com": {
+  "d": "microsoft.com",
+  "host": "www.microsoft.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2026-09-23"
+ },
+ "minimax.io": {
+  "d": "minimax.io",
+  "host": "www.minimax.io",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "mistral.ai": {
+  "d": "mistral.ai",
+  "host": "mistral.ai",
+  "hsts": "yes",
+  "hsts_age": 15552000,
+  "sectxt": "yes",
+  "sectxt_exp": "2027-05-05"
+ },
+ "navercorp.com": {
+  "d": "navercorp.com",
+  "host": "navercorp.com",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "nist.gov": {
+  "d": "nist.gov",
+  "host": "www.nist.gov",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "nvidia.com": {
+  "d": "nvidia.com",
+  "host": "www.nvidia.com",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "openai.com": {
+  "d": "openai.com",
+  "host": "openai.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes"
+ },
+ "palisaderesearch.org": {
+  "d": "palisaderesearch.org",
+  "host": "palisaderesearch.org",
+  "hsts": "yes",
+  "hsts_age": 15552000,
+  "sectxt": "expired",
+  "sectxt_exp": "2025-12-31"
+ },
+ "pauseai-us.org": {
+  "d": "pauseai-us.org",
+  "host": "www.pauseai-us.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "pauseai.info": {
+  "d": "pauseai.info",
+  "host": "pauseai.info",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "perplexity.ai": {
+  "d": "perplexity.ai",
+  "host": "www.perplexity.ai",
+  "hsts": "yes",
+  "hsts_age": 15552000,
+  "sectxt": "expired",
+  "sectxt_exp": "2025-11-18"
+ },
+ "redwoodresearch.org": {
+  "d": "redwoodresearch.org",
+  "host": "www.redwoodresearch.org",
+  "hsts": "yes",
+  "hsts_age": 63072000,
+  "sectxt": "no"
+ },
+ "safe.ai": {
+  "d": "safe.ai",
+  "host": "safe.ai",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "safer-ai.org": {
+  "d": "safer-ai.org",
+  "host": "www.safer-ai.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "samsung.com": {
+  "d": "samsung.com",
+  "host": "www.samsung.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "scale.com": {
+  "d": "scale.com",
+  "host": "scale.com",
+  "hsts": "yes",
+  "hsts_age": 63072000,
+  "sectxt": "expired",
+  "sectxt_exp": "2025-06-07"
+ },
+ "securebio.org": {
+  "d": "securebio.org",
+  "host": "securebio.org",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "securityscorecard.com": {
+  "d": "securityscorecard.com",
+  "host": "securityscorecard.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "sgaisi.sg": {
+  "d": "sgaisi.sg",
+  "host": "sgaisi.sg",
+  "hsts": "yes",
+  "hsts_age": 15552000,
+  "sectxt": "no"
+ },
+ "signaturescience.com": {
+  "d": "signaturescience.com",
+  "host": "www.signaturescience.com",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ },
+ "themidasproject.com": {
+  "d": "themidasproject.com",
+  "host": "www.themidasproject.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "tii.ae": {
+  "d": "tii.ae",
+  "host": "www.tii.ae",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "trajectorylabs.com": {
+  "d": "trajectorylabs.com",
+  "host": "www.trajectorylabs.com",
+  "hsts": "yes",
+  "hsts_age": 63072000,
+  "sectxt": "no"
+ },
+ "virtueai.com": {
+  "d": "virtueai.com",
+  "host": "www.virtueai.com",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "no"
+ },
+ "x.ai": {
+  "d": "x.ai",
+  "host": "x.ai",
+  "hsts": "yes",
+  "hsts_age": 31536000,
+  "sectxt": "yes",
+  "sectxt_exp": "2027-06-29"
+ },
+ "z.ai": {
+  "d": "z.ai",
+  "host": "chat.z.ai",
+  "hsts": "no",
+  "hsts_age": 0,
+  "sectxt": "no"
+ }
 }

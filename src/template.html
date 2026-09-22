@@ -310,6 +310,7 @@ table.cmp .grp td{background:var(--surface-input);font-size:10px;letter-spacing:
 .std-tier{border:1px solid var(--map-edge);border-radius:12px;padding:15px 16px;background:var(--surface-card)}
 .std-tier.floor{border-left:3px solid var(--warn)}
 .std-tier.std{border-left:3px solid var(--status-only-text)}
+.std-badge.rec{color:var(--text-secondary);border-color:var(--map-edge)}
 .std-th{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
 .std-tn{font-size:15px;font-weight:700;color:var(--text-strong)}
 .std-tt{font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
@@ -1084,7 +1085,7 @@ function st(sc){
   S.F5= sc.sectxt==='yes'?'rec':(sc.sectxt==='no'||sc.sectxt==='expired')?'recx':'na';
   return S;
 }
-function floorItems(sc){const s=st(sc);return ['A1','F1','G1'].filter(k=>s[k]==='fail'||s[k]==='recx')}
+function floorItems(sc){const s=st(sc);return ['A1','F1'].filter(k=>s[k]==='fail'||s[k]==='recx')}
 function belowFloor(sc){return floorItems(sc).length>0}
 function recHtml(p){
   const sc=p.sc||{}; let items='';
@@ -1123,7 +1124,7 @@ function advHtml(a){
 function standardHtml(){
   const C=CTRL, fams=C.families;
   let nFloor=0,nStd=0,nL1=0,nL2=0,nTot=0;
-  fams.forEach(f=>f.controls.forEach(c=>{nTot++;if(c.tier==='floor')nFloor++;else nStd++;if(c.lvl===1)nL1++;else nL2++;}));
+  fams.forEach(f=>f.controls.forEach(c=>{nTot++;if(c.tier==='floor')nFloor++;else if(c.tier==='std')nStd++;if(c.lvl===1)nL1++;else nL2++;}));
   const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
   // the two tiers, as cards
   const floorList=[]; fams.forEach(f=>f.controls.forEach(c=>{if(c.tier==='floor')floorList.push(c);}));
@@ -1141,7 +1142,7 @@ function standardHtml(){
     '<div class="std-lvl"><span class="std-lh">Level 1 &middot; curb inspection</span><p>'+esc(C.levels['1'])+' <b>'+nL1+'</b> controls are observable this way.</p></div>'+
     '<div class="std-lvl"><span class="std-lh">Level 2 &middot; interior inspection</span><p>'+esc(C.levels['2'])+' <b>'+nL2+'</b> controls need the door opened.</p></div></div>';
   // the families, in full
-  const B={floor:['The Floor','floor'],std:['Standard Practice','std']};
+  const B={floor:['The Floor','floor'],std:['Standard Practice','std'],record:['On the record','rec']};
   const famBlocks=fams.map(f=>{
     const rows=f.controls.map(c=>{
       const maps=[c.cis&&c.cis!=='n/a'&&c.cis!=='GV'?'CIS '+c.cis:'',c.ins?'Ins: '+c.ins:'',c.csf?c.csf:''].filter(Boolean)
@@ -1230,7 +1231,7 @@ function fieldStats(){
   const N=F.length;
   const share=(k)=>{const obs=F.map(st).filter(x=>x[k]!=='na'&&x[k]!=='nomail'&&x[k]!=='l2');return [obs.filter(x=>x[k]==='pass'||x[k]==='rec').length,obs.length]};
   const rows=[
-    ['A1','Enforcing DMARC','floor'],['F1','No US Treasury sanctions designation','floor'],['G1','No leak-site listing in the last year','floor'],
+    ['A1','Enforcing DMARC','floor'],['F1','No US Treasury sanctions designation','floor'],
     ['B3','Shielded web origin','std'],['A3','DKIM signing (common selectors)','std'],['A2','SPF hard-fail','std'],['A4','MTA-STS published','std'],
     ['A5','No live homoglyph look-alike','std'],['B2','HSTS (six months or more)','std'],['F5','Valid security.txt','std'],
     ['C2','DNS hygiene (DNSSEC + CAA)','std'],['C3','Clean network reputation','std']].map(([k,l,t])=>{const [m,d]=share(k);return [l,m,d,t]});
@@ -1242,7 +1243,7 @@ function fieldStats(){
   const clearPct=N?Math.round(100*(N-below)/N):0;
   return '<div class="fld">'+
     '<div class="fld-head"><span class="fld-big">'+clearPct+'%</span>'+
-    '<span class="fld-cap">of the '+N+' organizations have no item to resolve on the observable Floor: their mail domain enforces DMARC or sends no mail, they carry no Treasury designation, and they have no leak-site listing in the last year. It says nothing about the Floor controls that need Level 2: phishing-resistant MFA, isolated pre-release access, backups, endpoint detection.</span></div>'+
+    '<span class="fld-cap">of the '+N+' organizations have no item to resolve on the observable Floor: their mail domain enforces DMARC or sends no mail, and they carry no Treasury designation. A ransomware leak-site listing is shown below as documented exposure, not scored against the Floor. It says nothing about the Floor controls that need Level 2: phishing-resistant MFA, isolated pre-release access, backups, endpoint detection.</span></div>'+
     '<p class="mkick" style="margin-top:18px">Floor, the observable slice</p><div class="mbars conc">'+rows.filter(r=>r[3]==='floor').map(bar).join('')+'</div>'+
     '<p class="mkick" style="margin-top:20px;color:var(--status-only-text)">Standard Practice, observable</p><div class="mbars conc">'+rows.filter(r=>r[3]==='std').map(bar).join('')+'</div>'+
     fieldBySector()+
@@ -1293,8 +1294,7 @@ function permitHtml(p){
     ['A1','Enforcing DMARC',s.A1, s.A1==='fail'&&sc.dmarc==='none'?(sc.rua?'Published in monitoring mode (p=none) with reports collected':'Published, but p=none asks receivers to do nothing'):(s.A1==='fail'&&sc.dmarc==='absent'?'No DMARC record, though the domain receives mail':(s.A1==='pass'&&sc.pct!==undefined&&sc.pct<100?'Enforced on '+sc.pct+'% of failing mail':(s.A1==='nomail'?'Domain publishes no mail servers; a reject policy would still lock it':(sc.ovr||''))))],
     ['B4','No known-exploited vulnerabilities',s.B4, s.B4==='l2'?'Origin directly reachable; detail held to Level 2':''],
     ['C1','No exposed admin / database services',s.C1,''],
-    ['F1','No US Treasury sanctions designation',s.F1, (sc.rec&&sc.rec.length)?'An export-control record is shown below and is not scored':''],
-    ['G1','No leak-site listing in the last year',s.G1, act.length?act.map(r=>r.g+', '+r.d).join('; ')+'. An attacker’s claim':'']];
+    ['F1','No US Treasury sanctions designation',s.F1, (sc.rec&&sc.rec.length)?'An export-control record is shown below and is not scored':'']];
   const fFail=floorItems(sc).length;
   const floorHead = fFail===0
     ? '<b>Nothing to resolve on the observable Floor.</b> The rest of the Floor is confirmed only at Level 2.'

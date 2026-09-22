@@ -606,8 +606,8 @@
     {
      "id": "G1",
      "name": "No active leak-site listing",
-     "std": "Not listed on a ransomware or extortion leak site within the twelve months before the scan. Older listings are shown as a matter of record and do not count against the Floor. A listing is an attacker's claim, not a confirmed breach.",
-     "tier": "floor",
+     "std": "Any ransomware or extortion leak-site listing is shown as documented exposure, dated and linked, and is never scored against the Floor. A listing is an attacker's claim, not a confirmed breach: it is recorded so a reader can ask what was taken and when.",
+     "tier": "record",
      "lvl": 1,
      "cis": "GV",
      "ins": "Loss history",
@@ -618,5 +618,5 @@
    ]
   }
  ],
- "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2."
+ "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2. G1 (leak-site) moved off the Floor to a record control: an unverified attacker claim is documented exposure, not a minimum-bar gate."
 }

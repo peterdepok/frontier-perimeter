@@ -203,7 +203,7 @@
    "source": "ransomware.live",
    "ref": "https://www.ransomware.live/",
    "what": "Whether the organization has been posted as a victim on an extortion leak site.",
-   "measure": "The actor's domain is searched on ransomware.live and each result read by hand; a listing is kept only when the victim named is the actor itself. A listing within twelve months of the scan is an item to resolve; older listings are record only.",
+   "measure": "The actor's domain is searched on ransomware.live and each result read by hand; a listing is kept only when the victim named is the actor itself. Any listing is recorded as documented exposure, dated and linked, and is not scored against the Floor.",
    "limit": "A listing is the attacker's claim. Some groups recycle old data or post fabrications; the listing is shown with its date and group so it can be read as such."
   }
  ]

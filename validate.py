@@ -233,6 +233,21 @@ for cand in (checks.get("candidates") or []):
 if not checks.get("principle"):
     errors.append("check_proposals.json has no selection principle")
 
+# 5c-iii. the entrusted ring must not overclaim that every member had model access.
+#         Only some relationships explicitly document pre-release access; the ring
+#         description and narrative must reflect that split, not assert blanket access.
+_ent = next((s for s in providers if s.get("id") == "entrusted"), None)
+if _ent:
+    _desc = (_ent.get("desc") or "").lower()
+    for _bad in ("every organization here has held", "given access to a model before release",
+                 "each has held", "all held a model"):
+        if _bad in _desc:
+            errors.append(f"entrusted desc overclaims access ({_bad!r}); only some sources document pre-release access")
+_pre = sum(1 for r in rel_records if r.get("access_type") == "pre-release-access")
+_named = sum(1 for r in rel_records if r.get("access_type") == "named-tester")
+if _pre + _named != len(rel_records):
+    warnings.append("some relationships use an access_type beyond pre-release-access/named-tester")
+
 # 5d. versioned snapshots: the latest committed snapshot must reconcile with the
 #     current data, so the change feed's baseline is accurate (no drift).
 import glob as _glob

@@ -5,8 +5,8 @@
 :root,:root[data-theme="dark"]{
   --bg-page:radial-gradient(ellipse at 40% 40%, #0b4168 0%, #072a3a 100%);
   --bg-page-solid:#072a3a;
-  --text-primary:#ffffffe6; --text-strong:#fff; --text-secondary:#fffc; --text-body:#ffffffb3;
-  --text-muted:#fff6; --text-faint:#ffffff40; --text-faintest:#ffffff26; --text-tertiary:#ffffff59;
+  --text-primary:#ffffffe6; --text-strong:#fff; --text-secondary:#ffffffde; --text-body:#ffffffcc;
+  --text-muted:#ffffffa6; --text-faint:#ffffff8c; --text-faintest:#ffffff59; --text-tertiary:#ffffffa6;
   --surface-card:#ffffff0f; --surface-hover:#ffffff1a; --surface-input:#ffffff14; --surface-track:#ffffff1a;
   --border-subtle:#ffffff14; --border-default:#ffffff1a; --border-input:#ffffff26; --border-strong:#fff3; --border-focus:#ffffff4d;
   --gold:#867e33; --gold-glow:0 0 0 2px #867e3366; --gold-border:#867e3399;
@@ -67,6 +67,8 @@ button{font-family:inherit}
 
 /* ---------- sector rail ---------- */
 .railwrap{flex:0 0 auto;background:var(--bg-page-solid);border-bottom:1px solid var(--border-subtle);position:sticky;top:64px;z-index:5}
+.railwrap::after{content:"";position:absolute;top:0;right:0;bottom:1px;width:34px;pointer-events:none;
+ background:linear-gradient(to right,transparent,var(--bg-page-solid))}
 .rail{display:flex;gap:2px;overflow-x:auto;padding:8px 22px;scrollbar-width:thin}
 .rail::-webkit-scrollbar{height:3px}
 .rail::-webkit-scrollbar-thumb{background:var(--border-input);border-radius:3px}
@@ -255,6 +257,11 @@ table.cmp .grp td{background:var(--surface-input);font-size:10px;letter-spacing:
 .dec-nums td.s{color:var(--text-faint);font-size:11.5px;width:24%}
 @media (max-width:760px){.dec-cols{grid-template-columns:1fr}}
 
+/* ---------- view bar (above the visualization) ---------- */
+.viewbar{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;padding:12px 0 6px;margin-bottom:2px}
+.viewbar .seg{margin-left:0}
+.viewbar .legend{margin-left:auto}
+@media (max-width:560px){.viewbar .legend{width:100%;margin-left:0;order:2}}
 /* ---------- bottom bar ---------- */
 .bottombar{display:flex;align-items:center;gap:16px;padding:14px 0 6px;flex-wrap:wrap}
 .legend{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:0;padding:0;list-style:none}
@@ -466,6 +473,10 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 .tag.m{background:var(--status-member-bg);color:var(--status-member-text)}
 .tag.w{background:transparent;border:1px solid var(--warn);color:var(--warn)}
 .tag.x{background:var(--status-only-bg);color:var(--status-only-text)}
+.d-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.copylink{font-size:11.5px;font-weight:600;color:var(--text-secondary);background:var(--surface-input);
+ border:1px solid var(--border-input);border-radius:8px;padding:5px 10px;cursor:pointer;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center}
+.copylink:hover{border-color:var(--gold-border);color:var(--text-strong)}
 .d-call{font-family:"Nanum Myeongjo",Georgia,serif;font-size:16px;line-height:1.55;color:var(--text-primary);
  margin:18px 0 0;padding-left:14px;border-left:2px solid var(--gold)}
 .d-note{font-size:13px;color:var(--text-body);margin:13px 0 0;line-height:1.55}
@@ -562,25 +573,25 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 
   <div id="sectorpane" hidden>
     <div class="sectorhead"><h2 id="sname"></h2><p id="sdesc"></p></div>
-    <div class="banner" id="banner"></div>
-    <div class="decision" id="decision" hidden></div>
-    <div class="stage" id="stage" hidden></div>
-    <div class="grid" id="grid" hidden></div>
-    <div class="tablewrap" id="tablewrap" hidden></div>
-    <div class="bottombar">
+    <div class="viewbar">
+      <div class="seg" role="group" aria-label="Choose how to view this group">
+        <button class="seg-btn on" id="v-radial" aria-pressed="true">Radial</button>
+        <button class="seg-btn" id="v-list" aria-pressed="false">List</button>
+        <button class="seg-btn" id="v-table" aria-pressed="false">Table</button>
+        <button class="seg-btn" id="v-graph" aria-pressed="false">Graph</button>
+      </div>
       <ul class="legend">
         <li><b style="color:var(--status-expert-text)">&#9670;</b> Pre-release access</li>
         <li><b>&#9679;</b> Signed a commitment</li>
         <li><b style="color:var(--text-faint)">&#9675;</b> Warning, rating or mandate</li>
         <li><b style="color:var(--warn)">&#9888;</b> Uncertain</li>
       </ul>
-      <div class="seg" role="group" aria-label="View mode">
-        <button class="seg-btn on" id="v-radial">Radial</button>
-        <button class="seg-btn" id="v-list">List</button>
-        <button class="seg-btn" id="v-table">Table</button>
-        <button class="seg-btn" id="v-graph">Graph</button>
-      </div>
     </div>
+    <div class="banner" id="banner"></div>
+    <div class="decision" id="decision" hidden></div>
+    <div class="stage" id="stage" hidden></div>
+    <div class="grid" id="grid" hidden></div>
+    <div class="tablewrap" id="tablewrap" hidden></div>
   </div>
 </main>
 
@@ -623,16 +634,39 @@ const $=id=>document.getElementById(id);
 const rail=$("rail"),grid=$("grid"),stage=$("stage"),tip=$("tip"),q=$("q"),fsel=$("focus"),
  tbtn=$("trust"),banner=$("banner"),cnt=$("count"),sname=$("sname"),sdesc=$("sdesc"),
  drawer=$("drawer"),scrim=$("scrim"),dbody=$("dbody"),tw=$("tablewrap"),dec=$("decision");
-let cur=-1,trust=false,view="radial",lit=null;
+let cur=-1,trust=false,lit=null;
+// the radial map is an exploratory view; below tablet width the list is the clearer default
+let view=(window.matchMedia&&window.matchMedia("(max-width:820px)").matches)?"list":"radial";
 const total=S.reduce((a,s)=>a+s.cats.reduce((b,c)=>b+c.p.length,0),0);
 
 /* ---------- tabs ---------- */
+let routing=false;
+function hashForTab(i){return i===-3?"#standard":i===-4?"#method":i>=0?"#ring="+S[i].id:"#overview";}
 function selectTab(i){
   cur=i;lit=null;
   [...rail.children].forEach(t=>{const on=+t.dataset.k===i;
     t.classList.toggle("on",on);t.setAttribute("aria-selected",on?"true":"false");t.tabIndex=on?0:-1;});
-  render();window.scrollTo({top:0,behavior:"smooth"});
+  render();
+  if(!routing){const h=hashForTab(i);if(location.hash!==h)history.pushState("","",h);}
+  window.scrollTo({top:0,behavior:"smooth"});
 }
+function slugFor(p){return String(p.w||p.n||"").toLowerCase().replace(/^https?:\/\//,"").replace(/\/.*$/,"").replace(/[^a-z0-9.-]+/g,"-").replace(/^-+|-+$/g,"");}
+function findBySlug(slug){for(let i=0;i<S.length;i++)for(const c of S[i].cats)for(const p of c.p)if(slugFor(p)===slug)return{p,ring:i};return null;}
+function route(){
+  routing=true;
+  const h=decodeURIComponent(location.hash.replace(/^#/,""));
+  if(h.indexOf("org=")===0){
+    const found=findBySlug(h.slice(4));
+    if(found){if(cur!==found.ring)selectTab(found.ring);openP(found.p,true);routing=false;return;}
+  }
+  if(drawer.classList.contains("on"))closeDrawer();
+  if(h==="standard")selectTab(-3);
+  else if(h==="method")selectTab(-4);
+  else if(h.indexOf("ring=")===0){const idx=S.findIndex(s=>s.id===h.slice(5));selectTab(idx>=0?idx:-1);}
+  else selectTab(-1);
+  routing=false;
+}
+window.addEventListener("popstate",route);
 rail.addEventListener("keydown",e=>{
   if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"&&e.key!=="Home"&&e.key!=="End")return;
   const tabs=[...rail.children];const at=tabs.findIndex(t=>+t.dataset.k===cur);
@@ -1468,9 +1502,18 @@ function dimsHtml(vals,na){
     '<li><span class="dn">'+d[0]+'</span><span class="dv'+(na?" na":vals?" ok":"")+'">'+(na?"Out of scope":vals?"On file":"No data")+'</span>'+
     '<span class="dd">'+(vals?vals[i]:d[1])+'</span></li>').join("")+'</ul>';
 }
-function openP(p){
+const REPO="https://github.com/peterdepok/frontier-perimeter";
+function CORRECT_URL(p){return REPO+"/issues/new?title="+encodeURIComponent("Correction / re-measure: "+(p.n||""))+"&body="+encodeURIComponent("Organization: "+(p.n||"")+"\nDomain: "+(p.w||"")+"\nMeasured: "+SCAN_DATE+"\nMethodology: "+(MSET&&MSET.version||"")+"\n\nWhat is wrong, or what has changed since the measurement (please include a public source, or the DNS/HTTP evidence a reader could re-check):\n");}
+function copyProfileLink(btn){
+  const url=location.origin+location.pathname+"#org="+encodeURIComponent(btn.dataset.slug);
+  const ok=()=>{const o=btn.textContent;btn.textContent="Link copied";setTimeout(()=>{btn.textContent=o},1400);};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(ok).catch(()=>prompt("Copy this link:",url));
+  else prompt("Copy this link:",url);
+}
+function openP(p,fromRoute){
   if(!p)return;
   const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  if(!fromRoute){const h="#org="+encodeURIComponent(slugFor(p));if(location.hash!==h)history.pushState({org:1},"",h);}
   const KIND={company:'Company',nonprofit:'Nonprofit',government:'Government body'};
   const facts=[["Headquarters",p.hq],["Type",KIND[p.kind]||p.kind],["Full name",p.full],
     ["Published framework",p.fw?'<a href="'+p.fw+'" target="_blank" rel="noopener noreferrer">Safety framework</a>':'']].filter(r=>r[1]);
@@ -1484,6 +1527,7 @@ function openP(p){
    '<div class="d-tags">'+(p.t?'<span class="tag">'+p.t+'</span>':'')+
      '<span class="tag f">'+FOCUS[p.f].mk+' '+FOCUS[p.f].label+'</span>'+
      (p.u?'<span class="tag w">⚠ Flagged uncertain</span>':'')+'</div>'+
+   '<div class="d-actions"><button class="copylink" type="button" data-slug="'+slugFor(p)+'" onclick="copyProfileLink(this)">Copy link</button><a class="copylink" href="'+(p.su||'#')+'" target="_blank" rel="noopener noreferrer">Inclusion source &nearr;</a><a class="copylink" href="'+CORRECT_URL(p)+'" target="_blank" rel="noopener noreferrer">Report a correction &nearr;</a></div>'+
    (p.c?'<p class="d-call">'+p.c+'</p>':'')+
    '<div class="d-prov"><b>Why it is on this map.</b> '+esc(p.doc)+'. '+(p.q?'<span class="d-quote">“'+esc(p.q)+'”</span> ':'')+
      '<a href="'+p.su+'" target="_blank" rel="noopener noreferrer">Source</a>'+(also?'<ul class="d-also">'+also+'</ul>':'')+'</div>'+
@@ -1507,16 +1551,44 @@ function openDemo(){
    '<div class="d-sec"><h4>Assessment <span class="d-status ok">June 2026</span></h4>'+dimsHtml(DEMO.vals,false)+'</div>';
   show();
 }
-function show(){drawer.classList.add("on");scrim.classList.add("on");drawer.focus()}
-function hide(){drawer.classList.remove("on");scrim.classList.remove("on")}
+let lastFocus=null;
+function trapFocus(e){
+  if(e.key!=="Tab")return;
+  const list=[...drawer.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el=>el.offsetParent!==null);
+  if(!list.length){e.preventDefault();return}
+  const first=list[0],last=list[list.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+}
+function show(){
+  lastFocus=document.activeElement;
+  drawer.removeAttribute("inert");drawer.setAttribute("aria-hidden","false");
+  drawer.classList.add("on");scrim.classList.add("on");
+  drawer.addEventListener("keydown",trapFocus);
+  requestAnimationFrame(()=>{const dx=$("dx");if(dx)dx.focus();});
+}
+function hide(){
+  if(!drawer.classList.contains("on"))return;
+  closeDrawer();
+  // drop the profile from the URL without leaving the page (Back still works to the prior view)
+  if(location.hash.indexOf("#org=")===0){try{history.replaceState("","",hashForTab(cur))}catch(e){}}
+}
+function closeDrawer(){
+  drawer.classList.remove("on");scrim.classList.remove("on");
+  drawer.removeEventListener("keydown",trapFocus);
+  drawer.setAttribute("aria-hidden","true");drawer.setAttribute("inert","");
+  if(lastFocus&&lastFocus.focus){try{lastFocus.focus()}catch(e){}lastFocus=null;}
+}
 
 /* ---------- wiring ---------- */
+drawer.setAttribute("inert","");drawer.setAttribute("aria-hidden","true");
 $("dx").onclick=hide;scrim.onclick=hide;
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){hide();hideTip()}});
 q.oninput=render;fsel.onchange=render;
 tbtn.onclick=()=>{trust=!trust;tbtn.setAttribute("aria-pressed",trust);tbtn.classList.toggle("on",trust);document.body.classList.toggle("trust",trust);render()};
 const VB=[["v-radial","radial"],["v-list","list"],["v-table","table"],["v-graph","graph"]];
-VB.forEach(([id,v])=>{$(id).onclick=()=>{view=v;VB.forEach(([x])=>$(x).classList.toggle("on",x===id));render()}});
+VB.forEach(([id,v])=>{$(id).onclick=()=>{view=v;VB.forEach(([x])=>{const on=x===id;$(x).classList.toggle("on",on);$(x).setAttribute("aria-pressed",on?"true":"false");});render()}});
+VB.forEach(([id,v])=>{const on=v===view;$(id).classList.toggle("on",on);$(id).setAttribute("aria-pressed",on?"true":"false");});  // sync with the width-based default
 $("theme").onclick=()=>{
   const r=document.documentElement;
   const nowLight=r.getAttribute("data-theme")==="light";
@@ -1587,5 +1659,5 @@ document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
  document.querySelectorAll('[data-n="held"]').forEach(e=>e.textContent=(HOLD||[]).length);
  document.querySelectorAll('[data-n="cats"]').forEach(e=>e.textContent=S.reduce((a,s)=>a+s.cats.length,0));}
 q.placeholder=(q.dataset.ph||"").replace("%N%",total);
-render();
+route();
 </script>

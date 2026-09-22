@@ -50,6 +50,8 @@ jobs:
         run: |
           (cd scan && python merge.py)
           python src/build.py
+      - name: Validate invariants (unknowns cannot become passes; aggregates reconcile)
+        run: python validate.py
       - name: Commit if the record changed
         run: |
           git config user.name "frontier-perimeter-bot"

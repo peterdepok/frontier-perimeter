@@ -27,7 +27,7 @@ PDFs) and verbatim comparison of the `q` field.
   FLI, SaferAI, The Midas Project, PauseAI US, Encode, CeSIA (red-lines.ai),
   Existential Risk Observatory, AISafety.info.
 
-## Two corrections to make before publishing
+## Two corrections (DONE, commit b09e6cf)
 
 1. **ControlAI** — the current quote ("We seriously risk human extinction by
    building superintelligence") is a Dan Hendrycks endorsement displayed on
@@ -46,3 +46,35 @@ list count returned 666, a summarizing fetch returned "1,000+". Neither is a
 hard count. Do not state a precise signatory number in the argument. The
 inclusion logic does not need it; each Ring B actor's presence on the list is
 separately checkable.
+
+## Data re-verification (2026-09-21)
+
+After the quote pass, every DNS/HTTP signal was audited for completeness and
+the readings taken in a degraded scan environment were re-checked against an
+authoritative resolver (Google Public DNS over HTTPS) and Shodan InternetDB.
+
+- **SPF, all 65 resolved (0 unknown).** The 17 large-org domains that the
+  constrained scanner could not read (blocked UDP/53, large-TXT truncation)
+  were read over DoH and their terminal qualifiers recorded. Five domains
+  previously marked "no SPF" were re-confirmed to genuinely publish none.
+- **MiniMax (minimax.io).** The original scan returned everything absent for
+  this domain. A clean re-read shows three Feishu MX records, SPF `-all`, and
+  no DMARC record. It is therefore scored on the Floor as spoofable (below):
+  a message can be forged in its exact domain. Web edge (Shodan InternetDB on
+  47.85.161.33) answers only 80/443, cloud-tagged, no admin/db, no known
+  vulnerabilities -> classified `edge`. (An earlier "not observable" override,
+  taken when resolvers disagreed on its MX, was retired once the re-read was
+  consistent.)
+- **Meta (meta.com)** publishes a valid security.txt (Contact whitehat, Expires
+  2026-10-21), read over HTTPS -> F5 = yes.
+- **European AI Office (ec.europa.eu)**: no DS record -> DNSSEC = no.
+  **xAI (x.ai)**: CAA records present -> CAA = yes.
+- **Not observable, and left so.** CSER (cser.ac.uk) and the Canadian AI Safety
+  Institute (ised-isde.canada.ca) block automated fetches, so their
+  security.txt (and the Canadian institute's HSTS and origin exposure) could
+  not be read and are recorded as not observable, never as absence. Korea AISI
+  (aisi.re.kr) has no Shodan InternetDB record; its origin exposure is likewise
+  not observable. DKIM remains not observable for four domains that use
+  selectors outside the 25 common names.
+- Scan date pinned to 21 September 2026 (the collection date); the weekly
+  rescan Action re-dates it when it next refreshes.

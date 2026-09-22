@@ -214,6 +214,37 @@ for m in (rel.get("models") or []):
 if not rel.get("version"):
     errors.append("relationships.json has no version")
 
+# 5d. versioned snapshots: the latest committed snapshot must reconcile with the
+#     current data, so the change feed's baseline is accurate (no drift).
+import glob as _glob
+_snapfiles = sorted(f for f in _glob.glob(os.path.join(ROOT, "snapshots", "*.json"))
+                    if os.path.basename(f) != "index.json")
+if not _snapfiles:
+    warnings.append("no snapshots/ yet — the change feed has no baseline")
+else:
+    def _dmarc(sc):
+        L = sc.get("L1")
+        if L == "meet":
+            pct = sc.get("pct");  return "partial" if (pct is not None and pct < 100) else "pass"
+        return {"below": "fail", "nomail": "nomail"}.get(L, "na")
+    latest = json.load(open(sorted(_snapfiles)[-1]))
+    snap_orgs = latest.get("orgs") or {}
+    cur_doms = {p.get("w"): (p.get("sc") or {}) for p in firms}
+    missing = [d for d in cur_doms if d not in snap_orgs]
+    extra = [d for d in snap_orgs if d not in cur_doms]
+    if missing:
+        errors.append(f"latest snapshot missing {len(missing)} current org(s), e.g. {missing[:3]}")
+    if extra:
+        errors.append(f"latest snapshot has {len(extra)} org(s) not in current data, e.g. {extra[:3]}")
+    for d, sc in cur_doms.items():
+        s = snap_orgs.get(d)
+        if s and s.get("dmarc_state") != _dmarc(sc):
+            errors.append(f"snapshot DMARC state drift for {d}: snapshot {s.get('dmarc_state')!r} vs current {_dmarc(sc)!r}")
+    snap_rel = latest.get("relationships") or {}
+    for r in rel_records:
+        if r.get("id") not in snap_rel:
+            errors.append(f"latest snapshot missing relationship {r.get('id')}")
+
 # 6. versions
 if not controls.get("version"): errors.append("controls.json has no version")
 if not method.get("version"):   errors.append("methodology.json has no version")

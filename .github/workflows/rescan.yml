@@ -49,14 +49,17 @@ jobs:
       - name: Merge and build
         run: |
           (cd scan && python merge.py)
+          python scripts/snapshot.py write
           python src/build.py
       - name: Validate invariants (unknowns cannot become passes; aggregates reconcile)
-        run: python validate.py
+        run: |
+          python validate.py
+          python tests/test_snapshot.py
       - name: Commit if the record changed
         run: |
           git config user.name "frontier-perimeter-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data scan/out index.html assessment.html
+          git add data scan/out snapshots index.html assessment.html
           if git diff --cached --quiet; then echo "No change in the public record."; exit 0; fi
           git commit -m "Weekly curb re-read: $(date -u +%Y-%m-%d)"
           git push

@@ -583,6 +583,25 @@ details.full-record>summary:hover{color:var(--text-strong)}
 .rl-purpose.none{color:var(--text-faint);font-style:italic}
 .rl-q{margin:9px 0 0;font-size:12.5px;line-height:1.5;color:var(--text-body);font-style:italic;border-left:2px solid var(--border-default);padding-left:11px}
 .rl-q a{font-style:normal;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-border);white-space:nowrap}
+/* evidence change log */
+.ce-legend{display:flex;flex-direction:column;gap:5px;margin:14px 0 4px}
+.ce-legrow{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--text-muted)}
+.ce-leg{color:var(--text-faint)}
+.ce-chip{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;border-radius:999px;padding:3px 9px;white-space:nowrap;border:1px solid currentColor}
+.ce-chip.ce-new{color:var(--warn)} .ce-chip.ce-doc{color:var(--gold)} .ce-chip.ce-obs{color:var(--status-only-text)} .ce-chip.ce-rem{color:var(--text-faint)}
+.ce-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.ce-row{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start;border-bottom:1px solid var(--border-subtle);padding-bottom:10px}
+.ce-r1{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.ce-snap{font-size:10.5px;color:var(--text-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ce-subj{font-size:13.5px;font-weight:600;color:var(--text-strong)}
+.ce-sub2{font-weight:400;color:var(--text-muted)}
+.ce-det{font-size:12px;color:var(--text-body);line-height:1.5;margin-top:3px}
+.ce-det a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-border);white-space:nowrap}
+.ce-delta{display:inline-flex;align-items:center;gap:7px;margin-left:8px;font-variant-numeric:tabular-nums}
+.ce-was{color:var(--text-faint);text-decoration:line-through}
+.ce-arrow{color:var(--text-muted)}
+.ce-now{color:var(--text-strong);font-weight:600}
+@media(max-width:560px){.ce-row{grid-template-columns:1fr}}
 </style>
 
 <div class="shell">
@@ -2261,6 +2280,8 @@ const REL={
   }
  ]
 };
+const CHANGES=[];
+const SNAPMETA={"snapshots": ["2026-09-21"], "baseline": "2026-09-21", "latest": "2026-09-21", "count": 1};
 // index relationships by evaluator domain and by model id, once
 const RELBYEV={}, RELBYMODEL={};
 (REL&&REL.relationships||[]).forEach(r=>{(RELBYEV[r.evaluator]=RELBYEV[r.evaluator]||[]).push(r);(RELBYMODEL[r.model_id]=RELBYMODEL[r.model_id]||[]).push(r);});
@@ -3001,12 +3022,46 @@ function methodHtml(){
     '<a class="dl" href="'+REPO+'/blob/main/VERIFICATION.md" target="_blank" rel="noopener noreferrer"><b>Verification log &nearr;</b><span>Every inclusion quote checked against its primary source, and the data re-verification record.</span></a>'+
     '</div>'+
     '<p class="mfoot" style="margin-top:14px">The public data preserves the disclosure boundaries of the site: withheld Level 2 detail — which exposed service, which indexed vulnerability — is never present in providers.json. Field definitions live in this methodology; the same dated, sourced record backs every figure, chart, table and profile, so a reader can re-compute any statistic from providers.json.</p>'+
-    ((M.changes&&M.changes.length)?'<h2 class="std-h">Change history</h2>'+
+    changeFeedHtml()+
+    ((M.changes&&M.changes.length)?'<h2 class="std-h">Methodology change history</h2>'+
       '<p class="gp-p">What changed between methodology versions, and why. Raw records are preserved across revisions; where a revision changes a classification it is the interpretation that changed, not the underlying evidence.</p>'+
       '<div class="mth-sig"><div class="mth-rows">'+
       M.changes.map(c=>'<div class="mth-r"><span class="mth-k">'+esc(c.version)+(c.date?' &middot; '+esc(c.date):'')+'</span><span class="mth-v">'+esc(c.summary)+'</span></div>').join('')+
       '</div></div>':'')+
     '</div>';
+}
+// The evidence change log: what moved between dated snapshots, classified so a
+// reader can tell a newly discovered source from a genuinely new event.
+const CHANGE_CAT={
+ 'new-event':['New event','ce-new','A source dated after the previous snapshot, or an observation that moved.'],
+ 'newly-documented':['Newly documented','ce-doc','New to this record, not to the world: an older source, or an organization, newly added.'],
+ 'observation-change':['Observation changed','ce-obs','A public observation read a different value than last time.'],
+ 'removed':['Removed','ce-rem','A record present before is no longer documented.']};
+function changeFeedHtml(){
+  const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const meta=SNAPMETA||{}, feed=CHANGES||[];
+  const head='<h2 class="std-h">Evidence change log</h2>';
+  const legend='<div class="ce-legend">'+Object.keys(CHANGE_CAT).map(k=>'<span class="ce-chip '+CHANGE_CAT[k][1]+'">'+CHANGE_CAT[k][0]+'</span> <span class="ce-leg">'+CHANGE_CAT[k][2]+'</span>').map(x=>'<span class="ce-legrow">'+x+'</span>').join('')+'</div>';
+  if(!feed.length){
+    return head+
+      '<p class="gp-p">Every rescan writes a dated snapshot of the observable evidence and the documented relationships. This log records what moves between snapshots, and separates a source we have <b>newly discovered</b> (older than our last look) from a <b>genuinely new event</b> (a source dated after it). '+
+      (meta.baseline?'The baseline snapshot was established on <b>'+esc(meta.baseline)+'</b>; the log begins at the next rescan.':'No baseline snapshot yet.')+' No history is inferred or backfilled.</p>'+legend;
+  }
+  const prevCur=c=>{
+    if(c.prev==null&&c.cur==null)return'';
+    const p=c.prev==null?'&mdash;':esc(c.prev), cu=c.cur==null?'&mdash;':esc(c.cur);
+    return '<span class="ce-delta"><span class="ce-was">'+p+'</span><span class="ce-arrow">&rarr;</span><span class="ce-now">'+cu+'</span></span>';
+  };
+  const rows=feed.map(c=>{
+    const cat=CHANGE_CAT[c.category]||[c.category,'ce-obs',''];
+    const sub=c.model?esc(c.subject)+' <span class="ce-sub2">'+esc(c.model)+'</span>':esc(c.subject)+(c.field?' <span class="ce-sub2">'+esc(c.field)+'</span>':'');
+    const src=c.source_url?' <a href="'+esc(c.source_url)+'" target="_blank" rel="noopener noreferrer">source &nearr;</a>':'';
+    return '<div class="ce-row"><div class="ce-r1"><span class="ce-chip '+cat[1]+'">'+cat[0]+'</span><span class="ce-snap">'+esc(c.snapshot)+'</span></div>'+
+      '<div class="ce-body"><div class="ce-subj">'+sub+'</div><div class="ce-det">'+esc(c.detail)+prevCur(c)+src+'</div></div></div>';
+  }).join('');
+  return head+
+    '<p class="gp-p">What moved between snapshots ('+esc(meta.baseline)+' &rarr; '+esc(meta.latest)+', '+meta.count+' snapshots). A newly discovered source is separated from a genuinely new event by comparing the source&rsquo;s own date to the previous snapshot. Previous and current values are both shown.</p>'+
+    legend+'<div class="ce-list">'+rows+'</div>';
 }
 function fieldStats(){
   const F=[]; S.forEach(s=>s.cats.forEach(c=>c.p.forEach(p=>{if(p.sc)F.push(p.sc);})));

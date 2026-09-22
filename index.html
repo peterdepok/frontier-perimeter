@@ -566,6 +566,23 @@ details.full-record>summary:hover{color:var(--text-strong)}
 .d-quote{font-style:italic}
 .d-also{margin:8px 0 0 18px;padding:0;font-size:.92em}
 .d-also li{margin:3px 0}
+/* documented-relationships layer (distinct from the security-observation layer) */
+.rl-sec .d-status.meas{color:var(--gold)}
+.rl-list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.rl-item{border:1px solid var(--border-default);border-radius:11px;padding:12px 13px;background:var(--surface-card)}
+.rl-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.rl-model{font:inherit;font-size:14px;font-weight:600;color:var(--gold);background:none;border:0;border-bottom:1px solid var(--gold-border);padding:0;cursor:pointer}
+.rl-model:hover{border-bottom-color:var(--gold)}
+.rl-model.plain{color:var(--text-strong);border-bottom:0;cursor:default}
+.rl-lab{font-size:12px;color:var(--text-muted)}
+.rl-date{font-size:11px;color:var(--text-faint);margin-left:auto;white-space:nowrap}
+.rl-meta{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:8px;align-items:center}
+.rl-acc{font-size:10.5px;font-weight:600;letter-spacing:.02em;color:var(--text-muted);background:var(--surface-track);border-radius:999px;padding:3px 9px}
+.rl-acc.pre{color:var(--assess);background:color-mix(in srgb,var(--assess) 16%,transparent)}
+.rl-purpose{font-size:11.5px;color:var(--text-body)}
+.rl-purpose.none{color:var(--text-faint);font-style:italic}
+.rl-q{margin:9px 0 0;font-size:12.5px;line-height:1.5;color:var(--text-body);font-style:italic;border-left:2px solid var(--border-default);padding-left:11px}
+.rl-q a{font-style:normal;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-border);white-space:nowrap}
 </style>
 
 <div class="shell">
@@ -1816,6 +1833,439 @@ const HOLD=[
   "why": "Cyber companies, not AI-risk actors. A possible second edition."
  }
 ];
+const REL={
+ "version": "v0.1",
+ "scan": "2026-09-21",
+ "note": "Documented model-access relationships, structured from the same public system-card sources that place each organization in the entrusted ring. Each record is a point-in-time observation from a named source; it is historical and is not a statement of current access. Access mechanisms are recorded only as the source states them; unknowns are preserved.",
+ "access_types": {
+  "pre-release-access": "The source documents access to the model before public release (a snapshot, checkpoint, prototype, or early access). The exact wording is in the quote.",
+  "named-tester": "The source names the organization as testing or red-teaming the model but does not state how it accessed the model.",
+  "unspecified": "The source names the organization without stating a testing activity or an access mechanism."
+ },
+ "relationships": [
+  {
+   "id": "openai-o1__metr-org",
+   "evaluator": "metr.org",
+   "evaluator_name": "METR",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "METR, a research nonprofit that works on assessing whether cutting-edge AI systems could pose catastrophic risks to society, evaluated an earlier checkpoint of o1.",
+   "purpose": null,
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-4__apolloresearch-ai",
+   "evaluator": "apolloresearch.ai",
+   "evaluator_name": "Apollo Research",
+   "lab": "Anthropic",
+   "model": "Claude Opus 4 / Sonnet 4",
+   "model_id": "anthropic-claude-opus-4",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Opus 4 & Claude Sonnet 4, May 2025",
+    "url": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+    "published": "2025-05"
+   },
+   "quote": "we contracted with Apollo Research to assess an early snapshot for propensities and capabilities related to sabotage",
+   "purpose": "sabotage-related propensities and capabilities",
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2025-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-chatgpt-agent__far-ai",
+   "evaluator": "far.ai",
+   "evaluator_name": "FAR.AI",
+   "lab": "OpenAI",
+   "model": "ChatGPT Agent",
+   "model_id": "openai-chatgpt-agent",
+   "model_source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "quote": "FAR.AI conducted 40 hours of testing over 2 weeks.",
+   "purpose": null,
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2025-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-gpt-5-5__securebio-org",
+   "evaluator": "securebio.org",
+   "evaluator_name": "SecureBio",
+   "lab": "OpenAI",
+   "model": "GPT-5.5",
+   "model_id": "openai-gpt-5-5",
+   "model_source": {
+    "doc": "OpenAI GPT-5.5 System Card, Apr 2026",
+    "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "published": "2026-04"
+   },
+   "quote": "SecureBio assessed two pre-release checkpoints of GPT-5.5 using its biology and biosecurity evaluations",
+   "purpose": "biology and biosecurity evaluation",
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-mythos-preview__epoch-ai",
+   "evaluator": "epoch.ai",
+   "evaluator_name": "Epoch AI",
+   "lab": "Anthropic",
+   "model": "Claude Mythos Preview",
+   "model_id": "anthropic-claude-mythos-preview",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Mythos Preview, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "quote": "Both METR and Epoch AI tested Claude Mythos Preview prior to release",
+   "purpose": null,
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-gpt-5-5__irregular-com",
+   "evaluator": "irregular.com",
+   "evaluator_name": "Irregular (formerly Pattern Labs)",
+   "lab": "OpenAI",
+   "model": "GPT-5.5",
+   "model_id": "openai-gpt-5-5",
+   "model_source": {
+    "doc": "OpenAI GPT-5.5 System Card, Apr 2026",
+    "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "published": "2026-04"
+   },
+   "quote": "Irregular examined the offensive cybersecurity capabilities of GPT-5.5 through a series of evaluations across two challenge suites",
+   "purpose": "offensive cybersecurity capability evaluation",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__grayswan-ai",
+   "evaluator": "grayswan.ai",
+   "evaluator_name": "Gray Swan AI",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__haizelabs-com",
+   "evaluator": "haizelabs.com",
+   "evaluator_name": "Haize Labs",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__virtueai-com",
+   "evaluator": "virtueai.com",
+   "evaluator_name": "Virtue AI",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-5__trajectorylabs-com",
+   "evaluator": "trajectorylabs.com",
+   "evaluator_name": "Trajectory Labs",
+   "lab": "Anthropic",
+   "model": "Claude Opus 5",
+   "model_id": "anthropic-claude-opus-5",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Opus 5, Jul 2026",
+    "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+    "published": "2026-07"
+   },
+   "quote": "Trajectory Labs, PBC spent roughly 100 hours red-teaming our safeguards.",
+   "purpose": "red-teaming of safeguards",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2026-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-5__10alabs-com",
+   "evaluator": "10alabs.com",
+   "evaluator_name": "10a Labs",
+   "lab": "Anthropic",
+   "model": "Claude Opus 5",
+   "model_id": "anthropic-claude-opus-5",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Opus 5, Jul 2026",
+    "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+    "published": "2026-07"
+   },
+   "quote": "10a Labs spent around 16 hours testing a variety of attack techniques and did not find a jailbreak...",
+   "purpose": "adversarial / jailbreak testing",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2026-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__faculty-ai",
+   "evaluator": "faculty.ai",
+   "evaluator_name": "Faculty",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-chatgpt-agent__signaturescience-com",
+   "evaluator": "signaturescience.com",
+   "evaluator_name": "Signature Science",
+   "lab": "OpenAI",
+   "model": "ChatGPT Agent",
+   "model_id": "openai-chatgpt-agent",
+   "model_source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "quote": "To assess the model's potential to assist in novel biological weapon design, we engaged biosecurity and chemistry experts from Signature Science...",
+   "purpose": "biological-weapon-design uplift assessment",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2025-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-4-7__aisi-gov-uk",
+   "evaluator": "aisi.gov.uk",
+   "evaluator_name": "UK AI Security Institute",
+   "lab": "Anthropic",
+   "model": "Claude Opus 4.7",
+   "model_id": "anthropic-claude-opus-4-7",
+   "model_source": {
+    "doc": "Anthropic Claude Opus 4.7 System Card, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "quote": "We shared a pre-release snapshot of Claude Opus 4.7 with the UK AI Security Institute (UK AISI) for open-ended testing",
+   "purpose": "open-ended testing",
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-chatgpt-agent__nist-gov",
+   "evaluator": "nist.gov",
+   "evaluator_name": "US Center for AI Standards and Innovation (CAISI)",
+   "lab": "OpenAI",
+   "model": "ChatGPT Agent",
+   "model_id": "openai-chatgpt-agent",
+   "model_source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "quote": "We provided early access to the US Center for AI Standards and Innovation and the UK AI Security Institute (UK AISI) to prototype versions of our system...",
+   "purpose": null,
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2025-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  }
+ ],
+ "models": [
+  {
+   "model_id": "openai-o1",
+   "model": "o1",
+   "lab": "OpenAI",
+   "source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "evaluators": [
+    "metr.org",
+    "grayswan.ai",
+    "haizelabs.com",
+    "virtueai.com",
+    "faculty.ai"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-opus-4",
+   "model": "Claude Opus 4 / Sonnet 4",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic System Card: Claude Opus 4 & Claude Sonnet 4, May 2025",
+    "url": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+    "published": "2025-05"
+   },
+   "evaluators": [
+    "apolloresearch.ai"
+   ]
+  },
+  {
+   "model_id": "openai-chatgpt-agent",
+   "model": "ChatGPT Agent",
+   "lab": "OpenAI",
+   "source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "evaluators": [
+    "far.ai",
+    "signaturescience.com",
+    "nist.gov"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-mythos-preview",
+   "model": "Claude Mythos Preview",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic System Card: Claude Mythos Preview, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "evaluators": [
+    "epoch.ai"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-opus-4-7",
+   "model": "Claude Opus 4.7",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic Claude Opus 4.7 System Card, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "evaluators": [
+    "aisi.gov.uk"
+   ]
+  },
+  {
+   "model_id": "openai-gpt-5-5",
+   "model": "GPT-5.5",
+   "lab": "OpenAI",
+   "source": {
+    "doc": "OpenAI GPT-5.5 System Card, Apr 2026",
+    "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "published": "2026-04"
+   },
+   "evaluators": [
+    "securebio.org",
+    "irregular.com"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-opus-5",
+   "model": "Claude Opus 5",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic System Card: Claude Opus 5, Jul 2026",
+    "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+    "published": "2026-07"
+   },
+   "evaluators": [
+    "trajectorylabs.com",
+    "10alabs.com"
+   ]
+  }
+ ]
+};
+// index relationships by evaluator domain and by model id, once
+const RELBYEV={}, RELBYMODEL={};
+(REL&&REL.relationships||[]).forEach(r=>{(RELBYEV[r.evaluator]=RELBYEV[r.evaluator]||[]).push(r);(RELBYMODEL[r.model_id]=RELBYMODEL[r.model_id]||[]).push(r);});
+const MODELBYID={}; (REL&&REL.models||[]).forEach(m=>MODELBYID[m.model_id]=m);
+const ACCESS_LABEL={'pre-release-access':'Pre-release access (documented)','named-tester':'Named as tester; access mechanism not stated','unspecified':'Access mechanism not stated'};
 const NOASSESS=[];
 const SCAN={"iso": "2026-09-21", "date": "21 September 2026"};
 const SCAN_DATE=SCAN.date;
@@ -1861,6 +2311,10 @@ function route(){
   if(h.indexOf("org=")===0){
     const found=findBySlug(h.slice(4));
     if(found){if(cur!==found.ring)selectTab(found.ring);openP(found.p,true);routing=false;return;}
+  }
+  if(h.indexOf("model=")===0){
+    const m=MODELBYID[h.slice(6)];
+    if(m){openModel(m,true);routing=false;return;}
   }
   if(drawer.classList.contains("on"))closeDrawer();
   if(h==="standard")selectTab(-3);
@@ -2819,6 +3273,7 @@ function openP(p,fromRoute){
    (p.o?'<p class="d-note">'+esc(p.o)+'</p>':'')+
    (facts.length?'<div class="d-sec"><h4>Facts</h4><ul class="d-fields">'+
      facts.map(r=>'<li><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></li>').join("")+'</ul></div>':'')+
+   relHtml(p)+
    summaryCard(p)+
    '<details class="full-record"><summary>Full inspection record</summary>'+
    permitHtml(p)+
@@ -2829,6 +3284,49 @@ function openP(p,fromRoute){
      dimsHtml(null,false)+'</div>';
   show();
 }
+function fmtMon(s){if(!s)return'';const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];const q=String(s).split('-');const mo=+q[1];return (mo?M[mo-1]+' ':'')+q[0];}
+function findByDomain(dom){for(let i=0;i<S.length;i++)for(const c of S[i].cats)for(const p of c.p)if(p.w===dom)return{p,ring:i};return null;}
+function relEsc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+// The documented-relationships layer, kept distinct from the security-observation layer.
+function relHtml(p){
+  const rs=RELBYEV[p.w]; if(!rs||!rs.length)return"";
+  const items=rs.slice().sort((a,b)=>String(b.documented_on).localeCompare(String(a.documented_on))).map(r=>{
+    const acc=ACCESS_LABEL[r.access_type]||r.access_type;
+    return '<li class="rl-item">'+
+      '<div class="rl-top"><button class="rl-model" type="button" onclick="openModelById(\''+r.model_id+'\')">'+relEsc(r.model)+' &rsaquo;</button>'+
+        '<span class="rl-lab">'+relEsc(r.lab)+'</span><span class="rl-date">documented '+fmtMon(r.documented_on)+'</span></div>'+
+      '<div class="rl-meta"><span class="rl-acc'+(r.access_type==='pre-release-access'?' pre':'')+'">'+acc+'</span>'+
+        (r.purpose?'<span class="rl-purpose">'+relEsc(r.purpose)+'</span>':'<span class="rl-purpose none">purpose not stated in the source</span>')+'</div>'+
+      '<blockquote class="rl-q">&ldquo;'+relEsc(r.quote)+'&rdquo; <a href="'+relEsc(r.model_source.url)+'" target="_blank" rel="noopener noreferrer">'+relEsc(r.model_source.doc)+' &nearr;</a></blockquote>'+
+      '</li>';
+  }).join('');
+  return '<div class="d-sec rl-sec"><h4>Documented model-access relationships <span class="d-status meas">Historical</span></h4>'+
+    '<p class="d-note">Where a frontier lab has named this organization in a model&rsquo;s system card. Each is a point-in-time record from that source: it is <b>historical and not a statement of current access</b>, and the access mechanism is shown only as the source states it. Absence of a record here is not evidence that no evaluation occurred.</p>'+
+    '<ul class="rl-list">'+items+'</ul></div>';
+}
+function openModelById(mid){const m=MODELBYID[mid];if(m)openModel(m,false);}
+function openModel(m,fromRoute){
+  if(!m)return;
+  if(!fromRoute){const h="#model="+encodeURIComponent(m.model_id);if(location.hash!==h)history.pushState({model:1},"",h);}
+  const rs=(RELBYMODEL[m.model_id]||[]).slice().sort((a,b)=>String(a.evaluator_name).localeCompare(String(b.evaluator_name)));
+  const evs=rs.map(r=>{
+    const acc=ACCESS_LABEL[r.access_type]||r.access_type;
+    const linkable=!!findByDomain(r.evaluator);
+    const nm=linkable?'<button class="rl-model" type="button" onclick="openOrgByDomain(\''+r.evaluator+'\')">'+relEsc(r.evaluator_name)+' &rsaquo;</button>':'<span class="rl-model plain">'+relEsc(r.evaluator_name)+'</span>';
+    return '<li class="rl-item"><div class="rl-top">'+nm+'<span class="rl-lab">'+relEsc(r.evaluator)+'</span></div>'+
+      '<div class="rl-meta"><span class="rl-acc'+(r.access_type==='pre-release-access'?' pre':'')+'">'+acc+'</span>'+
+        (r.purpose?'<span class="rl-purpose">'+relEsc(r.purpose)+'</span>':'<span class="rl-purpose none">purpose not stated</span>')+'</div>'+
+      '<blockquote class="rl-q">&ldquo;'+relEsc(r.quote)+'&rdquo;</blockquote></li>';
+  }).join('');
+  dbody.innerHTML=
+    '<p class="d-eyebrow">Model &middot; documented evaluators</p>'+
+    '<div class="d-headt"><h3 id="dname">'+relEsc(m.model)+'</h3><p class="d-site">'+relEsc(m.lab)+'</p></div>'+
+    '<div class="d-actions"><a class="copylink" href="'+relEsc(m.source.url)+'" target="_blank" rel="noopener noreferrer">'+relEsc(m.source.doc)+' &nearr;</a></div>'+
+    '<p class="d-note">Organizations named in <b>'+relEsc(m.source.doc)+'</b> ('+fmtMon(m.source.published)+') as having evaluated this model. This is what that one public source documents; it is historical and does not describe current access. Others may have evaluated the model without appearing in this source.</p>'+
+    '<div class="d-sec"><h4>Documented evaluators <span class="d-status meas">'+rs.length+'</span></h4><ul class="rl-list">'+evs+'</ul></div>';
+  show();
+}
+function openOrgByDomain(dom){const f=findByDomain(dom);if(f){if(cur!==f.ring)selectTab(f.ring);openP(f.p,false);}}
 function openDemo(){
   dbody.innerHTML='<p class="d-eyebrow" style="color:var(--assess)">Illustrative reference profile</p>'+
    '<h3 id="dname">'+DEMO.name+'</h3><p class="d-site">'+DEMO.site+'</p>'+
@@ -2849,7 +3347,7 @@ function trapFocus(e){
   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
 }
 function show(){
-  lastFocus=document.activeElement;
+  if(!drawer.classList.contains("on"))lastFocus=document.activeElement;  // keep opener focus across in-drawer navigation
   drawer.removeAttribute("inert");drawer.setAttribute("aria-hidden","false");
   drawer.classList.add("on");scrim.classList.add("on");
   drawer.addEventListener("keydown",trapFocus);
@@ -2859,7 +3357,7 @@ function hide(){
   if(!drawer.classList.contains("on"))return;
   closeDrawer();
   // drop the profile from the URL without leaving the page (Back still works to the prior view)
-  if(location.hash.indexOf("#org=")===0){try{history.replaceState("","",hashForTab(cur))}catch(e){}}
+  if(location.hash.indexOf("#org=")===0||location.hash.indexOf("#model=")===0){try{history.replaceState("","",hashForTab(cur))}catch(e){}}
 }
 function closeDrawer(){
   drawer.classList.remove("on");scrim.classList.remove("on");

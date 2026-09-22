@@ -23,6 +23,7 @@ providers = load("data/providers.json")
 controls  = load("controls.json")
 method    = load("methodology.json")
 scan      = load("data/scan_meta.json")
+rel       = load("data/relationships.json")
 
 firms = [p for s in providers for c in s["cats"] for p in c["p"]]
 errors, warnings = [], []
@@ -172,6 +173,47 @@ for key, tot in (("pass", overall["pass"]), ("partial", overall["partial"]),
     if s != tot:
         errors.append(f"aggregate mismatch: rings sum {key}={s} but overall={tot}")
 
+# 5c. documented model-access relationships (Milestone 1).
+#     Structured only from existing verified sources; every record must be
+#     source-backed, use the controlled access vocabulary, and be HISTORICAL —
+#     no record may imply current access.
+ACCESS_VOCAB = set((rel.get("access_types") or {}).keys())
+dom_index = {(p.get("w") or "").lower(): p.get("n") for p in firms}
+rel_records = rel.get("relationships") or []
+seen_rel = set()
+for r in rel_records:
+    rid = r.get("id")
+    if rid in seen_rel:
+        errors.append(f"relationship {rid}: duplicate id")
+    seen_rel.add(rid)
+    for field in ("evaluator", "lab", "model", "model_id", "quote"):
+        if not r.get(field):
+            errors.append(f"relationship {rid}: missing {field}")
+    src = r.get("model_source") or {}
+    if not src.get("url") or not src.get("doc"):
+        errors.append(f"relationship {rid}: source needs both a url and a doc label")
+    if r.get("access_type") not in ACCESS_VOCAB:
+        errors.append(f"relationship {rid}: access_type {r.get('access_type')!r} not in the controlled vocabulary {sorted(ACCESS_VOCAB)}")
+    if r.get("status") != "historical":
+        errors.append(f"relationship {rid}: status must be 'historical' (a record must not imply current access), found {r.get('status')!r}")
+    if not r.get("documented_on"):
+        errors.append(f"relationship {rid}: no documented_on date")
+    # 'purpose' and 'engagement_date' may be null — unknowns are preserved, not invented.
+    ev = (r.get("evaluator") or "").lower()
+    if ev not in dom_index:
+        errors.append(f"relationship {rid}: evaluator domain {ev!r} is not an included organization")
+# the models index must reconcile with the relationship records
+model_evs = {}
+for r in rel_records:
+    model_evs.setdefault(r.get("model_id"), set()).add(r.get("evaluator"))
+for m in (rel.get("models") or []):
+    want = model_evs.get(m.get("model_id"), set())
+    got = set(m.get("evaluators") or [])
+    if want != got:
+        errors.append(f"model {m.get('model_id')}: index evaluators {sorted(got)} != relationship records {sorted(want)}")
+if not rel.get("version"):
+    errors.append("relationships.json has no version")
+
 # 6. versions
 if not controls.get("version"): errors.append("controls.json has no version")
 if not method.get("version"):   errors.append("methodology.json has no version")
@@ -191,6 +233,10 @@ print(f"  headline: {ent['fail']} of {len(entrusted)} entrusted request no DMARC
       f"(p=none or absent); {ent['partial']} request enforcement in a legacy partial rollout; "
       f"{ov_enf} of {ov_den} readable domains request enforcement")
 print("  note: receiver behaviour is NOT measured; figures describe the published record only")
+_acc = {}
+for r in rel_records: _acc[r.get("access_type")] = _acc.get(r.get("access_type"), 0) + 1
+print(f"  documented relationships: {len(rel_records)} across {len(rel.get('models') or [])} models "
+      f"(all historical); access types {dict(sorted(_acc.items()))}")
 print("  by ring (one shared calculation — must match every surface on the site):")
 print(f"    {'ring':<26}{'orgs':>5}{'req-enf':>12}{'obs-floor':>12}{'sec.txt':>12}")
 for name, a in ring_stats:

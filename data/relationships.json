@@ -1,0 +1,428 @@
+{
+ "version": "v0.1",
+ "scan": "2026-09-21",
+ "note": "Documented model-access relationships, structured from the same public system-card sources that place each organization in the entrusted ring. Each record is a point-in-time observation from a named source; it is historical and is not a statement of current access. Access mechanisms are recorded only as the source states them; unknowns are preserved.",
+ "access_types": {
+  "pre-release-access": "The source documents access to the model before public release (a snapshot, checkpoint, prototype, or early access). The exact wording is in the quote.",
+  "named-tester": "The source names the organization as testing or red-teaming the model but does not state how it accessed the model.",
+  "unspecified": "The source names the organization without stating a testing activity or an access mechanism."
+ },
+ "relationships": [
+  {
+   "id": "openai-o1__metr-org",
+   "evaluator": "metr.org",
+   "evaluator_name": "METR",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "METR, a research nonprofit that works on assessing whether cutting-edge AI systems could pose catastrophic risks to society, evaluated an earlier checkpoint of o1.",
+   "purpose": null,
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-4__apolloresearch-ai",
+   "evaluator": "apolloresearch.ai",
+   "evaluator_name": "Apollo Research",
+   "lab": "Anthropic",
+   "model": "Claude Opus 4 / Sonnet 4",
+   "model_id": "anthropic-claude-opus-4",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Opus 4 & Claude Sonnet 4, May 2025",
+    "url": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+    "published": "2025-05"
+   },
+   "quote": "we contracted with Apollo Research to assess an early snapshot for propensities and capabilities related to sabotage",
+   "purpose": "sabotage-related propensities and capabilities",
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2025-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-chatgpt-agent__far-ai",
+   "evaluator": "far.ai",
+   "evaluator_name": "FAR.AI",
+   "lab": "OpenAI",
+   "model": "ChatGPT Agent",
+   "model_id": "openai-chatgpt-agent",
+   "model_source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "quote": "FAR.AI conducted 40 hours of testing over 2 weeks.",
+   "purpose": null,
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2025-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-gpt-5-5__securebio-org",
+   "evaluator": "securebio.org",
+   "evaluator_name": "SecureBio",
+   "lab": "OpenAI",
+   "model": "GPT-5.5",
+   "model_id": "openai-gpt-5-5",
+   "model_source": {
+    "doc": "OpenAI GPT-5.5 System Card, Apr 2026",
+    "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "published": "2026-04"
+   },
+   "quote": "SecureBio assessed two pre-release checkpoints of GPT-5.5 using its biology and biosecurity evaluations",
+   "purpose": "biology and biosecurity evaluation",
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-mythos-preview__epoch-ai",
+   "evaluator": "epoch.ai",
+   "evaluator_name": "Epoch AI",
+   "lab": "Anthropic",
+   "model": "Claude Mythos Preview",
+   "model_id": "anthropic-claude-mythos-preview",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Mythos Preview, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "quote": "Both METR and Epoch AI tested Claude Mythos Preview prior to release",
+   "purpose": null,
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-gpt-5-5__irregular-com",
+   "evaluator": "irregular.com",
+   "evaluator_name": "Irregular (formerly Pattern Labs)",
+   "lab": "OpenAI",
+   "model": "GPT-5.5",
+   "model_id": "openai-gpt-5-5",
+   "model_source": {
+    "doc": "OpenAI GPT-5.5 System Card, Apr 2026",
+    "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "published": "2026-04"
+   },
+   "quote": "Irregular examined the offensive cybersecurity capabilities of GPT-5.5 through a series of evaluations across two challenge suites",
+   "purpose": "offensive cybersecurity capability evaluation",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__grayswan-ai",
+   "evaluator": "grayswan.ai",
+   "evaluator_name": "Gray Swan AI",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__haizelabs-com",
+   "evaluator": "haizelabs.com",
+   "evaluator_name": "Haize Labs",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__virtueai-com",
+   "evaluator": "virtueai.com",
+   "evaluator_name": "Virtue AI",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-5__trajectorylabs-com",
+   "evaluator": "trajectorylabs.com",
+   "evaluator_name": "Trajectory Labs",
+   "lab": "Anthropic",
+   "model": "Claude Opus 5",
+   "model_id": "anthropic-claude-opus-5",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Opus 5, Jul 2026",
+    "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+    "published": "2026-07"
+   },
+   "quote": "Trajectory Labs, PBC spent roughly 100 hours red-teaming our safeguards.",
+   "purpose": "red-teaming of safeguards",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2026-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-5__10alabs-com",
+   "evaluator": "10alabs.com",
+   "evaluator_name": "10a Labs",
+   "lab": "Anthropic",
+   "model": "Claude Opus 5",
+   "model_id": "anthropic-claude-opus-5",
+   "model_source": {
+    "doc": "Anthropic System Card: Claude Opus 5, Jul 2026",
+    "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+    "published": "2026-07"
+   },
+   "quote": "10a Labs spent around 16 hours testing a variety of attack techniques and did not find a jailbreak...",
+   "purpose": "adversarial / jailbreak testing",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2026-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-o1__faculty-ai",
+   "evaluator": "faculty.ai",
+   "evaluator_name": "Faculty",
+   "lab": "OpenAI",
+   "model": "o1",
+   "model_id": "openai-o1",
+   "model_source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "quote": "Red Teaming Organizations: Apollo Research, Faculty, Gray Swan AI, Haize Labs, METR, Virtue AI",
+   "purpose": "red teaming",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2024-12-05",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-chatgpt-agent__signaturescience-com",
+   "evaluator": "signaturescience.com",
+   "evaluator_name": "Signature Science",
+   "lab": "OpenAI",
+   "model": "ChatGPT Agent",
+   "model_id": "openai-chatgpt-agent",
+   "model_source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "quote": "To assess the model's potential to assist in novel biological weapon design, we engaged biosecurity and chemistry experts from Signature Science...",
+   "purpose": "biological-weapon-design uplift assessment",
+   "access_type": "named-tester",
+   "engagement_date": null,
+   "documented_on": "2025-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "anthropic-claude-opus-4-7__aisi-gov-uk",
+   "evaluator": "aisi.gov.uk",
+   "evaluator_name": "UK AI Security Institute",
+   "lab": "Anthropic",
+   "model": "Claude Opus 4.7",
+   "model_id": "anthropic-claude-opus-4-7",
+   "model_source": {
+    "doc": "Anthropic Claude Opus 4.7 System Card, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "quote": "We shared a pre-release snapshot of Claude Opus 4.7 with the UK AI Security Institute (UK AISI) for open-ended testing",
+   "purpose": "open-ended testing",
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2026-04",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  },
+  {
+   "id": "openai-chatgpt-agent__nist-gov",
+   "evaluator": "nist.gov",
+   "evaluator_name": "US Center for AI Standards and Innovation (CAISI)",
+   "lab": "OpenAI",
+   "model": "ChatGPT Agent",
+   "model_id": "openai-chatgpt-agent",
+   "model_source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "quote": "We provided early access to the US Center for AI Standards and Innovation and the UK AI Security Institute (UK AISI) to prototype versions of our system...",
+   "purpose": null,
+   "access_type": "pre-release-access",
+   "engagement_date": null,
+   "documented_on": "2025-07",
+   "status": "historical",
+   "first_seen": "2026-09-21",
+   "last_confirmed": "2026-09-21"
+  }
+ ],
+ "models": [
+  {
+   "model_id": "openai-o1",
+   "model": "o1",
+   "lab": "OpenAI",
+   "source": {
+    "doc": "OpenAI o1 System Card, Dec 2024",
+    "url": "https://cdn.openai.com/o1-system-card-20241205.pdf",
+    "published": "2024-12-05"
+   },
+   "evaluators": [
+    "metr.org",
+    "grayswan.ai",
+    "haizelabs.com",
+    "virtueai.com",
+    "faculty.ai"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-opus-4",
+   "model": "Claude Opus 4 / Sonnet 4",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic System Card: Claude Opus 4 & Claude Sonnet 4, May 2025",
+    "url": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+    "published": "2025-05"
+   },
+   "evaluators": [
+    "apolloresearch.ai"
+   ]
+  },
+  {
+   "model_id": "openai-chatgpt-agent",
+   "model": "ChatGPT Agent",
+   "lab": "OpenAI",
+   "source": {
+    "doc": "OpenAI ChatGPT Agent System Card, Jul 2025",
+    "url": "https://cdn.openai.com/pdf/839e66fc-602c-48bf-81d3-b21eacc3459d/chatgpt_agent_system_card.pdf",
+    "published": "2025-07"
+   },
+   "evaluators": [
+    "far.ai",
+    "signaturescience.com",
+    "nist.gov"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-mythos-preview",
+   "model": "Claude Mythos Preview",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic System Card: Claude Mythos Preview, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/7624816413e9b4d2e3ba620c5a5e091b98b190a5/Claude%20Mythos%20Preview%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "evaluators": [
+    "epoch.ai"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-opus-4-7",
+   "model": "Claude Opus 4.7",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic Claude Opus 4.7 System Card, Apr 2026",
+    "url": "https://www-cdn.anthropic.com/037f06850df7fbe871e206dad004c3db5fd50340/Claude%20Opus%204.7%20System%20Card.pdf",
+    "published": "2026-04"
+   },
+   "evaluators": [
+    "aisi.gov.uk"
+   ]
+  },
+  {
+   "model_id": "openai-gpt-5-5",
+   "model": "GPT-5.5",
+   "lab": "OpenAI",
+   "source": {
+    "doc": "OpenAI GPT-5.5 System Card, Apr 2026",
+    "url": "https://deploymentsafety.openai.com/gpt-5-5/gpt-5-5.pdf",
+    "published": "2026-04"
+   },
+   "evaluators": [
+    "securebio.org",
+    "irregular.com"
+   ]
+  },
+  {
+   "model_id": "anthropic-claude-opus-5",
+   "model": "Claude Opus 5",
+   "lab": "Anthropic",
+   "source": {
+    "doc": "Anthropic System Card: Claude Opus 5, Jul 2026",
+    "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+    "published": "2026-07"
+   },
+   "evaluators": [
+    "trajectorylabs.com",
+    "10alabs.com"
+   ]
+  }
+ ]
+}

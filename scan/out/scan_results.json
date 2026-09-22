@@ -1,539 +1,539 @@
 {
-"01.ai": {
-"d": "01.ai",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"10alabs.com": {
-"d": "10alabs.com",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": false,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"aisafety.info": {
-"d": "aisafety.info",
-"dmarc": "absent",
-"spf": "absent",
-"dnssec": "no",
-"mx": "no"
-},
-"aisi.go.jp": {
-"d": "aisi.go.jp",
-"dmarc": "absent",
-"spf": "absent",
-"dnssec": "no",
-"mx": "no"
-},
-"aisi.gov.uk": {
-"d": "aisi.gov.uk",
-"dmarc": "absent",
-"spf": "absent",
-"dnssec": "no",
-"mx": "no"
-},
-"aisi.re.kr": {
-"d": "aisi.re.kr",
-"dmarc": "absent",
-"spf": "absent",
-"dnssec": "no",
-"mx": "yes"
-},
-"amazon.com": {
-"d": "amazon.com",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"anthropic.com": {
-"d": "anthropic.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"apolloresearch.ai": {
-"d": "apolloresearch.ai",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"bitsight.com": {
-"d": "bitsight.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"blackkite.com": {
-"d": "blackkite.com",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "softfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"cesia.org": {
-"d": "cesia.org",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"cognition.ai": {
-"d": "cognition.ai",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"cohere.com": {
-"d": "cohere.com",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"controlai.org": {
-"d": "controlai.org",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"cser.ac.uk": {
-"d": "cser.ac.uk",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"ec.europa.eu": {
-"d": "ec.europa.eu",
-"dmarc": "reject",
-"rua": true,
-"spf": "hardfail",
-"dnssec": "?",
-"mx": "yes"
-},
-"encodeai.org": {
-"d": "encodeai.org",
-"dmarc": "absent",
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"entreprises.gouv.fr": {
-"d": "entreprises.gouv.fr",
-"dmarc": "reject",
-"rua": true,
-"spf": "other",
-"dnssec": "no",
-"mx": "yes"
-},
-"epoch.ai": {
-"d": "epoch.ai",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "softfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"existentialriskobservatory.org": {
-"d": "existentialriskobservatory.org",
-"dmarc": "none",
-"rua": false,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"faculty.ai": {
-"d": "faculty.ai",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"far.ai": {
-"d": "far.ai",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"futureoflife.org": {
-"d": "futureoflife.org",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"g42.ai": {
-"d": "g42.ai",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"google.com": {
-"d": "google.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"grayswan.ai": {
-"d": "grayswan.ai",
-"dmarc": "none",
-"rua": false,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"haizelabs.com": {
-"d": "haizelabs.com",
-"dmarc": "none",
-"rua": true,
-"spf": "hardfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"huggingface.co": {
-"d": "huggingface.co",
-"dmarc": "none",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "yes",
-"mx": "yes"
-},
-"ibm.com": {
-"d": "ibm.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"industry.gov.au": {
-"d": "industry.gov.au",
-"dmarc": "reject",
-"rua": true,
-"spf": "other",
-"dnssec": "no",
-"mx": "yes"
-},
-"inflection.ai": {
-"d": "inflection.ai",
-"dmarc": "none",
-"rua": false,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"intelligence.org": {
-"d": "intelligence.org",
-"dmarc": "reject",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"irregular.com": {
-"d": "irregular.com",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"ised-isde.canada.ca": {
-"d": "ised-isde.canada.ca",
-"dmarc": "quarantine",
-"pct": 25,
-"rua": true,
-"spf": "absent",
-"dnssec": "no",
-"mx": "yes"
-},
-"longtermresilience.org": {
-"d": "longtermresilience.org",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"magic.dev": {
-"d": "magic.dev",
-"dmarc": "reject",
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"meta.com": {
-"d": "meta.com",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"metr.org": {
-"d": "metr.org",
-"dmarc": "quarantine",
-"pct": 20,
-"rua": true,
-"spf": "softfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"microsoft.com": {
-"d": "microsoft.com",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"minimax.io": {
-"d": "minimax.io",
-"dmarc": "absent",
-"spf": "absent",
-"dnssec": "no",
-"mx": "no"
-},
-"mistral.ai": {
-"d": "mistral.ai",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"navercorp.com": {
-"d": "navercorp.com",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"nist.gov": {
-"d": "nist.gov",
-"dmarc": "reject",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"nvidia.com": {
-"d": "nvidia.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"openai.com": {
-"d": "openai.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"palisaderesearch.org": {
-"d": "palisaderesearch.org",
-"dmarc": "reject",
-"rua": true,
-"spf": "hardfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"pauseai-us.org": {
-"d": "pauseai-us.org",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"pauseai.info": {
-"d": "pauseai.info",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"perplexity.ai": {
-"d": "perplexity.ai",
-"dmarc": "reject",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"redwoodresearch.org": {
-"d": "redwoodresearch.org",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"safe.ai": {
-"d": "safe.ai",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"safer-ai.org": {
-"d": "safer-ai.org",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"samsung.com": {
-"d": "samsung.com",
-"dmarc": "none",
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"scale.com": {
-"d": "scale.com",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "yes",
-"mx": "yes"
-},
-"securebio.org": {
-"d": "securebio.org",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"securityscorecard.com": {
-"d": "securityscorecard.com",
-"dmarc": "reject",
-"rua": true,
-"spf": "softfail",
-"dnssec": "yes",
-"mx": "yes"
-},
-"sgaisi.sg": {
-"d": "sgaisi.sg",
-"dmarc": "none",
-"rua": false,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"signaturescience.com": {
-"d": "signaturescience.com",
-"dmarc": "none",
-"pct": 100,
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"themidasproject.com": {
-"d": "themidasproject.com",
-"dmarc": "none",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"tii.ae": {
-"d": "tii.ae",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"trajectorylabs.com": {
-"d": "trajectorylabs.com",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"virtueai.com": {
-"d": "virtueai.com",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "softfail",
-"dnssec": "no",
-"mx": "yes"
-},
-"x.ai": {
-"d": "x.ai",
-"dmarc": "quarantine",
-"pct": 100,
-"rua": true,
-"spf": "?",
-"dnssec": "no",
-"mx": "yes"
-},
-"z.ai": {
-"d": "z.ai",
-"dmarc": "quarantine",
-"rua": true,
-"spf": "hardfail",
-"dnssec": "no",
-"mx": "yes"
-}
+ "01.ai": {
+  "d": "01.ai",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "10alabs.com": {
+  "d": "10alabs.com",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": false,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "aisafety.info": {
+  "d": "aisafety.info",
+  "dmarc": "absent",
+  "spf": "absent",
+  "dnssec": "no",
+  "mx": "no"
+ },
+ "aisi.go.jp": {
+  "d": "aisi.go.jp",
+  "dmarc": "absent",
+  "spf": "absent",
+  "dnssec": "no",
+  "mx": "no"
+ },
+ "aisi.gov.uk": {
+  "d": "aisi.gov.uk",
+  "dmarc": "absent",
+  "spf": "absent",
+  "dnssec": "no",
+  "mx": "no"
+ },
+ "aisi.re.kr": {
+  "d": "aisi.re.kr",
+  "dmarc": "absent",
+  "spf": "absent",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "amazon.com": {
+  "d": "amazon.com",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "anthropic.com": {
+  "d": "anthropic.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "apolloresearch.ai": {
+  "d": "apolloresearch.ai",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "bitsight.com": {
+  "d": "bitsight.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "blackkite.com": {
+  "d": "blackkite.com",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "cesia.org": {
+  "d": "cesia.org",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "cognition.ai": {
+  "d": "cognition.ai",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "cohere.com": {
+  "d": "cohere.com",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "controlai.org": {
+  "d": "controlai.org",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "cser.ac.uk": {
+  "d": "cser.ac.uk",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "ec.europa.eu": {
+  "d": "ec.europa.eu",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "?",
+  "mx": "yes"
+ },
+ "encodeai.org": {
+  "d": "encodeai.org",
+  "dmarc": "absent",
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "entreprises.gouv.fr": {
+  "d": "entreprises.gouv.fr",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "other",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "epoch.ai": {
+  "d": "epoch.ai",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "existentialriskobservatory.org": {
+  "d": "existentialriskobservatory.org",
+  "dmarc": "none",
+  "rua": false,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "faculty.ai": {
+  "d": "faculty.ai",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "far.ai": {
+  "d": "far.ai",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "futureoflife.org": {
+  "d": "futureoflife.org",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "g42.ai": {
+  "d": "g42.ai",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "google.com": {
+  "d": "google.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "grayswan.ai": {
+  "d": "grayswan.ai",
+  "dmarc": "none",
+  "rua": false,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "haizelabs.com": {
+  "d": "haizelabs.com",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "huggingface.co": {
+  "d": "huggingface.co",
+  "dmarc": "none",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "ibm.com": {
+  "d": "ibm.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "industry.gov.au": {
+  "d": "industry.gov.au",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "other",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "inflection.ai": {
+  "d": "inflection.ai",
+  "dmarc": "none",
+  "rua": false,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "intelligence.org": {
+  "d": "intelligence.org",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "irregular.com": {
+  "d": "irregular.com",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "ised-isde.canada.ca": {
+  "d": "ised-isde.canada.ca",
+  "dmarc": "quarantine",
+  "pct": 25,
+  "rua": true,
+  "spf": "absent",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "longtermresilience.org": {
+  "d": "longtermresilience.org",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "magic.dev": {
+  "d": "magic.dev",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "meta.com": {
+  "d": "meta.com",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "metr.org": {
+  "d": "metr.org",
+  "dmarc": "quarantine",
+  "pct": 20,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "microsoft.com": {
+  "d": "microsoft.com",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "minimax.io": {
+  "d": "minimax.io",
+  "dmarc": "absent",
+  "spf": "absent",
+  "dnssec": "no",
+  "mx": "no"
+ },
+ "mistral.ai": {
+  "d": "mistral.ai",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "navercorp.com": {
+  "d": "navercorp.com",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "nist.gov": {
+  "d": "nist.gov",
+  "dmarc": "reject",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "nvidia.com": {
+  "d": "nvidia.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "openai.com": {
+  "d": "openai.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "palisaderesearch.org": {
+  "d": "palisaderesearch.org",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "pauseai-us.org": {
+  "d": "pauseai-us.org",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "pauseai.info": {
+  "d": "pauseai.info",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "perplexity.ai": {
+  "d": "perplexity.ai",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "redwoodresearch.org": {
+  "d": "redwoodresearch.org",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "safe.ai": {
+  "d": "safe.ai",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "safer-ai.org": {
+  "d": "safer-ai.org",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "samsung.com": {
+  "d": "samsung.com",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "scale.com": {
+  "d": "scale.com",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "securebio.org": {
+  "d": "securebio.org",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "securityscorecard.com": {
+  "d": "securityscorecard.com",
+  "dmarc": "reject",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "yes",
+  "mx": "yes"
+ },
+ "sgaisi.sg": {
+  "d": "sgaisi.sg",
+  "dmarc": "none",
+  "rua": false,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "signaturescience.com": {
+  "d": "signaturescience.com",
+  "dmarc": "none",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "themidasproject.com": {
+  "d": "themidasproject.com",
+  "dmarc": "none",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "tii.ae": {
+  "d": "tii.ae",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "trajectorylabs.com": {
+  "d": "trajectorylabs.com",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "virtueai.com": {
+  "d": "virtueai.com",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "softfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "x.ai": {
+  "d": "x.ai",
+  "dmarc": "quarantine",
+  "pct": 100,
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ },
+ "z.ai": {
+  "d": "z.ai",
+  "dmarc": "quarantine",
+  "rua": true,
+  "spf": "hardfail",
+  "dnssec": "no",
+  "mx": "yes"
+ }
 }

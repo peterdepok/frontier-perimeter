@@ -130,6 +130,9 @@ button.pill.on{background:color-mix(in srgb,var(--gold) 20%,transparent);border-
 .lede-find .lf .n b{color:var(--warn);font-weight:700}
 .lede-find .lf .n .ok{color:var(--assess)}
 .lede-find .lf .d{font-size:12px;color:var(--text-muted);margin-top:6px;line-height:1.5}
+.lede-find .lf-lead{cursor:pointer;position:relative}
+.lede-find .lf-lead:hover,.lede-find .lf-lead:focus{background:var(--surface-modal);outline:none}
+.lede-find .lf-lead .n{color:var(--gold)}
 .lede-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:20px 0 0}
 .lede-cta .pill{font-size:14px;font-weight:600;padding:9px 16px}
 .lede-cta a.ovlink{font-size:14px}
@@ -630,11 +633,45 @@ details.full-record>summary:hover{color:var(--text-strong)}
 .cmp-standing h3{font-size:14px;color:var(--text-strong);margin:0 0 4px}
 .cmp-standing ol{margin:10px 0 0;padding-left:20px} .cmp-standing li{margin:7px 0;color:var(--text-body);line-height:1.5}
 .cmp-foot{margin-top:22px;font-size:11.5px;color:var(--text-muted);line-height:1.55;border-top:1px solid var(--border-subtle);padding-top:12px}
+.cmp-stack{display:none}
+.cmp-card{border:1px solid var(--border-default);border-radius:12px;padding:14px 15px;margin-bottom:12px;background:var(--surface-card)}
+.cmp-card .cmp-h{font-size:16px}
+.cmp-card .cmp-dom{margin-bottom:4px}
+.cmp-cg{margin-top:12px} .cmp-cg h4{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin:0 0 7px}
+.cmp-srow{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--border-subtle);font-size:12.5px}
+.cmp-srow:last-child{border-bottom:0}
+.cmp-sk{color:var(--text-muted)}
+@media(max-width:640px){.cmp-table-wrap{display:none}.cmp-stack{display:block}}
 .flash{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(10px);z-index:90;
  background:var(--text-strong);color:var(--bg-page-solid);font-size:13px;font-weight:600;padding:10px 16px;border-radius:8px;
  box-shadow:var(--shadow-modal);opacity:0;pointer-events:none;transition:opacity .16s,transform .16s;max-width:80vw;text-align:center}
 .flash.on{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(max-width:560px){.cmpbar{padding:9px 14px}.cmp-body{padding:16px 14px 60px}}
+/* relationship explorer */
+.rm-filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;padding:12px 22px;border-bottom:1px solid var(--border-default);background:var(--bg-page-solid)}
+.rm-f{display:flex;flex-direction:column;gap:3px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.rm-f select{font:inherit;font-size:12.5px;text-transform:none;letter-spacing:0;color:var(--text-strong);background:var(--surface-card);border:1px solid var(--border-default);border-radius:7px;padding:5px 8px;min-width:120px}
+.rm-clear{font-size:12px;color:var(--text-muted);background:none;border:1px solid var(--border-default);border-radius:7px;padding:6px 12px;cursor:pointer;align-self:flex-end}
+.rm-legend{display:flex;gap:12px;align-items:center;margin-left:auto;font-size:11px;color:var(--text-muted)}
+.rm-lg{display:inline-flex;align-items:center;gap:5px}
+.rm-lg::before{content:"";width:16px;height:2px;border-radius:2px;background:currentColor}
+.rm-lg.pre{color:var(--assess)} .rm-lg.named{color:var(--text-faint)}
+.rm-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.rm-body svg{max-width:100%;height:auto;display:block;min-width:680px}
+.rm-head{fill:var(--text-faint);font-size:10px;font-weight:700;letter-spacing:.12em}
+.rm-link{fill:none;stroke:var(--border-default);stroke-width:1.2}
+.rm-link.pre{stroke:var(--assess);stroke-width:1.6;opacity:.8}
+.rm-link.named{stroke:var(--text-faint);stroke-width:1.2;opacity:.5}
+.rm-node rect{fill:var(--surface-card);stroke:var(--border-default);stroke-width:1}
+.rm-node[role="link"]{cursor:pointer}
+.rm-node[role="link"]:hover rect,.rm-node[role="link"]:focus rect{stroke:var(--gold);outline:none}
+.rm-node.rm-lab rect{fill:color-mix(in srgb,var(--gold) 15%,var(--surface-card));stroke:var(--gold-border)}
+.rm-node.rm-lab.sel rect{stroke:var(--gold);stroke-width:2}
+.rm-node.rm-ev.pre rect{stroke:color-mix(in srgb,var(--assess) 55%,var(--border-default))}
+.rm-t{fill:var(--text-strong);font-size:12px;font-weight:600}
+.rm-sub{fill:var(--text-muted);font-size:9.5px}
+.rm-empty{color:var(--text-muted);padding:30px 4px;text-align:center}
+@media(max-width:560px){.rm-filters{padding:10px 14px}.rm-legend{margin-left:0;width:100%}}
 </style>
 
 <div class="shell">
@@ -672,11 +709,11 @@ details.full-record>summary:hover{color:var(--text-strong)}
       <p class="kicker">Level 1 &middot; read from the public record &middot; <span data-n="scandate">the scan date</span></p>
       <h1>Frontier labs vet their models. Who vets the organizations that test them?</h1>
       <div class="intro-grid">
-      <p class="lede-sub">Before a model ships, its developer gives outside organizations early access to test it. This reads the publicly observable security edge of <b><span class="tnum" data-n="all">65</span></b> organizations named in frontier-AI testing, oversight and advocacy &mdash; each included from a cited public document. It is a curb inspection of what anyone can observe from outside, <b>not</b> an assessment of the internal environments that hold model access.</p>
+      <p class="lede-sub">A sourced record of which outside organizations frontier labs named, in their own system cards, as testing a model before it shipped &mdash; who evaluated what, with the sentence quoted and linked. Alongside it, a curb inspection of each organization&rsquo;s publicly observable security edge. A record, not a grade, and <b>not</b> an assessment of the internal environments that hold model access.</p>
       <div class="lede-cta">
-        <button class="pill on" type="button" onclick="selectTab(0)">Explore the organizations &rarr;</button>
+        <button class="pill on" type="button" onclick="openRelMap()">Explore who evaluated what &rarr;</button>
+        <a class="ovlink" href="#" onclick="selectTab(0);return false">Browse the organizations</a>
         <a class="ovlink" href="#" onclick="selectTab(-4);return false">Read the method</a>
-        <a class="ovlink" href="#" onclick="selectTab(-3);return false">See the Standard</a>
       </div>
       <div class="lede-find" id="ledeFind"></div>
       <div class="essay">
@@ -743,11 +780,19 @@ details.full-record>summary:hover{color:var(--text-strong)}
 <div class="cmp" id="cmp" hidden role="dialog" aria-modal="true" aria-labelledby="cmptitle" tabindex="-1">
   <div class="cmp-top"><h2 id="cmptitle">Compare organizations</h2>
     <div class="cmp-top-act">
+      <button class="pill" id="cmpLink" type="button">Copy link</button>
       <button class="pill" id="cmpExport" type="button">Download briefing</button>
       <button class="x" id="cmpClose" type="button" aria-label="Close comparison">&times;</button>
     </div>
   </div>
   <div class="cmp-body" id="cmpbody"></div>
+</div>
+<div class="cmp" id="relmap" hidden role="dialog" aria-modal="true" aria-labelledby="rmtitle" tabindex="-1">
+  <div class="cmp-top"><h2 id="rmtitle">Who evaluated which model</h2>
+    <div class="cmp-top-act"><button class="x" id="rmClose" type="button" aria-label="Close relationship map">&times;</button></div>
+  </div>
+  <div class="rm-filters" id="rmFilters"></div>
+  <div class="cmp-body"><div class="rm-body" id="rmbody"></div></div>
 </div>
 
 <script>
@@ -817,6 +862,13 @@ function route(){
     const m=MODELBYID[h.slice(6)];
     if(m){openModel(m,true);routing=false;return;}
   }
+  if(h.indexOf("compare=")===0){
+    const doms=h.slice(8).split(",").map(decodeURIComponent).filter(d=>findByDomain(d));
+    if(doms.length>=2){CMP=doms.slice(0,CMP_MAX);cmpSave();renderCmpBar();syncCompareButtons();openCompare(true);routing=false;return;}
+  }
+  if(h==="map"){openRelMap(true);routing=false;return;}
+  if(!$("cmp").hidden)closeCompare();
+  if(!$("relmap").hidden)closeRelMap();
   if(drawer.classList.contains("on"))closeDrawer();
   if(h==="standard")selectTab(-3);
   else if(h==="method")selectTab(-4);
@@ -1789,7 +1841,7 @@ function xHtml(p){
   if(sc.look&&sc.look.h&&sc.look.h.length) sig.push('a homoglyph of its domain has live mail');
   if(!sig.length) return '';
   const list = sig.length===1?sig[0]:sig.length===2?sig.join(' and '):sig.slice(0,-1).join(', ')+', and '+sig.slice(-1);
-  return '<h5 class="ob-sub">Read against the argument</h5><div class="xnote"><p>A frontier lab has recorded giving this organization access to a model before release. On the public record, '+list+'. None of this says anything about how that access itself was held, which is a Level 2 question. It says the edge of the perimeter is softer here than at the lab, and that the question is worth asking.</p></div>';
+  return '<h5 class="ob-sub">Read against the argument</h5><div class="xnote"><p>A frontier lab has recorded giving this organization access to a model before release. On the public record, '+list+'. Each is a specific, checkable item on the outside edge; none of them describes how that access was held inside, which is a Level 2 question and is not compared here. They are listed because a lab is well placed to ask about them.</p></div>';
 }
 function lookHtml(p){
   const L=p.sc&&p.sc.look; if(!L)return"";
@@ -1894,6 +1946,90 @@ function openModel(m,fromRoute){
 }
 function openOrgByDomain(dom){const f=findByDomain(dom);if(f){if(cur!==f.ring)selectTab(f.ring);openP(f.p,false);}}
 
+/* ============ global relationship explorer: lab -> model -> evaluator ======= */
+const RM={lab:'',model:'',purpose:'',since:''};
+function rmPurposes(){const s=new Set();(REL.relationships||[]).forEach(r=>{if(r.purpose)s.add(r.purpose);});return [...s].sort();}
+function rmFiltered(){
+  return (REL.relationships||[]).filter(r=>
+    (!RM.lab||r.lab===RM.lab)&&
+    (!RM.model||r.model_id===RM.model)&&
+    (!RM.purpose||r.purpose===RM.purpose)&&
+    (!RM.since||String(r.documented_on)>=RM.since));
+}
+function rmSet(k,v){RM[k]=v;renderRelMap();}
+function rmClear(){RM.lab=RM.model=RM.purpose=RM.since='';renderRelMap();}
+function renderRelMapFilters(){
+  const esc=relEsc;
+  const labs=[...new Set((REL.relationships||[]).map(r=>r.lab))].sort();
+  const models=(REL.models||[]).slice().sort((a,b)=>String(a.source.published).localeCompare(String(b.source.published)));
+  const sel=(id,label,val,opts)=>'<label class="rm-f"><span>'+label+'</span><select onchange="rmSet(\''+id+'\',this.value)">'+
+    '<option value="">Any</option>'+opts.map(o=>'<option value="'+esc(o[0])+'"'+(val===o[0]?' selected':'')+'>'+esc(o[1])+'</option>').join('')+'</select></label>';
+  $('rmFilters').innerHTML=
+    sel('lab','Lab',RM.lab,labs.map(l=>[l,l]))+
+    sel('model','Model',RM.model,models.map(m=>[m.model_id,m.model]))+
+    sel('purpose','Purpose',RM.purpose,rmPurposes().map(p=>[p,p]))+
+    sel('since','Documented since',RM.since,[['2025','2025'],['2026','2026']])+
+    '<button class="rm-clear" type="button" onclick="rmClear()">Reset</button>'+
+    '<span class="rm-legend"><span class="rm-lg pre">pre-release access</span><span class="rm-lg named">named as tester</span></span>';
+}
+function renderRelMap(){
+  renderRelMapFilters();
+  const R=rmFiltered(), esc=relEsc;
+  if(!R.length){$('rmbody').innerHTML='<p class="rm-empty">No documented relationships match these filters.</p>';return;}
+  // columns: labs, models, evaluators
+  const labs=[...new Set(R.map(r=>r.lab))].sort();
+  const labIx={}; labs.forEach((l,i)=>labIx[l]=i);
+  const modMap={}; R.forEach(r=>{modMap[r.model_id]=modMap[r.model_id]||{id:r.model_id,name:r.model,lab:r.lab};});
+  const models=Object.values(modMap).sort((a,b)=>(labIx[a.lab]-labIx[b.lab])||a.name.localeCompare(b.name));
+  const modIx={}; models.forEach((m,i)=>modIx[m.id]=i);
+  const evMap={}; R.forEach(r=>{const e=evMap[r.evaluator]=evMap[r.evaluator]||{dom:r.evaluator,name:r.evaluator_name,mods:[],pre:false};e.mods.push(r.model_id);if(r.access_type==='pre-release-access')e.pre=true;});
+  const evals=Object.values(evMap);
+  const modY=id=>modIx[id];
+  evals.forEach(e=>{e.k=e.mods.reduce((s,m)=>s+modY(m),0)/e.mods.length;});
+  evals.sort((a,b)=>a.k-b.k||a.name.localeCompare(b.name));
+  const rows=Math.max(labs.length,models.length,evals.length);
+  const slot=46, top=30, H=Math.max(280,rows*slot+top), W=940;
+  const colX={lab:[16,150],mod:[330,190],ev:[660,270]};
+  const yOf=(i,n)=>top+ (H-top-20)*((i+0.5)/n);
+  const labY={},modYpx={},evY={};
+  labs.forEach((l,i)=>labY[l]=yOf(i,labs.length));
+  models.forEach((m,i)=>modYpx[m.id]=yOf(i,models.length));
+  evals.forEach((e,i)=>evY[e.dom]=yOf(i,evals.length));
+  let links='',nodes='';
+  // lab -> model links
+  models.forEach(m=>{links+='<path class="rm-link" d="M'+(colX.lab[0]+colX.lab[1])+' '+labY[m.lab].toFixed(1)+' C'+(colX.mod[0]-40)+' '+labY[m.lab].toFixed(1)+' '+(colX.lab[0]+colX.lab[1]+40)+' '+modYpx[m.id].toFixed(1)+' '+colX.mod[0]+' '+modYpx[m.id].toFixed(1)+'"/>';});
+  // model -> evaluator links, colored by access type
+  R.forEach(r=>{const y1=modYpx[r.model_id],y2=evY[r.evaluator];const cls=r.access_type==='pre-release-access'?'rm-link pre':'rm-link named';
+    links+='<path class="'+cls+'" d="M'+(colX.mod[0]+colX.mod[1])+' '+y1.toFixed(1)+' C'+(colX.ev[0]-40)+' '+y1.toFixed(1)+' '+(colX.mod[0]+colX.mod[1]+40)+' '+y2.toFixed(1)+' '+colX.ev[0]+' '+y2.toFixed(1)+'"/>';});
+  const node=(x,w,y,label,sub,cls,onclick)=>{const ty=sub?y-4:y+1;
+    return '<g class="rm-node '+cls+'"'+(onclick?' role="link" tabindex="0" onclick="'+onclick+'" onkeydown="if(event.key===\'Enter\'){'+onclick+'}"':'')+'>'+
+      '<rect x="'+x+'" y="'+(y-16)+'" width="'+w+'" height="32" rx="7"/>'+
+      '<text x="'+(x+11)+'" y="'+ty.toFixed(1)+'" class="rm-t">'+esc(label.length>26?label.slice(0,25)+'…':label)+'</text>'+
+      (sub?'<text x="'+(x+11)+'" y="'+(y+9)+'" class="rm-sub">'+esc(sub)+'</text>':'')+'</g>';};
+  labs.forEach(l=>{nodes+=node(colX.lab[0],colX.lab[1],labY[l],l,'lab','rm-lab'+(RM.lab===l?' sel':''),"rmSet('lab','"+l+"')");});
+  models.forEach(m=>{nodes+=node(colX.mod[0],colX.mod[1],modYpx[m.id],m.name,m.lab,'rm-mod',"closeRelMap();openModelById('"+m.id+"')");});
+  evals.forEach(e=>{const linkable=!!findByDomain(e.dom);nodes+=node(colX.ev[0],colX.ev[1],evY[e.dom],e.name,e.pre?'pre-release access':'named as tester','rm-ev'+(e.pre?' pre':''),linkable?"closeRelMap();openOrgByDomain('"+e.dom+"')":'');});
+  const heads='<text x="'+colX.lab[0]+'" y="16" class="rm-head">LAB</text><text x="'+colX.mod[0]+'" y="16" class="rm-head">MODEL</text><text x="'+colX.ev[0]+'" y="16" class="rm-head">EVALUATOR</text>';
+  $('rmbody').innerHTML='<div class="rm-scroll"><svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Lab to model to evaluator relationships">'+heads+links+nodes+'</svg></div>'+
+    '<p class="cmp-foot">'+R.length+' documented relationships from public system-card sources. Each link is historical, from the cited source, and is not a statement of current access. A model may have been evaluated by organizations not named in the source read here.</p>';
+}
+let rmLastFocus=null;
+function openRelMap(fromRoute){
+  if(!fromRoute){if(location.hash!=='#map')history.pushState({map:1},'','#map');}
+  renderRelMap();
+  const m=$('relmap'); m.hidden=false; m.classList.add('on'); scrim.classList.add('on'); document.body.style.overflow='hidden';
+  rmLastFocus=document.activeElement; m.addEventListener('keydown',rmTrap); requestAnimationFrame(()=>$('rmClose').focus());
+}
+function rmTrap(e){
+  if(e.key==='Escape'){closeRelMap();return;}
+  if(e.key!=='Tab')return;
+  const list=[...$('relmap').querySelectorAll('a[href],button:not([disabled]),select,[tabindex]:not([tabindex="-1"])')].filter(el=>el.offsetParent!==null);
+  if(!list.length)return;const f=list[0],l=list[list.length-1];
+  if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}
+  else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}
+}
+function closeRelMap(){const m=$('relmap');if(!m||m.hidden)return;m.classList.remove('on');m.hidden=true;if(!drawer.classList.contains('on'))scrim.classList.remove('on');document.body.style.overflow='';m.removeEventListener('keydown',rmTrap);if(location.hash==='#map'){try{history.replaceState('','',hashForTab(cur))}catch(e){}}if(rmLastFocus&&rmLastFocus.focus){try{rmLastFocus.focus()}catch(e){}}}
+
 /* ============ M3: organization comparison + exportable briefing ============ */
 let CMP=[]; try{CMP=JSON.parse(localStorage.getItem('frp-compare')||'[]')||[]}catch(e){CMP=[]}
 CMP=CMP.filter(d=>findByDomain(d));  // drop anything stale
@@ -1926,7 +2062,7 @@ function obsRows(p){
   const sx=sc.sectxt; r.push(['security.txt',sx==='yes'?'Published'+(sc.sectxt_exp?', valid to '+sc.sectxt_exp:''):sx==='expired'?'Published, expired':sx==='no'?'Not found at checked location':'Not observable',sx==='yes'?'ok':sx==='?'||!sx?'unk':'mid']);
   r.push(['HSTS',sc.hsts==='yes'?'Served, 6+ months':sc.hsts==='short'?'Served, short max-age':sc.hsts==='no'?'Not served':'Not observable',sc.hsts==='yes'?'ok':sc.hsts==='short'?'mid':'unk']);
   r.push(['MTA-STS',sc.mtasts==='yes'?'Published':sc.mtasts==='no'?'Not published':'Not observable',sc.mtasts==='yes'?'ok':'unk']);
-  r.push(['DNSSEC',sc.dnssec==='yes'?'Signed':sc.dnssec==='no'?'Not signed':'Not observable',sc.dnssec==='yes'?'ok':'unk']);
+  r.push(['DNSSEC',sc.dnssec==='yes'?'DS record published':sc.dnssec==='no'?'No DS record':'Not observable',sc.dnssec==='yes'?'ok':'unk']);
   const exp=sc.exp; r.push(['Web-host exposure',exp?(exp.o?'Non-web services answered':exp.cdn?'Only web ports answered':'Read'):'Not observable',exp?(exp.o?'mid':'ok'):'unk']);
   r.push(['Sanctions standing',(sc.ofac&&sc.ofac!=='clear')?'On a screening list':'No designation',(sc.ofac&&sc.ofac!=='clear')?'weak':'ok']);
   r.push(['Leak-site listing',sc.rec&&sc.rec.length?'On the public record':'None on record',sc.rec&&sc.rec.length?'weak':'ok']);
@@ -1944,8 +2080,9 @@ function ddObs(p){  // observation-driven due-diligence questions, from the Leve
 const DD_STANDING=((QSET&&QSET.sections)||[]).flatMap(s=>s.items||[]).filter(it=>it.tier==='floor').map(it=>({id:it.id,q:it.q}));
 // ---- the on-screen comparison ----
 function cmpProviders(){return CMP.map(findByDomain).filter(Boolean).map(f=>f.p);}
-function openCompare(){
+function openCompare(fromRoute){
   const ps=cmpProviders(); if(ps.length<2){flash('Add at least two organizations.');return;}
+  if(!fromRoute){const h='#compare='+CMP.map(encodeURIComponent).join(',');if(location.hash!==h)history.pushState({compare:1},'',h);}
   const th='<th class="cmp-lab"></th>'+ps.map(p=>'<th><button class="cmp-h" type="button" onclick="closeCompare();openOrgByDomain(\''+p.w+'\')">'+relEsc(p.n)+' &rsaquo;</button><span class="cmp-dom">'+relEsc(p.w)+'</span></th>').join('');
   const relRow='<tr class="cmp-sec"><td colspan="'+(ps.length+1)+'">Documented model-access relationships <span class="cmp-note">historical, not current access</span></td></tr>'+
     '<tr><td class="cmp-lab">Named in</td>'+ps.map(p=>{const rs=RELBYEV[p.w]||[];return '<td>'+(rs.length?rs.map(r=>'<div class="cmp-rel"><b>'+relEsc(r.model)+'</b> · '+relEsc(r.lab)+'<br><span class="cmp-acc'+(r.access_type==='pre-release-access'?' pre':'')+'">'+relEsc(ACCESS_LABEL[r.access_type]||r.access_type)+'</span> <span class="cmp-dt">'+fmtMon(r.documented_on)+'</span></div>').join(''):'<span class="cmp-none">None documented</span>')+'</td>';}).join('')+'</tr>';
@@ -1958,7 +2095,21 @@ function openCompare(){
   const ddHead='<tr class="cmp-sec"><td colspan="'+(ps.length+1)+'">Unanswered due-diligence questions <span class="cmp-note">Level 2 — not observable, ask the organization</span></td></tr>';
   const ddRow='<tr><td class="cmp-lab">From the observations</td>'+ps.map(p=>{const d=ddObs(p);return '<td>'+(d.length?'<ul class="cmp-dd">'+d.map(q=>'<li>'+relEsc(q)+'</li>').join('')+'</ul>':'<span class="cmp-none">No open Level-1 item</span>')+'</td>';}).join('')+'</tr>';
   const standing='<div class="cmp-standing"><h3>The same Level-2 questions for every organization</h3><p class="cmp-note">These interior controls cannot be read from outside. They are not assessed here; they are the questions a lab is well placed to put to anyone it entrusts.</p><ol>'+DD_STANDING.map(x=>'<li><b>'+relEsc(x.id)+'</b> '+relEsc(x.q)+'</li>').join('')+'</ol></div>';
-  $('cmpbody').innerHTML='<div class="cmp-scroll"><table class="cmp-t"><thead><tr>'+th+'</tr></thead><tbody>'+relRow+obsHead+obsBody+ddHead+ddRow+'</tbody></table></div>'+standing+
+  // stacked layout for narrow screens: one card per organization, no horizontal scroll
+  const stack=ps.map((p,j)=>{
+    const rs=RELBYEV[p.w]||[];
+    const rel=rs.length?rs.map(r=>'<div class="cmp-rel"><b>'+relEsc(r.model)+'</b> · '+relEsc(r.lab)+'<br><span class="cmp-acc'+(r.access_type==='pre-release-access'?' pre':'')+'">'+relEsc(ACCESS_LABEL[r.access_type]||r.access_type)+'</span> <span class="cmp-dt">'+fmtMon(r.documented_on)+'</span></div>').join(''):'<span class="cmp-none">None documented</span>';
+    const obs=rowsData[j].map(c=>'<div class="cmp-srow"><span class="cmp-sk">'+c[0]+'</span><span class="cmp-v '+c[2]+'">'+relEsc(c[1])+'</span></div>').join('');
+    const d=ddObs(p); const dd=d.length?'<ul class="cmp-dd">'+d.map(q=>'<li>'+relEsc(q)+'</li>').join('')+'</ul>':'<span class="cmp-none">No open Level-1 item</span>';
+    return '<div class="cmp-card"><button class="cmp-h" type="button" onclick="closeCompare();openOrgByDomain(\''+p.w+'\')">'+relEsc(p.n)+' &rsaquo;</button><span class="cmp-dom">'+relEsc(p.w)+'</span>'+
+      '<div class="cmp-cg"><h4>Documented relationships</h4>'+rel+'</div>'+
+      '<div class="cmp-cg"><h4>External observations · Level 1, '+SCAN_DATE+'</h4>'+obs+'</div>'+
+      '<div class="cmp-cg"><h4>Due-diligence from the observations</h4>'+dd+'</div></div>';
+  }).join('');
+  $('cmpbody').innerHTML=
+    '<div class="cmp-table-wrap"><div class="cmp-scroll"><table class="cmp-t"><thead><tr>'+th+'</tr></thead><tbody>'+relRow+obsHead+obsBody+ddHead+ddRow+'</tbody></table></div></div>'+
+    '<div class="cmp-stack">'+stack+'</div>'+
+    standing+
     '<p class="cmp-foot">A record, not a grade: there is no composite score, and nothing here is an assessment of the internal environment that holds model access. External observations are read from the public record on '+SCAN_DATE+'; documented relationships are point-in-time records from the cited sources.</p>';
   const cmp=$('cmp'); cmp.hidden=false; cmp.classList.add('on'); scrim.classList.add('on');
   document.body.style.overflow='hidden';
@@ -1973,7 +2124,13 @@ function cmpTrap(e){
   if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}
   else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}
 }
-function closeCompare(){const cmp=$('cmp');if(!cmp||cmp.hidden)return;cmp.classList.remove('on');cmp.hidden=true;if(!drawer.classList.contains('on'))scrim.classList.remove('on');document.body.style.overflow='';cmp.removeEventListener('keydown',cmpTrap);if(cmpLastFocus&&cmpLastFocus.focus){try{cmpLastFocus.focus()}catch(e){}}}
+function closeCompare(){const cmp=$('cmp');if(!cmp||cmp.hidden)return;cmp.classList.remove('on');cmp.hidden=true;if(!drawer.classList.contains('on'))scrim.classList.remove('on');document.body.style.overflow='';cmp.removeEventListener('keydown',cmpTrap);if(location.hash.indexOf('#compare=')===0){try{history.replaceState('','',hashForTab(cur))}catch(e){}}if(cmpLastFocus&&cmpLastFocus.focus){try{cmpLastFocus.focus()}catch(e){}}}
+function copyCompareLink(){
+  const url=location.origin+location.pathname+'#compare='+CMP.map(encodeURIComponent).join(',');
+  const done=()=>flash('Comparison link copied.');
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(done).catch(()=>prompt('Copy this link:',url));
+  else prompt('Copy this link:',url);
+}
 // ---- the exportable briefing (self-contained HTML the reader downloads) ----
 function briefingHTML(){
   const ps=cmpProviders();
@@ -2055,9 +2212,11 @@ function closeDrawer(){
 drawer.setAttribute("inert","");drawer.setAttribute("aria-hidden","true");
 $("dx").onclick=hide;
 scrim.onclick=()=>{if(!$("cmp").hidden)closeCompare();else hide();};
-$("cmpClose").onclick=closeCompare;$("cmpExport").onclick=exportBriefing;
+$("cmpClose").onclick=closeCompare;$("cmpExport").onclick=exportBriefing;$("cmpLink").onclick=copyCompareLink;
+$("rmClose").onclick=closeRelMap;
+scrim.addEventListener("click",()=>{if(!$("relmap").hidden)closeRelMap();});
 renderCmpBar();
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!$("cmp").hidden){closeCompare();return;}hide();hideTip()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(!$("relmap").hidden){closeRelMap();return;}if(!$("cmp").hidden){closeCompare();return;}hide();hideTip()}});
 q.oninput=render;fsel.onchange=render;
 tbtn.onclick=()=>{trust=!trust;tbtn.setAttribute("aria-pressed",trust);tbtn.classList.toggle("on",trust);document.body.classList.toggle("trust",trust);render()};
 const VB=[["v-radial","radial"],["v-list","list"],["v-table","table"],["v-graph","graph"]];
@@ -2084,11 +2243,14 @@ document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
  const eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, eSecDen=Ea.secDen;
  const eOrigin=E.filter(p=>p.sc.exp&&p.sc.exp.o).length;
  const srcN=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.su).length;
- // ---- the 15-second opening findings, from the same numbers ----
+ // ---- the 15-second opening findings: lead with the relationship record ----
+ const relN=(REL.relationships||[]).length, relModels=(REL.models||[]).length;
+ const relLabs=new Set((REL.relationships||[]).map(r=>r.lab)).size;
+ const relPre=(REL.relationships||[]).filter(r=>r.access_type==='pre-release-access').length;
  $("ledeFind").innerHTML=
-  '<div class="lf"><div class="n"><b>'+eFail+' of '+E.length+'</b> entrusted evaluators request no DMARC enforcement</div><div class="d">Their record is p=none or absent, so nothing in it asks a receiver to act on mail forged in their exact domain'+(ePartial?'; '+ePartial+' more request enforcement but in a partial rollout (a legacy pct tag)':'')+'. Receiver behaviour is not measured. Level 1, '+SCAN_DATE+'.</div></div>'+
-  '<div class="lf"><div class="n"><b>'+eNoSec+' of '+eSecDen+'</b> publish no valid security.txt</div><div class="d">No machine-readable reporting address was found at the checked /.well-known/ location (RFC 9116). This is not evidence that no reporting channel exists elsewhere.</div></div>'+
-  '<div class="lf"><div class="n"><span class="ok">'+srcN+' of '+total+'</span> carry a cited source</div><div class="d">Every organization is included from a public document, with the sentence quoted on its profile.</div></div>';
+  '<div class="lf lf-lead" role="link" tabindex="0" onclick="openRelMap()" onkeydown="if(event.key===\'Enter\')openRelMap()"><div class="n"><span class="ok">'+relN+'</span> documented lab&ndash;model&ndash;evaluator records</div><div class="d">Organizations named in '+relModels+' models&rsquo; system cards across '+relLabs+' labs as testing a model before release ('+relPre+' with documented pre-release access), each quoted and linked. Explore the map &rarr;</div></div>'+
+  '<div class="lf"><div class="n"><span class="ok">'+srcN+' of '+total+'</span> carry a cited source</div><div class="d">Every organization is included from a public document, with the sentence that put it here quoted on its profile.</div></div>'+
+  '<div class="lf"><div class="n"><b>'+eFail+' of '+E.length+'</b> entrusted evaluators request no DMARC enforcement</div><div class="d">The observable security edge: their record is p=none or absent'+(ePartial?', and '+ePartial+' more request it only in a partial rollout':'')+'. Receiver behaviour is not measured. Level 1, '+SCAN_DATE+'.</div></div>';
  // ---- the fuller findings ----
  const ringBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.c+'/'+r.dmd+'</span></span><span class="mt"><i style="width:'+(r.dmd?r.c/r.dmd*100:0).toFixed(1)+'%;background:var(--status-only-text)"></i></span><span class="mv tnum">'+pc(r.dmd?r.c/r.dmd:0)+'</span></div>').join('');
  const secBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.sx+'/'+r.sxd+'</span></span><span class="mt"><i class="c" style="width:'+(r.sxd?r.sx/r.sxd*100:0).toFixed(1)+'%"></i></span><span class="mv tnum">'+pc(r.sxd?r.sx/r.sxd:0)+'</span></div>').join('');

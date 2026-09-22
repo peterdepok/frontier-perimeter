@@ -1,16 +1,16 @@
 {
  "title": "The Frontier Perimeter Security Standard",
  "subtitle": "A building code for the organizations that build, test, rate, warn about and oversee frontier AI. It asks one question of each: is the edge of this organization sound enough to be trusted near an unreleased model? We inspect to this code from the public record; we do not certify anyone.",
- "version": "v0.3 draft (AI-risk actors edition)",
+ "version": "v0.4 draft (AI-risk actors edition)",
  "tiers": {
-  "floor": "The Floor. The minimum. The least any organization should clear before it is trusted with pre-release model access, or before it asks the world to fix its own weaknesses. Every observable Floor control costs close to nothing to meet. Binary: clears the observable Floor, or has items to resolve.",
-  "std": "Standard Practice. Built to spec, not just to code. What an organization that handles unreleased models, or publicly warns about their risk, should demonstrate above the Floor."
+  "floor": "The Floor. The least any organization should clear before it is trusted with pre-release model access, or before it asks the world to fix its own weaknesses. Most of the Floor is not visible from the street: the one control this map can read from the curb is DMARC enforcement (A1). The rest — no known-exploited services across the real infrastructure, no exposed admin or database services, phishing-resistant MFA, isolated pre-release access, tested backups, endpoint detection — is a Floor requirement confirmed only at Level 2. Sanctions and leak-site listings are matters of public record, not security controls, and are never scored against the Floor.",
+  "std": "Standard Practice. Built to spec, not just to code. What an organization that handles unreleased models, or publicly warns about their risk, should demonstrate above the Floor. Several Level 1 signals here are observations of a published record (a DKIM key, an MTA-STS record, DNSSEC and CAA), not proof the property they advertise is actually enforced."
  },
  "levels": {
   "1": "Curb inspection. Observable from the public record with no cooperation and nothing sent to the organization's systems beyond an ordinary visit to its public website. What this map publishes.",
   "2": "Interior inspection. Requires the organization to open the door. Offered to any actor on the map as a self-assessment."
  },
- "grading": "Every control is pass / below-code / recommended / not-observable against a named requirement. No composite score. A permit records that the work met code at inspection; it does not certify the firm will not be breached.",
+ "grading": "Every control is observed clear, an item to resolve, partly met, advisable, not observable, or a Level 2 question, against a named requirement anyone can check. No composite score, ever. The one pass/fail control observable from the curb is DMARC enforcement; everything else on the Floor is confirmed only at Level 2.",
  "families": [
   {
    "id": "A",
@@ -20,7 +20,7 @@
     {
      "id": "A1",
      "name": "Enforcing DMARC",
-     "std": "Publishes a DMARC policy of quarantine or reject, so receivers act on mail forged in the organization's exact name.",
+     "std": "Publishes a DMARC policy of quarantine or reject applied to all failing mail (pct=100), so a receiving server is asked to act on every message forged in the organization's exact name. A published policy enforced on only part of the mail (pct<100) is recorded as partly enforced, not a pass: forgeries are only partly rejected.",
      "tier": "floor",
      "lvl": 1,
      "cis": "9.2",
@@ -43,8 +43,8 @@
     },
     {
      "id": "A3",
-     "name": "DKIM signing",
-     "std": "Signs outbound mail with DKIM so recipients can verify integrity and origin.",
+     "name": "DKIM key published",
+     "std": "A DKIM public key answers at a common selector. This is the presence of a key, not proof that outbound mail is actually signed and correctly aligned; an uncommon selector would be missed and recorded as not observable.",
      "tier": "std",
      "lvl": 1,
      "cis": "9.2",
@@ -56,7 +56,7 @@
     {
      "id": "A4",
      "name": "Transport hardening (MTA-STS / TLS-RPT)",
-     "std": "Publishes MTA-STS and TLS reporting so mail cannot be silently downgraded.",
+     "std": "A DNS record advertises an MTA-STS policy so mail cannot be silently downgraded. This instrument reads the DNS record only; the policy file and its enforce-versus-testing mode are not fetched.",
      "tier": "std",
      "lvl": 1,
      "cis": "9.2",
@@ -134,8 +134,8 @@
     },
     {
      "id": "B3",
-     "name": "Shielded origin",
-     "std": "Web origin sits behind a CDN or WAF rather than answering directly from an exposed server.",
+     "name": "Web edge exposure (assessed host)",
+     "std": "The one web address the domain resolves to answers only web ports (a CDN, WAF or managed edge), rather than also answering non-web services. This is a scoped observation of a single assessed host from a passive index, not a statement about the organization's wider infrastructure.",
      "tier": "std",
      "lvl": 1,
      "cis": "13",
@@ -147,9 +147,9 @@
     {
      "id": "B4",
      "name": "No known-exploited vulnerabilities",
-     "std": "The organization's directly-reachable services carry no known-exploited (CISA KEV) or critical unpatched CVEs.",
+     "std": "Across the organization's real infrastructure, no directly-reachable service carries a known-exploited (CISA KEV) or critical unpatched CVE. A passive read of one public web address cannot establish this for the whole organization, so it is a Floor requirement confirmed at Level 2, not from the curb.",
      "tier": "floor",
-     "lvl": 1,
+     "lvl": 2,
      "cis": "7",
      "ins": "Patch management",
      "csf": "PR.PS",
@@ -166,9 +166,9 @@
     {
      "id": "C1",
      "name": "No exposed admin/database services",
-     "std": "No RDP, SMB, database, or remote-admin ports reachable on public addresses.",
+     "std": "No RDP, SMB, database or remote-admin service is reachable on the organization's public addresses. The curb can passively observe only the single web host the domain resolves to; establishing this across the infrastructure is a Level 2 determination.",
      "tier": "floor",
-     "lvl": 1,
+     "lvl": 2,
      "cis": "4.6",
      "ins": "Exposed services / RDP",
      "csf": "PR.IR",
@@ -178,7 +178,7 @@
     {
      "id": "C2",
      "name": "DNS & domain hygiene",
-     "std": "DNSSEC and CAA present; no dangling subdomains vulnerable to takeover.",
+     "std": "DNSSEC (a DS record) and CAA records are present. This instrument records their presence; it does not validate the DNSSEC signature chain end to end, or confirm that certificate issuance is actually constrained in practice.",
      "tier": "std",
      "lvl": 1,
      "cis": "4",
@@ -374,8 +374,8 @@
     {
      "id": "F1",
      "name": "No US Treasury sanctions designation",
-     "std": "Not designated on any US Treasury (OFAC) list carried in the US Consolidated Screening List: SDN, SSI, NS-MBS, CMIC, CAPTA or PLC. Listings on Commerce (Entity List, Denied Persons, Unverified, Military End User) or State (ISN, ITAR debarred) lists are export-control records: they are shown on the actor's profile as a matter of record and do not count against the Floor.",
-     "tier": "floor",
+     "std": "A matter of public-record standing, separated from technical security posture and never scored against the Floor. Screened against every US Treasury (OFAC) list in the US Consolidated Screening List: SDN, SSI, NS-MBS, CMIC, CAPTA and PLC. Commerce (Entity List, Denied Persons, Unverified, Military End User) and State (ISN, ITAR debarred) listings are export-control records, shown on the profile as public record and likewise never scored.",
+     "tier": "record",
      "lvl": 1,
      "cis": "GV",
      "ins": "KYC",
@@ -618,5 +618,5 @@
    ]
   }
  ],
- "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2. G1 (leak-site) moved off the Floor to a record control: an unverified attacker claim is documented exposure, not a minimum-bar gate."
+ "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2. G1 (leak-site) moved off the Floor to a record control: an unverified attacker claim is documented exposure, not a minimum-bar gate. v0.4: DMARC (A1) now requires pct=100 to meet; partial enforcement is a distinct state. Sanctions (F1) moved off the Floor into public-record standing. Known-exploited-vulnerability (B4) and exposed-service (C1) controls reclassified to Level 2, since a single passive web-host read cannot establish either across an organization's infrastructure; the one curb-observable Floor control is now DMARC enforcement. Standard-Practice signals reworded to state what the public record shows (record presence) rather than the property it advertises."
 }

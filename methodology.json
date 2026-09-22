@@ -1,6 +1,6 @@
 {
  "title": "Methodology & Measurement",
- "version": "v0.3 (AI-risk actors edition)",
+ "version": "v0.4 (AI-risk actors edition)",
  "subtitle": "How every reading on this map is taken, where its source of truth sits, and what it cannot see. The map makes an argument, so the method behind it is documented in full: anyone should be able to rerun it and get the same record.",
  "principles": [
   {
@@ -60,8 +60,8 @@
    "source": "RFC 7489 (DMARC)",
    "ref": "https://www.rfc-editor.org/rfc/rfc7489",
    "what": "Whether the domain tells receiving mail servers to reject or quarantine mail forged in its exact name.",
-   "measure": "The _dmarc TXT record is read and its p= policy parsed (none, quarantine, reject), with pct= where present. A domain that publishes no mail servers and no DMARC record is recorded separately as sending no mail.",
-   "limit": "Enforcement at pct below 100 is partial and shown as such. A policy of none with reporting (rua=) is recorded as monitoring: a common step before enforcement, still below the Floor. DMARC does nothing against a look-alike domain."
+   "measure": "The _dmarc TXT record is read and its policy parsed. A full meet is p=quarantine or reject at pct=100. A policy enforced on only part of the mail (pct<100) is recorded as a distinct 'partly enforced' state, not a pass, because forgeries of the exact domain are then only partly rejected.",
+   "limit": "DMARC governs only the organization's own exact domain; it does nothing against a look-alike domain or a compromised legitimate mailbox. It is the one pass/fail Floor control observable from the curb; the rest of the Floor is a Level 2 determination."
   },
   {
    "id": "A2",
@@ -76,25 +76,25 @@
   },
   {
    "id": "A3",
-   "name": "DKIM",
+   "name": "DKIM key presence",
    "cat": "Email",
    "level": 1,
    "source": "RFC 6376 (DKIM)",
    "ref": "https://www.rfc-editor.org/rfc/rfc6376",
    "what": "Whether the domain publishes a key to sign its outbound mail.",
-   "measure": "Twenty-five common selectors are queried at selector._domainkey, following CNAMEs.",
-   "limit": "An uncommon selector is not detected, so absence is recorded as not observable, never as an absence of DKIM."
+   "measure": "Twenty-five common selectors are queried at selector._domainkey, following CNAMEs, for a published key.",
+   "limit": "This establishes only that a key is published at a common selector. It does not establish that outbound mail is actually signed, nor that the signature aligns with the From domain. A domain using an uncommon or private selector is recorded as not observable, never as an absence of DKIM."
   },
   {
    "id": "A4",
-   "name": "MTA-STS / TLS-RPT",
+   "name": "MTA-STS record",
    "cat": "Email",
    "level": 1,
    "source": "RFC 8461, RFC 8460",
    "ref": "https://www.rfc-editor.org/rfc/rfc8461",
    "what": "Whether inbound mail is protected against silent downgrade, with failures reported.",
-   "measure": "The _mta-sts and _smtp._tls TXT records are read for v=STSv1 and v=TLSRPTv1.",
-   "limit": "The policy file itself is not fetched; DNS presence is what is recorded."
+   "measure": "The _mta-sts TXT record is read for a valid v=STSv1 declaration.",
+   "limit": "Only the DNS record is read. The policy file itself, and whether it is in enforce or testing mode, are not fetched, so this is the presence of an advertised policy, not proof of an enforced one."
   },
   {
    "id": "A5",
@@ -104,8 +104,8 @@
    "source": "Public DNS",
    "ref": "",
    "what": "Whether a mail-capable homoglyph or one-keystroke typo of the domain is registered.",
-   "measure": "Homoglyph and typo variants are generated and each resolved for MX only. A variant is counted defensive when its name servers or mail servers match the actor's own or sit with a brand-protection registrar. Top-level-domain swaps are dropped, and labels of four characters or fewer are skipped, because their variants are ordinary words and other businesses.",
-   "limit": "Heuristic and not exhaustive. A mail-capable typo is not asserted to be malicious; only a homoglyph with live mail is treated as below code, and typos are advisable context."
+   "measure": "Homoglyph and one-keystroke variants of the domain are generated and each checked for registration and mail-capable records. Registrations by the organization itself are counted separately as defensive.",
+   "limit": "A registered look-alike is an observation, not a finding of malicious intent: many belong to unrelated businesses, and shared commodity name servers or mail providers do not establish common ownership. An organization also cannot control what third parties register. The generated variant set is heuristic, not exhaustive."
   },
   {
    "id": "B2",
@@ -131,36 +131,36 @@
   },
   {
    "id": "B3",
-   "name": "Origin exposure",
+   "name": "Web edge exposure (assessed host)",
    "cat": "Web",
    "level": 1,
    "source": "Shodan InternetDB",
    "ref": "https://internetdb.shodan.io/",
    "what": "Whether the website's address sits behind a CDN or managed edge, or also answers non-web services.",
-   "measure": "The resolved address is looked up in Shodan's passive index. CDN/WAF signatures or an edge answering only web ports count as shielded. An address that also answers remote-admin, file-transfer or database services is recorded as a directly reachable origin.",
-   "limit": "Which services, and any CVEs indexed against them, are held to Level 2: publishing them would hand an attacker a target list. The public record carries only the flag."
+   "measure": "The single address the website resolves to is looked up in Shodan's passive InternetDB. Answering only web ports is recorded as a managed/CDN edge; also answering non-web services is recorded as a directly-reachable origin, with the detail held to Level 2.",
+   "limit": "This is a passive read of one assessed host, not a scan and not a statement about the organization's wider infrastructure. 'Only web ports' on that host is not proof of a protective CDN or WAF, and says nothing about other addresses the organization operates."
   },
   {
    "id": "B4",
    "name": "Known-exploited services",
    "cat": "Surface",
-   "level": 1,
+   "level": 2,
    "source": "Shodan InternetDB, CISA KEV",
    "ref": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "what": "Whether directly reachable services carry known-exploited vulnerabilities.",
-   "measure": "Held to Level 2 for any origin that is not shielded.",
-   "limit": "Never published at Level 1."
+   "measure": "A Level 2 determination. Establishing that no directly-reachable service across the organization's infrastructure carries a known-exploited or critical CVE requires more than a passive read of one public web host.",
+   "limit": "Held to Level 2. A single passive web-host observation cannot support an organization-wide claim, so this Floor requirement is confirmed cooperatively, not from the curb."
   },
   {
    "id": "C1",
    "name": "Exposed admin / database",
    "cat": "Surface",
-   "level": 1,
+   "level": 2,
    "source": "Shodan InternetDB",
    "ref": "",
    "what": "Whether remote-admin or database ports answer on public addresses.",
-   "measure": "Held to Level 2, as B4.",
-   "limit": "Never published at Level 1."
+   "measure": "A Level 2 determination. The curb passively observes only the one web host the domain resolves to; whether remote-admin, database or file-sharing services are reachable across the organization's public addresses is confirmed at Level 2.",
+   "limit": "Held to Level 2 for the same reason as B4: one host is not the infrastructure."
   },
   {
    "id": "C2",
@@ -170,8 +170,8 @@
    "source": "RFC 4033 (DNSSEC), RFC 8659 (CAA)",
    "ref": "https://www.rfc-editor.org/rfc/rfc8659",
    "what": "Whether the zone is signed and certificate issuance is restricted.",
-   "measure": "The domain is queried for a DS record and for CAA records.",
-   "limit": "Presence is recorded, not correctness."
+   "measure": "The domain is queried for a DS record (DNSSEC delegation) and for CAA records; their presence is recorded.",
+   "limit": "Presence is recorded, not correctness: the DNSSEC signature chain is not validated end to end, and a present CAA record is not proof that certificate issuance is constrained in practice."
   },
   {
    "id": "C3",
@@ -186,14 +186,14 @@
   },
   {
    "id": "F1",
-   "name": "US Treasury sanctions",
+   "name": "US Treasury sanctions (public record)",
    "cat": "Record",
    "level": 1,
    "source": "US Consolidated Screening List (ITA)",
    "ref": "https://www.trade.gov/consolidated-screening-list",
    "what": "Whether the organization is designated on a US Treasury sanctions list.",
-   "measure": "The organization's names and known legal names are matched, exactly and after normalization, against every name and alias in the 26,146-entry list. Treasury lists count against the Floor. Commerce and State lists (Entity List, Denied Persons, ITAR debarment and others) are export-control records shown on the profile and not scored.",
-   "limit": "Exact matching misses a transliteration the list does not carry. EU, UK and UN lists are not read in this edition."
+   "measure": "The organization's exact legal name and aliases are matched against the OFAC lists in the US Consolidated Screening List. This is a matter of public-record standing, separated from technical security posture.",
+   "limit": "A matter of standing, not a security control, and never scored against the Floor. Name matching can produce false positives on common names; every candidate is reviewed and only exact matches are kept."
   },
   {
    "id": "G1",

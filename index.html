@@ -81,8 +81,8 @@ button{font-family:inherit}
  background:var(--bg-page-solid);border-bottom:1px solid var(--border-subtle);position:sticky;
  top:env(safe-area-inset-top,0px);z-index:6;flex-wrap:wrap}
 .brand{display:inline-flex;align-items:center;gap:11px;flex:0 0 auto}
-.mark{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--text-strong);opacity:.85;position:relative;flex:none}
-.mark::after{content:"";position:absolute;inset:6px;border-radius:50%;border:1.5px solid var(--text-strong);border-right-color:transparent;transform:rotate(28deg)}
+.mark{width:32px;height:32px;flex:none;color:var(--text-strong);display:block}
+.mark svg{display:block;width:100%;height:100%}
 .wordmark{display:flex;flex-direction:column;line-height:1.1}
 .wordmark .eyebrow{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
 .wordmark .name{font-size:19px;font-weight:600;letter-spacing:-.005em;color:var(--text-strong)}
@@ -118,6 +118,9 @@ button.pill{cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 button.pill:hover{background:var(--surface-hover)}
 button.pill.on{background:color-mix(in srgb,var(--gold) 20%,transparent);border-color:var(--gold-border);color:var(--text-strong)}
 .count{margin-left:auto;font-size:13px;color:var(--text-muted);white-space:nowrap}
+.empty-state{padding:48px 22px;text-align:center;color:var(--text-body)}
+.empty-state p{font-size:15px;margin:0 0 14px}
+.empty-state .pill{cursor:pointer}
 
 /* ---------- overview ---------- */
 /* No max-width here. The topbar, rail, controls and footer are all full-bleed
@@ -131,6 +134,20 @@ button.pill.on{background:color-mix(in srgb,var(--gold) 20%,transparent);border-
 .intro p{font-size:16.5px;line-height:1.6;color:var(--text-body);margin:12px 0 0}
 .intro p.covnote{font-size:14px;line-height:1.55;color:var(--text-muted);margin-top:16px;padding:11px 14px;border:1px solid var(--map-edge);border-left:2px solid var(--gold);border-radius:7px;background:var(--surface-card)}
 .intro p.covnote b{color:var(--text-body)}
+.lede-sub{font-size:16.5px;line-height:1.6;color:var(--text-body);margin:14px 0 0;max-width:70ch}
+.lede-find{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--border-default);
+ border:1px solid var(--border-default);border-radius:14px;overflow:hidden;margin:22px 0 0}
+.lede-find .lf{background:var(--surface-card);padding:15px 16px}
+.lede-find .lf .n{font-size:15px;font-weight:600;color:var(--text-strong);line-height:1.3}
+.lede-find .lf .n b{color:var(--warn);font-weight:700}
+.lede-find .lf .n .ok{color:var(--assess)}
+.lede-find .lf .d{font-size:12px;color:var(--text-muted);margin-top:6px;line-height:1.5}
+.lede-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:20px 0 0}
+.lede-cta .pill{font-size:14px;font-weight:600;padding:9px 16px}
+.lede-cta a.ovlink{font-size:14px}
+.essay{max-width:70ch;margin:26px 0 0;padding-top:22px;border-top:1px solid var(--border-subtle)}
+.essay h2{font-family:"Nanum Myeongjo",Georgia,serif;font-weight:400;font-size:20px;color:var(--text-strong);margin:0 0 4px}
+.essay p{font-size:15px;line-height:1.62;color:var(--text-body);margin:10px 0 0}
 .prov{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--border-subtle);
  border:1px solid var(--border-default);border-radius:14px;overflow:hidden;margin-block:22px 0}
 .prov div{background:var(--surface-card);padding:14px 15px}
@@ -508,7 +525,7 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 <div class="shell">
 <header class="topbar">
   <div class="brand">
-    <div class="mark" aria-hidden="true"></div>
+    <span class="mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path fill="currentColor" d="M20 5.5c-1.15 2.9-2.6 4.7-4.7 5.9 1.1-.15 2.2-.1 3.25.2-2.9.6-5.7 2.15-9 5.05-2.2 1.95-4.05 2.7-6.55 2.85 2.5.95 4.75.85 7.6-.35-1.55 1.75-2.55 3.4-3.25 5.6 1.85-2.05 3.55-3.25 5.85-4.1-1.0 1.7-1.45 3.25-1.55 5.2 1.15-2.35 2.35-3.75 4.35-5.0-.15 1.35-.05 1.05.35 2.35.7-1.75.9-1.6 2.0-2.85.35 2.3.35 4.2.15 8.3.85-3.95 1.25-6.25 2.2-8.55 1.1 1.25 1.3 1.1 2.0 2.85.4-1.3.5-1.0.35-2.35 2.0 1.25 3.2 2.65 4.35 5.0-.1-1.95-.55-3.5-1.55-5.2 2.3.85 4.0 2.05 5.85 4.1-.7-2.2-1.7-3.85-3.25-5.6 2.85 1.2 5.1 1.3 7.6.35-2.5-.15-4.35-.9-6.55-2.85-3.3-2.9-6.1-4.45-9-5.05 1.05-.3 2.15-.35 3.25-.2-2.1-1.2-3.55-3.0-4.7-5.9Z"/></svg></span>
     <div class="wordmark">
       <span class="eyebrow">Pete Depok &middot; Deep Hawks</span>
       <span class="name">The Frontier Perimeter</span>
@@ -537,12 +554,20 @@ a.mth-src:hover{border-color:var(--status-only-text)}
 <main class="wrap">
   <div id="overview">
     <section class="intro">
-      <p class="kicker">A curb inspection of the organizations in the AI-risk debate &middot; Level 1, from the public record</p>
-      <h1>A frontier lab&rsquo;s attack surface includes everyone it lets test the model.</h1>
-      <p>Before a frontier model ships, its developer hands early access to outside organizations: evaluation nonprofits, red-team firms, biosecurity specialists, government institutes. The labs name them in their own system cards. From the moment the access is granted, each of those organizations is part of the lab&rsquo;s perimeter, and nobody publishes a measure of it. This map is that measure, taken from the curb.</p>
-      <p>The proof that the soft edge is the real edge is already on the record. In July 2026 a three-person research team got into OpenAI&rsquo;s GitHub organization and employee accounts through an image-upload flaw on its community forum, a peripheral website nobody thinks of as the vault (<a class="ovlink" href="https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/" target="_blank" rel="noopener">TechCrunch, 18 September 2026</a>). Attackers do not go through the front of the building. They go through whatever is attached to it.</p>
-      <p><span class="tnum" data-n="all">65</span> organizations, each here because of a document it signed or a lab signed about it: the <b>evaluators</b> the labs entrusted with unreleased models, the <b>labs</b> that pledged at Seoul to invest in cybersecurity for exactly those models, the <b>organizations warning the public</b> about AI risk, the <b>government institutes</b> charged with measuring it, and the AI developers and security-ratings firms that signed August&rsquo;s call for every organization to &ldquo;fix the highest-risk weaknesses.&rdquo; Each is read against a published code, the <a class="ovlink" href="#" onclick="selectTab(-3);return false">Frontier Perimeter Security Standard</a>, in two tiers: <b>The Floor</b>, the minimum any of them should clear, and <b>Standard Practice</b> above it. Every control is pass, below code, advisable, or not observable. Never a score.</p>
-      <p>This is a mirror, not a verdict. The observable Floor costs close to nothing to meet, which is why it is the same for a trillion-dollar lab and a ten-person nonprofit. Nothing was supplied by any organization and nothing was tested against its systems. Any organization on the map can <a class="ovlink" href="./assessment.html">work the Level 2 self-assessment</a>, or ask for a re-measure.</p>
+      <p class="kicker">Level 1 &middot; read from the public record &middot; <span data-n="scandate">the scan date</span></p>
+      <h1>Frontier labs vet their models. Who vets the organizations that test them?</h1>
+      <p class="lede-sub">Before a model ships, its developer gives outside organizations early access to test it: evaluation nonprofits, red teams, biosecurity specialists, government institutes. This reads the publicly observable security edge of <b><span class="tnum" data-n="all">65</span></b> organizations named in frontier-AI testing, development, oversight and advocacy &mdash; each included from a cited public document. It is a curb inspection of what anyone can observe from outside. It is <b>not</b> an assessment of the internal environments that actually hold model access.</p>
+      <div class="lede-find" id="ledeFind"></div>
+      <div class="lede-cta">
+        <button class="pill on" type="button" onclick="selectTab(0)">Explore the organizations &rarr;</button>
+        <a class="ovlink" href="#" onclick="selectTab(-4);return false">Read the method</a>
+        <a class="ovlink" href="#" onclick="selectTab(-3);return false">See the Standard</a>
+      </div>
+      <div class="essay">
+        <h2>Why the edge is the point</h2>
+        <p>From the moment a lab grants pre-release access, each organization it trusts becomes part of the lab&rsquo;s attack surface, and nobody publishes a measure of it. In July 2026 a three-person research team reached OpenAI&rsquo;s GitHub organization and employee accounts through an image-upload flaw on its community forum, a peripheral site nobody thinks of as the vault (<a class="ovlink" href="https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/" target="_blank" rel="noopener">TechCrunch, 18 September 2026</a>). Attackers go through whatever is attached to the building.</p>
+        <p>Each organization is read against a published code, the <a class="ovlink" href="#" onclick="selectTab(-3);return false">Frontier Perimeter Security Standard</a>, on two independent axes: <b>the Floor</b> (the minimum) versus <b>Standard Practice</b> (hardening above it), and <b>Level 1</b> (publicly observable) versus <b>Level 2</b> (what only the organization can show). Nothing was supplied by any organization and nothing was tested against its systems. Every control is observed clear, an item to resolve, advisable, or not observable &mdash; never a score. Any organization can <a class="ovlink" href="./assessment.html">work the Level 2 self-assessment</a> or ask for a re-measure.</p>
+      </div>
       <p class="covnote"><b><span class="tnum" data-n="sourced">65</span> of <span class="tnum" data-n="all">65</span></b> organizations carry a linked inclusion source you can open and check, with the sentence that put them here quoted on their profile.</p>
     </section>
     <div class="prov">
@@ -604,16 +629,16 @@ const ECON={};
 const CTRL={
  "title": "The Frontier Perimeter Security Standard",
  "subtitle": "A building code for the organizations that build, test, rate, warn about and oversee frontier AI. It asks one question of each: is the edge of this organization sound enough to be trusted near an unreleased model? We inspect to this code from the public record; we do not certify anyone.",
- "version": "v0.3 draft (AI-risk actors edition)",
+ "version": "v0.4 draft (AI-risk actors edition)",
  "tiers": {
-  "floor": "The Floor. The minimum. The least any organization should clear before it is trusted with pre-release model access, or before it asks the world to fix its own weaknesses. Every observable Floor control costs close to nothing to meet. Binary: clears the observable Floor, or has items to resolve.",
-  "std": "Standard Practice. Built to spec, not just to code. What an organization that handles unreleased models, or publicly warns about their risk, should demonstrate above the Floor."
+  "floor": "The Floor. The least any organization should clear before it is trusted with pre-release model access, or before it asks the world to fix its own weaknesses. Most of the Floor is not visible from the street: the one control this map can read from the curb is DMARC enforcement (A1). The rest — no known-exploited services across the real infrastructure, no exposed admin or database services, phishing-resistant MFA, isolated pre-release access, tested backups, endpoint detection — is a Floor requirement confirmed only at Level 2. Sanctions and leak-site listings are matters of public record, not security controls, and are never scored against the Floor.",
+  "std": "Standard Practice. Built to spec, not just to code. What an organization that handles unreleased models, or publicly warns about their risk, should demonstrate above the Floor. Several Level 1 signals here are observations of a published record (a DKIM key, an MTA-STS record, DNSSEC and CAA), not proof the property they advertise is actually enforced."
  },
  "levels": {
   "1": "Curb inspection. Observable from the public record with no cooperation and nothing sent to the organization's systems beyond an ordinary visit to its public website. What this map publishes.",
   "2": "Interior inspection. Requires the organization to open the door. Offered to any actor on the map as a self-assessment."
  },
- "grading": "Every control is pass / below-code / recommended / not-observable against a named requirement. No composite score. A permit records that the work met code at inspection; it does not certify the firm will not be breached.",
+ "grading": "Every control is observed clear, an item to resolve, partly met, advisable, not observable, or a Level 2 question, against a named requirement anyone can check. No composite score, ever. The one pass/fail control observable from the curb is DMARC enforcement; everything else on the Floor is confirmed only at Level 2.",
  "families": [
   {
    "id": "A",
@@ -623,7 +648,7 @@ const CTRL={
     {
      "id": "A1",
      "name": "Enforcing DMARC",
-     "std": "Publishes a DMARC policy of quarantine or reject, so receivers act on mail forged in the organization's exact name.",
+     "std": "Publishes a DMARC policy of quarantine or reject applied to all failing mail (pct=100), so a receiving server is asked to act on every message forged in the organization's exact name. A published policy enforced on only part of the mail (pct<100) is recorded as partly enforced, not a pass: forgeries are only partly rejected.",
      "tier": "floor",
      "lvl": 1,
      "cis": "9.2",
@@ -646,8 +671,8 @@ const CTRL={
     },
     {
      "id": "A3",
-     "name": "DKIM signing",
-     "std": "Signs outbound mail with DKIM so recipients can verify integrity and origin.",
+     "name": "DKIM key published",
+     "std": "A DKIM public key answers at a common selector. This is the presence of a key, not proof that outbound mail is actually signed and correctly aligned; an uncommon selector would be missed and recorded as not observable.",
      "tier": "std",
      "lvl": 1,
      "cis": "9.2",
@@ -659,7 +684,7 @@ const CTRL={
     {
      "id": "A4",
      "name": "Transport hardening (MTA-STS / TLS-RPT)",
-     "std": "Publishes MTA-STS and TLS reporting so mail cannot be silently downgraded.",
+     "std": "A DNS record advertises an MTA-STS policy so mail cannot be silently downgraded. This instrument reads the DNS record only; the policy file and its enforce-versus-testing mode are not fetched.",
      "tier": "std",
      "lvl": 1,
      "cis": "9.2",
@@ -737,8 +762,8 @@ const CTRL={
     },
     {
      "id": "B3",
-     "name": "Shielded origin",
-     "std": "Web origin sits behind a CDN or WAF rather than answering directly from an exposed server.",
+     "name": "Web edge exposure (assessed host)",
+     "std": "The one web address the domain resolves to answers only web ports (a CDN, WAF or managed edge), rather than also answering non-web services. This is a scoped observation of a single assessed host from a passive index, not a statement about the organization's wider infrastructure.",
      "tier": "std",
      "lvl": 1,
      "cis": "13",
@@ -750,9 +775,9 @@ const CTRL={
     {
      "id": "B4",
      "name": "No known-exploited vulnerabilities",
-     "std": "The organization's directly-reachable services carry no known-exploited (CISA KEV) or critical unpatched CVEs.",
+     "std": "Across the organization's real infrastructure, no directly-reachable service carries a known-exploited (CISA KEV) or critical unpatched CVE. A passive read of one public web address cannot establish this for the whole organization, so it is a Floor requirement confirmed at Level 2, not from the curb.",
      "tier": "floor",
-     "lvl": 1,
+     "lvl": 2,
      "cis": "7",
      "ins": "Patch management",
      "csf": "PR.PS",
@@ -769,9 +794,9 @@ const CTRL={
     {
      "id": "C1",
      "name": "No exposed admin/database services",
-     "std": "No RDP, SMB, database, or remote-admin ports reachable on public addresses.",
+     "std": "No RDP, SMB, database or remote-admin service is reachable on the organization's public addresses. The curb can passively observe only the single web host the domain resolves to; establishing this across the infrastructure is a Level 2 determination.",
      "tier": "floor",
-     "lvl": 1,
+     "lvl": 2,
      "cis": "4.6",
      "ins": "Exposed services / RDP",
      "csf": "PR.IR",
@@ -781,7 +806,7 @@ const CTRL={
     {
      "id": "C2",
      "name": "DNS & domain hygiene",
-     "std": "DNSSEC and CAA present; no dangling subdomains vulnerable to takeover.",
+     "std": "DNSSEC (a DS record) and CAA records are present. This instrument records their presence; it does not validate the DNSSEC signature chain end to end, or confirm that certificate issuance is actually constrained in practice.",
      "tier": "std",
      "lvl": 1,
      "cis": "4",
@@ -977,8 +1002,8 @@ const CTRL={
     {
      "id": "F1",
      "name": "No US Treasury sanctions designation",
-     "std": "Not designated on any US Treasury (OFAC) list carried in the US Consolidated Screening List: SDN, SSI, NS-MBS, CMIC, CAPTA or PLC. Listings on Commerce (Entity List, Denied Persons, Unverified, Military End User) or State (ISN, ITAR debarred) lists are export-control records: they are shown on the actor's profile as a matter of record and do not count against the Floor.",
-     "tier": "floor",
+     "std": "A matter of public-record standing, separated from technical security posture and never scored against the Floor. Screened against every US Treasury (OFAC) list in the US Consolidated Screening List: SDN, SSI, NS-MBS, CMIC, CAPTA and PLC. Commerce (Entity List, Denied Persons, Unverified, Military End User) and State (ISN, ITAR debarred) listings are export-control records, shown on the profile as public record and likewise never scored.",
+     "tier": "record",
      "lvl": 1,
      "cis": "GV",
      "ins": "KYC",
@@ -1221,7 +1246,7 @@ const CTRL={
    ]
   }
  ],
- "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2. G1 (leak-site) moved off the Floor to a record control: an unverified attacker claim is documented exposure, not a minimum-bar gate."
+ "editions": "Edition changes from v0.2 (the family-office code): A7 out-of-band payment verification and G2 litigation and offshore context removed as family-office-specific; F1 pinned to named lists; B2 built as an HSTS check; F5 built as a security.txt check and held at Standard Practice until the fetch path is proven on successive scans; family K (pre-release access) added at Level 2. G1 (leak-site) moved off the Floor to a record control: an unverified attacker claim is documented exposure, not a minimum-bar gate. v0.4: DMARC (A1) now requires pct=100 to meet; partial enforcement is a distinct state. Sanctions (F1) moved off the Floor into public-record standing. Known-exploited-vulnerability (B4) and exposed-service (C1) controls reclassified to Level 2, since a single passive web-host read cannot establish either across an organization's infrastructure; the one curb-observable Floor control is now DMARC enforcement. Standard-Practice signals reworded to state what the public record shows (record presence) rather than the property it advertises."
 };
 const QSET={
  "title": "The Interior Inspection",
@@ -1470,7 +1495,7 @@ const QSET={
 };
 const MSET={
  "title": "Methodology & Measurement",
- "version": "v0.3 (AI-risk actors edition)",
+ "version": "v0.4 (AI-risk actors edition)",
  "subtitle": "How every reading on this map is taken, where its source of truth sits, and what it cannot see. The map makes an argument, so the method behind it is documented in full: anyone should be able to rerun it and get the same record.",
  "principles": [
   {
@@ -1530,8 +1555,8 @@ const MSET={
    "source": "RFC 7489 (DMARC)",
    "ref": "https://www.rfc-editor.org/rfc/rfc7489",
    "what": "Whether the domain tells receiving mail servers to reject or quarantine mail forged in its exact name.",
-   "measure": "The _dmarc TXT record is read and its p= policy parsed (none, quarantine, reject), with pct= where present. A domain that publishes no mail servers and no DMARC record is recorded separately as sending no mail.",
-   "limit": "Enforcement at pct below 100 is partial and shown as such. A policy of none with reporting (rua=) is recorded as monitoring: a common step before enforcement, still below the Floor. DMARC does nothing against a look-alike domain."
+   "measure": "The _dmarc TXT record is read and its policy parsed. A full meet is p=quarantine or reject at pct=100. A policy enforced on only part of the mail (pct<100) is recorded as a distinct 'partly enforced' state, not a pass, because forgeries of the exact domain are then only partly rejected.",
+   "limit": "DMARC governs only the organization's own exact domain; it does nothing against a look-alike domain or a compromised legitimate mailbox. It is the one pass/fail Floor control observable from the curb; the rest of the Floor is a Level 2 determination."
   },
   {
    "id": "A2",
@@ -1546,25 +1571,25 @@ const MSET={
   },
   {
    "id": "A3",
-   "name": "DKIM",
+   "name": "DKIM key presence",
    "cat": "Email",
    "level": 1,
    "source": "RFC 6376 (DKIM)",
    "ref": "https://www.rfc-editor.org/rfc/rfc6376",
    "what": "Whether the domain publishes a key to sign its outbound mail.",
-   "measure": "Twenty-five common selectors are queried at selector._domainkey, following CNAMEs.",
-   "limit": "An uncommon selector is not detected, so absence is recorded as not observable, never as an absence of DKIM."
+   "measure": "Twenty-five common selectors are queried at selector._domainkey, following CNAMEs, for a published key.",
+   "limit": "This establishes only that a key is published at a common selector. It does not establish that outbound mail is actually signed, nor that the signature aligns with the From domain. A domain using an uncommon or private selector is recorded as not observable, never as an absence of DKIM."
   },
   {
    "id": "A4",
-   "name": "MTA-STS / TLS-RPT",
+   "name": "MTA-STS record",
    "cat": "Email",
    "level": 1,
    "source": "RFC 8461, RFC 8460",
    "ref": "https://www.rfc-editor.org/rfc/rfc8461",
    "what": "Whether inbound mail is protected against silent downgrade, with failures reported.",
-   "measure": "The _mta-sts and _smtp._tls TXT records are read for v=STSv1 and v=TLSRPTv1.",
-   "limit": "The policy file itself is not fetched; DNS presence is what is recorded."
+   "measure": "The _mta-sts TXT record is read for a valid v=STSv1 declaration.",
+   "limit": "Only the DNS record is read. The policy file itself, and whether it is in enforce or testing mode, are not fetched, so this is the presence of an advertised policy, not proof of an enforced one."
   },
   {
    "id": "A5",
@@ -1574,8 +1599,8 @@ const MSET={
    "source": "Public DNS",
    "ref": "",
    "what": "Whether a mail-capable homoglyph or one-keystroke typo of the domain is registered.",
-   "measure": "Homoglyph and typo variants are generated and each resolved for MX only. A variant is counted defensive when its name servers or mail servers match the actor's own or sit with a brand-protection registrar. Top-level-domain swaps are dropped, and labels of four characters or fewer are skipped, because their variants are ordinary words and other businesses.",
-   "limit": "Heuristic and not exhaustive. A mail-capable typo is not asserted to be malicious; only a homoglyph with live mail is treated as below code, and typos are advisable context."
+   "measure": "Homoglyph and one-keystroke variants of the domain are generated and each checked for registration and mail-capable records. Registrations by the organization itself are counted separately as defensive.",
+   "limit": "A registered look-alike is an observation, not a finding of malicious intent: many belong to unrelated businesses, and shared commodity name servers or mail providers do not establish common ownership. An organization also cannot control what third parties register. The generated variant set is heuristic, not exhaustive."
   },
   {
    "id": "B2",
@@ -1601,36 +1626,36 @@ const MSET={
   },
   {
    "id": "B3",
-   "name": "Origin exposure",
+   "name": "Web edge exposure (assessed host)",
    "cat": "Web",
    "level": 1,
    "source": "Shodan InternetDB",
    "ref": "https://internetdb.shodan.io/",
    "what": "Whether the website's address sits behind a CDN or managed edge, or also answers non-web services.",
-   "measure": "The resolved address is looked up in Shodan's passive index. CDN/WAF signatures or an edge answering only web ports count as shielded. An address that also answers remote-admin, file-transfer or database services is recorded as a directly reachable origin.",
-   "limit": "Which services, and any CVEs indexed against them, are held to Level 2: publishing them would hand an attacker a target list. The public record carries only the flag."
+   "measure": "The single address the website resolves to is looked up in Shodan's passive InternetDB. Answering only web ports is recorded as a managed/CDN edge; also answering non-web services is recorded as a directly-reachable origin, with the detail held to Level 2.",
+   "limit": "This is a passive read of one assessed host, not a scan and not a statement about the organization's wider infrastructure. 'Only web ports' on that host is not proof of a protective CDN or WAF, and says nothing about other addresses the organization operates."
   },
   {
    "id": "B4",
    "name": "Known-exploited services",
    "cat": "Surface",
-   "level": 1,
+   "level": 2,
    "source": "Shodan InternetDB, CISA KEV",
    "ref": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
    "what": "Whether directly reachable services carry known-exploited vulnerabilities.",
-   "measure": "Held to Level 2 for any origin that is not shielded.",
-   "limit": "Never published at Level 1."
+   "measure": "A Level 2 determination. Establishing that no directly-reachable service across the organization's infrastructure carries a known-exploited or critical CVE requires more than a passive read of one public web host.",
+   "limit": "Held to Level 2. A single passive web-host observation cannot support an organization-wide claim, so this Floor requirement is confirmed cooperatively, not from the curb."
   },
   {
    "id": "C1",
    "name": "Exposed admin / database",
    "cat": "Surface",
-   "level": 1,
+   "level": 2,
    "source": "Shodan InternetDB",
    "ref": "",
    "what": "Whether remote-admin or database ports answer on public addresses.",
-   "measure": "Held to Level 2, as B4.",
-   "limit": "Never published at Level 1."
+   "measure": "A Level 2 determination. The curb passively observes only the one web host the domain resolves to; whether remote-admin, database or file-sharing services are reachable across the organization's public addresses is confirmed at Level 2.",
+   "limit": "Held to Level 2 for the same reason as B4: one host is not the infrastructure."
   },
   {
    "id": "C2",
@@ -1640,8 +1665,8 @@ const MSET={
    "source": "RFC 4033 (DNSSEC), RFC 8659 (CAA)",
    "ref": "https://www.rfc-editor.org/rfc/rfc8659",
    "what": "Whether the zone is signed and certificate issuance is restricted.",
-   "measure": "The domain is queried for a DS record and for CAA records.",
-   "limit": "Presence is recorded, not correctness."
+   "measure": "The domain is queried for a DS record (DNSSEC delegation) and for CAA records; their presence is recorded.",
+   "limit": "Presence is recorded, not correctness: the DNSSEC signature chain is not validated end to end, and a present CAA record is not proof that certificate issuance is constrained in practice."
   },
   {
    "id": "C3",
@@ -1656,14 +1681,14 @@ const MSET={
   },
   {
    "id": "F1",
-   "name": "US Treasury sanctions",
+   "name": "US Treasury sanctions (public record)",
    "cat": "Record",
    "level": 1,
    "source": "US Consolidated Screening List (ITA)",
    "ref": "https://www.trade.gov/consolidated-screening-list",
    "what": "Whether the organization is designated on a US Treasury sanctions list.",
-   "measure": "The organization's names and known legal names are matched, exactly and after normalization, against every name and alias in the 26,146-entry list. Treasury lists count against the Floor. Commerce and State lists (Entity List, Denied Persons, ITAR debarment and others) are export-control records shown on the profile and not scored.",
-   "limit": "Exact matching misses a transliteration the list does not carry. EU, UK and UN lists are not read in this edition."
+   "measure": "The organization's exact legal name and aliases are matched against the OFAC lists in the US Consolidated Screening List. This is a matter of public-record standing, separated from technical security posture.",
+   "limit": "A matter of standing, not a security control, and never scored against the Floor. Name matching can produce false positives on common names; every candidate is reviewed and only exact matches are kept."
   },
   {
    "id": "G1",
@@ -1832,12 +1857,28 @@ function render(){
   $("sectorpane").hidden=isPane;$("controls").style.display=isPane?"none":"";
   if(isPane){cnt.textContent="";if(radialStop){radialStop();radialStop=null}return}
   const s=S[cur];sname.textContent=s.name;sdesc.textContent=s.desc;
+  const ringTotal=s.cats.reduce((a,c)=>a+c.p.length,0);
+  // hide the inclusion-reason filter when this ring has only one reason (it cannot change the result)
+  const focusSet=new Set(); s.cats.forEach(c=>c.p.forEach(p=>focusSet.add(p.f)));
+  fsel.style.display=focusSet.size>1?"":"none";
+  if(focusSet.size<=1&&fsel.value){fsel.value="";}
   const cats=filtered();
-  cnt.textContent=cats.reduce((a,c)=>a+c.p.length,0)+" of "+total+" shown";
+  const shown=cats.reduce((a,c)=>a+c.p.length,0);
+  const filtering=!!(q.value.trim()||fsel.value);
+  cnt.textContent=filtering?(shown+" of "+ringTotal+" match your filters"):(ringTotal+" in this group");
+  q.setAttribute("placeholder","Search "+s.name);
   dec.hidden=!s.table;if(s.table&&!dec.dataset.built)buildDecision();
   banner.classList.toggle("on",trust);
   if(trust&&!banner.dataset.built){banner.dataset.built="1";
     banner.innerHTML=''}
+  // empty results: a clear message and a reset, instead of a blank stage
+  if(!cats.length){
+    grid.hidden=tw.hidden=true; stage.hidden=false;
+    if(radialStop){radialStop();radialStop=null}
+    stage.innerHTML='<div class="empty-state"><p>No organizations in <b>'+s.name+'</b> match your search or filter.</p>'+
+      '<button class="pill" type="button" onclick="q.value=\'\';fsel.value=\'\';render()">Clear search and filters</button></div>';
+    return;
+  }
   grid.hidden=view!=="list";tw.hidden=view!=="table";stage.hidden=(view==="list"||view==="table");
   if(view==="list")drawList(cats);
   else if(view==="table")drawTable(cats);
@@ -2213,8 +2254,8 @@ const OBS=[
    hardfail:["Published, hard fail (-all)","good"], softfail:["Published, soft fail (~all)","mid"],
    neutral:["Published, neutral","weak"], other:["Published, non-standard ending","mid"],
    absent:["No SPF record published","weak"], "?":["Not measured in this pass","unk"]}],
- ["dnssec","DNSSEC","Whether DNS answers for the domain are cryptographically signed.",{
-   yes:["Signed","good"], no:["Not signed","mid"], "?":["Not measured in this pass","unk"]}]
+ ["dnssec","DNSSEC (DS record)","Whether the domain publishes a DNSSEC delegation (DS) record. Presence is recorded here; the signature chain is not validated end to end.",{
+   yes:["DS record published","good"], no:["No DS record","mid"], "?":["Not measured in this pass","unk"]}]
 ];
 /* ---- shared status logic for this edition: one place, used by the permit, the field stats and the overview ---- */
 function daysAgo(iso){return (Date.parse(SCAN_ISO)-Date.parse(iso))/864e5}
@@ -2222,9 +2263,11 @@ function rwActive(sc){return (sc.rw||[]).filter(r=>daysAgo(r.d)<=ACTIVE_DAYS)}
 function st(sc){
   const lookHomo=!!(sc.look&&sc.look.h&&sc.look.h.length);
   const S={};
-  S.A1= sc.L1==='meet'?'pass':sc.L1==='below'?'fail':sc.L1==='nomail'?'nomail':'na';
-  S.B4= sc.exp?(sc.exp.cdn?'pass':'l2'):'na';
-  S.C1= S.B4;
+  S.A1= sc.L1==='meet'?((sc.pct!==undefined&&sc.pct<100)?'partial':'pass'):sc.L1==='below'?'fail':sc.L1==='nomail'?'nomail':'na';
+  // C1 is a scoped observation of the ONE assessed web host: only web ports observed (cdn/edge),
+  // non-web services also answering (origin, held to L2), or no passive record. It is never an
+  // org-wide assurance, and known-exploited vulnerabilities are a Level 2 determination, not this.
+  S.C1= sc.exp?(sc.exp.cdn?'pass':'l2'):'na';
   S.F1= sc.ofac==='clear'?'pass':(sc.ofac?'fail':'na');
   S.G1= sc.rwread?(rwActive(sc).length?'recx':'pass'):'na';
   S.A2= sc.spf==='hardfail'?'rec':(sc.spf==='softfail'||sc.spf==='neutral'||sc.spf==='absent'||sc.spf==='other')?'recx':'na';
@@ -2238,7 +2281,12 @@ function st(sc){
   S.F5= sc.sectxt==='yes'?'rec':(sc.sectxt==='no'||sc.sectxt==='expired')?'recx':'na';
   return S;
 }
-function floorItems(sc){const s=st(sc);return ['A1','F1'].filter(k=>s[k]==='fail'||s[k]==='recx')}
+// The only pass/fail control observable from the curb is DMARC enforcement (A1).
+// Sanctions moved to public-record standing (v0.4); exposed-service and vulnerability
+// determinations are Level 2. "Below the Floor" means A1 does not fully meet: it does
+// not enforce (fail) or enforces on only part of its mail (partial).
+function floorItems(sc){const s=st(sc);return ['A1'].filter(k=>s[k]==='fail'||s[k]==='partial')}
+function floorClear(sc){return st(sc).A1==='pass'}
 function belowFloor(sc){return floorItems(sc).length>0}
 function recHtml(p){
   const sc=p.sc||{}; let items='';
@@ -2384,20 +2432,24 @@ function fieldStats(){
   const N=F.length;
   const share=(k)=>{const obs=F.map(st).filter(x=>x[k]!=='na'&&x[k]!=='nomail'&&x[k]!=='l2');return [obs.filter(x=>x[k]==='pass'||x[k]==='rec').length,obs.length]};
   const rows=[
-    ['A1','Enforcing DMARC','floor'],['F1','No US Treasury sanctions designation','floor'],
-    ['B3','Shielded web origin','std'],['A3','DKIM signing (common selectors)','std'],['A2','SPF hard-fail','std'],['A4','MTA-STS published','std'],
-    ['A5','No live homoglyph look-alike','std'],['B2','HSTS (six months or more)','std'],['F5','Valid security.txt','std'],
-    ['C2','DNS hygiene (DNSSEC + CAA)','std'],['C3','Clean network reputation','std']].map(([k,l,t])=>{const [m,d]=share(k);return [l,m,d,t]});
+    ['A1','Fully enforcing DMARC (pct=100)','floor'],
+    ['B3','Web edge: only web ports on assessed host','std'],['A3','DKIM key published (common selectors)','std'],['A2','SPF ends in -all (hard fail)','std'],['A4','MTA-STS record present','std'],
+    ['A5','No homoglyph look-alike with live mail','std'],['B2','HSTS (six months or more)','std'],['F5','Valid security.txt','std'],
+    ['C2','DNSSEC + CAA records present','std'],['C3','Clean network reputation','std']].map(([k,l,t])=>{const [m,d]=share(k);return [l,m,d,t]});
   const bar=r=>{const [lab,met,den]=r; const pct=den?Math.round(100*met/den):0;
     return '<div class="mb"><span class="ml">'+lab+' <span class="tnum" style="opacity:.6">'+met+'/'+den+'</span></span>'+
       '<span class="mt"><i style="width:'+pct+'%;background:var(--status-only-text)"></i></span>'+
       '<span class="mv">'+pct+'%</span></div>';};
-  const below=F.filter(belowFloor).length;
-  const clearPct=N?Math.round(100*(N-below)/N):0;
+  const dmFull=F.filter(x=>st(x).A1==='pass').length;
+  const dmPartial=F.filter(x=>st(x).A1==='partial').length;
+  const dmFail=F.filter(x=>st(x).A1==='fail').length;
+  const dmNoMail=F.filter(x=>st(x).A1==='nomail').length;
+  const dmDen=dmFull+dmPartial+dmFail;
+  const dmPct=dmDen?Math.round(100*dmFull/dmDen):0;
   return '<div class="fld">'+
-    '<div class="fld-head"><span class="fld-big">'+clearPct+'%</span>'+
-    '<span class="fld-cap">of the '+N+' organizations have no item to resolve on the observable Floor: their mail domain enforces DMARC or sends no mail, and they carry no Treasury designation. A ransomware leak-site listing is shown below as documented exposure, not scored against the Floor. It says nothing about the Floor controls that need Level 2: phishing-resistant MFA, isolated pre-release access, backups, endpoint detection.</span></div>'+
-    '<p class="mkick" style="margin-top:18px">Floor, the observable slice</p><div class="mbars conc">'+rows.filter(r=>r[3]==='floor').map(bar).join('')+'</div>'+
+    '<div class="fld-head"><span class="fld-big">'+dmFull+'<span style="font-size:.5em;color:var(--text-muted)"> / '+dmDen+'</span></span>'+
+    '<span class="fld-cap">organizations, of the '+dmDen+' whose mail domain could be read, fully enforce DMARC (p=quarantine or reject at pct=100) &mdash; the one control observable from the curb that a receiving server actually acts on. <b>'+dmPartial+'</b> more enforce on only part of their mail, <b>'+dmFail+'</b> do not enforce, and <b>'+dmNoMail+'</b> publish no mail servers (not applicable). Sanctions and ransomware listings are matters of public record, shown separately below and never scored against the Floor. Everything else on the Floor &mdash; phishing-resistant MFA, isolated pre-release access, backups, endpoint detection &mdash; needs Level 2.</span></div>'+
+    '<p class="mkick" style="margin-top:18px">Floor, the one curb-observable control</p><div class="mbars conc">'+rows.filter(r=>r[3]==='floor').map(bar).join('')+'</div>'+
     '<p class="mkick" style="margin-top:20px;color:var(--status-only-text)">Standard Practice, observable</p><div class="mbars conc">'+rows.filter(r=>r[3]==='std').map(bar).join('')+'</div>'+
     fieldBySector()+
     '<p class="mfoot">Each bar is the share meeting the control among the organizations where it could be observed; the counts show the denominator. As of '+SCAN_DATE+'.</p></div>';
@@ -2439,25 +2491,41 @@ function questionnaireHtml(){
 }
 function permitHtml(p){
   const sc=p.sc; if(!sc)return"";
-  const B={pass:['Pass','good'],fail:['Below code','weak'],rec:['Meets','good'],recx:['Advisable','mid'],l2:['Level 2','mid'],na:['Not observable','unk'],nomail:['No mail on domain','unk']};
+  const B={pass:['Observed clear','good'],partial:['Partly enforced','mid'],fail:['Item to resolve','weak'],rec:['Present','good'],recx:['Advisable','mid'],l2:['Requires Level 2','mid'],na:['Not observable','unk'],nomail:['Not applicable · no mail','unk']};
   const s=st(sc);
   function row(id,label,v,note){return '<div class="pm-c"><span class="pm-n">'+id+' '+label+(note?'<span class="pm-note">'+note+'</span>':'')+'</span><span class="pm-b '+B[v][1]+'">'+B[v][0]+'</span></div>';}
   const act=rwActive(sc);
+  const a1note = s.A1==='partial'
+      ? 'DMARC is published as p='+(sc.dmarc||'quarantine')+', but pct='+sc.pct+', so receivers are asked to act on only '+sc.pct+'% of forged mail. A full pass is pct=100; below that, forgeries of the exact domain are only partly rejected.'
+      : s.A1==='fail'&&sc.dmarc==='none' ? (sc.rua?'Published in monitoring mode (p=none) with reports collected, so no forged mail is acted on':'Published, but p=none asks receivers to do nothing')
+      : s.A1==='fail'&&sc.dmarc==='absent' ? 'No DMARC record, though the domain receives mail'
+      : s.A1==='nomail' ? 'Domain publishes no mail servers; a reject policy would still lock the name'
+      : s.A1==='pass' ? 'p='+(sc.dmarc||'reject')+', pct=100: receivers are asked to reject or quarantine every message forged in this exact domain'
+      : (sc.ovr||'');
   const floorObs=[
-    ['A1','Enforcing DMARC',s.A1, s.A1==='fail'&&sc.dmarc==='none'?(sc.rua?'Published in monitoring mode (p=none) with reports collected':'Published, but p=none asks receivers to do nothing'):(s.A1==='fail'&&sc.dmarc==='absent'?'No DMARC record, though the domain receives mail':(s.A1==='pass'&&sc.pct!==undefined&&sc.pct<100?'Enforced on '+sc.pct+'% of failing mail':(s.A1==='nomail'?'Domain publishes no mail servers; a reject policy would still lock it':(sc.ovr||''))))],
-    ['B4','No known-exploited vulnerabilities',s.B4, s.B4==='l2'?'Origin directly reachable; detail held to Level 2':''],
-    ['C1','No exposed admin / database services',s.C1,''],
-    ['F1','No US Treasury sanctions designation',s.F1, (sc.rec&&sc.rec.length)?'An export-control record is shown below and is not scored':'']];
+    ['A1','Enforcing DMARC on the mail domain',s.A1, a1note]];
   const fFail=floorItems(sc).length;
-  const floorHead = fFail===0
-    ? '<b>Nothing to resolve on the observable Floor.</b> The rest of the Floor is confirmed only at Level 2.'
-    : '<b>'+fFail+' Floor item'+(fFail===1?'':'s')+' to resolve.</b> The rest of the Floor is confirmed only at Level 2.';
-  const floorL2=['D1 Phishing-resistant MFA everywhere','K1 Isolated, logged pre-release access','E1 Tested, isolated backups','E2 Endpoint detection & response'];
+  const floorHead = s.A1==='nomail'
+    ? '<b>Not applicable: this domain publishes no mail servers.</b> The DMARC control is the one pass/fail item observable from the curb; the rest of the Floor is confirmed only at Level 2.'
+    : fFail===0
+    ? '<b>The one curb-observable Floor control, DMARC enforcement, is clear.</b> Everything else on the Floor is confirmed only at Level 2.'
+    : '<b>'+fFail+' curb-observable Floor item'+(fFail===1?'':'s')+' to resolve.</b> The rest of the Floor is confirmed only at Level 2.';
+  const floorL2=['D1 Phishing-resistant MFA everywhere','K1 Isolated, logged pre-release access','E1 Tested, isolated backups','E2 Endpoint detection & response','B4 No known-exploited services (full infrastructure)'];
+  const b3note = sc.exp ? (sc.exp.cdn?'Only web ports answered on the single assessed host; no remote-admin, file-transfer or database service was indexed on it. A scoped read of one address, not the whole infrastructure':'The assessed web address also answers non-web services; which, and any indexed vulnerabilities, are held to Level 2') : '';
   const stdFams=[
-    ['A','Email hardening',[['A2','SPF hard-fail',s.A2],['A3','DKIM signing',s.A3],['A4','MTA-STS',s.A4],['A5','No live homoglyph look-alike',s.A5]]],
-    ['B','Web edge',[['B2','HSTS on the public website',s.B2, sc.hsts==='short'?'max-age under six months':''],['B3','Shielded origin',s.B3]]],
-    ['C','Attack surface',[['C2','DNS hygiene (DNSSEC + CAA)',s.C2],['C3','Clean network reputation',s.C3]]],
-    ['F','Reachability',[['F5','Valid security.txt',s.F5, sc.sectxt==='expired'?'Published, but expired '+(sc.sectxt_exp||''):'']]]];
+    ['A','Email hardening',[
+      ['A2','SPF published',s.A2, sc.spf==='hardfail'?'Ends in -all (hard fail)':(sc.spf==='softfail'?'Ends in ~all; forged senders are not hard-rejected':'')],
+      ['A3','DKIM key published',s.A3, s.A3==='rec'?'A key answers at a common selector. Presence is not proof that outbound mail is actually signed and aligned':'No key at the selectors tried; an uncommon selector would be missed'],
+      ['A4','MTA-STS record present',s.A4, s.A4==='rec'?'A DNS record advertises a policy; the policy file and its enforce/testing mode were not fetched':''],
+      ['A5','No homoglyph look-alike with live mail',s.A5]]],
+    ['B','Web edge',[
+      ['B2','HSTS on the public website',s.B2, sc.hsts==='short'?'Served, but max-age under six months':''],
+      ['B3','Web edge exposure (assessed host)',s.B3, b3note]]],
+    ['C','Attack surface',[
+      ['C2','DNSSEC + CAA records present',s.C2, s.C2==='rec'?'Both records exist. This does not validate the DNSSEC chain or confirm certificate issuance is constrained in practice':''],
+      ['C3','Clean network reputation',s.C3]]],
+    ['F','Reachability',[
+      ['F5','Valid security.txt',s.F5, sc.sectxt==='expired'?'Published, but expired '+(sc.sectxt_exp||''):'']]]];
   let sMet=0,sApp=0;
   const stdRows=stdFams.map(f=>{
     const items=f[2].map(c=>{const v=c[2];if(v!=='na'){sApp++;if(v==='pass'||v==='rec')sMet++;}return row(c[0],c[1],v,c[3]);}).join('');
@@ -2466,8 +2534,8 @@ function permitHtml(p){
   const stdL2=['Access, SSO & offboarding','Pre-release access revoked at close','No pre-release material in general-purpose tools','Independent attestation & pen-testing','Logging, monitoring & incident response','Exposed-credential monitoring'];
   const stdHead = 'Meets <b>'+sMet+' of '+sApp+'</b> observable Standard-Practice controls. The rest are confirmed only at Level 2.';
   const parent = sc.parent?'<p class="d-note" style="margin:0 0 10px;color:var(--warn)"><b>Read on a parent domain.</b> This institute has no domain of its own, so every reading here is of '+sc.parent+', which it does not control alone.</p>':'';
-  return '<div class="d-sec permit"><h4>The permit <span class="d-status meas">Level 1 &middot; '+SCAN_DATE+'</span></h4>'+
-    '<p class="d-note" style="margin:0 0 12px">Inspected against the Frontier Perimeter Security Standard from the public record. <b>The Floor</b> is the minimum any organization near an unreleased model should clear; <b>Standard Practice</b> is what one that handles such models, or warns the public about them, should meet above it. Each control is pass, below code, advisable, or not observable. Never a score.</p>'+parent+
+  return '<div class="d-sec permit"><h4>The Level 1 reading <span class="d-status meas">'+SCAN_DATE+'</span></h4>'+
+    '<p class="d-note" style="margin:0 0 12px">Read against the Frontier Perimeter Security Standard from the public record, on the domain <b>'+(sc.webhost||p.w)+'</b>. Two independent axes: <b>the Floor</b> (the minimum) vs <b>Standard Practice</b> (hardening above it), and <b>Level 1</b> (publicly observable, shown here) vs <b>Level 2</b> (needs the organization to open the door). Each control is observed clear, an item to resolve, advisable, requires Level 2, or not observable. Never a score.</p>'+parent+
     '<div class="pm-tier floor"><div class="pm-th"><span class="pm-tn">The Floor</span><span class="pm-tt">The minimum</span></div>'+
     '<p class="pm-sub">'+floorHead+'</p>'+
     '<div class="pm-flat">'+floorObs.map(c=>row(c[0],c[1],c[2],c[3])).join('')+'</div>'+
@@ -2617,45 +2685,52 @@ document.querySelectorAll('[data-n="rest"]').forEach(e=>e.textContent=total-1);
 {const ring=id=>{const s=S.find(x=>x.id===id);return s?s.cats.flatMap(c=>c.p).filter(p=>p.sc):[]};
  const all=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.sc), N=all.length;
  const pc=x=>Math.round(x*100)+"%";
- const clear=ps=>ps.filter(p=>!belowFloor(p.sc)).length;
- const dmOk=ps=>ps.filter(p=>st(p.sc).A1==='pass').length, dmDen=ps=>ps.filter(p=>['pass','fail'].includes(st(p.sc).A1)).length;
+ // shared calculation layer: A1 states drive every DMARC figure on the page
+ const full=ps=>ps.filter(p=>st(p.sc).A1==='pass').length;            // fully enforces (pct=100)
+ const dmDen=ps=>ps.filter(p=>['pass','fail','partial'].includes(st(p.sc).A1)).length; // mail observed
+ const dmPart=ps=>ps.filter(p=>st(p.sc).A1==='partial').length;
+ const dmFail=ps=>ps.filter(p=>st(p.sc).A1==='fail').length;
  const secOk=ps=>ps.filter(p=>p.sc.sectxt==='yes').length, secDen=ps=>ps.filter(p=>p.sc.sectxt&&p.sc.sectxt!=='?').length;
- const R=S.map(s=>{const ps=ring(s.id);return {id:s.id,n:s.name,t:ps.length,c:clear(ps),dm:dmOk(ps),dmd:dmDen(ps),sx:secOk(ps),sxd:secDen(ps)}});
- const G=id=>R.find(r=>r.id===id)||{t:0,c:0,dm:0,dmd:1,sx:0,sxd:1};
- const lab=G('committed'), ent=G('entrusted'), war=G('warning');
- const rate=(x,y)=>y?x/y:0;
- const dGap=rate(lab.dm,lab.dmd)-rate(ent.dm,ent.dmd), sGap=rate(lab.sx,lab.sxd)-rate(ent.sx,ent.sxd);
- const head = (dGap>=0.1&&sGap>=0.1) ? 'The perimeter is softer than the vault.' : ((dGap<=-0.1&&sGap<=-0.1) ? 'On this read, the perimeter is kept better than the vault.' : 'From the curb, the perimeter and the vault read much alike.');
- const ringBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.c+'/'+r.t+'</span></span><span class="mt"><i style="width:'+(r.t?r.c/r.t*100:0).toFixed(1)+'%;background:var(--status-only-text)"></i></span><span class="mv tnum">'+pc(r.t?r.c/r.t:0)+'</span></div>').join('');
- const secBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.sx+'/'+r.sxd+'</span></span><span class="mt"><i class="c" style="width:'+(r.sxd?r.sx/r.sxd*100:0).toFixed(1)+'%"></i></span><span class="mv tnum">'+pc(r.sxd?r.sx/r.sxd:0)+'</span></div>').join('');
+ const R=S.map(s=>{const ps=ring(s.id);return {id:s.id,n:s.name,t:ps.length,c:full(ps),dmd:dmDen(ps),sx:secOk(ps),sxd:secDen(ps)}});
  const E=ring('entrusted');
- const eSpoof=E.filter(p=>p.sc.L1==='below').length, eOrigin=E.filter(p=>p.sc.exp&&p.sc.exp.o).length, eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, ePartial=E.filter(p=>p.sc.L1==='meet'&&p.sc.pct!==undefined&&p.sc.pct<100).length;
- const eGov=E.filter(p=>p.kind==='government').length;
+ const eFull=full(E), eDen=dmDen(E), ePartial=dmPart(E), eFail=dmFail(E);
+ const eNoSec=E.filter(p=>p.sc.sectxt==='no'||p.sc.sectxt==='expired').length, eSecDen=secDen(E);
+ const eOrigin=E.filter(p=>p.sc.exp&&p.sc.exp.o).length;
+ const srcN=S.flatMap(s=>s.cats.flatMap(c=>c.p)).filter(p=>p.su).length;
+ const not=eFail+ePartial;
+ // ---- the 15-second opening findings, from the same numbers ----
+ $("ledeFind").innerHTML=
+  '<div class="lf"><div class="n"><b>'+not+' of '+E.length+'</b> entrusted evaluators do not fully enforce DMARC</div><div class="d">'+eFail+' publish no enforcing policy'+(ePartial?', '+ePartial+(ePartial===1?' enforces on only part of its mail':' enforce on only part of their mail'):'')+'. A message forged in their exact domain is not reliably rejected. Level 1, '+SCAN_DATE+'.</div></div>'+
+  '<div class="lf"><div class="n"><b>'+eNoSec+' of '+eSecDen+'</b> publish no security.txt</div><div class="d">No published address for reporting a vulnerability to them (RFC 9116). Absence is not proof that no channel exists.</div></div>'+
+  '<div class="lf"><div class="n"><span class="ok">'+srcN+' of '+total+'</span> carry a cited source</div><div class="d">Every organization is included from a public document, with the sentence quoted on its profile.</div></div>';
+ // ---- the fuller findings ----
+ const ringBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.c+'/'+r.dmd+'</span></span><span class="mt"><i style="width:'+(r.dmd?r.c/r.dmd*100:0).toFixed(1)+'%;background:var(--status-only-text)"></i></span><span class="mv tnum">'+pc(r.dmd?r.c/r.dmd:0)+'</span></div>').join('');
+ const secBars=R.map(r=>'<div class="mb"><span class="ml">'+r.n+' <span class="tnum" style="opacity:.6">'+r.sx+'/'+r.sxd+'</span></span><span class="mt"><i class="c" style="width:'+(r.sxd?r.sx/r.sxd*100:0).toFixed(1)+'%"></i></span><span class="mv tnum">'+pc(r.sxd?r.sx/r.sxd:0)+'</span></div>').join('');
  const raters=S.find(x=>x.id==='letter')?S.find(x=>x.id==='letter').cats.filter(c=>/ratings/i.test(c.n)).flatMap(c=>c.p):[];
- const rDm=raters.filter(p=>p.sc.L1==='meet').length, rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
+ const rDm=full(raters), rSec=raters.filter(p=>p.sc.sectxt==='yes').length, rHsts=raters.filter(p=>p.sc.hsts==='yes').length, rSts=raters.filter(p=>p.sc.mtasts==='yes').length;
  const rwN=all.filter(p=>p.sc.rw&&p.sc.rw.length).length, rwAct=all.filter(p=>rwActive(p.sc).length).length;
  const recN=all.filter(p=>p.sc.rec&&p.sc.rec.length).length, trN=all.filter(p=>p.sc.ofac&&p.sc.ofac!=='clear').length;
  const top=(key,skip)=>{const m={};all.forEach(p=>{const v=p.sc[key];if(!v||skip.indexOf(v)>=0)return;m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]);};
  const M=top("mail",["?","none","other / self-hosted"]);
- const monitor=all.filter(p=>p.sc.L1==='below'&&p.sc.dmarc==='none').length, belowAll=all.filter(p=>p.sc.L1==='below').length;
+ const monitor=all.filter(p=>p.sc.L1==='below'&&p.sc.dmarc==='none').length, belowAll=all.filter(p=>st(p.sc).A1==='fail'||st(p.sc).A1==='partial').length;
  $("measured").innerHTML=
-  '<p class="mkick">Level 1 &middot; the observable Floor, by ring</p>'+
-  '<h3>'+head+'</h3>'+
-  '<p>The twenty labs that pledged at Seoul to invest in cybersecurity for unreleased weights enforce DMARC on <b>'+lab.dm+' of '+lab.dmd+'</b> of their mail domains, and <b>'+lab.sx+' of '+lab.sxd+'</b> publish a valid security.txt. The <b>'+ent.t+'</b> organizations those labs name as having tested their models before release: <b>'+ent.dm+' of '+ent.dmd+'</b>, and <b>'+ent.sx+' of '+ent.sxd+'</b>. The organizations warning the public: <b>'+war.dm+' of '+war.dmd+'</b>, and <b>'+war.sx+' of '+war.sxd+'</b>. These are small numbers, and one organization moves a share by several points; the gap on email is real but modest, and the gap on being reachable about a flaw is wide.</p>'+
-  '<p>The observable Floor is two things: a mail domain that tells receivers to reject forgeries of it, and no Treasury sanctions designation. Each costs close to nothing to meet. A leak-site listing is shown on the record as documented exposure — dated and linked — but it is an attacker’s unverified claim, so it is never scored against the Floor. The share of each ring with nothing to resolve on it:</p>'+
+  '<p class="mkick">Level 1 &middot; the observable edge, by ring</p>'+
+  '<h3>The publicly observable edge is uneven, and mostly unmeasured.</h3>'+
+  '<p>The one control a receiving mail server actually acts on, and the one this map can read from the curb, is DMARC enforcement: whether a message forged in an organization&rsquo;s exact domain is rejected. It is a narrow signal. It says nothing about how model access is held inside &mdash; that is a Level 2 question no outside read can answer. But it is cheap, it is universal, and the field is uneven. Sanctions and ransomware listings are matters of public record, shown separately below and never scored against this control.</p>'+
+  '<p>Two rings carry different weight. The <b>'+E.length+'</b> <b>entrusted</b> organizations each appear in a frontier lab&rsquo;s own system card as having tested a model before release, so a weak edge there is documented operational exposure. The organizations <b>warning the public</b> or <b>rating others</b> are included for what they publish, not for any access, so the same control is read as ordinary hygiene, not exposure. The share of each ring that <b>fully enforces DMARC</b> (p=quarantine or reject at pct=100), among domains whose mail could be read:</p>'+
   '<div class="mbars">'+ringBars+'</div>'+
-  '<p class="mfoot">Share of each ring with no item to resolve on the observable Floor, '+SCAN_DATE+'. A domain that runs no mail, or whose mail could not be observed, is not counted against it.</p>'+
-  '<h3 class="mh2">The perimeter, read from the curb.</h3>'+
-  '<p>Every organization in the Entrusted ring appears in a lab’s own system card as an external tester. On the public record, <b>'+eSpoof+'</b> of the '+ent.t+' could have a message forged in their exact domain delivered without the receiving server being asked to stop it'+(ePartial?', and <b>'+ePartial+'</b> more '+(ePartial===1?'enforces on only part of its mail':'enforce on only part of their mail'):'')+'. <b>'+eOrigin+'</b> '+(eOrigin===1?'has a web address that also answers':'have web addresses that also answer')+' remote-admin, file-transfer or database services, the detail of which is held to Level 2. <b>'+eNoSec+'</b> publish no valid security.txt telling anyone where to report a flaw. None of this says how a lab’s model was held once inside, which only Level 2 can. It says the edge is softer here than at the lab it serves. The break-in at OpenAI in July 2026 came through a community forum, not the model: the soft edge is the one that gets used.</p>'+
-  '<h3 class="mh2">Can anyone tell them?</h3>'+
-  '<p>A security.txt file is the plain-text answer to one question: if you find a flaw in us, where do you send it. It is one file, and its standard dates from 2022. The organizations asking everyone else to fix their weaknesses are the ones that should be easiest to reach about their own.</p>'+
+  '<p class="mfoot">Share fully enforcing DMARC, '+SCAN_DATE+'. Denominator excludes domains that publish no mail servers or whose mail could not be observed. Partial enforcement (pct&lt;100) is counted as not fully enforcing.</p>'+
+  '<h3 class="mh2" id="find-entrusted">The entrusted ring, in detail.</h3>'+
+  '<p>Of the <b>'+E.length+'</b> organizations the labs named as external testers, <b>'+eFail+'</b> publish no enforcing DMARC policy, so a message forged in their exact domain is not rejected'+(ePartial?', and <b>'+ePartial+'</b> more '+(ePartial===1?'enforces on only part of its mail':'enforce on only part of their mail'):'')+'. <b>'+eOrigin+'</b> '+(eOrigin===1?'has a web address whose single assessed host also answers':'have web addresses whose assessed host also answers')+' non-web services; which, and any indexed vulnerabilities, are held to Level 2. <b>'+eNoSec+'</b> of '+eSecDen+' publish no valid security.txt, so there is no published address to report a flaw to them. None of this establishes that the internal environment holding a model is weak &mdash; only Level 2 can speak to that. It establishes that the outside edge is uneven, and that the OpenAI break-in of July 2026 came through exactly this kind of peripheral surface.</p>'+
+  '<h3 class="mh2" id="find-reach">Can anyone tell them?</h3>'+
+  '<p>A security.txt file is the plain-text answer to one question: if you find a flaw in us, where do you send it. It is one file, and its standard (RFC 9116) dates from 2022. Organizations asking everyone else to fix their weaknesses are the ones that should be easiest to reach about their own. Share publishing a valid one, among those whose website answered:</p>'+
   '<div class="mbars conc">'+secBars+'</div>'+
-  '<p class="mfoot">Share publishing a valid, unexpired security.txt (RFC 9116) at /.well-known/, among those whose website answered the read. Its absence does not prove no reporting channel exists. For that reason it is Standard Practice in this edition, not the Floor.</p>'+
-  (raters.length?'<h3 class="mh2">The raters, rated.</h3><p>'+raters.length+' security-ratings firms signed the defense letter. Their business is scoring other companies from the outside, so the Standard reads them the same way. '+rDm+' of '+raters.length+' enforce DMARC, '+rHsts+' of '+raters.length+' serve HSTS for six months or more, '+rSts+' of '+raters.length+' publish MTA-STS, and '+rSec+' of '+raters.length+' publish a valid security.txt. The one thing this map will not do is turn that into a number.</p>':'')+
-  '<h3 class="mh2">On the public record.</h3>'+
-  '<p>Every organization was screened on '+SCAN_DATE+' against the 26,146 entries of the US Consolidated Screening List. '+(trN?trN+' carry a Treasury designation.':'None carries a Treasury sanctions designation.')+' '+(recN?recN+' carries an export-control record: a Seoul signatory on the Commerce Department’s Entity List, shown on its profile and not scored.':'')+' '+rwN+' '+(rwN===1?'appears':'appear')+' on ransomware.live as a named victim of an extortion leak site, '+rwAct+' within the last year. Each listing is an attacker’s claim, dated and linked.</p>'+
+  '<p class="mfoot">Valid, unexpired security.txt at /.well-known/, among websites that answered the read. Its absence does not prove no reporting channel exists; it is Standard Practice, not the Floor.</p>'+
+  (raters.length?'<h3 class="mh2">The raters, rated.</h3><p>'+raters.length+' security-ratings firms signed the Collective Cyber Defense letter. Their business is scoring other companies from the outside, so the Standard reads them the same way: '+rDm+' of '+raters.length+' fully enforce DMARC, '+rHsts+' serve HSTS for six months or more, '+rSts+' publish an MTA-STS record, and '+rSec+' publish a valid security.txt. This map will not turn that into a composite number.</p>':'')+
+  '<h3 class="mh2" id="find-record">On the public record.</h3>'+
+  '<p>Separate from any security reading, every organization was screened on '+SCAN_DATE+' against the 26,146 entries of the US Consolidated Screening List. '+(trN?trN+' carry a Treasury designation.':'None carries a Treasury sanctions designation, which is why this is a matter of standing, not a Floor control.')+' '+(recN?recN+' carries an export-control record (a Seoul signatory on the Commerce Department&rsquo;s Entity List), shown on its profile and never scored.':'')+' '+rwN+' '+(rwN===1?'appears':'appear')+' on ransomware.live as a named victim of an extortion leak site, '+rwAct+' within the last year. A leak-site listing is an attacker&rsquo;s unverified claim, dated and linked, not a security finding.</p>'+
   '<h3 class="mh2">And most of them share an inbox provider.</h3>'+
-  '<p>'+(M[0]?pc(M[0][1]/N)+' of the '+N+' route mail through '+M[0][0]+(M[1]?', and '+pc(M[1][1]/N)+' through '+M[1][0]:'')+'. ':'')+'Of the '+belowAll+' mail domains below the Floor, '+monitor+' already publish a DMARC record in monitoring mode, the step before enforcement. On the platforms most of them use, the remaining step is a single DNS change once every legitimate sender is signing.</p>'+
+  '<p>'+(M[0]?pc(M[0][1]/N)+' of the '+N+' route mail through '+M[0][0]+(M[1]?', and '+pc(M[1][1]/N)+' through '+M[1][0]:'')+'. ':'')+'Of the '+belowAll+' domains not fully enforcing DMARC, '+monitor+' already publish a DMARC record in monitoring mode, the step before enforcement. On the platforms most of them use, the remaining step is a single DNS change once every legitimate sender is signing.</p>'+
   '<p class="mfoot">Read from the public record on '+SCAN_DATE+'. Nothing was supplied by the organizations and nothing was tested against their systems. An organization that has since changed its configuration can ask for a re-measure, and the record will show the date it changed.</p>';
 }
 {const all=S.flatMap(s=>s.cats.flatMap(c=>c.p));
